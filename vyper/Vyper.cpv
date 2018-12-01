@@ -1,0 +1,152 @@
+/***************************************************************************
+ * File...... Vyper.cpv
+ * Author.... Mat
+ * Date...... 5/7/99
+ *
+ * Custom code for main Vyper class
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+#ifndef VVERSION
+  #define VVERSION
+#endif
+
+
+// program startup code can go here
+void Vyper::construct()
+{
+  // default split bar percentage
+  iSplit = 50;
+
+  // initialize canvas size
+  _canvasSize = iVyperSplitCanvas->size();
+
+  // set locale for string support
+  char * locale = getenv( "VLOCALE" );
+  if ( locale )
+    setlocale( LC_ALL, locale );
+
+  // send version to log
+  ITRACE_RUNTIME( IString("VyperHelp ") + IString(VVERSION) );
+  ITRACE_RUNTIME( IString("Generator ") + Generator::version() );
+  ITRACE_RUNTIME( IString("Editor ") + Editor::version() );
+  ITRACE_RUNTIME( IString("OpenClass ") +
+      IString(IBase::version().major) + IString('.') + IString(IBase::version().minor) );
+
+  // send registration to log
+  ITRACE_RUNTIME( IString("User: ") + Generator::registration().name() );
+  ITRACE_RUNTIME( IString("Key: ") + Generator::registration().key().key() );
+
+  // expiration notice
+  ExpirationDate expires = Generator::registration().key().expires();
+  if ( (int)expires )
+  {
+    IMessageBox box( this );
+    IString text = Generator::registration().notice() + IString(' ') + expires.notice();
+    box.show( text, IMessageBox::okButton | IMessageBox::informationIcon | IMessageBox::moveable );
+  }
+
+  // change default font to WarpSans if available
+  IString warpSans( "WarpSans" );
+  IFont font( warpSans, 9 );
+  if ( font.name() == warpSans )
+  {
+    iSectionContainer->setFont( font );
+    font.setBold();
+    iVyperFrameMenu->setFont( font );
+  }
+
+  // set the system menu icon
+  setIcon( WND_Vyper );
+}
+
+
+void Vyper::destruct()
+{
+  while ( iAllSymbols->numberOfElements() )
+  {
+    VySymbol * symbol = iAllSymbols->lastElement();
+    iAllSymbols->removeLast();
+    delete symbol;
+  }
+}
+
+
+// Feature source code generation begins here...
+INotificationId Vyper::closeRequestedId = "Vyper::closeRequested";
+
+void Vyper::requestClose()
+{
+  notifyObservers(INotificationEvent(Vyper::closeRequestedId, *this));
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void Vyper::loadSymbols()
+{
+  if ( iAllSymbols->isEmpty() )
+  {
+    int i;
+    for ( i = Symbol::startOfList; i <= Symbol::endOfList; i++ )
+    {
+      VySymbol * symbol = VySymbol::newSymbol();
+      symbol->setCode( i );
+      iAllSymbols->add( symbol );
+    }
+    iAllSymbols->sort( VySymbol::compare );
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId Vyper::splitId = "Vyper::split";
+
+unsigned long Vyper::split() const
+{
+  // NOTE: iVyperSplitCanvas->splitWindowPercentage( iSectionContainer ) is not used here
+  //       because it may not be valid yet, esp. if called during resize of a client window
+  return iSplit;
+}
+
+Vyper& Vyper::setSplit(unsigned long aSplit)
+{
+  if (!(iSplit == aSplit))
+  {
+    iSplit = aSplit;
+    iVyperSplitCanvas->setSplitWindowPercentage( iSectionContainer, iSplit );
+    iVyperSplitCanvas->setSplitWindowPercentage( iVyperPort, 100 - iSplit );
+    iVyperSplitCanvas->refresh();
+    notifyObservers(INotificationEvent(Vyper::splitId, *this));
+  } // endif
+  return *this;
+}
+
+
+// this should be called when one of the split canvas children changes sizes
+//  (indicating that the split percentage may have changed)
+void Vyper::updateSplit()
+{
+  ISize size = iVyperSplitCanvas->size();
+  if ( size != _canvasSize )
+  {
+    // if the canvas size is also changing, then user is resizing frame, and
+    //    we don't want to update the split percentage
+    _canvasSize = size;
+  }
+  else
+  {
+    // determine the split percentage by comparing sizes.  Note that
+    //    iVyperSplitCanvas->splitWindowPercentage( iSectionContainer )
+    //    is not used because it is not updated at the time the child size changes.
+    setSplit( iSectionContainer->size().width() * 100 / _canvasSize.width() );
+  }
+}
+
+// Feature source code generation ends here.
+

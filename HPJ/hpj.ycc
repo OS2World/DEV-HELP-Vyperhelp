@@ -1,0 +1,379 @@
+/***************************************************************************
+ * File...... hpj.ycc
+ * Author.... Mat
+ * Date...... 12/7/95
+ *
+ * Grammar for HPJ (WinHelp Project) files.
+ *
+ * - Terminal symbols (lexical tokens) begin with initial caps
+ * - Non-terminal symbols begin with lower case
+ *
+ * Copyright (C) 1995 MekTek
+ ***************************************************************************/
+
+
+//
+// TO DO:
+//     - enforce \n placement?
+//     - don't recognize '[' in %ignored text if quoted (" or ')
+//
+
+
+/***************************************************************************
+ * MACROS
+ ***************************************************************************/
+
+%macro
+
+// context string
+{name}        '[A-Za-z0-9\._]+';
+
+// case-insensitive keywords
+{ALIAS}             '[Aa][Ll][Ii][Aa][Ss]';
+{BITMAPS}           '[Bb][Ii][Tt][Mm][Aa][Pp][Ss]';
+{BMROOT}            '[Bb][Mm][Rr][Oo][Oo][Tt]';
+{BUILDTAGS}         '[Bb][Uu][Ii][Ll][Dd][Tt][Aa][Gg][Ss]';
+{CNT}               '[Cc][Nn][Tt]';
+{CONFIG}            '[Cc][Oo][Nn][Ff][Ii][Gg]';
+{CONTENTS}          '[Cc][Oo][Nn][Tt][Ee][Nn][Tt][Ss]';
+{COPYRIGHT}         '[Cc][Oo][Pp][Yy][Rr][Ii][Gg][Hh][Tt]';
+{FILES}             '[Ff][Ii][Ll][Ee][Ss]';
+{FORCEFONT}         '[Ff][Oo][Rr][Cc][Ee][Ff][Oo][Nn][Tt]';
+{HLP}               '[Hh][Ll][Pp]';
+{INDEX_SEPARATORS}  '[Ii][Nn][Dd][Ee][Xx]_[Ss][Ee][Pp][Aa][Rr][Aa][Tt][Oo][Rr][Ss]';
+{MAPFONTSIZE}       '[Mm][Aa][Pp][Ff][Oo][Nn][Tt][Ss][Ii][Zz][Ee]';
+{MAP}               '[Mm][Aa][Pp]';
+{OPTIONS}           '[Oo][Pp][Tt][Ii][Oo][Nn][Ss]';
+{REPLACE}           '[Rr][Ee][Pp][Ll][Aa][Cc][Ee]';
+{ROOT}              '[Rr][Oo][Oo][Tt]';
+{TITLE}             '[Tt][Ii][Tt][Ll][Ee]';
+{WINDOWS}           '[Ww][Ii][Nn][Dd][Oo][Ww][Ss]';
+
+
+
+/***************************************************************************
+ * MAIN
+ ***************************************************************************/
+
+%expression Main
+
+//
+// White space & non-white Tokens
+//
+
+'[ \t\n]+'                      %ignore;
+'[^ \t\n\[;]+'                  %ignore;
+'\['                            Section;
+
+//
+// Sections
+//    NOTE: [CONFIG] has a special form for window configurations:
+//          [CONFIG:name] or [CONFIG-name]
+//
+
+'[A-Za-z]+\]'                     Unknown;
+'{CONFIG}([\-:]{name})?\]'        Config;
+'{OPTIONS}\]'                     Options,        %push Options;
+'{FILES}\]'                       Files,          %push List;
+'{BUILDTAGS}\]'                   BuildTags,      %push List;
+'{BITMAPS}\]'                     Bitmaps,        %push List;
+'{MAP}\]'                         Map,            %push Map;
+'{ALIAS}\]'                       Alias,          %push Alias;
+'{WINDOWS}\]'                     Windows,        %push Windows;
+
+//
+// Comments
+//
+
+';'                             %ignore,        %push AComment;
+
+
+/***************************************************************************
+ * OPTIONS
+ ***************************************************************************/
+
+%expression Options
+
+'[ \t\n]+'                      %ignore;
+'[A-Za-z]+'                     Other;
+'{BMROOT}'                      BmRoot;
+'{CNT}'                         Cnt;
+'{CONTENTS}'                    Contents;
+'{COPYRIGHT}'                   Copyright;
+'{FORCEFONT}'                   ForceFont;
+'{HLP}'                         Hlp;
+'{INDEX_SEPARATORS}'            IndexSeparators;
+'{MAPFONTSIZE}'                 MapFontSize;
+'{REPLACE}'                     Replace;
+'{ROOT}'                        Root;
+'{TITLE}'                       Title;
+
+'=[ \t]*'                       Equal,          %push Parm;
+
+';'                             %ignore,        %push AComment;
+
+'\['                            Section,        %pop;
+
+
+/***************************************************************************
+ * LIST
+ ***************************************************************************/
+
+%expression List
+
+'[ \t\n]+'                      %ignore;
+'[^;\[ \t\n]+'                  Item;
+
+'#include'                      Include;
+'<[^>]*>'                       AngleString;  // #include system filename
+
+';'                             %ignore,        %push AComment;
+
+'\['                            Section,        %pop;
+
+
+/***************************************************************************
+ * MAP
+ ***************************************************************************/
+
+%expression Map
+
+//
+// C pre-processor directives
+//
+
+'{name}'                        MapName;
+'[ \t\n]+'                      %ignore;
+'#define'                       Define;
+'#include'                      Include;
+'<[^>]*>'                       AngleString;  // #include system filename
+'\"[^\"]+\"'                    QuoteString;  // #include local filename
+
+';'                             %ignore,        %push AComment;
+'/\*'                           %ignore,        %push CComment;
+
+'\['                            Section,        %pop;
+
+
+/***************************************************************************
+ * ALIAS
+ ***************************************************************************/
+
+%expression Alias
+
+'{name}'                        AliasName;
+'[ \t\n]+'                      %ignore;
+'='                             Equal;
+
+';'                             %ignore,        %push AComment;
+
+'\['                            Section,        %pop;
+
+
+/***************************************************************************
+ * WINDOWS
+ ***************************************************************************/
+
+%expression Windows
+
+'[ \t]'                         %ignore;
+'\n'                            WindowEnd;
+'{name}'                        WindowName;
+'[0-9]+'                        Number;
+'[Rr][0-9]+'                    PrefixR;
+'[Ff][0-9]+'                    PrefixF;
+'\('                            OpenParen;
+'\)'                            CloseParen;
+','                             Comma;
+'='                             Equal;
+'\"'                            %ignore,        %push Quote;
+
+';'                             WindowEnd,      %push AComment;
+
+'\['                            Section,        %pop;
+
+
+
+/***************************************************************************
+ * PARAMETER VALUE (for Options)
+ ***************************************************************************/
+
+%expression Parm
+
+'[^;\n]*[^;\n\t ]'              Parm;
+'[ \t]*\n'                      %ignore,        %pop;
+'[ \t]*;'                       %ignore,        %goto AComment;
+
+
+/***************************************************************************
+ * QUOTED STRING
+ ***************************************************************************/
+
+%expression Quote
+
+'[^\"]*'                        QuoteText;
+'\"'                            %ignore,        %pop;
+
+
+/***************************************************************************
+ * COMMENTS
+ ***************************************************************************/
+
+%expression AComment
+
+'.*'                            %ignore;
+'\n'                            %ignore,        %pop;
+
+%expression CComment
+
+'.*'                            %ignore;
+'\*/'                           %ignore,        %pop;
+
+
+
+
+
+/***************************************************************************
+ ***************************************************************************
+ * GRAMMAR
+ ***************************************************************************
+ ***************************************************************************/
+
+%production start
+
+Start            start       -> sections;
+
+
+//
+// Sections
+//
+
+SectionList      sections    -> section % sections;
+Section          sections    -> section;
+
+SectionOptions   section     -> Section Options options;
+SectionFiles     section     -> Section Files files;
+SectionBuildTag  section     -> Section BuildTags tags;
+SectionBitmap    section     -> Section Bitmaps bitmaps;
+SectionMap       section     -> Section Map mappings;
+SectionAlias     section     -> Section Alias aliases;
+SectionWindows   section     -> Section Windows windows;
+SectionUnknown   section     -> Section Unknown;
+SectionConfig    section     -> Section Config;
+
+
+//
+// List of options
+//
+
+OptionList       options     -> option options;
+OptionNull       options     -> ;
+
+BmRoot           option      -> BmRoot Equal Parm;
+Cnt              option      -> Cnt Equal Parm;
+Contents         option      -> Contents Equal Parm;
+Copyright        option      -> Copyright Equal Parm;
+ForceFont        option      -> ForceFont Equal Parm;
+Hlp              option      -> Hlp Equal Parm;
+IndexSeparators  option      -> IndexSeparators Equal Parm;
+MapFontSize      option      -> MapFontSize Equal Parm;
+Replace          option      -> Replace Equal Parm;
+Root             option      -> Root Equal Parm;
+Title            option      -> Title Equal Parm;
+OtherOption      option      -> Other Equal Parm;
+
+
+//
+// List of files
+//
+
+FileList         files       -> file files;
+FileNull         files       -> ;
+
+FileItem         file        -> Item;
+FileInclude      file        -> Include AngleString;
+
+
+//
+// List of build tags
+//
+
+TagList          tags        -> Item tags;
+TagNull          tags        -> ;
+
+
+//
+// List of bitmaps
+//
+
+BitmapList       bitmaps     -> Item bitmaps;
+BitmapNull       bitmaps     -> ;
+
+
+//
+// List of mappings
+//
+
+MapList          mappings    -> mapping mappings;
+MapNull          mappings    -> ;
+
+MapSimple        mapping     -> MapName MapName;
+MapDefine        mapping     -> Define MapName MapName;
+MapInclude       mapping     -> Include QuoteString;
+MapIncludeSys    mapping     -> Include AngleString;
+MapIncludeOther  mapping     -> Include MapName;
+
+
+//
+// List of alias assignments
+//
+
+AliasList        aliases     -> alias aliases;
+AliasNull        aliases     -> ;
+
+AliasAssign      alias       -> AliasName Equal AliasName;
+
+
+//
+// List of window definitions
+//
+
+WindowList       windows       -> window windows;
+WindowNull       windows       -> ;
+
+WindowEnd        window        -> WindowEnd;
+
+WindowDef        window        -> WindowName Equal captionWith;
+WindowDefR       window        -> PrefixR Equal captionWith;
+WindowDefF       window        -> PrefixF Equal captionWith;
+
+CaptionAlone     captionWith   -> caption WindowEnd;
+CaptionWith      captionWith   -> caption Comma positionWith;
+Caption          caption       -> QuoteText;
+CaptionNull      caption       -> ;
+
+PositionAlone    positionWith  -> position WindowEnd;
+PositionWith     positionWith  -> position Comma stateWith;
+Position         position      -> OpenParen Number Comma Number Comma Number Comma Number CloseParen;
+PositionNull     position      -> ;
+
+StateAlone       stateWith     -> state WindowEnd;
+StateWith        stateWith     -> state Comma scrollWith;
+State            state         -> Number;
+StateNull        state         -> ;
+
+ScrollAlone      scrollWith    -> rgb WindowEnd;
+ScrollWith       scrollWith    -> rgb Comma nonscrollWith;
+
+NonScrollAlone   nonscrollWith -> rgb WindowEnd;
+NonScrollWith    nonscrollWith -> rgb Comma ontop;
+
+OnTop            ontop         -> Number WindowEnd;
+OnTopFlags       ontop         -> PrefixF WindowEnd;
+OnTopNull        ontop         -> WindowEnd;
+
+RGB              rgb           -> OpenParen Number Comma Number Comma Number CloseParen;
+RGBCombined      rgb           -> OpenParen PrefixR CloseParen;
+RGBNull          rgb           -> ;
+
+

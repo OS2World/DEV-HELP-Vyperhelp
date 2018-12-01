@@ -1,0 +1,12 @@
+
+Builder bugs
+  no access to IViewPort styles (alwaysVerticalScrollBar, etc)
+    fixed: added to vbbase.vbb
+  IVBContainerControl::elementChanged does not maintain "in use" status
+    ANY attribute change of associated "real" object causes this to be called!
+
+Other bugs
+  Trap in PMCTLS.DLL when trying to "collapse" an empty container
+    workaround: don't do it
+
+

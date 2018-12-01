@@ -1,0 +1,85 @@
+
+VySymbol * VySymbol::newSymbol()
+{
+  VySymbol * symbol = new VySymbol();
+  symbol->enableNotification();
+  symbol->initializePart();
+  return symbol;
+}
+
+
+void VySymbol::construct()
+{
+  iCode = Symbol::unknown;
+  iSymbol = 0;
+}
+
+void VySymbol::destruct()
+{
+  delete iSymbol;
+}
+
+
+
+
+// Feature source code generation begins here...
+INotificationId VySymbol::codeId = "VySymbol::code";
+INotificationId VySymbol::textId = "VySymbol::text";
+
+int VySymbol::code() const
+{
+  return iCode;
+}
+
+VySymbol& VySymbol::setCode(int aCode)
+{
+  if (!(iCode == aCode))
+  {
+    iCode = aCode;
+    notifyObservers(INotificationEvent(VySymbol::codeId, *this));
+    // update symbol from code
+    delete iSymbol;
+    iSymbol = new Symbol( Symbol::Identifier( iCode ) );
+    notifyObservers(INotificationEvent(VySymbol::symbolId, *this));
+    // update text from symbol
+    iText = iSymbol->description();
+    unsigned char ch = iSymbol->asChar();
+    if ( ch )
+      iText += IString(" [") + IString(ch) + IString("]");
+    notifyObservers(INotificationEvent(VySymbol::textId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySymbol::text() const
+{
+  return iText;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySymbol::symbolId = "VySymbol::symbol";
+
+Symbol VySymbol::symbol() const
+{
+  return *iSymbol;
+}
+
+// Feature source code generation ends here.
+
+
+long VySymbol::compare( VySymbol * const & sym1,  VySymbol * const & sym2 )
+{
+  // try case-insensitive compare first
+  long result = stricmp( sym1->text(), sym2->text() );
+
+  // if strings are the same except for case, do case-sensitive compare
+  if ( ! result )
+    result = strcmp( sym1->text(), sym2->text() );
+
+  return result;
+}
+
+

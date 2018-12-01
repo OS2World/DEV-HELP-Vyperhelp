@@ -1,0 +1,11 @@
+VyperHelp is now Freeware!  It's been more than 4 years since a release, sales have slowed, and I'm cleaning out my disks, so it's time to let it go.  Thanks to everyone who registered and used the program.  If anyone is interested in the source code, please contact me at mat@vyperhelp.com.
+
+VyperHelp 1.11 is a visual outliner and editor for creating online help for OS/2, WinHelp, and HTML systems. A command-line conversion program is included, which allows conversion to and from OS/2 help and WinHelp, and to HTML, HTMLHelp, and RTF printable output.
+
+For more information, download, and free registration key, see
+
+  http://www.vyperhelp.com
+
+Mat Kramer, info@vyperhelp.com
+
+

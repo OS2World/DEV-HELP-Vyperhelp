@@ -1,0 +1,951 @@
+
+// Custom begins here -------------------------------------------------------
+
+const char *                   VySection::clipboardFormat = "VyperHelp";
+const IClipboard::FormatHandle VySection::clipboardFormatHandle = IClipboard::registerFormat( VySection::clipboardFormat );
+
+
+VySection * VySection::newSection()
+{
+  VySection * section = new VySection();
+  section->enableNotification();
+  section->initializePart();
+  return section;
+}
+
+
+void VySection::construct()
+{
+  _viewport = 0;
+  _empty = true;
+  _saveOffset = 0;
+  _artLoaded = false;
+  iUntitledText = "[Untitled]";
+  iFlow = 0;
+  iEditor = 0;
+  iFrame = 0;
+  iObject = 0;
+  iOffset = 0;
+  iClosed = true;
+  iLevel = 1;
+  iListed = true;
+  iModified = false;
+}
+
+
+void VySection::destruct()
+{
+  // make sure temporary file is deleted by clearing filename
+  setFilename( IString() );
+
+  unload();
+}
+
+
+void VySection::setFromGin( const SectionGin & gin )
+{
+  if ( _empty )
+  {
+    setTitle( gin.title() );
+    setLevel( gin.level() );
+    enableListed( gin.isListed() );
+    _empty = false;
+  }
+}
+
+
+SectionGin VySection::asGin() const
+{
+  SectionGin gin( iLevel, iListed );
+  gin.setTitle( iTitle );
+  return gin;
+}
+
+
+void VySection::setTemporaryFile()
+{
+  setFilename( Filename( Filename::temporary ) );
+  setOffset( 0 );
+}
+
+
+void VySection::unload()
+{
+  // if editor is open, close it (will call unload recursively)
+  if ( ! iClosed )
+  {
+    close();
+    return;
+  }
+
+  // clear keywords
+  while ( iKeywords->numberOfElements() )
+    removeKeywordAtPosition( 1 );
+
+  // clear labels
+  while ( iLabels->numberOfElements() )
+    removeLabelAtPosition( 1 );
+
+  // clear flow contents
+  if ( iFlow )
+  {
+    delete iFlow;
+    iFlow = 0;
+    notifyObservers(INotificationEvent(VySection::flowId, *this));
+  }
+
+  // clear art flag
+  _artLoaded = false;
+}
+
+
+void VySection::removeLabelAtPosition( IPosition position )
+{
+  VyLabel * label = iLabels->elementAtPosition( position );
+  iLabels->removeAtPosition( position );
+  delete label;
+}
+
+
+void VySection::removeKeywordAtPosition( IPosition position )
+{
+  VyKeyword * keyword = iKeywords->elementAtPosition( position );
+  iKeywords->removeAtPosition( position );
+  delete keyword;
+}
+
+
+// required for use in a container
+IString VySection::asString() const
+{
+  return titleExtended();
+}
+
+
+// Custom ends here ---------------------------------------------------------
+
+
+// Feature source code generation begins here...
+INotificationId VySection::titleId = "VySection::title";
+INotificationId VySection::levelId = "VySection::level";
+INotificationId VySection::listedId = "VySection::listed";
+INotificationId VySection::flowId = "VySection::flow";
+
+IString VySection::title() const
+{
+  return iTitle;
+}
+
+VySection& VySection::setTitle(const IString& aTitle)
+{
+  if (!(iTitle == aTitle))
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Set title to ") + aTitle );
+    iTitle = aTitle;
+    notifyObservers(INotificationEvent(VySection::titleId, *this));
+    setTitleExtended( aTitle );
+    enableModified();
+  } // endif
+  return *this;
+}
+
+int VySection::level() const
+{
+  return iLevel;
+}
+
+VySection& VySection::setLevel(int aLevel)
+{
+  if (!(iLevel == aLevel))
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Set level to ") + IString(aLevel) );
+    iLevel = aLevel;
+    notifyObservers(INotificationEvent(VySection::levelId, *this));
+    enableModified();
+  } // endif
+  return *this;
+}
+
+Boolean VySection::isListed() const
+{
+  return iListed;
+}
+
+VySection& VySection::enableListed(Boolean enable)
+{
+  if (!(iListed == enable))
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Set listed to ") + IString(enable) );
+    iListed = enable;
+    notifyObservers(INotificationEvent(VySection::listedId, *this));
+    enableModified();
+  } // endif
+  return *this;
+}
+
+FlowItem* VySection::flow() const
+{
+  return iFlow;
+}
+
+
+// Feature source code generation ends here.
+
+
+
+// Feature source code generation begins here...
+INotificationId VySection::filenameId = "VySection::filename";
+INotificationId VySection::offsetId = "VySection::offset";
+INotificationId VySection::modifiedId = "VySection::modified";
+
+
+IString VySection::filename() const
+{
+  return iFilename;
+}
+
+
+VySection& VySection::setFilename(const IString& aFilename)
+{
+  if (!(iFilename == aFilename))
+  {
+    // delete temporary file if one exists
+    if ( ! iOffset && iFilename.length() )
+    {
+      Filename( iFilename ).remove();
+      ITRACE_RUNTIME( iTitleExtended + IString(": Deleting ") + iFilename );
+    }
+    ITRACE_RUNTIME( iTitleExtended + IString(": Set filename to ") + aFilename );
+    iFilename = aFilename;
+    notifyObservers(INotificationEvent(VySection::filenameId, *this));
+  } // endif
+  return *this;
+}
+
+
+unsigned long VySection::offset() const
+{
+  return iOffset;
+}
+
+
+VySection& VySection::setOffset(unsigned long aOffset)
+{
+  if (!(iOffset == aOffset))
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Set offset to ") + IString(aOffset) );
+    iOffset = aOffset;
+    notifyObservers(INotificationEvent(VySection::offsetId, *this));
+  } // endif
+  return *this;
+}
+
+
+Boolean VySection::isModified() const
+{
+  return iModified;
+}
+
+
+VySection& VySection::enableModified(Boolean enable)
+{
+  if (!(iModified == enable))
+  {
+    iModified = enable;
+    notifyObservers(INotificationEvent(VySection::modifiedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+
+
+// Feature source code generation begins here...
+INotificationId VySection::untitledTextId = "VySection::untitledText";
+
+IString VySection::untitledText() const
+{
+  return iUntitledText;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+void VySection::open( IViewPort * viewport )
+{
+  // store container object and set emphasis
+  if ( iObject )
+    iObject->setInUse();
+
+  // load contents into memory
+  load();
+
+  IASSERTSTATE( iFlow );
+  if ( confirmFlow( *iFlow ) )
+  {
+    // create editor in specified viewport
+    _viewport = viewport;
+    setEditor( new Editor( IC_FRAME_CLIENT_ID, _viewport, iFlow ) );
+    iEditor->resize();
+    iEditor->enableTabStop();
+    iEditor->setFocus();
+  }
+  else
+  {
+    // user cancelled -- clean up
+    close();
+  }
+}
+
+void VySection::close()
+{
+  // remove editor from viewport
+  if ( iEditor )
+  {
+    Editor * editorToDelete = iEditor;
+    iEditor->setInfo( IString() );
+    setEditor( 0 );
+
+    // must delete editor *after* notifying observers
+    // ALSO NOTE: this must be called from the main thread!
+    delete editorToDelete;
+
+    // memory garbage collection
+    _heapmin();
+  }
+
+  // save contents
+  if ( isModified() )
+    save();
+
+  // unload contents from memory
+  unload();
+
+  // clear emphasis from container object
+  if ( iObject )
+    iObject->setInUse( false );
+}
+
+
+void VySection::save()
+{
+  // if offset references the original file, create a temporary file for editing
+  if ( iOffset )
+    setTemporaryFile();
+
+  // save contents to the temporary file
+  ITRACE_RUNTIME( iTitleExtended + IString(": Save section to ") + iFilename );
+  SaveGenerator gen( iFilename, true );
+  generate( gen );
+  enableModified( false );
+  if ( iEditor )
+    iEditor->setModified( false );
+}
+
+
+void VySection::generateToClipboard( Boolean fullSection )
+{
+  IASSERTSTATE( fullSection || iEditor );
+  IASSERTSTATE( iFrame );
+  IClipboard clipboard( iFrame->handle() );
+
+  // open and clear the clipboard
+  clipboard.open().empty();
+
+  // generate binary contents to a buffer
+  char * buffer = 0;
+  try
+  {
+    ostrstream stream( (char *)0, 0, ios::binary | ios::out );
+
+    // write dummy length to be filled after generator is done
+    int n = 0;
+    stream.write( (char *)&n, 4 );
+
+    // generator section contents
+    SaveGenerator gen( stream, true );
+    if ( fullSection )
+      generate( gen );
+    else
+      iEditor->generateSelection( gen );
+
+    // get buffer, determine length, and write length at offset 0
+    buffer = stream.str();
+    n = stream.pcount();
+    IASSERTSTATE( n >= 4 );
+    *(int *)buffer = n - 4;
+
+    // save string in the clipboard (not 0-terminated)
+    clipboard.setData( clipboardFormat, buffer, n );
+    delete buffer;
+  }
+  catch ( IException & x )
+  {
+    delete buffer;
+    clipboard.empty().close();
+    IRETHROW( x );
+  }
+
+  // generate generic text version
+  buffer = 0;
+  try
+  {
+    ostrstream stream;
+    TextGenerator gen( stream );
+    if ( fullSection )
+      generate( gen );
+    else
+      iEditor->generateSelection( gen );
+
+    // save generic text version to clipboard
+    char * buffer = stream.str();
+    if ( buffer )
+    {
+      IString text( buffer, stream.pcount() );
+      clipboard.setText( text );
+      delete buffer;
+    }
+  }
+  catch ( IException & x )
+  {
+    delete buffer;
+    clipboard.setText( "" ).close();
+    IRETHROW( x );
+  }
+
+  // close the clipboard
+  clipboard.close();
+}
+
+
+void VySection::copy()
+{
+  ITRACE_RUNTIME( iTitleExtended + IString(": Copy all") );
+  Boolean needUnload = load( false );
+
+  try
+  {
+    generateToClipboard( true );
+  }
+  catch ( IException & x )
+  {
+    if ( needUnload )
+      unload();
+    IRETHROW( x );
+  }
+
+  if ( needUnload )
+    unload();
+}
+
+
+void VySection::cutSelection()
+{
+  ITRACE_RUNTIME( iTitleExtended + IString(": Cut selection") );
+  if ( iEditor && iEditor->hasSelection() )
+  {
+    copySelection();
+    iEditor->deleteItems();
+  }
+}
+
+
+void VySection::copySelection()
+{
+  ITRACE_RUNTIME( iTitleExtended + IString(": Copy selection") );
+  if ( iEditor && iEditor->hasSelection() )
+    generateToClipboard( false );
+}
+
+
+Boolean VySection::hasClipboardData()
+{
+  Boolean has = false;
+
+  if ( iFrame )
+  {
+    IClipboard clipboard( iFrame->handle() );
+    has = clipboard.hasData( clipboardFormat ) || clipboard.hasText();
+  }
+
+  return has;
+}
+
+
+void VySection::generateFromClipboard( Generator & gen, Boolean fullSection )
+{
+  IASSERTSTATE( iFrame );
+  IClipboard clipboard( iFrame->handle() );
+
+  // try Vyper format first
+  if ( clipboard.hasData( clipboardFormat ) )
+  {
+    // get Vyper format (first 32-bit is size)
+    char * buffer = (char *)clipboard.data( clipboardFormat );
+    int n = *(int *)buffer;
+
+    try
+    {
+      // use LoadParser to load the remainder
+      buffer += 4;
+      istrstream stream( buffer, n );
+      LoadParser parser( stream, 0 );
+      if ( fullSection )
+        _empty = true;  // set empty so basic info gets loaded
+      parser.loadSection( gen );
+    }
+    catch ( IException & x )
+    {
+      clipboard.close();
+      IRETHROW( x );
+    }
+    clipboard.close();
+    return;
+  }
+
+  // otherwise, try text format
+  if ( clipboard.hasText() )
+  {
+    // write clipboard contents to a file (binary mode)
+    // (need to use a fstream for proper \n\r translation)
+    Filename tempfile( Filename::temporary );
+    try
+    {
+      ofstream file( tempfile, ios::out | ios::binary );
+      try
+      {
+        IString text = clipboard.text();
+        file.write( (unsigned char *)text, text.length() );
+        if ( ! file )
+          MEKTHROWCERROR();
+      }
+      catch ( IException & x )
+      {
+        file.close();
+        IRETHROW( x );
+      }
+
+      file.close();
+
+      // use a TextParser to parse the temporary file
+      TextParser parser( tempfile );
+      parser.generate( gen );
+    }
+    catch ( IException & x )
+    {
+      tempfile.remove();
+      IRETHROW( x );
+    }
+
+    // delete the temporary file
+    tempfile.remove();
+  }
+}
+
+
+void VySection::paste()
+{
+  ITRACE_RUNTIME( iTitleExtended + IString(": Paste all") );
+  if ( hasClipboardData() )
+  {
+    // save level and open state
+    int savedLevel = iLevel;
+    Boolean isOpen = ! iClosed;
+    if ( isOpen )
+      close();
+    else
+      unload();
+
+    // create flow for new contents
+    iFlow = new FlowItem( 0 );
+
+    // generate new section settings and contents
+    VySectionGenerator gen( *this, false );
+    generateFromClipboard( gen, true );
+
+    notifyObservers(INotificationEvent(VySection::flowId, *this));
+
+    // restore level and open state
+    setLevel( savedLevel);
+    save();
+    unload();
+    if ( isOpen )
+      open( _viewport );
+  }
+}
+
+
+void VySection::pasteToEditor()
+{
+  ITRACE_RUNTIME( iTitleExtended + IString(": Paste text") );
+  if ( iEditor && hasClipboardData() )
+  {
+    FlowItem flow( 0 );
+    FlowGenerator gen( flow, false );
+    iDoc->addArtTo( gen );
+    generateFromClipboard( gen, false );
+    if ( confirmFlow( flow ) )
+      iEditor->insertItem( &flow );
+  }
+}
+
+
+/***************************************************************************
+ * Procedure.. VySection::confirmFlow
+ * Author..... Mat
+ * Date....... 6/22/99
+ *
+ * If the given FlowItem is larger than a certain threshold, then prompt the
+ * user before proceeding, because the editor performance bites when the
+ * contents get too big.
+ ***************************************************************************/
+Boolean VySection::confirmFlow( FlowItem & flow )
+{
+  // 6/22/99 (Mat): 4000 items is around 10K for average text
+  if ( flow.numberOfItems() > 4000 )
+  {
+    IMessageBox box( iFrame );
+    IMessageBox::Response response = box.show(
+        "The editor is not designed for large sections. Performance may be unacceptable. Proceed?",
+        IMessageBox::okCancelButton | IMessageBox::warningIcon | IMessageBox::moveable );
+    return ( response == IMessageBox::ok );
+  }
+
+  return true;
+}
+
+
+
+// make sure the contents are loaded into memory
+// return true if a load was necessary
+Boolean VySection::load( Boolean needArt )
+{
+  Boolean loaded = false;
+
+  if ( iFlow == 0 )
+  {
+    // create a FlowItem
+    iFlow = new FlowItem( 0 );
+    IASSERTSTATE( iFlow );
+
+    // load section into FlowItem
+    VySectionGenerator gen( *this, needArt );
+    LoadParser parser( iFilename, iOffset );
+    parser.loadSection( gen );
+    notifyObservers(INotificationEvent(VySection::flowId, *this));
+
+    loaded = true;
+  }
+
+  if ( needArt && ! _artLoaded )
+  {
+    // make all art definitions available to the flow
+    iDoc->addArtTo( *iFlow );
+    _artLoaded = true;
+  }
+
+  return loaded;
+}
+
+
+void VySection::generate( Generator & gen, Boolean fullSection, Boolean finish )
+{
+  Boolean needUnload = false;
+
+  try
+  {
+    if ( fullSection )
+    {
+      needUnload = load( false );
+
+      // send section info
+      gen << asGin();
+
+      // send labels
+      IVSequence< VyLabel* >::Cursor labelCursor( *iLabels );
+      forCursor( labelCursor )
+      {
+        VyLabel * label = labelCursor.element();
+        LabelGin labelGin( label->name() );
+        labelGin.setExternal( label->isExternal() );
+        labelGin.setId( label->id() );
+        gen << labelGin;
+      }
+
+      // send keywords
+      IVSequence< VyKeyword* >::Cursor keywordCursor( *iKeywords );
+      forCursor( keywordCursor )
+      {
+        VyKeyword * keyword = keywordCursor.element();
+        KeywordGin keywordGin( keyword->text(), keyword->isListed() );
+        keywordGin.setExternal( keyword->isExternal() );
+        gen << keywordGin;
+      }
+    }
+
+    // send the contents from the flow
+    iFlow->setGenerator( &gen );
+    iFlow->generate();
+    iFlow->finishGenerate( finish );
+  }
+  catch ( IException & x )
+  {
+    if ( needUnload )
+      unload();
+    IRETHROW( x );
+  }
+
+  if ( needUnload )
+    unload();
+}
+
+
+// create a filename to hold new section
+// if needInit, fill with null contents
+void VySection::create( Boolean needInit )
+{
+  setTemporaryFile();
+  if ( needInit )
+  {
+    SaveGenerator gen( iFilename, true );
+    gen.handleSection( asGin() );
+    gen.finish();
+    _empty = false;
+  }
+}
+
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySection::titleExtendedId = "VySection::titleExtended";
+
+IString VySection::titleExtended() const
+{
+  if ( iTitleExtended.length() == 0 )
+    return untitledText();
+  return iTitleExtended;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+VySection& VySection::setTitleExtended(const IString& aTitleExtended)
+{
+  if (!(iTitleExtended == aTitleExtended))
+  {
+    iTitleExtended = aTitleExtended;
+    notifyObservers(INotificationEvent(VySection::titleExtendedId, *this));
+    setTitle( aTitleExtended );
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VySection::deleteKeyword( IPosition position )
+{
+  if ( position )
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Remove keyword ") + iKeywords->elementAtPosition(position)->text() );
+    removeKeywordAtPosition( position );
+    enableModified();
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VySection::addKeyword( VyKeyword * keyword, Boolean modify )
+{
+  iKeywords->add( keyword );
+  if ( modify )
+  {
+    enableModified();
+    ITRACE_RUNTIME( iTitleExtended + IString(": Add keyword ") + keyword->debugString() );
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VySection::deleteLabel( IPosition position )
+{
+  if ( position )
+  {
+    ITRACE_RUNTIME( iTitleExtended + IString(": Remove label ") + iLabels->elementAtPosition(position)->name() );
+    removeLabelAtPosition( position );
+    enableModified();
+  }
+}
+
+void VySection::addLabel( VyLabel * label, Boolean modify )
+{
+  iLabels->add( label );
+  if ( modify )
+  {
+    enableModified();
+    ITRACE_RUNTIME( iTitleExtended + IString(": Add label ") + label->debugString() );
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySection::objectId = "VySection::object";
+
+IContainerObject* VySection::object() const
+{
+  return iObject;
+}
+
+VySection& VySection::setObject(IContainerObject* aObject)
+{
+  if (!(iObject == aObject))
+  {
+    iObject = aObject;
+    notifyObservers(INotificationEvent(VySection::objectId, *this));
+    // update "in-use" status
+    if ( iObject )
+      iObject->setInUse( iEditor != 0 );
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySection::frameId = "VySection::frame";
+
+IWindow* VySection::frame() const
+{
+  return iFrame;
+}
+
+VySection& VySection::setFrame(IWindow* aFrame)
+{
+  if (!(iFrame == aFrame))
+  {
+    iFrame = aFrame;
+    notifyObservers(INotificationEvent(VySection::frameId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySection::editorId = "VySection::editor";
+
+Editor* VySection::editor() const
+{
+  return iEditor;
+}
+
+VySection& VySection::setEditor( Editor * aEditor )
+{
+  if (!(iEditor == aEditor))
+  {
+    iEditor = aEditor;
+    notifyObservers(INotificationEvent(VySection::editorId, *this));
+    iClosed = ( iEditor == 0 );
+    notifyObservers(INotificationEvent(VySection::closedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+void VySection::enumerateLabels( IComboBox * labels )
+{
+  Boolean needUnload = load( false );
+  try
+  {
+    IVSequence<VyLabel *>::Cursor cursor( *iLabels );
+    forCursor( cursor )
+      labels->addAscending( cursor.element()->name() );
+  }
+  catch ( IException & x )
+  {
+    if ( needUnload )
+      unload();
+    IRETHROW( x );
+  }
+
+  if ( needUnload )
+    unload();
+}
+
+
+// Feature source code generation begins here...
+INotificationId VySection::closedId = "VySection::closed";
+
+Boolean VySection::isClosed() const
+{
+  return iClosed;
+}
+
+// Feature source code generation ends here.
+
+
+
+void VySection::setSaveFilename( const IString & filename )
+{
+  _saveFilename = filename;
+}
+
+
+void VySection::setSaveOffset( unsigned long offset )
+{
+  _saveOffset = offset;
+}
+
+
+void VySection::commitSave()
+{
+  setFilename( _saveFilename );
+  setOffset( _saveOffset );
+}
+
+
+
+
+
+
+// Feature source code generation begins here...
+INotificationId VySection::docId = "VySection::doc";
+
+VyDoc* VySection::doc() const
+{
+  return iDoc;
+}
+
+VySection& VySection::setDoc(VyDoc* aDoc)
+{
+  if (!(iDoc == aDoc))
+  {
+    iDoc = aDoc;
+    notifyObservers(INotificationEvent(VySection::docId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

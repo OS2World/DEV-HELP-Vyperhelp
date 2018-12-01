@@ -1,0 +1,53 @@
+To-Do List wingen
+
+<<< RtfGenerator >>>
+
+may need to revert to sending a \par before each ruler change
+  many readers will apply new styles to previous paragraph if not
+  if so, need to not send \par at first ItemGin
+    (this causes problems when there is text after a ruler but beofre the first item -- see all.ipf)
+what to use for default character set? (850 or 1004)
+  standard symbols assume ANSI (1004), we could use hex codes
+  most readers ignore \cpg!
+greek and math symbols aren't available in 1004
+  could use Symbol font
+  need to add special Symbol font support to Symbol class
+better \sb\sa for headings?
+  readers vary widely!
+
+<<< WinHelpGenerator >>>
+
+
+
+<<< WinHelp compiler bugs >>>
+
+Footnote characters may be ignored if they follow raw text
+  workaround: enclose footnote character in a group with its \footnote info
+
+<<< RTF reader bugs >>>
+
+W = Works
+D = DeScribe
+B = Both (W4W filters)
+
+B: CP 850 #245 gets doubled (so do all low ASCII < #32), see deka_01 "19a"
+ignore \cpg437 in font definition, pretty universal
+\f2- consumes hyphen, acts like \f0 (same with "\f2<CR>-"), see deka_01 "(CAPM)" and "Hedging"
+D: rogue bullets!
+W: "{zins}\fs28\f2  erworben" emits both spaces, see deka_01
+\bullet and \rquote don't work with \pca, see acq "Overview"
+W: "\b1<CR>Segment duration\b0", 'S' is lost
+W: line spacing wrong
+W: \fi\li indenting fails
+D: occasional space delimiters not consumed
+B: "\b0.", '.' is consumed
+"\b0<CR> ", ' ' is consumed
+D: \sa not honored until next paragraph
+line spacing not contained by {}
+D: margins not relative to 0, see gentest
+W: tables are imported as separate frames, positioned randomly
+B: font changes not honored, see gentest "Character Attributes"
+ignore table borders, pretty universal
+D: TOC and index entries displayed despite \v
+
+

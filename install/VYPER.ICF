@@ -1,0 +1,15 @@
+CATALOG
+  NAME         = 'VyperHelp',
+  DESCRIPTION  = 'VyperHelp is an editor and converter for online help and hypertext.'
+
+PACKAGE
+  NAME            = 'VyperHelp',
+  NUMBER          = '0000-000',
+  FEATURE         = '0000',
+  VRM             = '011100',
+  PACKAGEFILE     = 'DRIVE: VYPER2.PK_',
+  PKGDESCRFILE    = 'DRIVE: VYPER.DSC',
+  SIZE            = '4000000',
+  UNPACKPKGFILE   = 'YES',
+  UPDATECONFIGSYS = 'PROMPT'
+

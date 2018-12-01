@@ -1,0 +1,34 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString target() const;
+  virtual VyLink& setTarget(const IString& aTarget);
+  virtual Boolean isExternal() const;
+  virtual VyLink& enableExternal(Boolean enable = true);
+  virtual IString file() const;
+  virtual VyLink& setFile(const IString& aFile);
+  virtual LinkGin gin() const;
+
+  static INotificationId targetId;
+  static INotificationId externalId;
+  static INotificationId fileId;
+
+private:
+  void construct();
+  IString iTarget;
+  Boolean iExternal;
+  IString iFile;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual LinkItem* link() const;
+  virtual VyLink& setLink(LinkItem* aLink);
+
+  static INotificationId linkId;
+
+private:
+  LinkItem* iLink;
+// Feature source code generation ends here.

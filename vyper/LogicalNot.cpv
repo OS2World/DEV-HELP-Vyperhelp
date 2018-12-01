@@ -1,0 +1,35 @@
+
+void LogicalNot::construct()
+{
+  iInput = false;
+  iOutput = true;
+}
+
+
+// Feature source code generation begins here...
+INotificationId LogicalNot::inputId = "LogicalNot::input";
+INotificationId LogicalNot::outputId = "LogicalNot::output";
+
+Boolean LogicalNot::input() const
+{
+  return iInput;
+}
+
+LogicalNot& LogicalNot::setInput(Boolean enable)
+{
+  if (!(iInput == enable))
+  {
+    iInput = enable;
+    notifyObservers(INotificationEvent(LogicalNot::inputId, *this));
+    iOutput = ! enable;
+    notifyObservers(INotificationEvent(LogicalNot::outputId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean LogicalNot::output() const
+{
+  return iOutput;
+}
+
+// Feature source code generation ends here.

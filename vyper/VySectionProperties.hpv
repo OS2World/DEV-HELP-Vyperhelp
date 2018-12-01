@@ -1,0 +1,13 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual Boolean isLoaded() const;
+  virtual VySectionProperties& enableLoaded(Boolean enable = true);
+
+  static INotificationId loadedId;
+
+private:
+  void construct();
+  Boolean iLoaded;
+// Feature source code generation ends here.

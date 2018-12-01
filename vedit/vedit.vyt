@@ -1,0 +1,26 @@
+Section(,1,1,0)
+Text(Vyper)
+Symbol(442,)
+Text( Editor Tester)
+Line
+Text(  F2)
+Symbol(338,:)
+Text( )
+Bold(1)
+Text(bold)
+Bold(0)
+Line
+Text(  F3)
+Symbol(338,:)
+Text( )
+Italic(1)
+Text(italic)
+Italic(0)
+Line
+Text(  F4)
+Symbol(338,:)
+Text( )
+Underline(1)
+Text(underline)
+Underline(0)
+Line

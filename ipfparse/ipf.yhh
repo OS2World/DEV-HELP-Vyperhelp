@@ -1,0 +1,3282 @@
+#if !defined( IPFSSHH)
+#  define IPFSSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListStartLine             0
+#  define ALexExpressionListMidLine               1
+#  define ALexExpressionListTag                   2
+#  define ALexExpressionListAttrs                 3
+#  define ALexExpressionListAttrsExtra            4
+#  define ALexExpressionListAttrparm              5
+#  define ALexExpressionListQuote                 6
+#  define ALexExpressionListExtra                 7
+#  define ALexExpressionListControlWord           8
+#  define ALexExpressionListControlWordText       9
+#  define ALexExpressionListFilename              10
+#  define ALexExpressionListCenter                11
+#  define ALexExpressionListNameitArgs            12
+#  define ALexExpressionListNameitValue           13
+#  define ALexExpressionListNameitQuote           14
+
+#  define ALexWhite                               1
+#  define ALexEmptyLine                           2
+#  define ALexChunk                               3
+#  define ALexSymbol                              6
+#  define ALexEndOfLine                           8
+#  define ALexDot                                 9
+#  define ALexColonEnd                            12
+#  define ALexColonWhite                          13
+#  define ALexEmptyTag                            14
+#  define ALexBadTag                              15
+#  define ALexAcviewport                          16
+#  define ALexArtlink                             17
+#  define ALexArtwork                             18
+#  define ALexBody                                19
+#  define ALexC                                   20
+#  define ALexCaution                             21
+#  define ALexColor                               22
+#  define ALexCgraphic                            23
+#  define ALexCtrl                                24
+#  define ALexCtrldef                             25
+#  define ALexDd                                  26
+#  define ALexDdf                                 27
+#  define ALexDdhd                                28
+#  define ALexDl                                  29
+#  define ALexDt                                  30
+#  define ALexDthd                                31
+#  define ALexDocprof                             32
+#  define ALexEartlink                            33
+#  define ALexEcaution                            34
+#  define ALexEcgraphic                           35
+#  define ALexEctrldef                            36
+#  define ALexEdl                                 37
+#  define ALexEfig                                38
+#  define ALexEfn                                 39
+#  define ALexEhide                               40
+#  define ALexEhp1                                41
+#  define ALexEhp2                                42
+#  define ALexEhp3                                43
+#  define ALexEhp4                                44
+#  define ALexEhp5                                45
+#  define ALexEhp6                                46
+#  define ALexEhp7                                47
+#  define ALexEhp8                                48
+#  define ALexEhp9                                49
+#  define ALexEhpt                                50
+#  define ALexElines                              51
+#  define ALexElink                               52
+#  define ALexEnt                                 53
+#  define ALexEol                                 54
+#  define ALexEparml                              55
+#  define ALexEsl                                 56
+#  define ALexEtable                              57
+#  define ALexEul                                 58
+#  define ALexEuserdoc                            59
+#  define ALexEwarning                            60
+#  define ALexExmp                                61
+#  define ALexFig                                 62
+#  define ALexFigcap                              63
+#  define ALexFont                                64
+#  define ALexFnTag                               65
+#  define ALexFnref                               66
+#  define ALexH1                                  67
+#  define ALexH2                                  68
+#  define ALexH3                                  69
+#  define ALexH4                                  70
+#  define ALexH5                                  71
+#  define ALexH6                                  72
+#  define ALexHdref                               73
+#  define ALexHideTag                             74
+#  define ALexHp1                                 75
+#  define ALexHp2                                 76
+#  define ALexHp3                                 77
+#  define ALexHp4                                 78
+#  define ALexHp5                                 79
+#  define ALexHp6                                 80
+#  define ALexHp7                                 81
+#  define ALexHp8                                 82
+#  define ALexHp9                                 83
+#  define ALexHpt                                 84
+#  define ALexI1                                  85
+#  define ALexI2                                  86
+#  define ALexIcmd                                87
+#  define ALexIndex                               88
+#  define ALexIsyn                                89
+#  define ALexLi                                  90
+#  define ALexLines                               91
+#  define ALexLink                                92
+#  define ALexLm                                  93
+#  define ALexLp                                  94
+#  define ALexNote                                95
+#  define ALexNt                                  96
+#  define ALexPbutton                             97
+#  define ALexRm                                  98
+#  define ALexOl                                  99
+#  define ALexP                                   100
+#  define ALexParml                               101
+#  define ALexPd                                  102
+#  define ALexPt                                  103
+#  define ALexRow                                 104
+#  define ALexSl                                  105
+#  define ALexTable                               106
+#  define ALexTitle                               107
+#  define ALexUl                                  108
+#  define ALexUserdoc                             109
+#  define ALexWarning                             110
+#  define ALexXmp                                 111
+#  define ALexEqual                               113
+#  define ALexBadAttr                             114
+#  define ALexAlign                               115
+#  define ALexAuto                                116
+#  define ALexBc                                  117
+#  define ALexBreak                               118
+#  define ALexChild                               119
+#  define ALexCodepage                            120
+#  define ALexCols                                121
+#  define ALexCompact                             122
+#  define ALexControls                            123
+#  define ALexCoverpageAttr                       124
+#  define ALexCtrlarea                            125
+#  define ALexCtrlid                              126
+#  define ALexCx                                  127
+#  define ALexCy                                  128
+#  define ALexDatabase                            129
+#  define ALexData                                130
+#  define ALexDependent                           131
+#  define ALexDll                                 132
+#  define ALexFacename                            133
+#  define ALexFc                                  134
+#  define ALexFitAttr                             135
+#  define ALexFrame                               136
+#  define ALexGroup                               137
+#  define ALexId                                  138
+#  define ALexKey                                 139
+#  define ALexLinkfile                            140
+#  define ALexMargin                              141
+#  define ALexName                                142
+#  define ALexObject                              143
+#  define ALexObjectid                            144
+#  define ALexObjectinfo                          145
+#  define ALexObjectname                          146
+#  define ALexPageAttr                            147
+#  define ALexRefid                               148
+#  define ALexReftype                             149
+#  define ALexRes                                 150
+#  define ALexRulesAttr                           151
+#  define ALexRunin                               152
+#  define ALexScroll                              153
+#  define ALexSize                                154
+#  define ALexSplit                               155
+#  define ALexToc                                 156
+#  define ALexText                                157
+#  define ALexTitlebar                            158
+#  define ALexTsize                               159
+#  define ALexViewport                            160
+#  define ALexVpcx                                161
+#  define ALexVpcy                                162
+#  define ALexVpx                                 163
+#  define ALexVpy                                 164
+#  define ALexX                                   165
+#  define ALexY                                   166
+#  define ALexDotWhite                            168
+#  define ALexClear                               169
+#  define ALexCtrlrefid                           170
+#  define ALexGlobal                              171
+#  define ALexHeight                              172
+#  define ALexHide                                173
+#  define ALexNoprint                             174
+#  define ALexNosearch                            175
+#  define ALexRoots                               176
+#  define ALexRoot                                177
+#  define ALexSortkey                             178
+#  define ALexTutorial                            179
+#  define ALexWidth                               180
+#  define ALexParmEmpty                           182
+#  define ALexParmName                            183
+#  define ALexNum                                 184
+#  define ALexNumc                                185
+#  define ALexNumx                                186
+#  define ALexNump                                187
+#  define ALexNumfont                             188
+#  define ALexNumper                              189
+#  define ALexAll                                 190
+#  define ALexBlack                               191
+#  define ALexBlue                                192
+#  define ALexBorder                              193
+#  define ALexBoth                                194
+#  define ALexBottom                              195
+#  define ALexBox                                 196
+#  define ALexBrown                               197
+#  define ALexCenter                              198
+#  define ALexCoverpage                           199
+#  define ALexCyan                                200
+#  define ALexDarkblue                            201
+#  define ALexDarkcyan                            202
+#  define ALexDarkgray                            203
+#  define ALexDarkgreen                           204
+#  define ALexDarkpink                            205
+#  define ALexDarkred                             206
+#  define ALexDefault                             207
+#  define ALexFit                                 208
+#  define ALexFn                                  209
+#  define ALexGreen                               210
+#  define ALexHd                                  211
+#  define ALexHoriz                               212
+#  define ALexHorizontal                          213
+#  define ALexInform                              214
+#  define ALexLaunch                              215
+#  define ALexLeft                                216
+#  define ALexMinmax                              217
+#  define ALexNeutral                             218
+#  define ALexNone                                219
+#  define ALexPage                                220
+#  define ALexPalegray                            221
+#  define ALexPink                                222
+#  define ALexRed                                 223
+#  define ALexRight                               224
+#  define ALexRules                               225
+#  define ALexSizeborder                          226
+#  define ALexSysmenu                             227
+#  define ALexTop                                 228
+#  define ALexVert                                229
+#  define ALexVertical                            230
+#  define ALexYellow                              231
+#  define ALexYes                                 232
+#  define ALexParmQuote                           234
+#  define ALexExtraEnd                            235
+#  define ALexExtraWhite                          236
+#  define ALexExtraChunk                          237
+#  define ALexExtraColonWhite                     239
+#  define ALexExtraColon                          240
+#  define ALexExtraSymbol                         241
+#  define ALexEmptyControlWord                    243
+#  define ALexBadControlWord                      244
+#  define ALexComment                             245
+#  define ALexNameit                              246
+#  define ALexCe                                  247
+#  define ALexBr                                  248
+#  define ALexIm                                  249
+#  define ALexFname                               252
+#  define ALexCenterWhite                         254
+#  define ALexCenterText                          255
+#  define ALexCenterSymbol                        256
+#  define ALexNameSymbol                          260
+#  define ALexNameText                            261
+#  define ALexNameValue                           265
+#  define ALexNameQuote                           268
+
+#  define AYaccStart                              1
+#  define AYaccItemList                           2
+#  define AYaccItemListOne                        3
+#  define AYaccItemChunk                          4
+#  define AYaccItemWhite                          5
+#  define AYaccItemEnd                            6
+#  define AYaccItemEmpty                          7
+#  define AYaccItemSymbol                         8
+#  define AYaccItemDot                            9
+#  define AYaccItemTag                            10
+#  define AYaccItemColonWhite                     11
+#  define AYaccItemColonEnd                       12
+#  define AYaccItemEmptyTag                       13
+#  define AYaccItemBadTag                         14
+#  define AYaccItemTagError                       15
+#  define AYaccItemControl                        16
+#  define AYaccBadControl                         17
+#  define AYaccEmptyControl                       18
+#  define AYaccComment                            19
+#  define AYaccImbed                              20
+#  define AYaccNameit                             21
+#  define AYaccNameitList                         22
+#  define AYaccNameitListNull                     23
+#  define AYaccNameitSymbol                       24
+#  define AYaccNameitText                         25
+#  define AYaccNameValue                          26
+#  define AYaccNameQuote                          27
+#  define AYaccControlBreak                       28
+#  define AYaccControlCenter                      29
+#  define AYaccCenterList                         30
+#  define AYaccCenterListNull                     31
+#  define AYaccCenterText                         32
+#  define AYaccCenterSymbol                       33
+#  define AYaccCenterWhite                        34
+#  define AYaccAcviewport                         35
+#  define AYaccAcvAttrsList                       36
+#  define AYaccAcvAttrsListNull                   37
+#  define AYaccAcvAttrDll                         38
+#  define AYaccAcvAttrObjectName                  39
+#  define AYaccAcvAttrObjectInfo                  40
+#  define AYaccAcvAttrObjectId                    41
+#  define AYaccAcvAttrVpx                         42
+#  define AYaccAcvAttrVpy                         43
+#  define AYaccAcvAttrVpcx                        44
+#  define AYaccAcvAttrVpcy                        45
+#  define AYaccArtlink                            46
+#  define AYaccEArtlink                           47
+#  define AYaccArtwork                            48
+#  define AYaccArtworkAttrs                       49
+#  define AYaccArtworkAttrsNull                   50
+#  define AYaccArtworkAttrName                    51
+#  define AYaccArtworkAttrAlignLeft               52
+#  define AYaccArtworkAttrAlignRight              53
+#  define AYaccArtworkAttrAlignCent               54
+#  define AYaccArtworkAttrLinkfile                55
+#  define AYaccArtworkAttrRunin                   56
+#  define AYaccArtworkAttrFit                     57
+#  define AYaccBody                               58
+#  define AYaccC                                  59
+#  define AYaccCaution                            60
+#  define AYaccCautionAttrs                       61
+#  define AYaccCautionAttrsNull                   62
+#  define AYaccECaution                           63
+#  define AYaccCgraphic                           64
+#  define AYaccECgraphic                          65
+#  define AYaccColor                              66
+#  define AYaccColorAttrs                         67
+#  define AYaccColorAttrsNull                     68
+#  define AYaccColorAttrFc                        69
+#  define AYaccColorAttrBc                        70
+#  define AYaccColorDefault                       71
+#  define AYaccColorBlue                          72
+#  define AYaccColorCyan                          73
+#  define AYaccColorGreen                         74
+#  define AYaccColorNeutral                       75
+#  define AYaccColorRed                           76
+#  define AYaccColorYellow                        77
+#  define AYaccColorBlack                         78
+#  define AYaccColorPink                          79
+#  define AYaccColorBrown                         80
+#  define AYaccColorDarkgray                      81
+#  define AYaccColorDarkblue                      82
+#  define AYaccColorDarkred                       83
+#  define AYaccColorDarkpink                      84
+#  define AYaccColorDarkgreen                     85
+#  define AYaccColorDarkcyan                      86
+#  define AYaccColorPalegray                      87
+#  define AYaccCtrl                               88
+#  define AYaccCtrlAttrs                          89
+#  define AYaccCtrlAttrsNull                      90
+#  define AYaccCtrlAttrCtrlid                     91
+#  define AYaccCtrlAttrControls                   92
+#  define AYaccCtrlAttrPage                       93
+#  define AYaccCtrlAttrCoverpage                  94
+#  define AYaccCtrldef                            95
+#  define AYaccECtrldef                           96
+#  define AYaccDdf                                97
+#  define AYaccDl                                 98
+#  define AYaccDlAttrs                            99
+#  define AYaccDlAttrsNull                        100
+#  define AYaccDlAttrCompact                      101
+#  define AYaccDlAttrTsize                        102
+#  define AYaccDlAttrBreakNone                    103
+#  define AYaccDlAttrBreakFit                     104
+#  define AYaccDlAttrBreakAll                     105
+#  define AYaccEDl                                106
+#  define AYaccDd                                 107
+#  define AYaccDdhd                               108
+#  define AYaccDt                                 109
+#  define AYaccDthd                               110
+#  define AYaccDocprof                            111
+#  define AYaccDocAttrsTos                        112
+#  define AYaccDocAttrsNull                       113
+#  define AYaccDocAttrToc                         114
+#  define AYaccDocAttrDll                         115
+#  define AYaccDocAttrObjname                     116
+#  define AYaccDocAttrObjinfo                     117
+#  define AYaccDocAttrCtrlPage                    118
+#  define AYaccDocAttrCtrlCover                   119
+#  define AYaccDocAttrCtrlBoth                    120
+#  define AYaccDocAttrCtrlNone                    121
+#  define AYaccFig                                122
+#  define AYaccEFig                               123
+#  define AYaccFigcap                             124
+#  define AYaccFont                               125
+#  define AYaccFontAttrs                          126
+#  define AYaccFontAttrsNull                      127
+#  define AYaccFontAttrFacename                   128
+#  define AYaccFontAttrSize                       129
+#  define AYaccFontAttrCodePage                   130
+#  define AYaccFn                                 131
+#  define AYaccEFn                                132
+#  define AYaccFnref                              133
+#  define AYaccH1                                 134
+#  define AYaccH2                                 135
+#  define AYaccH3                                 136
+#  define AYaccH4                                 137
+#  define AYaccH5                                 138
+#  define AYaccH6                                 139
+#  define AYaccHnAttrList                         140
+#  define AYaccHnAttrListNull                     141
+#  define AYaccHnAttrTitlebarYes                  142
+#  define AYaccHnAttrTitlebarNone                 143
+#  define AYaccHnAttrTitlebarBoth                 144
+#  define AYaccHnAttrTitlebarSys                  145
+#  define AYaccHnAttrTitlebarMin                  146
+#  define AYaccHnAttrScrollHorz                   147
+#  define AYaccHnAttrScrollVert                   148
+#  define AYaccHnAttrScrollBoth                   149
+#  define AYaccHnAttrScrollNone                   150
+#  define AYaccHnAttrRulesBorder                  151
+#  define AYaccHnAttrRulesSize                    152
+#  define AYaccHnAttrRulesNone                    153
+#  define AYaccHnAttrNosearch                     154
+#  define AYaccHnAttrNoprint                      155
+#  define AYaccHnAttrHide                         156
+#  define AYaccHnAttrToc                          157
+#  define AYaccHnAttrCtrlareaPage                 158
+#  define AYaccHnAttrCtrlareaNone                 159
+#  define AYaccHnAttrCtrlrefid                    160
+#  define AYaccHnAttrRes                          161
+#  define AYaccHnAttrId                           162
+#  define AYaccHnAttrName                         163
+#  define AYaccHnAttrGlobal                       164
+#  define AYaccHnAttrTutorial                     165
+#  define AYaccHnAttrX                            166
+#  define AYaccHnAttrY                            167
+#  define AYaccHnAttrWidth                        168
+#  define AYaccHnAttrHeight                       169
+#  define AYaccHnAttrGroup                        170
+#  define AYaccHnAttrViewport                     171
+#  define AYaccHnAttrClear                        172
+#  define AYaccHdref                              173
+#  define AYaccHdrefAttrs                         174
+#  define AYaccHdrefAttrsNull                     175
+#  define AYaccHdrefAttrRes                       176
+#  define AYaccHdrefAttrRefid                     177
+#  define AYaccHide                               178
+#  define AYaccEHide                              179
+#  define AYaccHp1                                180
+#  define AYaccHp2                                181
+#  define AYaccHp3                                182
+#  define AYaccHp4                                183
+#  define AYaccHp5                                184
+#  define AYaccHp6                                185
+#  define AYaccHp7                                186
+#  define AYaccHp8                                187
+#  define AYaccHp9                                188
+#  define AYaccEHp1                               189
+#  define AYaccEHp2                               190
+#  define AYaccEHp3                               191
+#  define AYaccEHp4                               192
+#  define AYaccEHp5                               193
+#  define AYaccEHp6                               194
+#  define AYaccEHp7                               195
+#  define AYaccEHp8                               196
+#  define AYaccEHp9                               197
+#  define AYaccHpt                                198
+#  define AYaccEHpt                               199
+#  define AYaccI1                                 200
+#  define AYaccI1Attrs                            201
+#  define AYaccI1AttrsNull                        202
+#  define AYaccI1AttrId                           203
+#  define AYaccI1AttrGlobal                       204
+#  define AYaccI1AttrRoots                        205
+#  define AYaccI1AttrSortkey                      206
+#  define AYaccI2                                 207
+#  define AYaccI2Attrs                            208
+#  define AYaccI2AttrsNull                        209
+#  define AYaccI2AttrRefid                        210
+#  define AYaccI2AttrGlobal                       211
+#  define AYaccI2AttrSortkey                      212
+#  define AYaccICmd                               213
+#  define AYaccIndex                              214
+#  define AYaccISyn                               215
+#  define AYaccLi                                 216
+#  define AYaccLines                              217
+#  define AYaccLinesAttrNull                      218
+#  define AYaccLinesAttrAlignLeft                 219
+#  define AYaccLinesAttrAlignCenter               220
+#  define AYaccLinesAttrAlignRight                221
+#  define AYaccELines                             222
+#  define AYaccLinktag                            223
+#  define AYaccLink                               224
+#  define AYaccLinkAttrs                          225
+#  define AYaccLinkAttrsNull                      226
+#  define AYaccLinkAttrReftypeHd                  227
+#  define AYaccLinkAttrReftypeFn                  228
+#  define AYaccLinkAttrReftypeLaunch              229
+#  define AYaccLinkAttrReftypeInform              230
+#  define AYaccLinkAttrRes                        231
+#  define AYaccLinkAttrRefid                      232
+#  define AYaccLinkAttrDatabase                   233
+#  define AYaccLinkAttrData                       234
+#  define AYaccLinkAttrObject                     235
+#  define AYaccLinkAttrAuto                       236
+#  define AYaccLinkAttrDependent                  237
+#  define AYaccLinkAttrSplit                      238
+#  define AYaccLinkAttrViewport                   239
+#  define AYaccLinkAttrChild                      240
+#  define AYaccLinkAttrGroup                      241
+#  define AYaccLinkAttrVpx                        242
+#  define AYaccLinkAttrVpy                        243
+#  define AYaccLinkAttrVpcx                       244
+#  define AYaccLinkAttrVpcy                       245
+#  define AYaccLinkAttrTitleYes                   246
+#  define AYaccLinkAttrTitleNone                  247
+#  define AYaccLinkAttrTitleBoth                  248
+#  define AYaccLinkAttrTitleSys                   249
+#  define AYaccLinkAttrTitleMin                   250
+#  define AYaccLinkAttrScrollHorz                 251
+#  define AYaccLinkAttrScrollVert                 252
+#  define AYaccLinkAttrScrollBoth                 253
+#  define AYaccLinkAttrScrollNone                 254
+#  define AYaccLinkAttrRulesBorder                255
+#  define AYaccLinkAttrRulesSize                  256
+#  define AYaccLinkAttrRulesNone                  257
+#  define AYaccLinkAttrX                          258
+#  define AYaccLinkAttrY                          259
+#  define AYaccLinkAttrCx                         260
+#  define AYaccLinkAttrCy                         261
+#  define AYaccElink                              262
+#  define AYaccLm                                 263
+#  define AYaccRm                                 264
+#  define AYaccMarginAttrNull                     265
+#  define AYaccMarginAttrMargin                   266
+#  define AYaccLp                                 267
+#  define AYaccNote                               268
+#  define AYaccNoteAttr                           269
+#  define AYaccNoteAttrNull                       270
+#  define AYaccNt                                 271
+#  define AYaccNtAttr                             272
+#  define AYaccNtAttrNull                         273
+#  define AYaccENt                                274
+#  define AYaccOl                                 275
+#  define AYaccOlAttr                             276
+#  define AYaccOlAttrNull                         277
+#  define AYaccEOl                                278
+#  define AYaccP                                  279
+#  define AYaccParml                              280
+#  define AYaccParmlAttrs                         281
+#  define AYaccParmlAttrsNull                     282
+#  define AYaccParmlAttrCompact                   283
+#  define AYaccParmlAttrTsize                     284
+#  define AYaccParmlAttrBreakNone                 285
+#  define AYaccParmlAttrBreakFit                  286
+#  define AYaccParmlAttrBreakAll                  287
+#  define AYaccEParml                             288
+#  define AYaccPbutton                            289
+#  define AYaccPbuttonAttrs                       290
+#  define AYaccPbuttonAttrsNull                   291
+#  define AYaccPbuttonAttrId                      292
+#  define AYaccPbuttonAttrRes                     293
+#  define AYaccPbuttonAttrText                    294
+#  define AYaccPd                                 295
+#  define AYaccPt                                 296
+#  define AYaccRow                                297
+#  define AYaccSl                                 298
+#  define AYaccSlAttr                             299
+#  define AYaccSlAttrNull                         300
+#  define AYaccESl                                301
+#  define AYaccTable                              302
+#  define AYaccTableAttrs                         303
+#  define AYaccTableAttrsNull                     304
+#  define AYaccTableAttrCols                      305
+#  define AYaccTableAttrRulesBoth                 306
+#  define AYaccTableAttrRulesHoriz                307
+#  define AYaccTableAttrRulesVert                 308
+#  define AYaccTableAttrRulesNone                 309
+#  define AYaccTableAttrFrameRules                310
+#  define AYaccTableAttrFrameBox                  311
+#  define AYaccTableAttrFrameNone                 312
+#  define AYaccETable                             313
+#  define AYaccTitle                              314
+#  define AYaccUl                                 315
+#  define AYaccUlAttr                             316
+#  define AYaccUlAttrNull                         317
+#  define AYaccEUl                                318
+#  define AYaccUserdoc                            319
+#  define AYaccEUserdoc                           320
+#  define AYaccWarning                            321
+#  define AYaccWarningAttr                        322
+#  define AYaccWarningAttrNull                    323
+#  define AYaccEWarning                           324
+#  define AYaccXmp                                325
+#  define AYaccEXmp                               326
+#  define AYaccDynamicLeft                        327
+#  define AYaccDynamicRight                       328
+#  define AYaccDynamicCenter                      329
+#  define AYaccDynamicBottom                      330
+#  define AYaccDynamicTop                         331
+#  define AYaccDynamicRelative                    332
+#  define AYaccRelativePercent                    333
+#  define AYaccRelativeAbsolute                   334
+#  define AYaccAbsoluteChar                       335
+#  define AYaccAbsolutePixel                      336
+#  define AYaccAbsolutePoint                      337
+#  define AYaccExtraText                          338
+#  define AYaccExtraTextOne                       339
+#  define AYaccExtraEnd                           340
+#  define AYaccExtraWhite                         341
+#  define AYaccExtraColon                         342
+#  define AYaccExtraChunk                         343
+#  define AYaccExtraColonWhite                    344
+#  define AYaccExtraSymbol                        345
+#  define AYaccAnyParmName                        346
+#  define AYaccAnyParmQuote                       347
+#  define AYaccAnyParmKey                         348
+#  define AYaccAnyParmRelative                    349
+#  define AYaccAnyParmNum                         350
+#  define AYaccAnyParmSpecial                     351
+#  define AYaccAnyParmKeyAll                      352
+#  define AYaccAnyParmKeyBlack                    353
+#  define AYaccAnyParmKeyBlue                     354
+#  define AYaccAnyParmKeyBorder                   355
+#  define AYaccAnyParmKeyBoth                     356
+#  define AYaccAnyParmKeyBottom                   357
+#  define AYaccAnyParmKeyBox                      358
+#  define AYaccAnyParmKeyBreak                    359
+#  define AYaccAnyParmKeyBrown                    360
+#  define AYaccAnyParmKeyCenter                   361
+#  define AYaccAnyParmKeyCoverpage                362
+#  define AYaccAnyParmKeyCyan                     363
+#  define AYaccAnyParmKeyDarkBlue                 364
+#  define AYaccAnyParmKeyDarkCyan                 365
+#  define AYaccAnyParmKeyDarkGray                 366
+#  define AYaccAnyParmKeyDarkGreen                367
+#  define AYaccAnyParmKeyDarkPink                 368
+#  define AYaccAnyParmKeyDarkRed                  369
+#  define AYaccAnyParmKeyDefault                  370
+#  define AYaccAnyParmKeyFit                      371
+#  define AYaccAnyParmKeyFn                       372
+#  define AYaccAnyParmKeyGreen                    373
+#  define AYaccAnyParmKeyHd                       374
+#  define AYaccAnyParmKeyHoriz                    375
+#  define AYaccAnyParmKeyHorizontal               376
+#  define AYaccAnyParmKeyInform                   377
+#  define AYaccAnyParmKeyLaunch                   378
+#  define AYaccAnyParmKeyLeft                     379
+#  define AYaccAnyParmKeyMinmax                   380
+#  define AYaccAnyParmKeyNeutral                  381
+#  define AYaccAnyParmKeyNone                     382
+#  define AYaccAnyParmKeyPage                     383
+#  define AYaccAnyParmKeyPaleGray                 384
+#  define AYaccAnyParmKeyPink                     385
+#  define AYaccAnyParmKeyRed                      386
+#  define AYaccAnyParmKeyRight                    387
+#  define AYaccAnyParmKeyRules                    388
+#  define AYaccAnyParmKeyTop                      389
+#  define AYaccAnyParmKeySizeborder               390
+#  define AYaccAnyParmKeyVert                     391
+#  define AYaccAnyParmKeyVertical                 392
+#  define AYaccAnyParmKeyYellow                   393
+#  define AYaccAnyParmKeyYes                      394
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "ipf.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexWhite:
+            zpchToken = "White";
+            break;
+
+         case ALexEmptyLine:
+            zpchToken = "EmptyLine";
+            break;
+
+         case ALexChunk:
+            zpchToken = "Chunk";
+            break;
+
+         case ALexSymbol:
+            zpchToken = "Symbol";
+            break;
+
+         case ALexEndOfLine:
+            zpchToken = "EndOfLine";
+            break;
+
+         case ALexDot:
+            zpchToken = "Dot";
+            break;
+
+         case ALexColonEnd:
+            zpchToken = "ColonEnd";
+            break;
+
+         case ALexColonWhite:
+            zpchToken = "ColonWhite";
+            break;
+
+         case ALexEmptyTag:
+            zpchToken = "EmptyTag";
+            break;
+
+         case ALexBadTag:
+            zpchToken = "BadTag";
+            break;
+
+         case ALexAcviewport:
+            zpchToken = "Acviewport";
+            break;
+
+         case ALexArtlink:
+            zpchToken = "Artlink";
+            break;
+
+         case ALexArtwork:
+            zpchToken = "Artwork";
+            break;
+
+         case ALexBody:
+            zpchToken = "Body";
+            break;
+
+         case ALexC:
+            zpchToken = "C";
+            break;
+
+         case ALexCaution:
+            zpchToken = "Caution";
+            break;
+
+         case ALexColor:
+            zpchToken = "Color";
+            break;
+
+         case ALexCgraphic:
+            zpchToken = "Cgraphic";
+            break;
+
+         case ALexCtrl:
+            zpchToken = "Ctrl";
+            break;
+
+         case ALexCtrldef:
+            zpchToken = "Ctrldef";
+            break;
+
+         case ALexDd:
+            zpchToken = "Dd";
+            break;
+
+         case ALexDdf:
+            zpchToken = "Ddf";
+            break;
+
+         case ALexDdhd:
+            zpchToken = "Ddhd";
+            break;
+
+         case ALexDl:
+            zpchToken = "Dl";
+            break;
+
+         case ALexDt:
+            zpchToken = "Dt";
+            break;
+
+         case ALexDthd:
+            zpchToken = "Dthd";
+            break;
+
+         case ALexDocprof:
+            zpchToken = "Docprof";
+            break;
+
+         case ALexEartlink:
+            zpchToken = "Eartlink";
+            break;
+
+         case ALexEcaution:
+            zpchToken = "Ecaution";
+            break;
+
+         case ALexEcgraphic:
+            zpchToken = "Ecgraphic";
+            break;
+
+         case ALexEctrldef:
+            zpchToken = "Ectrldef";
+            break;
+
+         case ALexEdl:
+            zpchToken = "Edl";
+            break;
+
+         case ALexEfig:
+            zpchToken = "Efig";
+            break;
+
+         case ALexEfn:
+            zpchToken = "Efn";
+            break;
+
+         case ALexEhide:
+            zpchToken = "Ehide";
+            break;
+
+         case ALexEhp1:
+            zpchToken = "Ehp1";
+            break;
+
+         case ALexEhp2:
+            zpchToken = "Ehp2";
+            break;
+
+         case ALexEhp3:
+            zpchToken = "Ehp3";
+            break;
+
+         case ALexEhp4:
+            zpchToken = "Ehp4";
+            break;
+
+         case ALexEhp5:
+            zpchToken = "Ehp5";
+            break;
+
+         case ALexEhp6:
+            zpchToken = "Ehp6";
+            break;
+
+         case ALexEhp7:
+            zpchToken = "Ehp7";
+            break;
+
+         case ALexEhp8:
+            zpchToken = "Ehp8";
+            break;
+
+         case ALexEhp9:
+            zpchToken = "Ehp9";
+            break;
+
+         case ALexEhpt:
+            zpchToken = "Ehpt";
+            break;
+
+         case ALexElines:
+            zpchToken = "Elines";
+            break;
+
+         case ALexElink:
+            zpchToken = "Elink";
+            break;
+
+         case ALexEnt:
+            zpchToken = "Ent";
+            break;
+
+         case ALexEol:
+            zpchToken = "Eol";
+            break;
+
+         case ALexEparml:
+            zpchToken = "Eparml";
+            break;
+
+         case ALexEsl:
+            zpchToken = "Esl";
+            break;
+
+         case ALexEtable:
+            zpchToken = "Etable";
+            break;
+
+         case ALexEul:
+            zpchToken = "Eul";
+            break;
+
+         case ALexEuserdoc:
+            zpchToken = "Euserdoc";
+            break;
+
+         case ALexEwarning:
+            zpchToken = "Ewarning";
+            break;
+
+         case ALexExmp:
+            zpchToken = "Exmp";
+            break;
+
+         case ALexFig:
+            zpchToken = "Fig";
+            break;
+
+         case ALexFigcap:
+            zpchToken = "Figcap";
+            break;
+
+         case ALexFont:
+            zpchToken = "Font";
+            break;
+
+         case ALexFnTag:
+            zpchToken = "FnTag";
+            break;
+
+         case ALexFnref:
+            zpchToken = "Fnref";
+            break;
+
+         case ALexH1:
+            zpchToken = "H1";
+            break;
+
+         case ALexH2:
+            zpchToken = "H2";
+            break;
+
+         case ALexH3:
+            zpchToken = "H3";
+            break;
+
+         case ALexH4:
+            zpchToken = "H4";
+            break;
+
+         case ALexH5:
+            zpchToken = "H5";
+            break;
+
+         case ALexH6:
+            zpchToken = "H6";
+            break;
+
+         case ALexHdref:
+            zpchToken = "Hdref";
+            break;
+
+         case ALexHideTag:
+            zpchToken = "HideTag";
+            break;
+
+         case ALexHp1:
+            zpchToken = "Hp1";
+            break;
+
+         case ALexHp2:
+            zpchToken = "Hp2";
+            break;
+
+         case ALexHp3:
+            zpchToken = "Hp3";
+            break;
+
+         case ALexHp4:
+            zpchToken = "Hp4";
+            break;
+
+         case ALexHp5:
+            zpchToken = "Hp5";
+            break;
+
+         case ALexHp6:
+            zpchToken = "Hp6";
+            break;
+
+         case ALexHp7:
+            zpchToken = "Hp7";
+            break;
+
+         case ALexHp8:
+            zpchToken = "Hp8";
+            break;
+
+         case ALexHp9:
+            zpchToken = "Hp9";
+            break;
+
+         case ALexHpt:
+            zpchToken = "Hpt";
+            break;
+
+         case ALexI1:
+            zpchToken = "I1";
+            break;
+
+         case ALexI2:
+            zpchToken = "I2";
+            break;
+
+         case ALexIcmd:
+            zpchToken = "Icmd";
+            break;
+
+         case ALexIndex:
+            zpchToken = "Index";
+            break;
+
+         case ALexIsyn:
+            zpchToken = "Isyn";
+            break;
+
+         case ALexLi:
+            zpchToken = "Li";
+            break;
+
+         case ALexLines:
+            zpchToken = "Lines";
+            break;
+
+         case ALexLink:
+            zpchToken = "Link";
+            break;
+
+         case ALexLm:
+            zpchToken = "Lm";
+            break;
+
+         case ALexLp:
+            zpchToken = "Lp";
+            break;
+
+         case ALexNote:
+            zpchToken = "Note";
+            break;
+
+         case ALexNt:
+            zpchToken = "Nt";
+            break;
+
+         case ALexPbutton:
+            zpchToken = "Pbutton";
+            break;
+
+         case ALexRm:
+            zpchToken = "Rm";
+            break;
+
+         case ALexOl:
+            zpchToken = "Ol";
+            break;
+
+         case ALexP:
+            zpchToken = "P";
+            break;
+
+         case ALexParml:
+            zpchToken = "Parml";
+            break;
+
+         case ALexPd:
+            zpchToken = "Pd";
+            break;
+
+         case ALexPt:
+            zpchToken = "Pt";
+            break;
+
+         case ALexRow:
+            zpchToken = "Row";
+            break;
+
+         case ALexSl:
+            zpchToken = "Sl";
+            break;
+
+         case ALexTable:
+            zpchToken = "Table";
+            break;
+
+         case ALexTitle:
+            zpchToken = "Title";
+            break;
+
+         case ALexUl:
+            zpchToken = "Ul";
+            break;
+
+         case ALexUserdoc:
+            zpchToken = "Userdoc";
+            break;
+
+         case ALexWarning:
+            zpchToken = "Warning";
+            break;
+
+         case ALexXmp:
+            zpchToken = "Xmp";
+            break;
+
+         case ALexEqual:
+            zpchToken = "Equal";
+            break;
+
+         case ALexBadAttr:
+            zpchToken = "BadAttr";
+            break;
+
+         case ALexAlign:
+            zpchToken = "Align";
+            break;
+
+         case ALexAuto:
+            zpchToken = "Auto";
+            break;
+
+         case ALexBc:
+            zpchToken = "Bc";
+            break;
+
+         case ALexBreak:
+            zpchToken = "Break";
+            break;
+
+         case ALexChild:
+            zpchToken = "Child";
+            break;
+
+         case ALexCodepage:
+            zpchToken = "Codepage";
+            break;
+
+         case ALexCols:
+            zpchToken = "Cols";
+            break;
+
+         case ALexCompact:
+            zpchToken = "Compact";
+            break;
+
+         case ALexControls:
+            zpchToken = "Controls";
+            break;
+
+         case ALexCoverpageAttr:
+            zpchToken = "CoverpageAttr";
+            break;
+
+         case ALexCtrlarea:
+            zpchToken = "Ctrlarea";
+            break;
+
+         case ALexCtrlid:
+            zpchToken = "Ctrlid";
+            break;
+
+         case ALexCx:
+            zpchToken = "Cx";
+            break;
+
+         case ALexCy:
+            zpchToken = "Cy";
+            break;
+
+         case ALexDatabase:
+            zpchToken = "Database";
+            break;
+
+         case ALexData:
+            zpchToken = "Data";
+            break;
+
+         case ALexDependent:
+            zpchToken = "Dependent";
+            break;
+
+         case ALexDll:
+            zpchToken = "Dll";
+            break;
+
+         case ALexFacename:
+            zpchToken = "Facename";
+            break;
+
+         case ALexFc:
+            zpchToken = "Fc";
+            break;
+
+         case ALexFitAttr:
+            zpchToken = "FitAttr";
+            break;
+
+         case ALexFrame:
+            zpchToken = "Frame";
+            break;
+
+         case ALexGroup:
+            zpchToken = "Group";
+            break;
+
+         case ALexId:
+            zpchToken = "Id";
+            break;
+
+         case ALexKey:
+            zpchToken = "Key";
+            break;
+
+         case ALexLinkfile:
+            zpchToken = "Linkfile";
+            break;
+
+         case ALexMargin:
+            zpchToken = "Margin";
+            break;
+
+         case ALexName:
+            zpchToken = "Name";
+            break;
+
+         case ALexObject:
+            zpchToken = "Object";
+            break;
+
+         case ALexObjectid:
+            zpchToken = "Objectid";
+            break;
+
+         case ALexObjectinfo:
+            zpchToken = "Objectinfo";
+            break;
+
+         case ALexObjectname:
+            zpchToken = "Objectname";
+            break;
+
+         case ALexPageAttr:
+            zpchToken = "PageAttr";
+            break;
+
+         case ALexRefid:
+            zpchToken = "Refid";
+            break;
+
+         case ALexReftype:
+            zpchToken = "Reftype";
+            break;
+
+         case ALexRes:
+            zpchToken = "Res";
+            break;
+
+         case ALexRulesAttr:
+            zpchToken = "RulesAttr";
+            break;
+
+         case ALexRunin:
+            zpchToken = "Runin";
+            break;
+
+         case ALexScroll:
+            zpchToken = "Scroll";
+            break;
+
+         case ALexSize:
+            zpchToken = "Size";
+            break;
+
+         case ALexSplit:
+            zpchToken = "Split";
+            break;
+
+         case ALexToc:
+            zpchToken = "Toc";
+            break;
+
+         case ALexText:
+            zpchToken = "Text";
+            break;
+
+         case ALexTitlebar:
+            zpchToken = "Titlebar";
+            break;
+
+         case ALexTsize:
+            zpchToken = "Tsize";
+            break;
+
+         case ALexViewport:
+            zpchToken = "Viewport";
+            break;
+
+         case ALexVpcx:
+            zpchToken = "Vpcx";
+            break;
+
+         case ALexVpcy:
+            zpchToken = "Vpcy";
+            break;
+
+         case ALexVpx:
+            zpchToken = "Vpx";
+            break;
+
+         case ALexVpy:
+            zpchToken = "Vpy";
+            break;
+
+         case ALexX:
+            zpchToken = "X";
+            break;
+
+         case ALexY:
+            zpchToken = "Y";
+            break;
+
+         case ALexDotWhite:
+            zpchToken = "DotWhite";
+            break;
+
+         case ALexClear:
+            zpchToken = "Clear";
+            break;
+
+         case ALexCtrlrefid:
+            zpchToken = "Ctrlrefid";
+            break;
+
+         case ALexGlobal:
+            zpchToken = "Global";
+            break;
+
+         case ALexHeight:
+            zpchToken = "Height";
+            break;
+
+         case ALexHide:
+            zpchToken = "Hide";
+            break;
+
+         case ALexNoprint:
+            zpchToken = "Noprint";
+            break;
+
+         case ALexNosearch:
+            zpchToken = "Nosearch";
+            break;
+
+         case ALexRoots:
+            zpchToken = "Roots";
+            break;
+
+         case ALexRoot:
+            zpchToken = "Root";
+            break;
+
+         case ALexSortkey:
+            zpchToken = "Sortkey";
+            break;
+
+         case ALexTutorial:
+            zpchToken = "Tutorial";
+            break;
+
+         case ALexWidth:
+            zpchToken = "Width";
+            break;
+
+         case ALexParmEmpty:
+            zpchToken = "ParmEmpty";
+            break;
+
+         case ALexParmName:
+            zpchToken = "ParmName";
+            break;
+
+         case ALexNum:
+            zpchToken = "Num";
+            break;
+
+         case ALexNumc:
+            zpchToken = "Numc";
+            break;
+
+         case ALexNumx:
+            zpchToken = "Numx";
+            break;
+
+         case ALexNump:
+            zpchToken = "Nump";
+            break;
+
+         case ALexNumfont:
+            zpchToken = "Numfont";
+            break;
+
+         case ALexNumper:
+            zpchToken = "Numper";
+            break;
+
+         case ALexAll:
+            zpchToken = "All";
+            break;
+
+         case ALexBlack:
+            zpchToken = "Black";
+            break;
+
+         case ALexBlue:
+            zpchToken = "Blue";
+            break;
+
+         case ALexBorder:
+            zpchToken = "Border";
+            break;
+
+         case ALexBoth:
+            zpchToken = "Both";
+            break;
+
+         case ALexBottom:
+            zpchToken = "Bottom";
+            break;
+
+         case ALexBox:
+            zpchToken = "Box";
+            break;
+
+         case ALexBrown:
+            zpchToken = "Brown";
+            break;
+
+         case ALexCenter:
+            zpchToken = "Center";
+            break;
+
+         case ALexCoverpage:
+            zpchToken = "Coverpage";
+            break;
+
+         case ALexCyan:
+            zpchToken = "Cyan";
+            break;
+
+         case ALexDarkblue:
+            zpchToken = "Darkblue";
+            break;
+
+         case ALexDarkcyan:
+            zpchToken = "Darkcyan";
+            break;
+
+         case ALexDarkgray:
+            zpchToken = "Darkgray";
+            break;
+
+         case ALexDarkgreen:
+            zpchToken = "Darkgreen";
+            break;
+
+         case ALexDarkpink:
+            zpchToken = "Darkpink";
+            break;
+
+         case ALexDarkred:
+            zpchToken = "Darkred";
+            break;
+
+         case ALexDefault:
+            zpchToken = "Default";
+            break;
+
+         case ALexFit:
+            zpchToken = "Fit";
+            break;
+
+         case ALexFn:
+            zpchToken = "Fn";
+            break;
+
+         case ALexGreen:
+            zpchToken = "Green";
+            break;
+
+         case ALexHd:
+            zpchToken = "Hd";
+            break;
+
+         case ALexHoriz:
+            zpchToken = "Horiz";
+            break;
+
+         case ALexHorizontal:
+            zpchToken = "Horizontal";
+            break;
+
+         case ALexInform:
+            zpchToken = "Inform";
+            break;
+
+         case ALexLaunch:
+            zpchToken = "Launch";
+            break;
+
+         case ALexLeft:
+            zpchToken = "Left";
+            break;
+
+         case ALexMinmax:
+            zpchToken = "Minmax";
+            break;
+
+         case ALexNeutral:
+            zpchToken = "Neutral";
+            break;
+
+         case ALexNone:
+            zpchToken = "None";
+            break;
+
+         case ALexPage:
+            zpchToken = "Page";
+            break;
+
+         case ALexPalegray:
+            zpchToken = "Palegray";
+            break;
+
+         case ALexPink:
+            zpchToken = "Pink";
+            break;
+
+         case ALexRed:
+            zpchToken = "Red";
+            break;
+
+         case ALexRight:
+            zpchToken = "Right";
+            break;
+
+         case ALexRules:
+            zpchToken = "Rules";
+            break;
+
+         case ALexSizeborder:
+            zpchToken = "Sizeborder";
+            break;
+
+         case ALexSysmenu:
+            zpchToken = "Sysmenu";
+            break;
+
+         case ALexTop:
+            zpchToken = "Top";
+            break;
+
+         case ALexVert:
+            zpchToken = "Vert";
+            break;
+
+         case ALexVertical:
+            zpchToken = "Vertical";
+            break;
+
+         case ALexYellow:
+            zpchToken = "Yellow";
+            break;
+
+         case ALexYes:
+            zpchToken = "Yes";
+            break;
+
+         case ALexParmQuote:
+            zpchToken = "ParmQuote";
+            break;
+
+         case ALexExtraEnd:
+            zpchToken = "ExtraEnd";
+            break;
+
+         case ALexExtraWhite:
+            zpchToken = "ExtraWhite";
+            break;
+
+         case ALexExtraChunk:
+            zpchToken = "ExtraChunk";
+            break;
+
+         case ALexExtraColonWhite:
+            zpchToken = "ExtraColonWhite";
+            break;
+
+         case ALexExtraColon:
+            zpchToken = "ExtraColon";
+            break;
+
+         case ALexExtraSymbol:
+            zpchToken = "ExtraSymbol";
+            break;
+
+         case ALexEmptyControlWord:
+            zpchToken = "EmptyControlWord";
+            break;
+
+         case ALexBadControlWord:
+            zpchToken = "BadControlWord";
+            break;
+
+         case ALexComment:
+            zpchToken = "Comment";
+            break;
+
+         case ALexNameit:
+            zpchToken = "Nameit";
+            break;
+
+         case ALexCe:
+            zpchToken = "Ce";
+            break;
+
+         case ALexBr:
+            zpchToken = "Br";
+            break;
+
+         case ALexIm:
+            zpchToken = "Im";
+            break;
+
+         case ALexFname:
+            zpchToken = "Fname";
+            break;
+
+         case ALexCenterWhite:
+            zpchToken = "CenterWhite";
+            break;
+
+         case ALexCenterText:
+            zpchToken = "CenterText";
+            break;
+
+         case ALexCenterSymbol:
+            zpchToken = "CenterSymbol";
+            break;
+
+         case ALexNameSymbol:
+            zpchToken = "NameSymbol";
+            break;
+
+         case ALexNameText:
+            zpchToken = "NameText";
+            break;
+
+         case ALexNameValue:
+            zpchToken = "NameValue";
+            break;
+
+         case ALexNameQuote:
+            zpchToken = "NameQuote";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("ipf.llr"),
+      oLex( qpszFile, "ipf.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> itemList 
+            break;
+
+         case AYaccItemList:
+         // itemList -> itemList item 
+            break;
+
+         case AYaccItemListOne:
+         // itemList -> item 
+            break;
+
+         case AYaccItemChunk:
+         // item -> Chunk 
+            break;
+
+         case AYaccItemWhite:
+         // item -> White 
+            break;
+
+         case AYaccItemEnd:
+         // item -> EndOfLine 
+            break;
+
+         case AYaccItemEmpty:
+         // item -> EmptyLine 
+            break;
+
+         case AYaccItemSymbol:
+         // item -> Symbol 
+            break;
+
+         case AYaccItemDot:
+         // item -> Dot 
+            break;
+
+         case AYaccItemTag:
+         // item -> tag 
+            break;
+
+         case AYaccItemColonWhite:
+         // item -> ColonWhite 
+            break;
+
+         case AYaccItemColonEnd:
+         // item -> ColonEnd 
+            break;
+
+         case AYaccItemEmptyTag:
+         // item -> EmptyTag 
+            break;
+
+         case AYaccItemBadTag:
+         // item -> BadTag 
+            break;
+
+         case AYaccItemTagError:
+         // item -> %error Dot 
+            break;
+
+         case AYaccItemControl:
+         // item -> control 
+            break;
+
+         case AYaccBadControl:
+         // control -> BadControlWord 
+            break;
+
+         case AYaccEmptyControl:
+         // control -> EmptyControlWord 
+            break;
+
+         case AYaccComment:
+         // control -> Comment 
+            break;
+
+         case AYaccImbed:
+         // control -> Im Fname 
+            break;
+
+         case AYaccNameit:
+         // control -> Nameit nameAttrs 
+            break;
+
+         case AYaccNameitList:
+         // nameAttrs -> nameAttrs nameAttr 
+            break;
+
+         case AYaccNameitListNull:
+         // nameAttrs -> 
+            break;
+
+         case AYaccNameitSymbol:
+         // nameAttr -> NameSymbol Equal nameValue 
+            break;
+
+         case AYaccNameitText:
+         // nameAttr -> NameText Equal nameValue 
+            break;
+
+         case AYaccNameValue:
+         // nameValue -> NameValue 
+            break;
+
+         case AYaccNameQuote:
+         // nameValue -> NameQuote 
+            break;
+
+         case AYaccControlBreak:
+         // control -> Br 
+            break;
+
+         case AYaccControlCenter:
+         // control -> Ce centers 
+            break;
+
+         case AYaccCenterList:
+         // centers -> centers center 
+            break;
+
+         case AYaccCenterListNull:
+         // centers -> 
+            break;
+
+         case AYaccCenterText:
+         // center -> CenterText 
+            break;
+
+         case AYaccCenterSymbol:
+         // center -> CenterSymbol 
+            break;
+
+         case AYaccCenterWhite:
+         // center -> CenterWhite 
+            break;
+
+         case AYaccAcviewport:
+         // tag -> Acviewport acvAttrs Dot 
+            break;
+
+         case AYaccAcvAttrsList:
+         // acvAttrs -> acvAttrs acvAttr 
+            break;
+
+         case AYaccAcvAttrsListNull:
+         // acvAttrs -> 
+            break;
+
+         case AYaccAcvAttrDll:
+         // acvAttr -> Dll Equal anyParm 
+            break;
+
+         case AYaccAcvAttrObjectName:
+         // acvAttr -> Objectname Equal anyParm 
+            break;
+
+         case AYaccAcvAttrObjectInfo:
+         // acvAttr -> Objectinfo Equal anyParm 
+            break;
+
+         case AYaccAcvAttrObjectId:
+         // acvAttr -> Objectid Equal anyParm 
+            break;
+
+         case AYaccAcvAttrVpx:
+         // acvAttr -> Vpx Equal dynamic 
+            break;
+
+         case AYaccAcvAttrVpy:
+         // acvAttr -> Vpy Equal dynamic 
+            break;
+
+         case AYaccAcvAttrVpcx:
+         // acvAttr -> Vpcx Equal relative 
+            break;
+
+         case AYaccAcvAttrVpcy:
+         // acvAttr -> Vpcy Equal relative 
+            break;
+
+         case AYaccArtlink:
+         // tag -> Artlink Dot 
+            break;
+
+         case AYaccEArtlink:
+         // tag -> Eartlink Dot 
+            break;
+
+         case AYaccArtwork:
+         // tag -> Artwork artAttrs Dot 
+            break;
+
+         case AYaccArtworkAttrs:
+         // artAttrs -> artAttrs artAttr 
+            break;
+
+         case AYaccArtworkAttrsNull:
+         // artAttrs -> 
+            break;
+
+         case AYaccArtworkAttrName:
+         // artAttr -> Name Equal anyParm 
+            break;
+
+         case AYaccArtworkAttrAlignLeft:
+         // artAttr -> Align Equal Left 
+            break;
+
+         case AYaccArtworkAttrAlignRight:
+         // artAttr -> Align Equal Right 
+            break;
+
+         case AYaccArtworkAttrAlignCent:
+         // artAttr -> Align Equal Center 
+            break;
+
+         case AYaccArtworkAttrLinkfile:
+         // artAttr -> Linkfile Equal anyParm 
+            break;
+
+         case AYaccArtworkAttrRunin:
+         // artAttr -> Runin 
+            break;
+
+         case AYaccArtworkAttrFit:
+         // artAttr -> FitAttr 
+            break;
+
+         case AYaccBody:
+         // tag -> Body Dot 
+            break;
+
+         case AYaccC:
+         // tag -> C Dot 
+            break;
+
+         case AYaccCaution:
+         // tag -> Caution cautionAttrs Dot 
+            break;
+
+         case AYaccCautionAttrs:
+         // cautionAttrs -> Text Equal anyParm 
+            break;
+
+         case AYaccCautionAttrsNull:
+         // cautionAttrs -> 
+            break;
+
+         case AYaccECaution:
+         // tag -> Ecaution Dot 
+            break;
+
+         case AYaccCgraphic:
+         // tag -> Cgraphic Dot 
+            break;
+
+         case AYaccECgraphic:
+         // tag -> Ecgraphic Dot 
+            break;
+
+         case AYaccColor:
+         // tag -> Color colorAttrs Dot 
+            break;
+
+         case AYaccColorAttrs:
+         // colorAttrs -> colorAttrs colorAttr 
+            break;
+
+         case AYaccColorAttrsNull:
+         // colorAttrs -> 
+            break;
+
+         case AYaccColorAttrFc:
+         // colorAttr -> Fc Equal color 
+            break;
+
+         case AYaccColorAttrBc:
+         // colorAttr -> Bc Equal color 
+            break;
+
+         case AYaccColorDefault:
+         // color -> Default 
+            break;
+
+         case AYaccColorBlue:
+         // color -> Blue 
+            break;
+
+         case AYaccColorCyan:
+         // color -> Cyan 
+            break;
+
+         case AYaccColorGreen:
+         // color -> Green 
+            break;
+
+         case AYaccColorNeutral:
+         // color -> Neutral 
+            break;
+
+         case AYaccColorRed:
+         // color -> Red 
+            break;
+
+         case AYaccColorYellow:
+         // color -> Yellow 
+            break;
+
+         case AYaccColorBlack:
+         // color -> Black 
+            break;
+
+         case AYaccColorPink:
+         // color -> Pink 
+            break;
+
+         case AYaccColorBrown:
+         // color -> Brown 
+            break;
+
+         case AYaccColorDarkgray:
+         // color -> Darkgray 
+            break;
+
+         case AYaccColorDarkblue:
+         // color -> Darkblue 
+            break;
+
+         case AYaccColorDarkred:
+         // color -> Darkred 
+            break;
+
+         case AYaccColorDarkpink:
+         // color -> Darkpink 
+            break;
+
+         case AYaccColorDarkgreen:
+         // color -> Darkgreen 
+            break;
+
+         case AYaccColorDarkcyan:
+         // color -> Darkcyan 
+            break;
+
+         case AYaccColorPalegray:
+         // color -> Palegray 
+            break;
+
+         case AYaccCtrl:
+         // tag -> Ctrl ctrlAttrs Dot 
+            break;
+
+         case AYaccCtrlAttrs:
+         // ctrlAttrs -> ctrlAttrs ctrlAttr 
+            break;
+
+         case AYaccCtrlAttrsNull:
+         // ctrlAttrs -> 
+            break;
+
+         case AYaccCtrlAttrCtrlid:
+         // ctrlAttr -> Ctrlid Equal anyParm 
+            break;
+
+         case AYaccCtrlAttrControls:
+         // ctrlAttr -> Controls Equal anyParm 
+            break;
+
+         case AYaccCtrlAttrPage:
+         // ctrlAttr -> PageAttr 
+            break;
+
+         case AYaccCtrlAttrCoverpage:
+         // ctrlAttr -> CoverpageAttr 
+            break;
+
+         case AYaccCtrldef:
+         // tag -> Ctrldef Dot 
+            break;
+
+         case AYaccECtrldef:
+         // tag -> Ectrldef Dot 
+            break;
+
+         case AYaccDdf:
+         // tag -> Ddf Res Equal Num Dot 
+            break;
+
+         case AYaccDl:
+         // tag -> Dl dlAttrs Dot 
+            break;
+
+         case AYaccDlAttrs:
+         // dlAttrs -> dlAttrs dlAttr 
+            break;
+
+         case AYaccDlAttrsNull:
+         // dlAttrs -> 
+            break;
+
+         case AYaccDlAttrCompact:
+         // dlAttr -> Compact 
+            break;
+
+         case AYaccDlAttrTsize:
+         // dlAttr -> Tsize Equal Num 
+            break;
+
+         case AYaccDlAttrBreakNone:
+         // dlAttr -> Break Equal None 
+            break;
+
+         case AYaccDlAttrBreakFit:
+         // dlAttr -> Break Equal Fit 
+            break;
+
+         case AYaccDlAttrBreakAll:
+         // dlAttr -> Break Equal All 
+            break;
+
+         case AYaccEDl:
+         // tag -> Edl Dot 
+            break;
+
+         case AYaccDd:
+         // tag -> Dd Dot 
+            break;
+
+         case AYaccDdhd:
+         // tag -> Ddhd Dot 
+            break;
+
+         case AYaccDt:
+         // tag -> Dt Dot 
+            break;
+
+         case AYaccDthd:
+         // tag -> Dthd Dot 
+            break;
+
+         case AYaccDocprof:
+         // tag -> Docprof docAttrs Dot 
+            break;
+
+         case AYaccDocAttrsTos:
+         // docAttrs -> docAttrs docAttr 
+            break;
+
+         case AYaccDocAttrsNull:
+         // docAttrs -> 
+            break;
+
+         case AYaccDocAttrToc:
+         // docAttr -> Toc Equal Num 
+            break;
+
+         case AYaccDocAttrDll:
+         // docAttr -> Dll Equal anyParm 
+            break;
+
+         case AYaccDocAttrObjname:
+         // docAttr -> Objectname Equal anyParm 
+            break;
+
+         case AYaccDocAttrObjinfo:
+         // docAttr -> Objectinfo Equal anyParm 
+            break;
+
+         case AYaccDocAttrCtrlPage:
+         // docAttr -> Ctrlarea Equal Page 
+            break;
+
+         case AYaccDocAttrCtrlCover:
+         // docAttr -> Ctrlarea Equal Coverpage 
+            break;
+
+         case AYaccDocAttrCtrlBoth:
+         // docAttr -> Ctrlarea Equal Both 
+            break;
+
+         case AYaccDocAttrCtrlNone:
+         // docAttr -> Ctrlarea Equal None 
+            break;
+
+         case AYaccFig:
+         // tag -> Fig Dot 
+            break;
+
+         case AYaccEFig:
+         // tag -> Efig Dot 
+            break;
+
+         case AYaccFigcap:
+         // tag -> Figcap DotWhite extraText 
+            break;
+
+         case AYaccFont:
+         // tag -> Font fontAttrs Dot 
+            break;
+
+         case AYaccFontAttrs:
+         // fontAttrs -> fontAttrs fontAttr 
+            break;
+
+         case AYaccFontAttrsNull:
+         // fontAttrs -> fontAttr 
+            break;
+
+         case AYaccFontAttrFacename:
+         // fontAttr -> Facename Equal anyParm 
+            break;
+
+         case AYaccFontAttrSize:
+         // fontAttr -> Size Equal Numfont 
+            break;
+
+         case AYaccFontAttrCodePage:
+         // fontAttr -> Codepage Equal Num 
+            break;
+
+         case AYaccFn:
+         // tag -> FnTag Id Equal anyParm Dot 
+            break;
+
+         case AYaccEFn:
+         // tag -> Efn Dot 
+            break;
+
+         case AYaccFnref:
+         // tag -> Fnref Refid Equal anyParm Dot 
+            break;
+
+         case AYaccH1:
+         // tag -> H1 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccH2:
+         // tag -> H2 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccH3:
+         // tag -> H3 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccH4:
+         // tag -> H4 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccH5:
+         // tag -> H5 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccH6:
+         // tag -> H6 hnAttrs DotWhite extraText 
+            break;
+
+         case AYaccHnAttrList:
+         // hnAttrs -> hnAttrs hnAttr 
+            break;
+
+         case AYaccHnAttrListNull:
+         // hnAttrs -> 
+            break;
+
+         case AYaccHnAttrTitlebarYes:
+         // hnAttr -> Titlebar Equal Yes 
+            break;
+
+         case AYaccHnAttrTitlebarNone:
+         // hnAttr -> Titlebar Equal None 
+            break;
+
+         case AYaccHnAttrTitlebarBoth:
+         // hnAttr -> Titlebar Equal Both 
+            break;
+
+         case AYaccHnAttrTitlebarSys:
+         // hnAttr -> Titlebar Equal Sysmenu 
+            break;
+
+         case AYaccHnAttrTitlebarMin:
+         // hnAttr -> Titlebar Equal Minmax 
+            break;
+
+         case AYaccHnAttrScrollHorz:
+         // hnAttr -> Scroll Equal Horizontal 
+            break;
+
+         case AYaccHnAttrScrollVert:
+         // hnAttr -> Scroll Equal Vertical 
+            break;
+
+         case AYaccHnAttrScrollBoth:
+         // hnAttr -> Scroll Equal Both 
+            break;
+
+         case AYaccHnAttrScrollNone:
+         // hnAttr -> Scroll Equal None 
+            break;
+
+         case AYaccHnAttrRulesBorder:
+         // hnAttr -> RulesAttr Equal Border 
+            break;
+
+         case AYaccHnAttrRulesSize:
+         // hnAttr -> RulesAttr Equal Sizeborder 
+            break;
+
+         case AYaccHnAttrRulesNone:
+         // hnAttr -> RulesAttr Equal None 
+            break;
+
+         case AYaccHnAttrNosearch:
+         // hnAttr -> Nosearch 
+            break;
+
+         case AYaccHnAttrNoprint:
+         // hnAttr -> Noprint 
+            break;
+
+         case AYaccHnAttrHide:
+         // hnAttr -> Hide 
+            break;
+
+         case AYaccHnAttrToc:
+         // hnAttr -> Toc Equal Num 
+            break;
+
+         case AYaccHnAttrCtrlareaPage:
+         // hnAttr -> Ctrlarea Equal Page 
+            break;
+
+         case AYaccHnAttrCtrlareaNone:
+         // hnAttr -> Ctrlarea Equal None 
+            break;
+
+         case AYaccHnAttrCtrlrefid:
+         // hnAttr -> Ctrlrefid Equal anyParm 
+            break;
+
+         case AYaccHnAttrRes:
+         // hnAttr -> Res Equal Num 
+            break;
+
+         case AYaccHnAttrId:
+         // hnAttr -> Id Equal anyParm 
+            break;
+
+         case AYaccHnAttrName:
+         // hnAttr -> Name Equal anyParm 
+            break;
+
+         case AYaccHnAttrGlobal:
+         // hnAttr -> Global 
+            break;
+
+         case AYaccHnAttrTutorial:
+         // hnAttr -> Tutorial Equal anyParm 
+            break;
+
+         case AYaccHnAttrX:
+         // hnAttr -> X Equal dynamic 
+            break;
+
+         case AYaccHnAttrY:
+         // hnAttr -> Y Equal dynamic 
+            break;
+
+         case AYaccHnAttrWidth:
+         // hnAttr -> Width Equal relative 
+            break;
+
+         case AYaccHnAttrHeight:
+         // hnAttr -> Height Equal relative 
+            break;
+
+         case AYaccHnAttrGroup:
+         // hnAttr -> Group Equal Num 
+            break;
+
+         case AYaccHnAttrViewport:
+         // hnAttr -> Viewport 
+            break;
+
+         case AYaccHnAttrClear:
+         // hnAttr -> Clear 
+            break;
+
+         case AYaccHdref:
+         // tag -> Hdref hdrefAttrs Dot 
+            break;
+
+         case AYaccHdrefAttrs:
+         // hdrefAttrs -> hdrefAttrs hdrefAttr 
+            break;
+
+         case AYaccHdrefAttrsNull:
+         // hdrefAttrs -> 
+            break;
+
+         case AYaccHdrefAttrRes:
+         // hdrefAttr -> Res Equal Num 
+            break;
+
+         case AYaccHdrefAttrRefid:
+         // hdrefAttr -> Refid Equal anyParm 
+            break;
+
+         case AYaccHide:
+         // tag -> HideTag Key Equal anyParm Dot 
+            break;
+
+         case AYaccEHide:
+         // tag -> Ehide Dot 
+            break;
+
+         case AYaccHp1:
+         // tag -> Hp1 Dot 
+            break;
+
+         case AYaccHp2:
+         // tag -> Hp2 Dot 
+            break;
+
+         case AYaccHp3:
+         // tag -> Hp3 Dot 
+            break;
+
+         case AYaccHp4:
+         // tag -> Hp4 Dot 
+            break;
+
+         case AYaccHp5:
+         // tag -> Hp5 Dot 
+            break;
+
+         case AYaccHp6:
+         // tag -> Hp6 Dot 
+            break;
+
+         case AYaccHp7:
+         // tag -> Hp7 Dot 
+            break;
+
+         case AYaccHp8:
+         // tag -> Hp8 Dot 
+            break;
+
+         case AYaccHp9:
+         // tag -> Hp9 Dot 
+            break;
+
+         case AYaccEHp1:
+         // tag -> Ehp1 Dot 
+            break;
+
+         case AYaccEHp2:
+         // tag -> Ehp2 Dot 
+            break;
+
+         case AYaccEHp3:
+         // tag -> Ehp3 Dot 
+            break;
+
+         case AYaccEHp4:
+         // tag -> Ehp4 Dot 
+            break;
+
+         case AYaccEHp5:
+         // tag -> Ehp5 Dot 
+            break;
+
+         case AYaccEHp6:
+         // tag -> Ehp6 Dot 
+            break;
+
+         case AYaccEHp7:
+         // tag -> Ehp7 Dot 
+            break;
+
+         case AYaccEHp8:
+         // tag -> Ehp8 Dot 
+            break;
+
+         case AYaccEHp9:
+         // tag -> Ehp9 Dot 
+            break;
+
+         case AYaccHpt:
+         // tag -> Hpt Dot 
+            break;
+
+         case AYaccEHpt:
+         // tag -> Ehpt Dot 
+            break;
+
+         case AYaccI1:
+         // tag -> I1 i1Attrs DotWhite extraText 
+            break;
+
+         case AYaccI1Attrs:
+         // i1Attrs -> i1Attrs i1Attr 
+            break;
+
+         case AYaccI1AttrsNull:
+         // i1Attrs -> 
+            break;
+
+         case AYaccI1AttrId:
+         // i1Attr -> Id Equal anyParm 
+            break;
+
+         case AYaccI1AttrGlobal:
+         // i1Attr -> Global 
+            break;
+
+         case AYaccI1AttrRoots:
+         // i1Attr -> Roots Equal anyParm 
+            break;
+
+         case AYaccI1AttrSortkey:
+         // i1Attr -> Sortkey Equal anyParm 
+            break;
+
+         case AYaccI2:
+         // tag -> I2 i2Attrs DotWhite extraText 
+            break;
+
+         case AYaccI2Attrs:
+         // i2Attrs -> i2Attrs i2Attr 
+            break;
+
+         case AYaccI2AttrsNull:
+         // i2Attrs -> 
+            break;
+
+         case AYaccI2AttrRefid:
+         // i2Attr -> Refid Equal anyParm 
+            break;
+
+         case AYaccI2AttrGlobal:
+         // i2Attr -> Global 
+            break;
+
+         case AYaccI2AttrSortkey:
+         // i2Attr -> Sortkey Equal anyParm 
+            break;
+
+         case AYaccICmd:
+         // tag -> Icmd DotWhite extraText 
+            break;
+
+         case AYaccIndex:
+         // tag -> Index Dot 
+            break;
+
+         case AYaccISyn:
+         // tag -> Isyn Root Equal anyParm DotWhite extraText 
+            break;
+
+         case AYaccLi:
+         // tag -> Li Dot 
+            break;
+
+         case AYaccLines:
+         // tag -> Lines linesAttr Dot 
+            break;
+
+         case AYaccLinesAttrNull:
+         // linesAttr -> 
+            break;
+
+         case AYaccLinesAttrAlignLeft:
+         // linesAttr -> Align Equal Left 
+            break;
+
+         case AYaccLinesAttrAlignCenter:
+         // linesAttr -> Align Equal Center 
+            break;
+
+         case AYaccLinesAttrAlignRight:
+         // linesAttr -> Align Equal Right 
+            break;
+
+         case AYaccELines:
+         // tag -> Elines Dot 
+            break;
+
+         case AYaccLinktag:
+         // tag -> link 
+            break;
+
+         case AYaccLink:
+         // link -> Link linkAttrs Dot 
+            break;
+
+         case AYaccLinkAttrs:
+         // linkAttrs -> linkAttrs linkAttr 
+            break;
+
+         case AYaccLinkAttrsNull:
+         // linkAttrs -> 
+            break;
+
+         case AYaccLinkAttrReftypeHd:
+         // linkAttr -> Reftype Equal Hd 
+            break;
+
+         case AYaccLinkAttrReftypeFn:
+         // linkAttr -> Reftype Equal Fn 
+            break;
+
+         case AYaccLinkAttrReftypeLaunch:
+         // linkAttr -> Reftype Equal Launch 
+            break;
+
+         case AYaccLinkAttrReftypeInform:
+         // linkAttr -> Reftype Equal Inform 
+            break;
+
+         case AYaccLinkAttrRes:
+         // linkAttr -> Res Equal Num 
+            break;
+
+         case AYaccLinkAttrRefid:
+         // linkAttr -> Refid Equal anyParm 
+            break;
+
+         case AYaccLinkAttrDatabase:
+         // linkAttr -> Database Equal anyParm 
+            break;
+
+         case AYaccLinkAttrData:
+         // linkAttr -> Data Equal anyParm 
+            break;
+
+         case AYaccLinkAttrObject:
+         // linkAttr -> Object Equal anyParm 
+            break;
+
+         case AYaccLinkAttrAuto:
+         // linkAttr -> Auto 
+            break;
+
+         case AYaccLinkAttrDependent:
+         // linkAttr -> Dependent 
+            break;
+
+         case AYaccLinkAttrSplit:
+         // linkAttr -> Split 
+            break;
+
+         case AYaccLinkAttrViewport:
+         // linkAttr -> Viewport 
+            break;
+
+         case AYaccLinkAttrChild:
+         // linkAttr -> Child 
+            break;
+
+         case AYaccLinkAttrGroup:
+         // linkAttr -> Group Equal Num 
+            break;
+
+         case AYaccLinkAttrVpx:
+         // linkAttr -> Vpx Equal dynamic 
+            break;
+
+         case AYaccLinkAttrVpy:
+         // linkAttr -> Vpy Equal dynamic 
+            break;
+
+         case AYaccLinkAttrVpcx:
+         // linkAttr -> Vpcx Equal relative 
+            break;
+
+         case AYaccLinkAttrVpcy:
+         // linkAttr -> Vpcy Equal relative 
+            break;
+
+         case AYaccLinkAttrTitleYes:
+         // linkAttr -> Titlebar Equal Yes 
+            break;
+
+         case AYaccLinkAttrTitleNone:
+         // linkAttr -> Titlebar Equal None 
+            break;
+
+         case AYaccLinkAttrTitleBoth:
+         // linkAttr -> Titlebar Equal Both 
+            break;
+
+         case AYaccLinkAttrTitleSys:
+         // linkAttr -> Titlebar Equal Sysmenu 
+            break;
+
+         case AYaccLinkAttrTitleMin:
+         // linkAttr -> Titlebar Equal Minmax 
+            break;
+
+         case AYaccLinkAttrScrollHorz:
+         // linkAttr -> Scroll Equal Horizontal 
+            break;
+
+         case AYaccLinkAttrScrollVert:
+         // linkAttr -> Scroll Equal Vertical 
+            break;
+
+         case AYaccLinkAttrScrollBoth:
+         // linkAttr -> Scroll Equal Both 
+            break;
+
+         case AYaccLinkAttrScrollNone:
+         // linkAttr -> Scroll Equal None 
+            break;
+
+         case AYaccLinkAttrRulesBorder:
+         // linkAttr -> RulesAttr Equal Border 
+            break;
+
+         case AYaccLinkAttrRulesSize:
+         // linkAttr -> RulesAttr Equal Sizeborder 
+            break;
+
+         case AYaccLinkAttrRulesNone:
+         // linkAttr -> RulesAttr Equal None 
+            break;
+
+         case AYaccLinkAttrX:
+         // linkAttr -> X Equal Num 
+            break;
+
+         case AYaccLinkAttrY:
+         // linkAttr -> Y Equal Num 
+            break;
+
+         case AYaccLinkAttrCx:
+         // linkAttr -> Cx Equal Num 
+            break;
+
+         case AYaccLinkAttrCy:
+         // linkAttr -> Cy Equal Num 
+            break;
+
+         case AYaccElink:
+         // tag -> Elink Dot 
+            break;
+
+         case AYaccLm:
+         // tag -> Lm marginAttr Dot 
+            break;
+
+         case AYaccRm:
+         // tag -> Rm marginAttr Dot 
+            break;
+
+         case AYaccMarginAttrNull:
+         // marginAttr -> 
+            break;
+
+         case AYaccMarginAttrMargin:
+         // marginAttr -> Margin Equal Num 
+            break;
+
+         case AYaccLp:
+         // tag -> Lp Dot 
+            break;
+
+         case AYaccNote:
+         // tag -> Note noteAttr Dot 
+            break;
+
+         case AYaccNoteAttr:
+         // noteAttr -> Text Equal anyParm 
+            break;
+
+         case AYaccNoteAttrNull:
+         // noteAttr -> 
+            break;
+
+         case AYaccNt:
+         // tag -> Nt ntAttr Dot 
+            break;
+
+         case AYaccNtAttr:
+         // ntAttr -> Text Equal anyParm 
+            break;
+
+         case AYaccNtAttrNull:
+         // ntAttr -> 
+            break;
+
+         case AYaccENt:
+         // tag -> Ent Dot 
+            break;
+
+         case AYaccOl:
+         // tag -> Ol olAttr Dot 
+            break;
+
+         case AYaccOlAttr:
+         // olAttr -> Compact 
+            break;
+
+         case AYaccOlAttrNull:
+         // olAttr -> 
+            break;
+
+         case AYaccEOl:
+         // tag -> Eol Dot 
+            break;
+
+         case AYaccP:
+         // tag -> P Dot 
+            break;
+
+         case AYaccParml:
+         // tag -> Parml parmlAttrs Dot 
+            break;
+
+         case AYaccParmlAttrs:
+         // parmlAttrs -> parmlAttrs parmlAttr 
+            break;
+
+         case AYaccParmlAttrsNull:
+         // parmlAttrs -> 
+            break;
+
+         case AYaccParmlAttrCompact:
+         // parmlAttr -> Compact 
+            break;
+
+         case AYaccParmlAttrTsize:
+         // parmlAttr -> Tsize Equal Num 
+            break;
+
+         case AYaccParmlAttrBreakNone:
+         // parmlAttr -> Break Equal None 
+            break;
+
+         case AYaccParmlAttrBreakFit:
+         // parmlAttr -> Break Equal Fit 
+            break;
+
+         case AYaccParmlAttrBreakAll:
+         // parmlAttr -> Break Equal All 
+            break;
+
+         case AYaccEParml:
+         // tag -> Eparml Dot 
+            break;
+
+         case AYaccPbutton:
+         // tag -> Pbutton pbuttonAttrs Dot 
+            break;
+
+         case AYaccPbuttonAttrs:
+         // pbuttonAttrs -> pbuttonAttrs pbuttonAttr 
+            break;
+
+         case AYaccPbuttonAttrsNull:
+         // pbuttonAttrs -> 
+            break;
+
+         case AYaccPbuttonAttrId:
+         // pbuttonAttr -> Id Equal anyParm 
+            break;
+
+         case AYaccPbuttonAttrRes:
+         // pbuttonAttr -> Res Equal Num 
+            break;
+
+         case AYaccPbuttonAttrText:
+         // pbuttonAttr -> Text Equal anyParm 
+            break;
+
+         case AYaccPd:
+         // tag -> Pd Dot 
+            break;
+
+         case AYaccPt:
+         // tag -> Pt Dot 
+            break;
+
+         case AYaccRow:
+         // tag -> Row Dot 
+            break;
+
+         case AYaccSl:
+         // tag -> Sl slAttr Dot 
+            break;
+
+         case AYaccSlAttr:
+         // slAttr -> Compact 
+            break;
+
+         case AYaccSlAttrNull:
+         // slAttr -> 
+            break;
+
+         case AYaccESl:
+         // tag -> Esl Dot 
+            break;
+
+         case AYaccTable:
+         // tag -> Table tableAttrs Dot 
+            break;
+
+         case AYaccTableAttrs:
+         // tableAttrs -> tableAttrs tableAttr 
+            break;
+
+         case AYaccTableAttrsNull:
+         // tableAttrs -> 
+            break;
+
+         case AYaccTableAttrCols:
+         // tableAttr -> Cols Equal anyParm 
+            break;
+
+         case AYaccTableAttrRulesBoth:
+         // tableAttr -> RulesAttr Equal Both 
+            break;
+
+         case AYaccTableAttrRulesHoriz:
+         // tableAttr -> RulesAttr Equal Horiz 
+            break;
+
+         case AYaccTableAttrRulesVert:
+         // tableAttr -> RulesAttr Equal Vert 
+            break;
+
+         case AYaccTableAttrRulesNone:
+         // tableAttr -> RulesAttr Equal None 
+            break;
+
+         case AYaccTableAttrFrameRules:
+         // tableAttr -> Frame Equal Rules 
+            break;
+
+         case AYaccTableAttrFrameBox:
+         // tableAttr -> Frame Equal Box 
+            break;
+
+         case AYaccTableAttrFrameNone:
+         // tableAttr -> Frame Equal None 
+            break;
+
+         case AYaccETable:
+         // tag -> Etable Dot 
+            break;
+
+         case AYaccTitle:
+         // tag -> Title DotWhite extraText 
+            break;
+
+         case AYaccUl:
+         // tag -> Ul ulAttr Dot 
+            break;
+
+         case AYaccUlAttr:
+         // ulAttr -> Compact 
+            break;
+
+         case AYaccUlAttrNull:
+         // ulAttr -> 
+            break;
+
+         case AYaccEUl:
+         // tag -> Eul Dot 
+            break;
+
+         case AYaccUserdoc:
+         // tag -> Userdoc Dot 
+            break;
+
+         case AYaccEUserdoc:
+         // tag -> Euserdoc Dot 
+            break;
+
+         case AYaccWarning:
+         // tag -> Warning warningAttr Dot 
+            break;
+
+         case AYaccWarningAttr:
+         // warningAttr -> Text Equal anyParm 
+            break;
+
+         case AYaccWarningAttrNull:
+         // warningAttr -> 
+            break;
+
+         case AYaccEWarning:
+         // tag -> Ewarning Dot 
+            break;
+
+         case AYaccXmp:
+         // tag -> Xmp Dot 
+            break;
+
+         case AYaccEXmp:
+         // tag -> Exmp Dot 
+            break;
+
+         case AYaccDynamicLeft:
+         // dynamic -> Left 
+            break;
+
+         case AYaccDynamicRight:
+         // dynamic -> Right 
+            break;
+
+         case AYaccDynamicCenter:
+         // dynamic -> Center 
+            break;
+
+         case AYaccDynamicBottom:
+         // dynamic -> Bottom 
+            break;
+
+         case AYaccDynamicTop:
+         // dynamic -> Top 
+            break;
+
+         case AYaccDynamicRelative:
+         // dynamic -> relative 
+            break;
+
+         case AYaccRelativePercent:
+         // relative -> Numper 
+            break;
+
+         case AYaccRelativeAbsolute:
+         // relative -> absolute 
+            break;
+
+         case AYaccAbsoluteChar:
+         // absolute -> Numc 
+            break;
+
+         case AYaccAbsolutePixel:
+         // absolute -> Numx 
+            break;
+
+         case AYaccAbsolutePoint:
+         // absolute -> Nump 
+            break;
+
+         case AYaccExtraText:
+         // extraText -> extraText extra 
+            break;
+
+         case AYaccExtraTextOne:
+         // extraText -> 
+            break;
+
+         case AYaccExtraEnd:
+         // extra -> ExtraEnd 
+            break;
+
+         case AYaccExtraWhite:
+         // extra -> ExtraWhite 
+            break;
+
+         case AYaccExtraColon:
+         // extra -> ExtraColon 
+            break;
+
+         case AYaccExtraChunk:
+         // extra -> ExtraChunk 
+            break;
+
+         case AYaccExtraColonWhite:
+         // extra -> ExtraColonWhite 
+            break;
+
+         case AYaccExtraSymbol:
+         // extra -> ExtraSymbol 
+            break;
+
+         case AYaccAnyParmName:
+         // anyParm -> ParmName 
+            break;
+
+         case AYaccAnyParmQuote:
+         // anyParm -> ParmQuote 
+            break;
+
+         case AYaccAnyParmKey:
+         // anyParm -> parmKey 
+            break;
+
+         case AYaccAnyParmRelative:
+         // anyParm -> relative 
+            break;
+
+         case AYaccAnyParmNum:
+         // anyParm -> Num 
+            break;
+
+         case AYaccAnyParmSpecial:
+         // anyParm -> Numfont 
+            break;
+
+         case AYaccAnyParmKeyAll:
+         // parmKey -> All 
+            break;
+
+         case AYaccAnyParmKeyBlack:
+         // parmKey -> Black 
+            break;
+
+         case AYaccAnyParmKeyBlue:
+         // parmKey -> Blue 
+            break;
+
+         case AYaccAnyParmKeyBorder:
+         // parmKey -> Border 
+            break;
+
+         case AYaccAnyParmKeyBoth:
+         // parmKey -> Both 
+            break;
+
+         case AYaccAnyParmKeyBottom:
+         // parmKey -> Bottom 
+            break;
+
+         case AYaccAnyParmKeyBox:
+         // parmKey -> Box 
+            break;
+
+         case AYaccAnyParmKeyBreak:
+         // parmKey -> Break 
+            break;
+
+         case AYaccAnyParmKeyBrown:
+         // parmKey -> Brown 
+            break;
+
+         case AYaccAnyParmKeyCenter:
+         // parmKey -> Center 
+            break;
+
+         case AYaccAnyParmKeyCoverpage:
+         // parmKey -> Coverpage 
+            break;
+
+         case AYaccAnyParmKeyCyan:
+         // parmKey -> Cyan 
+            break;
+
+         case AYaccAnyParmKeyDarkBlue:
+         // parmKey -> Darkblue 
+            break;
+
+         case AYaccAnyParmKeyDarkCyan:
+         // parmKey -> Darkcyan 
+            break;
+
+         case AYaccAnyParmKeyDarkGray:
+         // parmKey -> Darkgray 
+            break;
+
+         case AYaccAnyParmKeyDarkGreen:
+         // parmKey -> Darkgreen 
+            break;
+
+         case AYaccAnyParmKeyDarkPink:
+         // parmKey -> Darkpink 
+            break;
+
+         case AYaccAnyParmKeyDarkRed:
+         // parmKey -> Darkred 
+            break;
+
+         case AYaccAnyParmKeyDefault:
+         // parmKey -> Default 
+            break;
+
+         case AYaccAnyParmKeyFit:
+         // parmKey -> Fit 
+            break;
+
+         case AYaccAnyParmKeyFn:
+         // parmKey -> Fn 
+            break;
+
+         case AYaccAnyParmKeyGreen:
+         // parmKey -> Green 
+            break;
+
+         case AYaccAnyParmKeyHd:
+         // parmKey -> Hd 
+            break;
+
+         case AYaccAnyParmKeyHoriz:
+         // parmKey -> Horiz 
+            break;
+
+         case AYaccAnyParmKeyHorizontal:
+         // parmKey -> Horizontal 
+            break;
+
+         case AYaccAnyParmKeyInform:
+         // parmKey -> Inform 
+            break;
+
+         case AYaccAnyParmKeyLaunch:
+         // parmKey -> Launch 
+            break;
+
+         case AYaccAnyParmKeyLeft:
+         // parmKey -> Left 
+            break;
+
+         case AYaccAnyParmKeyMinmax:
+         // parmKey -> Minmax 
+            break;
+
+         case AYaccAnyParmKeyNeutral:
+         // parmKey -> Neutral 
+            break;
+
+         case AYaccAnyParmKeyNone:
+         // parmKey -> None 
+            break;
+
+         case AYaccAnyParmKeyPage:
+         // parmKey -> Page 
+            break;
+
+         case AYaccAnyParmKeyPaleGray:
+         // parmKey -> Palegray 
+            break;
+
+         case AYaccAnyParmKeyPink:
+         // parmKey -> Pink 
+            break;
+
+         case AYaccAnyParmKeyRed:
+         // parmKey -> Red 
+            break;
+
+         case AYaccAnyParmKeyRight:
+         // parmKey -> Right 
+            break;
+
+         case AYaccAnyParmKeyRules:
+         // parmKey -> Rules 
+            break;
+
+         case AYaccAnyParmKeyTop:
+         // parmKey -> Top 
+            break;
+
+         case AYaccAnyParmKeySizeborder:
+         // parmKey -> Sizeborder 
+            break;
+
+         case AYaccAnyParmKeyVert:
+         // parmKey -> Vert 
+            break;
+
+         case AYaccAnyParmKeyVertical:
+         // parmKey -> Vertical 
+            break;
+
+         case AYaccAnyParmKeyYellow:
+         // parmKey -> Yellow 
+            break;
+
+         case AYaccAnyParmKeyYes:
+         // parmKey -> Yes 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

@@ -1,0 +1,1348 @@
+/***************************************************************************
+ * File...... ipf.ycc
+ * Author.... Mat
+ *
+ * Grammar for IPF files.
+ *
+ * - Terminal symbols (lexical tokens) begin with initial caps
+ * - Non-terminal symbols begin with lower case
+ *
+ * Copyright (C) 1998 MekTek
+ ***************************************************************************/
+
+
+/***************************************************************************
+ * MACROS
+ ***************************************************************************/
+
+%macro
+
+// case-sensitive symbols (matched in the code)
+{SYMBOLTEXT}      '[a-zA-Z0-9]*';
+
+// case-insensitive keywords
+//   all control words, tags, attributes and values in IPF are case-insensitive
+//   NOTE: symbols ARE case-sensitive
+{ACVIEWPORT}      '[aA][cC][vV][iI][eE][wW][pP][oO][rR][tT]';
+{ALIGN}           '[aA][lL][iI][gG][nN]';
+{ALL}             '[aA][lL][lL]';
+{ARTLINK}         '[aA][rR][tT][lL][iI][nN][kK]';
+{ARTWORK}         '[aA][rR][tT][wW][oO][rR][kK]';
+{AUTO}            '[aA][uU][tT][oO]';
+{BC}              '[bB][cC]';
+{BLACK}           '[bB][lL][aA][cC][kK]';
+{BLUE}            '[bB][lL][uU][eE]';
+{BODY}            '[bB][oO][dD][yY]';
+{BORDER}          '[bB][oO][rR][dD][eE][rR]';
+{BOTH}            '[bB][oO][tT][hH]';
+{BOTTOM}          '[bB][oO][tT][tT][oO][mM]';
+{BOX}             '[bB][oO][xX]';
+{BREAK}           '[bB][rR][eE][aA][kK]';
+{BROWN}           '[bB][rR][oO][wW][nN]';
+{BR}              '[bB][rR]';
+{CAUTION}         '[cC][aA][uU][tT][iI][oO][nN]';
+{CE}              '[cC][eE]';
+{CENTER}          '[cC][eE][nN][tT][eE][rR]';
+{CGRAPHIC}        '[cC][gG][rR][aA][pP][hH][iI][cC]';
+{CHILD}           '[cC][hH][iI][lL][dD]';
+{CLEAR}           '[cC][lL][eE][aA][rR]';
+{CODEPAGE}        '[cC][oO][dD][eE][pP][aA][gG][eE]';
+{COLOR}           '[cC][oO][lL][oO][rR]';
+{COLS}            '[cC][oO][lL][sS]';
+{COMPACT}         '[cC][oO][mM][pP][aA][cC][tT]';
+{CONTROLS}        '[cC][oO][nN][tT][rR][oO][lL][sS]';
+{COVERPAGE}       '[cC][oO][vV][eE][rR][pP][aA][gG][eE]';
+{CTRLAREA}        '[cC][tT][rR][lL][aA][rR][eE][aA]';
+{CTRLDEF}         '[cC][tT][rR][lL][dD][eE][fF]';
+{CTRLID}          '[cC][tT][rR][lL][iI][dD]';
+{CTRLREFID}       '[cC][tT][rR][lL][rR][eE][fF][iI][dD]';
+{CTRL}            '[cC][tT][rR][lL]';
+{CX}              '[cC][xX]';
+{CYAN}            '[cC][yY][aA][nN]';
+{CY}              '[cC][yY]';
+{C}               '[cC]';
+{DARKBLUE}        '[dD][aA][rR][kK][bB][lL][uU][eE]';
+{DARKCYAN}        '[dD][aA][rR][kK][cC][yY][aA][nN]';
+{DARKGRAY}        '[dD][aA][rR][kK][gG][rR][aA][yY]';
+{DARKGREEN}       '[dD][aA][rR][kK][gG][rR][eE][eE][nN]';
+{DARKPINK}        '[dD][aA][rR][kK][pP][iI][nN][kK]';
+{DARKRED}         '[dD][aA][rR][kK][rR][eE][dD]';
+{DATABASE}        '[dD][aA][tT][aA][bB][aA][sS][eE]';
+{DATA}            '[dD][aA][tT][aA]';
+{DDF}             '[dD][dD][fF]';
+{DDHD}            '[dD][dD][hH][dD]';
+{DD}              '[dD][dD]';
+{DEFAULT}         '[dD][eE][fF][aA][uU][lL][tT]';
+{DEPENDENT}       '[dD][eE][pP][eE][nN][dD][eE][nN][tT]';
+{DLL}             '[dD][lL][lL]';
+{DL}              '[dD][lL]';
+{DOCPROF}         '[dD][oO][cC][pP][rR][oO][fF]';
+{DTHD}            '[dD][tT][hH][dD]';
+{DT}              '[dD][tT]';
+{EARTLINK}        '[eE][aA][rR][tT][lL][iI][nN][kK]';
+{ECAUTION}        '[eE][cC][aA][uU][tT][iI][oO][nN]';
+{ECGRAPHIC}       '[eE][cC][gG][rR][aA][pP][hH][iI][cC]';
+{ECTRLDEF}        '[eE][cC][tT][rR][lL][dD][eE][fF]';
+{EDL}             '[eE][dD][lL]';
+{EFIG}            '[eE][fF][iI][gG]';
+{EFN}             '[eE][fF][nN]';
+{EHIDE}           '[eE][hH][iI][dD][eE]';
+{EHP}             '[eE][hH][pP]';
+{EHPT}            '[eE][hH][pP][tT]';
+{ELINES}          '[eE][lL][iI][nN][eE][sS]';
+{ELINK}           '[eE][lL][iI][nN][kK]';
+{ENT}             '[eE][nN][tT]';
+{EOL}             '[eE][oO][lL]';
+{EPARML}          '[eE][pP][aA][rR][mM][lL]';
+{ESL}             '[eE][sS][lL]';
+{ETABLE}          '[eE][tT][aA][bB][lL][eE]';
+{EUL}             '[eE][uU][lL]';
+{EUSERDOC}        '[eE][uU][sS][eE][rR][dD][oO][cC]';
+{EWARNING}        '[eE][wW][aA][rR][nN][iI][nN][gG]';
+{EXMP}            '[eE][xX][mM][pP]';
+{FACENAME}        '[fF][aA][cC][eE][nN][aA][mM][eE]';
+{FC}              '[fF][cC]';
+{FIGCAP}          '[fF][iI][Gg][cC][aA][pP]';
+{FIG}             '[fF][iI][Gg]';
+{FIT}             '[fF][iI][tT]';
+{FN}              '[fF][nN]';
+{FNREF}           '[fF][nN][rR][eE][fF]';
+{FONT}            '[fF][oO][nN][tT]';
+{FRAME}           '[fF][rR][aA][mM][eE]';
+{GLOBAL}          '[gG][lL][oO][bB][aA][lL]';
+{GREEN}           '[gG][rR][eE][eE][nN]';
+{GROUP}           '[gG][rR][oO][uU][pP]';
+{HD}              '[hH][dD]';
+{HDREF}           '[hH][dD][rR][eE][fF]';
+{HEIGHT}          '[hH][eE][iI][gG][hH][tT]';
+{HIDE}            '[hH][iI][dD][eE]';
+{HORIZONTAL}      '[hH][oO][rR][iI][zZ][oO][nN][tT][aA][lL]';
+{HORIZ}           '[hH][oO][rR][iI][zZ]';
+{HP}              '[hH][pP]';
+{HPT}             '[hH][pP][tT]';
+{H}               '[hH]';
+{ICMD}            '[iI][cC][mM][dD]';
+{ID}              '[iI][dD]';
+{IM}              '[iI][mM]';
+{INDEX}           '[iI][nN][dD][eE][xX]';
+{INFORM}          '[iI][nN][fF][oO][rR][mM]';
+{ISYN}            '[iI][sS][yY][nN]';
+{I}               '[iI]';
+{KEY}             '[kK][eE][yY]';
+{LAUNCH}          '[lL][aA][uU][nN][cC][hH]';
+{LEFT}            '[lL][eE][fF][tT]';
+{LINES}           '[lL][iI][nN][eE][sS]';
+{LINKFILE}        '[lL][iI][nN][kK][fF][iI][lL][eE]';
+{LINK}            '[lL][iI][nN][kK]';
+{LI}              '[lL][Ii]';
+{LM}              '[lL][mM]';
+{LP}              '[lL][pP]';
+{MARGIN}          '[mM][aA][rR][gG][iI][nN]';
+{MINMAX}          '[mM][iI][nN][mM][aA][xX]';
+{NAME}            '[nN][aA][mM][eE]';
+{NAMEIT}          '[nN][aA][mM][eE][iI][tT]';
+{NEUTRAL}         '[nN][eE][uU][tT][rR][aA][lL]';
+{NONE}            '[nN][oO][nN][eE]';
+{NOPRINT}         '[nN][oO][pP][rR][iI][nN][tT]';
+{NOSEARCH}        '[nN][oO][sS][eE][aA][rR][cC][hH]';
+{NOTE}            '[nN][oO][tT][eE]';
+{NT}              '[nN][tT]';
+{OBJECTID}        '[oO][bB][jJ][eE][cC][tT][iI][dD]';
+{OBJECTINFO}      '[oO][bB][jJ][eE][cC][tT][iI][nN][fF][oO]';
+{OBJECTNAME}      '[oO][bB][jJ][eE][cC][tT][nN][aA][mM][eE]';
+{OBJECT}          '[oO][bB][jJ][eE][cC][tT]';
+{OL}              '[oO][lL]';
+{PAGE}            '[pP][aA][gG][eE]';
+{PALEGRAY}        '[pP][aA][lL][eE][gG][rR][aA][yY]';
+{PARML}           '[pP][aA][rR][mM][lL]';
+{PBUTTON}         '[pP][bB][uU][tT][tT][oO][nN]';
+{PD}              '[pP][dD]';
+{PINK}            '[pP][iI][nN][kK]';
+{PT}              '[pP][tT]';
+{P}               '[pP]';
+{RED}             '[rR][eE][dD]';
+{REFID}           '[rR][eE][fF][iI][dD]';
+{REFTYPE}         '[rR][eE][fF][tT][yY][pP][eE]';
+{RES}             '[rR][eE][sS]';
+{RIGHT}           '[rR][iI][gG][hH][tT]';
+{RM}              '[rR][mM]';
+{ROOTS}           '[rR][oO][oO][tT][sS]';
+{ROOT}            '[rR][oO][oO][tT]';
+{ROW}             '[rR][oO][wW]';
+{RULES}           '[rR][uU][lL][eE][sS]';
+{RUNIN}           '[rR][uU][nN][iI][nN]';
+{SCROLL}          '[sS][cC][rR][oO][lL][lL]';
+{SIZEBORDER}      '[sS][iI][zZ][eE][bB][oO][rR][dD][eE][rR]';
+{SIZE}            '[sS][iI][zZ][eE]';
+{SL}              '[sS][lL]';
+{SORTKEY}         '[sS][oO][rR][tT][kK][eE][yY]';
+{SPLIT}           '[sS][pP][lL][iI][tT]';
+{SYMBOL}          '[sS][yY][mM][bB][oO][lL]';
+{SYSMENU}         '[sS][yY][sS][mM][eE][nN][uU]';
+{TABLE}           '[tT][aA][bB][lL][eE]';
+{TEXT}            '[tT][eE][xX][tT]';
+{TITLEBAR}        '[tT][iI][tT][lL][eE][bB][aA][rR]';
+{TITLE}           '[tT][iI][tT][lL][eE]';
+{TOC}             '[tT][oA][cC]';
+{TOP}             '[tT][oO][pP]';
+{TSIZE}           '[tT][sS][iI][zZ][eE]';
+{TUTORIAL}        '[tT][uU][tT][oO][rR][iI][aA][lL]';
+{UL}              '[uU][lL]';
+{USERDOC}         '[uU][sS][eE][rR][dD][oO][cC]';
+{VERTICAL}        '[vV][eE][rR][tT][iI][cC][aA][lL]';
+{VERT}            '[vV][eE][rR][tT]';
+{VIEWPORT}        '[vV][iI][eE][wW][pP][oO][rR][tT]';
+{VPCX}            '[vV][pP][cC][xX]';
+{VPCY}            '[vV][pP][cC][yY]';
+{VPX}             '[vV][pP][xX]';
+{VPY}             '[vV][pP][yY]';
+{WARNING}         '[wW][aA][rR][nN][iI][nN][gG]';
+{WIDTH}           '[wW][iI][dD][tT][hH]';
+{XMP}             '[xX][mM][pP]';
+{X}               '[xX]';
+{YELLOW}          '[yY][eE][lL][lL][oO][wW]';
+{YES}             '[yY][eE][sS]';
+{Y}               '[yY]';
+
+
+/***************************************************************************
+ * MAIN
+ ***************************************************************************/
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles the start of lines, where an optional
+//    control word may be placed.  Aside from that, it is the same as the
+//    MidLine expression list.
+//
+//---------------------------------------------------------------------------
+
+%expression StartLine
+
+'[ \t]+'             White,       %goto MidLine;
+'[ \t]*\n'           EmptyLine;
+'[^:&\. \t\n]+'      Chunk,       %goto MidLine;
+'\.'                 %ignore,     %push ControlWord;
+':'                  %ignore,     %goto Tag;
+'&{SYMBOLTEXT}\.'    Symbol,      %goto MidLine;
+'&'                  %ignore;
+
+
+%expression MidLine
+
+'[ \t]+'             White;
+'[ \t]*\n'           EndOfLine,   %goto StartLine;
+'[^:&\. \t\n]+'      Chunk;
+'\.'                 Dot;
+':'                  %ignore,     %goto Tag;
+'&{SYMBOLTEXT}\.'    Symbol;
+'&'                  %ignore;
+
+
+/***************************************************************************
+ * TAGS
+ ***************************************************************************/
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles IPF tags, which always
+//    begin with a colon (:) and end with a period (.).  After the
+//    tag name, there may be attributes.  Also, some tags are followed
+//    by associated "extra" text (see AttrExtra).
+//
+//---------------------------------------------------------------------------
+
+%expression Tag
+
+// non-tags
+'\n'              ColonEnd,          %goto StartLine;
+'[ \t]'           ColonWhite,        %goto MidLine;
+'\.'              EmptyTag,          %goto MidLine;
+
+// unknown tag
+'[^ \t\n\.]+'     BadTag,            %goto Attrs;
+
+// known tags
+'{ACVIEWPORT}'    Acviewport,        %goto Attrs;
+'{ARTLINK}'       Artlink,           %goto Attrs;
+'{ARTWORK}'       Artwork,           %goto Attrs;
+'{BODY}'          Body,              %goto Attrs;
+'{C}'             C,                 %goto Attrs;
+'{CAUTION}'       Caution,           %goto Attrs;
+'{COLOR}'         Color,             %goto Attrs;
+'{CGRAPHIC}'      Cgraphic,          %goto Attrs;
+'{CTRL}'          Ctrl,              %goto Attrs;
+'{CTRLDEF}'       Ctrldef,           %goto Attrs;
+'{DD}'            Dd,                %goto Attrs;
+'{DDF}'           Ddf,               %goto Attrs;
+'{DDHD}'          Ddhd,              %goto Attrs;
+'{DL}'            Dl,                %goto Attrs;
+'{DT}'            Dt,                %goto Attrs;
+'{DTHD}'          Dthd,              %goto Attrs;
+'{DOCPROF}'       Docprof,           %goto Attrs;
+'{EARTLINK}'      Eartlink,          %goto Attrs;
+'{ECAUTION}'      Ecaution,          %goto Attrs;
+'{ECGRAPHIC}'     Ecgraphic,         %goto Attrs;
+'{ECTRLDEF}'      Ectrldef,          %goto Attrs;
+'{EDL}'           Edl,               %goto Attrs;
+'{EFIG}'          Efig,              %goto Attrs;
+'{EFN}'           Efn,               %goto Attrs;
+'{EHIDE}'         Ehide,             %goto Attrs;
+'{EHP}1'          Ehp1,              %goto Attrs;
+'{EHP}2'          Ehp2,              %goto Attrs;
+'{EHP}3'          Ehp3,              %goto Attrs;
+'{EHP}4'          Ehp4,              %goto Attrs;
+'{EHP}5'          Ehp5,              %goto Attrs;
+'{EHP}6'          Ehp6,              %goto Attrs;
+'{EHP}7'          Ehp7,              %goto Attrs;
+'{EHP}8'          Ehp8,              %goto Attrs;
+'{EHP}9'          Ehp9,              %goto Attrs;
+'{EHPT}'          Ehpt,              %goto Attrs;
+'{ELINES}'        Elines,            %goto Attrs;
+'{ELINK}'         Elink,             %goto Attrs;
+'{ENT}'           Ent,               %goto Attrs;
+'{EOL}'           Eol,               %goto Attrs;
+'{EPARML}'        Eparml,            %goto Attrs;
+'{ESL}'           Esl,               %goto Attrs;
+'{ETABLE}'        Etable,            %goto Attrs;
+'{EUL}'           Eul,               %goto Attrs;
+'{EUSERDOC}'      Euserdoc,          %goto Attrs;
+'{EWARNING}'      Ewarning,          %goto Attrs;
+'{EXMP}'          Exmp,              %goto Attrs;
+'{FIG}'           Fig,               %goto Attrs;
+'{FIGCAP}'        Figcap,            %goto AttrsExtra;
+'{FONT}'          Font,              %goto Attrs;
+'{FN}'            FnTag,             %goto Attrs;
+'{FNREF}'         Fnref,             %goto Attrs;
+'{H}1'            H1,                %goto AttrsExtra;
+'{H}2'            H2,                %goto AttrsExtra;
+'{H}3'            H3,                %goto AttrsExtra;
+'{H}4'            H4,                %goto AttrsExtra;
+'{H}5'            H5,                %goto AttrsExtra;
+'{H}6'            H6,                %goto AttrsExtra;
+'{HDREF}'         Hdref,             %goto Attrs;
+'{HIDE}'          HideTag,           %goto Attrs;
+'{HP}1'           Hp1,               %goto Attrs;
+'{HP}2'           Hp2,               %goto Attrs;
+'{HP}3'           Hp3,               %goto Attrs;
+'{HP}4'           Hp4,               %goto Attrs;
+'{HP}5'           Hp5,               %goto Attrs;
+'{HP}6'           Hp6,               %goto Attrs;
+'{HP}7'           Hp7,               %goto Attrs;
+'{HP}8'           Hp8,               %goto Attrs;
+'{HP}9'           Hp9,               %goto Attrs;
+'{HPT}'           Hpt,               %goto Attrs;
+'{I}1'            I1,                %goto AttrsExtra;
+'{I}2'            I2,                %goto AttrsExtra;
+'{ICMD}'          Icmd,              %goto AttrsExtra;
+'{INDEX}'         Index,             %goto Attrs;
+'{ISYN}'          Isyn,              %goto AttrsExtra;
+'{LI}'            Li,                %goto Attrs;
+'{LINES}'         Lines,             %goto Attrs;
+'{LINK}'          Link,              %goto Attrs;
+'{LM}'            Lm,                %goto Attrs;
+'{LP}'            Lp,                %goto Attrs;
+'{NOTE}'          Note,              %goto Attrs;
+'{NT}'            Nt,                %goto Attrs;
+'{PBUTTON}'       Pbutton,           %goto Attrs;
+'{RM}'            Rm,                %goto Attrs;
+'{OL}'            Ol,                %goto Attrs;
+'{P}'             P,                 %goto Attrs;
+'{PARML}'         Parml,             %goto Attrs;
+'{PD}'            Pd,                %goto Attrs;
+'{PT}'            Pt,                %goto Attrs;
+'{ROW}'           Row,               %goto Attrs;
+'{SL}'            Sl,                %goto Attrs;
+'{TABLE}'         Table,             %goto Attrs;
+'{TITLE}'         Title,             %goto AttrsExtra;
+'{UL}'            Ul,                %goto Attrs;
+'{USERDOC}'       Userdoc,           %goto Attrs;
+'{WARNING}'       Warning,           %goto Attrs;
+'{XMP}'           Xmp,               %goto Attrs;
+
+
+/***************************************************************************
+ * ATTRIBUTES
+ ***************************************************************************/
+
+//---------------------------------------------------------------------------
+//
+//    This expression list recognizes the attributes associated with
+//    the tags.  When a '.' is seen, the expression list is '%pop'ped
+//    and returns to the Main lexer. When an '=' sign is seen, the
+//    AttrParm expression list is pushed to process the attribute
+//    parameter. An invalid attribute will cause 'BadAttr' to be
+//    passed to the parser which will cause a parsing error. This
+//    is described in the %production section.
+//
+//    NOTE: Some tags need special support which is covered by the AttrsExtra
+//          expression list.  This list does not include attributes which
+//          only appear in those tags.
+//
+//---------------------------------------------------------------------------
+%expression Attrs
+
+'[ \t\n]+'        %ignore;
+'='               Equal,   %push Attrparm;
+'\.'              Dot,     %goto MidLine;    // done with attributes
+'[^ \t\n=\.]+'    BadAttr;
+
+'{ALIGN}'         Align;
+'{AUTO}'          Auto;
+'{BC}'            Bc;
+'{BREAK}'         Break;
+'{CHILD}'         Child;
+'{CODEPAGE}'      Codepage;
+'{COLS}'          Cols;
+'{COMPACT}'       Compact;
+'{CONTROLS}'      Controls;
+'{COVERPAGE}'     CoverpageAttr;
+'{CTRLAREA}'      Ctrlarea;
+'{CTRLID}'        Ctrlid;
+'{CX}'            Cx;
+'{CY}'            Cy;
+'{DATABASE}'      Database;
+'{DATA}'          Data;
+'{DEPENDENT}'     Dependent;
+'{DLL}'           Dll;
+'{FACENAME}'      Facename;
+'{FC}'            Fc;
+'{FIT}'           FitAttr;
+'{FRAME}'         Frame;
+'{GROUP}'         Group;
+'{ID}'            Id;
+'{KEY}'           Key;
+'{LINKFILE}'      Linkfile;
+'{MARGIN}'        Margin;
+'{NAME}'          Name;
+'{OBJECT}'        Object;
+'{OBJECTID}'      Objectid;
+'{OBJECTINFO}'    Objectinfo;
+'{OBJECTNAME}'    Objectname;
+'{PAGE}'          PageAttr;
+'{REFID}'         Refid;
+'{REFTYPE}'       Reftype;
+'{RES}'           Res;
+'{RULES}'         RulesAttr;
+'{RUNIN}'         Runin;
+'{SCROLL}'        Scroll;
+'{SIZE}'          Size;
+'{SPLIT}'         Split;
+'{TOC}'           Toc;
+'{TEXT}'          Text;
+'{TITLEBAR}'      Titlebar;
+'{TSIZE}'         Tsize;
+'{VIEWPORT}'      Viewport;
+'{VPCX}'          Vpcx;
+'{VPCY}'          Vpcy;
+'{VPX}'           Vpx;
+'{VPY}'           Vpy;
+'{X}'             X;
+'{Y}'             Y;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list is effectively the same as Attrs, but adds
+//    support for an additional text attribute which follows the
+//    tag and is associated with the tag (not part of main text).
+//    The following tags have this "feature":
+//      :title.
+//      :figcap.
+//      :i1. and :i2.
+//      :h1. though :h6.
+//      :icmd.
+//      :isyn.
+//    After all attributes are lexed, we %goto the Extra expression
+//    list, instead of returning to the Main lexer.
+//
+//    This expression list also consumes any white space following the
+//    end of the tag.
+//
+//    This list only includes attributes which appear in the tags affected.
+//
+//---------------------------------------------------------------------------
+%expression AttrsExtra
+
+'[ \t\n]+'        %ignore;
+'='               Equal,      %push Attrparm;
+'\.[ \t\n]*'      DotWhite,   %goto Extra;
+'[^ \t\n=\.]+'    BadAttr;
+
+'{CLEAR}'         Clear;
+'{CTRLAREA}'      Ctrlarea;
+'{CTRLREFID}'     Ctrlrefid;
+'{GLOBAL}'        Global;
+'{GROUP}'         Group;
+'{HEIGHT}'        Height;
+'{HIDE}'          Hide;
+'{ID}'            Id;
+'{NAME}'          Name;
+'{NOPRINT}'       Noprint;
+'{NOSEARCH}'      Nosearch;
+'{REFID}'         Refid;
+'{RES}'           Res;
+'{ROOTS}'         Roots;
+'{ROOT}'          Root;
+'{RULES}'         RulesAttr;
+'{SCROLL}'        Scroll;
+'{SORTKEY}'       Sortkey;
+'{TOC}'           Toc;
+'{TITLEBAR}'      Titlebar;
+'{TUTORIAL}'      Tutorial;
+'{VIEWPORT}'      Viewport;
+'{WIDTH}'         Width;
+'{X}'             X;
+'{Y}'             Y;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list finds attribute parameters.
+//
+//---------------------------------------------------------------------------
+%expression Attrparm
+
+''''                                   %ignore,    %goto Quote;
+'[ \t\n]'                              ParmEmpty,  %pop;
+'[^ \t\n\.'']+'                        ParmName,   %pop;
+'[0-9]+'                               Num,        %pop;
+'[0-9]+c'                              Numc,       %pop;
+'[0-9]+x'                              Numx,       %pop;
+'[0-9]+p'                              Nump,       %pop;
+'[0-9]+(x|X)[0-9]+'                    Numfont,    %pop;
+'[0-9]+%'                              Numper,     %pop;
+
+// NOTES:
+//   1. all parameter key values can be optionally quoted
+//   2. be sure to add a "parmKey ->" rule for each keyword here
+'({ALL})|(''{ALL}'')'                  All,        %pop;
+'({BLACK})|(''{BLACK}'')'              Black,      %pop;
+'({BLUE})|(''{BLUE}'')'                Blue,       %pop;
+'({BORDER})|(''{BORDER}'')'            Border,     %pop;
+'({BOTH})|(''{BOTH}'')'                Both,       %pop;
+'({BOTTOM})|(''{BOTTOM}'')'            Bottom,     %pop;
+'({BOX})|(''{BOX}'')'                  Box,        %pop;
+'({BREAK})|(''{BREAK}'')'              Break,      %pop;
+'({BROWN})|(''{BROWN}'')'              Brown,      %pop;
+'({CENTER})|(''{CENTER}'')'            Center,     %pop;
+'({COVERPAGE})|(''{COVERPAGE}'')'      Coverpage,  %pop;
+'({CYAN})|(''{CYAN}'')'                Cyan,       %pop;
+'({DARKBLUE})|(''{DARKBLUE}'')'        Darkblue,   %pop;
+'({DARKCYAN})|(''{DARKCYAN}'')'        Darkcyan,   %pop;
+'({DARKGRAY})|(''{DARKGRAY}'')'        Darkgray,   %pop;
+'({DARKGREEN})|(''{DARKGREEN}'')'      Darkgreen,  %pop;
+'({DARKPINK})|(''{DARKPINK}'')'        Darkpink,   %pop;
+'({DARKRED})|(''{DARKRED}'')'          Darkred,    %pop;
+'({DEFAULT})|(''{DEFAULT}'')'          Default,    %pop;
+'({FIT})|(''{FIT}'')'                  Fit,        %pop;
+'({FN})|(''{FN}'')'                    Fn,         %pop;
+'({GREEN})|(''{GREEN}'')'              Green,      %pop;
+'({HD})|(''{HD}'')'                    Hd,         %pop;
+'({HORIZ})|(''{HORIZ}'')'              Horiz,      %pop;
+'({HORIZONTAL})|(''{HORIZONTAL}'')'    Horizontal, %pop;
+'({INFORM})|(''{INFORM}'')'            Inform,     %pop;
+'({LAUNCH})|(''{LAUNCH}'')'            Launch,     %pop;
+'({LEFT})|(''{LEFT}'')'                Left,       %pop;
+'({MINMAX})|(''{MINMAX}'')'            Minmax,     %pop;
+'({NEUTRAL})|(''{NEUTRAL}'')'          Neutral,    %pop;
+'({NONE})|(''{NONE}'')'                None,       %pop;
+'({PAGE})|(''{PAGE}'')'                Page,       %pop;
+'({PALEGRAY})|(''{PALEGRAY}'')'        Palegray,   %pop;
+'({PINK})|(''{PINK}'')'                Pink,       %pop;
+'({RED})|(''{RED}'')'                  Red,        %pop;
+'({RIGHT})|(''{RIGHT}'')'              Right,      %pop;
+'({RULES})|(''{RULES}'')'              Rules,      %pop;
+'({SIZEBORDER})|(''{SIZEBORDER}'')'    Sizeborder, %pop;
+'({SYSMENU})|(''{SYSMENU}'')'          Sysmenu,    %pop;
+'({TOP})|(''{TOP}'')'                  Top,        %pop;
+'({VERT})|(''{VERT}'')'                Vert,       %pop;
+'({VERTICAL})|(''{VERTICAL}'')'        Vertical,   %pop;
+'({YELLOW})|(''{YELLOW}'')'            Yellow,     %pop;
+'({YES})|(''{YES}'')'                  Yes,        %pop;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles quoted strings.  When an
+//    end quote is matched, the expression list is '%pop'ped.
+//
+//---------------------------------------------------------------------------
+%expression Quote
+
+''''                                      %ignore, %pop;
+'[^'']+'                                  ParmQuote;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles the "extra text" which is associated
+//    with some tags (see AttrsExtra above).
+//
+//---------------------------------------------------------------------------
+%expression Extra
+
+'[ \t]*\n'                   ExtraEnd,          %goto StartLine;
+'[ \t]+'                     ExtraWhite;
+'[^:& \t\n]+'                ExtraChunk;
+':'                          %ignore,           %goto Tag;
+':[ \t]'                     ExtraColonWhite;
+':\n'                        ExtraColon,        %goto StartLine;
+'&{SYMBOLTEXT}\.'            ExtraSymbol;
+'&'                          %ignore;
+
+
+/***************************************************************************
+ * CONTROL WORDS
+ ***************************************************************************/
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles IPF "control words", which always
+//    begin with a period (.) at the beginning of the line.
+//
+//---------------------------------------------------------------------------
+%expression ControlWord
+
+'[ \t]*'              EmptyControlWord, %goto ControlWordText;
+'[^ \t\n]+'           BadControlWord,   %goto ControlWordText;
+'\*.*'                Comment,          %goto ControlWordText;
+'{NAMEIT}[ \t]+'      Nameit,           %goto NameitArgs;
+'{CE}[ \t]+'          Ce,               %goto Center;
+'{BR}([ \t].*)?'      Br,               %goto ControlWordText;
+'{IM}[ \t]+'          Im,               %goto Filename;
+
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list ignores additional text on a control word line
+//
+//---------------------------------------------------------------------------
+%expression ControlWordText
+
+'.*\n'                %ignore,        %pop;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list looks for the file name on .im control words
+//
+//---------------------------------------------------------------------------
+%expression Filename
+
+'[ \t]*\n'            %ignore,        %pop;
+'[^ \t\n]+'           Fname;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list handles text for .ce control words
+//
+//---------------------------------------------------------------------------
+%expression Center
+
+'[ \t]*\n'            %ignore,        %pop;
+'[ \t]+'              CenterWhite;
+'[^& \t\n]+'          CenterText;
+'&{SYMBOLTEXT}\.'     CenterSymbol;
+'&'                   %ignore;
+
+
+//---------------------------------------------------------------------------
+//
+//    This expression list looks for .nameit args
+//
+//---------------------------------------------------------------------------
+%expression NameitArgs
+
+'[ \t]+'              %ignore;
+'='                   Equal,          %goto NameitValue;
+'(\..*)?\n'           %ignore,        %pop;
+'[^ \t\n=\.]+'        BadAttr;
+'{SYMBOL}'            NameSymbol;
+'{TEXT}'              NameText;
+
+%expression NameitValue
+''''                  %ignore,        %goto NameitQuote;
+'[ \t]'               %ignore,        %goto NameitArgs;
+'\n'                  %ignore,        %pop;
+'[^ \t\n\.'']+'       NameValue,      %goto NameitArgs;
+
+%expression NameitQuote
+
+''''                  %ignore,        %goto NameitArgs;
+'\n'                  %ignore,        %pop;
+'[^''\n]+'            NameQuote;
+
+
+
+/***************************************************************************
+ * PARSER
+ ***************************************************************************/
+
+//---------------------------------------------------------------------------
+//
+//    This is the parser for IPF.  It interprets the data as a stream
+//    of tags, white space chunks, non white space chunks, tags, symbols,
+//    and control words. The attributes for the tags are handled in each
+//    tag section.
+//
+//---------------------------------------------------------------------------
+%production start
+
+Start                 start      ->  itemList;
+
+ItemList              itemList   ->  itemList item;
+ItemListOne           itemList   ->  item;
+ItemChunk             item       ->  Chunk;
+ItemWhite             item       ->  White;
+ItemEnd               item       ->  EndOfLine;
+ItemEmpty             item       ->  EmptyLine;
+ItemSymbol            item       ->  Symbol;
+ItemDot               item       ->  Dot;
+ItemTag               item       ->  tag;
+ItemColonWhite        item       ->  ColonWhite;
+ItemColonEnd          item       ->  ColonEnd;
+ItemEmptyTag          item       ->  EmptyTag;
+ItemBadTag            item       ->  BadTag;
+ItemTagError          item       ->  %error Dot;
+ItemControl           item       ->  control;
+
+
+//----------------------
+// bad control word
+//----------------------
+BadControl            control    ->  BadControlWord;
+
+//----------------------
+// empty control word
+//----------------------
+EmptyControl          control    ->  EmptyControlWord;
+
+//----------------------
+// .* comment
+//----------------------
+Comment               control    ->  Comment;
+
+//----------------------
+// .im control word
+//----------------------
+Imbed                 control    ->  Im Fname;
+
+//----------------------
+// .nameit control word
+//----------------------
+Nameit                control    ->  Nameit nameAttrs;
+NameitList            nameAttrs  ->  nameAttrs nameAttr;
+NameitListNull        nameAttrs  ->  ;
+NameitSymbol          nameAttr   ->  NameSymbol Equal nameValue;
+NameitText            nameAttr   ->  NameText Equal nameValue;
+NameValue             nameValue  ->  NameValue;
+NameQuote             nameValue  ->  NameQuote;
+
+//----------------------
+// .br control word
+//----------------------
+ControlBreak          control    ->  Br;
+
+//----------------------
+// .ce control word
+//----------------------
+ControlCenter         control    ->  Ce centers;
+CenterList            centers    ->  centers center;
+CenterListNull        centers    ->  ;
+CenterText            center     ->  CenterText;
+CenterSymbol          center     ->  CenterSymbol;
+CenterWhite           center     ->  CenterWhite;
+
+//----------------------
+// :acviewport tag
+//----------------------
+Acviewport            tag        ->  Acviewport acvAttrs Dot;
+AcvAttrsList          acvAttrs   ->  acvAttrs acvAttr;
+AcvAttrsListNull      acvAttrs   ->  ;
+AcvAttrDll            acvAttr    ->  Dll Equal anyParm;
+AcvAttrObjectName     acvAttr    ->  Objectname Equal anyParm;
+AcvAttrObjectInfo     acvAttr    ->  Objectinfo Equal anyParm;
+AcvAttrObjectId       acvAttr    ->  Objectid Equal anyParm;
+AcvAttrVpx            acvAttr    ->  Vpx Equal dynamic;
+AcvAttrVpy            acvAttr    ->  Vpy Equal dynamic;
+AcvAttrVpcx           acvAttr    ->  Vpcx Equal relative;
+AcvAttrVpcy           acvAttr    ->  Vpcy Equal relative;
+
+//----------------------
+// :artlink tag
+//----------------------
+Artlink               tag        ->  Artlink Dot;
+EArtlink              tag        ->  Eartlink Dot;
+
+//----------------------
+// :artwork tag
+//----------------------
+Artwork               tag        ->  Artwork artAttrs Dot;
+ArtworkAttrs          artAttrs   ->  artAttrs artAttr;
+ArtworkAttrsNull      artAttrs   ->  ;
+ArtworkAttrName       artAttr    ->  Name Equal anyParm;
+ArtworkAttrAlignLeft  artAttr    ->  Align Equal Left;
+ArtworkAttrAlignRight artAttr    ->  Align Equal Right;
+ArtworkAttrAlignCent  artAttr    ->  Align Equal Center;
+ArtworkAttrLinkfile   artAttr    ->  Linkfile Equal anyParm;
+ArtworkAttrRunin      artAttr    ->  Runin;
+ArtworkAttrFit        artAttr    ->  FitAttr;
+
+//----------------------
+// :body tag (undocumented)
+//----------------------
+Body                  tag          ->  Body Dot;
+
+//----------------------
+// :c tag
+//----------------------
+C                     tag          ->  C Dot;
+
+//----------------------
+// :caution tag
+//----------------------
+Caution               tag          ->  Caution cautionAttrs Dot;
+CautionAttrs          cautionAttrs ->  Text Equal anyParm;
+CautionAttrsNull      cautionAttrs ->  ;
+ECaution              tag          ->  Ecaution Dot;
+
+//----------------------
+// :cgraphic tag
+//----------------------
+Cgraphic              tag        ->  Cgraphic Dot;
+ECgraphic             tag        ->  Ecgraphic Dot;
+
+//----------------------
+// :color tag
+//----------------------
+Color                 tag        ->  Color colorAttrs Dot;
+ColorAttrs            colorAttrs ->  colorAttrs colorAttr;
+ColorAttrsNull        colorAttrs ->  ;
+ColorAttrFc           colorAttr  ->  Fc Equal color;
+ColorAttrBc           colorAttr  ->  Bc Equal color;
+ColorDefault          color      ->  Default;
+ColorBlue             color      ->  Blue;
+ColorCyan             color      ->  Cyan;
+ColorGreen            color      ->  Green;
+ColorNeutral          color      ->  Neutral;
+ColorRed              color      ->  Red;
+ColorYellow           color      ->  Yellow;
+ColorBlack            color      ->  Black;
+ColorPink             color      ->  Pink;
+ColorBrown            color      ->  Brown;
+ColorDarkgray         color      ->  Darkgray;
+ColorDarkblue         color      ->  Darkblue;
+ColorDarkred          color      ->  Darkred;
+ColorDarkpink         color      ->  Darkpink;
+ColorDarkgreen        color      ->  Darkgreen;
+ColorDarkcyan         color      ->  Darkcyan;
+ColorPalegray         color      ->  Palegray;
+
+//----------------------
+// :ctrl tag
+//----------------------
+Ctrl                  tag        ->  Ctrl ctrlAttrs Dot;
+CtrlAttrs             ctrlAttrs  ->  ctrlAttrs ctrlAttr;
+CtrlAttrsNull         ctrlAttrs  ->  ;
+CtrlAttrCtrlid        ctrlAttr   ->  Ctrlid Equal anyParm;
+CtrlAttrControls      ctrlAttr   ->  Controls Equal anyParm;
+CtrlAttrPage          ctrlAttr   ->  PageAttr;
+CtrlAttrCoverpage     ctrlAttr   ->  CoverpageAttr;
+
+//----------------------
+// :ctrldef tag
+//----------------------
+Ctrldef               tag        ->  Ctrldef Dot;
+ECtrldef              tag        ->  Ectrldef Dot;
+
+//----------------------
+// :ddf tag
+//----------------------
+Ddf                   tag        ->  Ddf Res Equal Num Dot;
+
+//----------------------
+// :dl tag
+//----------------------
+Dl                    tag        ->  Dl dlAttrs Dot;
+DlAttrs               dlAttrs    ->  dlAttrs dlAttr;
+DlAttrsNull           dlAttrs    ->  ;
+DlAttrCompact         dlAttr     ->  Compact;
+DlAttrTsize           dlAttr     ->  Tsize Equal Num;
+DlAttrBreakNone       dlAttr     ->  Break Equal None;
+DlAttrBreakFit        dlAttr     ->  Break Equal Fit;
+DlAttrBreakAll        dlAttr     ->  Break Equal All;
+EDl                   tag        ->  Edl Dot;
+
+//----------------------
+// :dd tag
+//----------------------
+Dd                    tag        ->  Dd Dot;
+
+//----------------------
+// :ddhd tag
+//----------------------
+Ddhd                  tag        ->  Ddhd Dot;
+
+//----------------------
+// :dt tag
+//----------------------
+Dt                    tag        ->  Dt Dot;
+
+//----------------------
+// :dthd tag
+//----------------------
+Dthd                  tag        ->  Dthd Dot;
+
+//----------------------
+// :docprof tag
+//----------------------
+Docprof               tag        ->  Docprof docAttrs Dot;
+DocAttrsTos           docAttrs   ->  docAttrs docAttr;
+DocAttrsNull          docAttrs   ->  ;
+DocAttrToc            docAttr    ->  Toc Equal Num;
+DocAttrDll            docAttr    ->  Dll Equal anyParm;
+DocAttrObjname        docAttr    ->  Objectname Equal anyParm;
+DocAttrObjinfo        docAttr    ->  Objectinfo Equal anyParm;
+DocAttrCtrlPage       docAttr    ->  Ctrlarea Equal Page;
+DocAttrCtrlCover      docAttr    ->  Ctrlarea Equal Coverpage;
+DocAttrCtrlBoth       docAttr    ->  Ctrlarea Equal Both;
+DocAttrCtrlNone       docAttr    ->  Ctrlarea Equal None;
+
+//----------------------
+// :fig tag
+//----------------------
+Fig                   tag        -> Fig Dot;
+EFig                  tag        -> Efig Dot;
+
+//----------------------
+// :figcap tag
+//----------------------
+Figcap                tag        -> Figcap DotWhite extraText;
+
+//----------------------
+// :font tag
+//----------------------
+Font                  tag        -> Font fontAttrs Dot;
+FontAttrs             fontAttrs  -> fontAttrs fontAttr;
+FontAttrsNull         fontAttrs  -> fontAttr;
+FontAttrFacename      fontAttr   -> Facename Equal anyParm;
+FontAttrSize          fontAttr   -> Size Equal Numfont;
+FontAttrCodePage      fontAttr   -> Codepage Equal Num;
+
+//----------------------
+// :fn tag
+//----------------------
+Fn                    tag        -> FnTag Id Equal anyParm Dot;
+EFn                   tag        -> Efn Dot;
+
+//----------------------
+// :fnref tag
+//----------------------
+Fnref                 tag        -> Fnref Refid Equal anyParm Dot;
+
+//----------------------
+// :hn tags
+//----------------------
+H1                    tag        ->  H1 hnAttrs DotWhite extraText;
+H2                    tag        ->  H2 hnAttrs DotWhite extraText;
+H3                    tag        ->  H3 hnAttrs DotWhite extraText;
+H4                    tag        ->  H4 hnAttrs DotWhite extraText;
+H5                    tag        ->  H5 hnAttrs DotWhite extraText;
+H6                    tag        ->  H6 hnAttrs DotWhite extraText;
+HnAttrList            hnAttrs    ->  hnAttrs hnAttr;
+HnAttrListNull        hnAttrs    ->  ;
+HnAttrTitlebarYes     hnAttr     ->  Titlebar Equal Yes;
+HnAttrTitlebarNone    hnAttr     ->  Titlebar Equal None;
+HnAttrTitlebarBoth    hnAttr     ->  Titlebar Equal Both;
+HnAttrTitlebarSys     hnAttr     ->  Titlebar Equal Sysmenu;
+HnAttrTitlebarMin     hnAttr     ->  Titlebar Equal Minmax;
+HnAttrScrollHorz      hnAttr     ->  Scroll Equal Horizontal;
+HnAttrScrollVert      hnAttr     ->  Scroll Equal Vertical;
+HnAttrScrollBoth      hnAttr     ->  Scroll Equal Both;
+HnAttrScrollNone      hnAttr     ->  Scroll Equal None;
+HnAttrRulesBorder     hnAttr     ->  RulesAttr Equal Border;
+HnAttrRulesSize       hnAttr     ->  RulesAttr Equal Sizeborder;
+HnAttrRulesNone       hnAttr     ->  RulesAttr Equal None;
+HnAttrNosearch        hnAttr     ->  Nosearch;
+HnAttrNoprint         hnAttr     ->  Noprint;
+HnAttrHide            hnAttr     ->  Hide;
+HnAttrToc             hnAttr     ->  Toc Equal Num;
+HnAttrCtrlareaPage    hnAttr     ->  Ctrlarea Equal Page;
+HnAttrCtrlareaNone    hnAttr     ->  Ctrlarea Equal None;
+HnAttrCtrlrefid       hnAttr     ->  Ctrlrefid Equal anyParm;
+HnAttrRes             hnAttr     ->  Res Equal Num;
+HnAttrId              hnAttr     ->  Id Equal anyParm;
+HnAttrName            hnAttr     ->  Name Equal anyParm;
+HnAttrGlobal          hnAttr     ->  Global;
+HnAttrTutorial        hnAttr     ->  Tutorial Equal anyParm;
+HnAttrX               hnAttr     ->  X Equal dynamic;
+HnAttrY               hnAttr     ->  Y Equal dynamic;
+HnAttrWidth           hnAttr     ->  Width Equal relative;
+HnAttrHeight          hnAttr     ->  Height Equal relative;
+HnAttrGroup           hnAttr     ->  Group Equal Num;
+HnAttrViewport        hnAttr     ->  Viewport;
+HnAttrClear           hnAttr     ->  Clear;
+
+//----------------------
+// :hdref tag
+//----------------------
+Hdref                 tag        ->  Hdref hdrefAttrs Dot;
+HdrefAttrs            hdrefAttrs ->  hdrefAttrs hdrefAttr;
+HdrefAttrsNull        hdrefAttrs ->  ;
+HdrefAttrRes          hdrefAttr  ->  Res Equal Num;
+HdrefAttrRefid        hdrefAttr  ->  Refid Equal anyParm;
+
+//----------------------
+// :hide tag
+//----------------------
+Hide                  tag        ->  HideTag Key Equal anyParm Dot;
+EHide                 tag        ->  Ehide Dot;
+
+//----------------------
+// :hpn tags
+//----------------------
+Hp1                   tag        ->  Hp1 Dot;
+Hp2                   tag        ->  Hp2 Dot;
+Hp3                   tag        ->  Hp3 Dot;
+Hp4                   tag        ->  Hp4 Dot;
+Hp5                   tag        ->  Hp5 Dot;
+Hp6                   tag        ->  Hp6 Dot;
+Hp7                   tag        ->  Hp7 Dot;
+Hp8                   tag        ->  Hp8 Dot;
+Hp9                   tag        ->  Hp9 Dot;
+EHp1                  tag        ->  Ehp1 Dot;
+EHp2                  tag        ->  Ehp2 Dot;
+EHp3                  tag        ->  Ehp3 Dot;
+EHp4                  tag        ->  Ehp4 Dot;
+EHp5                  tag        ->  Ehp5 Dot;
+EHp6                  tag        ->  Ehp6 Dot;
+EHp7                  tag        ->  Ehp7 Dot;
+EHp8                  tag        ->  Ehp8 Dot;
+EHp9                  tag        ->  Ehp9 Dot;
+
+//----------------------
+// :hpt tag
+//----------------------
+Hpt                   tag        -> Hpt Dot;
+EHpt                  tag        -> Ehpt Dot;
+
+//----------------------
+// :i1 and :i2
+//----------------------
+I1                    tag        ->  I1 i1Attrs DotWhite extraText;
+I1Attrs               i1Attrs    ->  i1Attrs i1Attr;
+I1AttrsNull           i1Attrs    ->  ;
+I1AttrId              i1Attr     ->  Id Equal anyParm;
+I1AttrGlobal          i1Attr     ->  Global;
+I1AttrRoots           i1Attr     ->  Roots Equal anyParm;
+I1AttrSortkey         i1Attr     ->  Sortkey Equal anyParm;
+I2                    tag        ->  I2 i2Attrs DotWhite extraText;
+I2Attrs               i2Attrs    ->  i2Attrs i2Attr;
+I2AttrsNull           i2Attrs    ->  ;
+I2AttrRefid           i2Attr     ->  Refid Equal anyParm;
+I2AttrGlobal          i2Attr     ->  Global;
+I2AttrSortkey         i2Attr     ->  Sortkey Equal anyParm;
+
+//----------------------
+// :icmd tag
+//----------------------
+ICmd                  tag        ->  Icmd DotWhite extraText;
+
+//----------------------
+// :index tag (undocumented)
+//----------------------
+Index                 tag        ->  Index Dot;
+
+//----------------------
+// :isyn tag
+//----------------------
+ISyn                  tag        ->  Isyn Root Equal anyParm DotWhite extraText;
+
+//----------------------
+// :li tag
+//----------------------
+Li                    tag        ->  Li Dot;
+
+//----------------------
+// :lines tag
+//----------------------
+Lines                 tag        ->  Lines linesAttr Dot;
+LinesAttrNull         linesAttr  ->  ;
+LinesAttrAlignLeft    linesAttr  ->  Align Equal Left;
+LinesAttrAlignCenter  linesAttr  ->  Align Equal Center;
+LinesAttrAlignRight   linesAttr  ->  Align Equal Right;
+ELines                tag        ->  Elines Dot;
+
+//----------------------
+// :link tag
+//----------------------
+Linktag               tag        ->  link;
+Link                  link       ->  Link linkAttrs Dot;
+LinkAttrs             linkAttrs  ->  linkAttrs linkAttr;
+LinkAttrsNull         linkAttrs  ->  ;
+LinkAttrReftypeHd     linkAttr   ->  Reftype Equal Hd;
+LinkAttrReftypeFn     linkAttr   ->  Reftype Equal Fn;
+LinkAttrReftypeLaunch linkAttr   ->  Reftype Equal Launch;
+LinkAttrReftypeInform linkAttr   ->  Reftype Equal Inform;
+LinkAttrRes           linkAttr   ->  Res Equal Num;
+LinkAttrRefid         linkAttr   ->  Refid Equal anyParm;
+LinkAttrDatabase      linkAttr   ->  Database Equal anyParm;
+LinkAttrData          linkAttr   ->  Data Equal anyParm;
+LinkAttrObject        linkAttr   ->  Object Equal anyParm;
+LinkAttrAuto          linkAttr   ->  Auto;
+LinkAttrDependent     linkAttr   ->  Dependent;
+LinkAttrSplit         linkAttr   ->  Split;
+LinkAttrViewport      linkAttr   ->  Viewport;
+LinkAttrChild         linkAttr   ->  Child;
+LinkAttrGroup         linkAttr   ->  Group Equal Num;
+LinkAttrVpx           linkAttr   ->  Vpx Equal dynamic;
+LinkAttrVpy           linkAttr   ->  Vpy Equal dynamic;
+LinkAttrVpcx          linkAttr   ->  Vpcx Equal relative;
+LinkAttrVpcy          linkAttr   ->  Vpcy Equal relative;
+LinkAttrTitleYes      linkAttr   ->  Titlebar Equal Yes;
+LinkAttrTitleNone     linkAttr   ->  Titlebar Equal None;
+LinkAttrTitleBoth     linkAttr   ->  Titlebar Equal Both;
+LinkAttrTitleSys      linkAttr   ->  Titlebar Equal Sysmenu;
+LinkAttrTitleMin      linkAttr   ->  Titlebar Equal Minmax;
+LinkAttrScrollHorz    linkAttr   ->  Scroll Equal Horizontal;
+LinkAttrScrollVert    linkAttr   ->  Scroll Equal Vertical;
+LinkAttrScrollBoth    linkAttr   ->  Scroll Equal Both;
+LinkAttrScrollNone    linkAttr   ->  Scroll Equal None;
+LinkAttrRulesBorder   linkAttr   ->  RulesAttr Equal Border;
+LinkAttrRulesSize     linkAttr   ->  RulesAttr Equal Sizeborder;
+LinkAttrRulesNone     linkAttr   ->  RulesAttr Equal None;
+// these attributes are valid only within an :artlink. block
+LinkAttrX             linkAttr   ->  X Equal Num;
+LinkAttrY             linkAttr   ->  Y Equal Num;
+LinkAttrCx            linkAttr   ->  Cx Equal Num;
+LinkAttrCy            linkAttr   ->  Cy Equal Num;
+// end tag
+Elink                 tag        -> Elink Dot;
+
+//----------------------
+// :lm and :rm
+//----------------------
+Lm                    tag          ->  Lm marginAttr Dot;
+Rm                    tag          ->  Rm marginAttr Dot;
+MarginAttrNull        marginAttr   ->  ;
+MarginAttrMargin      marginAttr   ->  Margin Equal Num;
+
+//----------------------
+// :lp tag
+//----------------------
+Lp                    tag        ->  Lp Dot;
+
+//----------------------
+// :note tag
+//----------------------
+Note                  tag        ->  Note noteAttr Dot;
+NoteAttr              noteAttr   ->  Text Equal anyParm;
+NoteAttrNull          noteAttr   ->  ;
+
+//----------------------
+// :nt tag
+//----------------------
+Nt                    tag        ->  Nt ntAttr Dot;
+NtAttr                ntAttr     ->  Text Equal anyParm;
+NtAttrNull            ntAttr     ->  ;
+ENt                   tag        ->  Ent Dot;
+
+//----------------------
+// :ol tag
+//----------------------
+Ol                    tag        ->  Ol olAttr Dot;
+OlAttr                olAttr     ->  Compact;
+OlAttrNull            olAttr     ->  ;
+EOl                   tag        ->  Eol Dot;
+
+//----------------------
+// :p tag
+//----------------------
+P                     tag        ->  P Dot;
+
+//----------------------
+// :parml tag
+//----------------------
+Parml                 tag        ->  Parml parmlAttrs Dot;
+ParmlAttrs            parmlAttrs ->  parmlAttrs parmlAttr;
+ParmlAttrsNull        parmlAttrs ->  ;
+ParmlAttrCompact      parmlAttr  ->  Compact;
+ParmlAttrTsize        parmlAttr  ->  Tsize Equal Num;
+ParmlAttrBreakNone    parmlAttr  ->  Break Equal None;
+ParmlAttrBreakFit     parmlAttr  ->  Break Equal Fit;
+ParmlAttrBreakAll     parmlAttr  ->  Break Equal All;
+EParml                tag        ->  Eparml Dot;
+
+//----------------------
+// :pbutton tag
+//----------------------
+Pbutton               tag          ->  Pbutton pbuttonAttrs Dot;
+PbuttonAttrs          pbuttonAttrs ->  pbuttonAttrs pbuttonAttr;
+PbuttonAttrsNull      pbuttonAttrs ->  ;
+PbuttonAttrId         pbuttonAttr  ->  Id Equal anyParm;
+PbuttonAttrRes        pbuttonAttr  ->  Res Equal Num;
+PbuttonAttrText       pbuttonAttr  ->  Text Equal anyParm;
+
+//----------------------
+// :pd tag
+//----------------------
+Pd                    tag        ->  Pd Dot;
+
+//----------------------
+// :pt tag
+//----------------------
+Pt                    tag        ->  Pt Dot;
+
+//----------------------
+// :row tag
+//----------------------
+Row                   tag        ->  Row Dot;
+
+//----------------------
+// :sl tag
+//----------------------
+Sl                    tag        ->  Sl slAttr Dot;
+SlAttr                slAttr     ->  Compact;
+SlAttrNull            slAttr     ->  ;
+ESl                   tag        ->  Esl Dot;
+
+//----------------------
+// :table tag
+//----------------------
+Table                 tag        ->  Table tableAttrs Dot;
+TableAttrs            tableAttrs ->  tableAttrs tableAttr;
+TableAttrsNull        tableAttrs ->  ;
+TableAttrCols         tableAttr  ->  Cols Equal anyParm;
+TableAttrRulesBoth    tableAttr  ->  RulesAttr Equal Both;
+TableAttrRulesHoriz   tableAttr  ->  RulesAttr Equal Horiz;
+TableAttrRulesVert    tableAttr  ->  RulesAttr Equal Vert;
+TableAttrRulesNone    tableAttr  ->  RulesAttr Equal None;
+TableAttrFrameRules   tableAttr  ->  Frame Equal Rules;
+TableAttrFrameBox     tableAttr  ->  Frame Equal Box;
+TableAttrFrameNone    tableAttr  ->  Frame Equal None;
+ETable                tag        ->  Etable Dot;
+
+//----------------------
+// :title tag
+//----------------------
+Title                 tag        ->  Title DotWhite extraText;
+
+//----------------------
+// :ul tag
+//----------------------
+Ul                    tag        ->  Ul ulAttr Dot;
+UlAttr                ulAttr     ->  Compact;
+UlAttrNull            ulAttr     ->  ;
+EUl                   tag        ->  Eul Dot;
+
+//----------------------
+// :userdoc tag
+//----------------------
+Userdoc               tag        ->  Userdoc Dot;
+EUserdoc              tag        ->  Euserdoc Dot;
+
+//----------------------
+// :warning tag
+//----------------------
+Warning               tag         ->  Warning warningAttr Dot;
+WarningAttr           warningAttr ->  Text Equal anyParm;
+WarningAttrNull       warningAttr ->  ;
+EWarning              tag         ->  Ewarning Dot;
+
+//----------------------
+// :xmp tag
+//----------------------
+Xmp                   tag   ->  Xmp Dot;
+EXmp                  tag   ->  Exmp Dot;
+
+//--------------------------------------------------------------------------
+// Dynamic, Relative, and Absolute values
+//--------------------------------------------------------------------------
+DynamicLeft           dynamic    ->  Left;
+DynamicRight          dynamic    ->  Right;
+DynamicCenter         dynamic    ->  Center;
+DynamicBottom         dynamic    ->  Bottom;
+DynamicTop            dynamic    ->  Top;
+DynamicRelative       dynamic    ->  relative;
+
+RelativePercent       relative   ->  Numper;
+RelativeAbsolute      relative   ->  absolute;
+
+AbsoluteChar          absolute   ->  Numc;
+AbsolutePixel         absolute   ->  Numx;
+AbsolutePoint         absolute   ->  Nump;
+
+
+//--------------------------------------------------------------------------
+// Extra Text (for :figcap, :h1, :title, etc)
+//--------------------------------------------------------------------------
+ExtraText             extraText     -> extraText extra;
+ExtraTextOne          extraText     -> ;
+ExtraEnd              extra         -> ExtraEnd;
+ExtraWhite            extra         -> ExtraWhite;
+ExtraColon            extra         -> ExtraColon;
+ExtraChunk            extra         -> ExtraChunk;
+ExtraColonWhite       extra         -> ExtraColonWhite;
+ExtraSymbol           extra         -> ExtraSymbol;
+
+//--------------------------------------------------------------------------
+// Parms
+//--------------------------------------------------------------------------
+AnyParmName           anyParm    ->  ParmName;
+AnyParmQuote          anyParm    ->  ParmQuote;
+AnyParmKey            anyParm    ->  parmKey;
+AnyParmRelative       anyParm    ->  relative;
+AnyParmNum            anyParm    ->  Num;
+AnyParmSpecial        anyParm    ->  Numfont;
+
+//--------------------------------------------------------------------------
+// Keys names that are parameters
+//--------------------------------------------------------------------------
+AnyParmKeyAll         parmKey    ->  All;
+AnyParmKeyBlack       parmKey    ->  Black;
+AnyParmKeyBlue        parmKey    ->  Blue;
+AnyParmKeyBorder      parmKey    ->  Border;
+AnyParmKeyBoth        parmKey    ->  Both;
+AnyParmKeyBottom      parmKey    ->  Bottom;
+AnyParmKeyBox         parmKey    ->  Box;
+AnyParmKeyBreak       parmKey    ->  Break;
+AnyParmKeyBrown       parmKey    ->  Brown;
+AnyParmKeyCenter      parmKey    ->  Center;
+AnyParmKeyCoverpage   parmKey    ->  Coverpage;
+AnyParmKeyCyan        parmKey    ->  Cyan;
+AnyParmKeyDarkBlue    parmKey    ->  Darkblue;
+AnyParmKeyDarkCyan    parmKey    ->  Darkcyan;
+AnyParmKeyDarkGray    parmKey    ->  Darkgray;
+AnyParmKeyDarkGreen   parmKey    ->  Darkgreen;
+AnyParmKeyDarkPink    parmKey    ->  Darkpink;
+AnyParmKeyDarkRed     parmKey    ->  Darkred;
+AnyParmKeyDefault     parmKey    ->  Default;
+AnyParmKeyFit         parmKey    ->  Fit;
+AnyParmKeyFn          parmKey    ->  Fn;
+AnyParmKeyGreen       parmKey    ->  Green;
+AnyParmKeyHd          parmKey    ->  Hd;
+AnyParmKeyHoriz       parmKey    ->  Horiz;
+AnyParmKeyHorizontal  parmKey    ->  Horizontal;
+AnyParmKeyInform      parmKey    ->  Inform;
+AnyParmKeyLaunch      parmKey    ->  Launch;
+AnyParmKeyLeft        parmKey    ->  Left;
+AnyParmKeyMinmax      parmKey    ->  Minmax;
+AnyParmKeyNeutral     parmKey    ->  Neutral;
+AnyParmKeyNone        parmKey    ->  None;
+AnyParmKeyPage        parmKey    ->  Page;
+AnyParmKeyPaleGray    parmKey    ->  Palegray;
+AnyParmKeyPink        parmKey    ->  Pink;
+AnyParmKeyRed         parmKey    ->  Red;
+AnyParmKeyRight       parmKey    ->  Right;
+AnyParmKeyRules       parmKey    ->  Rules;
+AnyParmKeyTop         parmKey    ->  Top;
+AnyParmKeySizeborder  parmKey    ->  Sizeborder;
+AnyParmKeyVert        parmKey    ->  Vert;
+AnyParmKeyVertical    parmKey    ->  Vertical;
+AnyParmKeyYellow      parmKey    ->  Yellow;
+AnyParmKeyYes         parmKey    ->  Yes;
+
+

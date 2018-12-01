@@ -1,0 +1,109 @@
+/***************************************************************************
+ * File...... cnt.ycc
+ * Author.... Mat
+ * Date...... 1/7/99
+ *
+ * Rule file for parsing CNT files.  CNT files are used by WinHelp to
+ * declare the table of contents for a HLP file.
+ *
+ * CONVENTION: Terminal symbols have initial caps, production rules don't
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+/***************************************************************************
+ * MACROS
+ ***************************************************************************/
+
+%macro
+
+// case-insensitive keywords
+{BASE}      '[Bb][Aa][Ss][Ee]';
+{INCLUDE}   '[Ii][Nn][Cc][Ll][Uu][Dd][Ee]';
+{INDEX}     '[Ii][Nn][Dd][Ee][Xx]';
+{LINK}      '[Ll][Ii][Nn][Kk]';
+{TAB}       '[Tt][Aa][Bb]';
+{TITLE}     '[Tt][Ii][Tt][Ll][Ee]';
+
+
+/***************************************************************************
+ * MAIN
+ ***************************************************************************/
+
+%expression StartLine
+
+'[ \t]*\n'        %ignore;
+'[ \t]*;'         %ignore,    %push SkipLine;
+':[A-Za-z]+'      Unknown,    %push SkipLine;
+':{BASE} '        Base,       %push SkipLine;
+':{INCLUDE} '     Include,    %push Include;
+':{INDEX} '       Index,      %push SkipLine;
+':{LINK} '        Link,       %push SkipLine;
+':{TAB} '         Tab,        %push SkipLine;
+':{TITLE} '       Title,      %push Title;
+'[1-9] '          Section,    %push Section;
+
+%expression Include
+
+'[ \t]+'          %ignore;
+'\n'              %ignore,    %pop;
+'[^ \t\n;]+'      Filename;
+';'               %ignore,    %goto SkipLine;
+
+%expression Title
+
+'\n'              %ignore,    %pop;
+'[^\n;]+'         Caption;
+';'               %ignore,    %goto SkipLine;
+
+%expression Section
+
+'\n'              %ignore,    %pop;
+'='               Equal,      %goto Content;
+'\\.'             Literal;
+'[^\n\\;=]+'      Text;
+';'               %ignore,    %goto SkipLine;
+
+%expression Content
+
+'\n'              %ignore,    %pop;
+'[^\n;]+'         Content;
+';'               %ignore,    %goto SkipLine;
+
+%expression SkipLine
+
+'.*'              %ignore;
+'\n'              %ignore,    %pop;
+
+
+
+/***************************************************************************
+ * GRAMMAR
+ ***************************************************************************/
+
+%production start
+
+Start           start        -> lines;
+
+Lines           lines        -> lines line;
+LinesNull       lines        -> ;
+
+Unknown         line         -> Unknown;
+Base            line         -> Base;
+Include         line         -> Include Filename;
+Index           line         -> Index;
+Link            line         -> Link;
+Tab             line         -> Tab;
+Title           line         -> Title Caption;
+Section         line         -> Section texts contents;
+
+Texts           texts        -> texts text;
+TextsOne        texts        -> text;
+TextLiteral     text         -> Literal;
+Text            text         -> Text;
+
+Contents        contents     -> Equal Content;
+ContentsNull    contents     -> ;
+
+

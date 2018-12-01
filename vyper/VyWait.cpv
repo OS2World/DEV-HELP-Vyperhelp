@@ -1,0 +1,38 @@
+
+void VyWait::construct()
+{
+  // clear associated Indicator
+  iIndicator = 0;
+
+  // initialize slider settings
+  iProgressIndicator->setTickLength( 5 );
+  for ( unsigned i = 0; i <= 100; i += 25 )
+    iProgressIndicator->setTickText( i, IString(i) + IString('%') );
+}
+
+void VyWait::destruct()
+{
+  if ( iIndicator )
+    iIndicator->setWait( 0 );
+}
+
+
+// Feature source code generation begins here...
+INotificationId VyWait::indicatorId = "VyWait::indicator";
+
+VyIndicator* VyWait::indicator() const
+{
+  return iIndicator;
+}
+
+VyWait& VyWait::setIndicator(VyIndicator* aIndicator)
+{
+  if (!(iIndicator == aIndicator))
+  {
+    iIndicator = aIndicator;
+    notifyObservers(INotificationEvent(VyWait::indicatorId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

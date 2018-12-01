@@ -1,0 +1,101 @@
+
+Wish List
+  for empty pages, don't insert :p (make an option?)
+    gives warning in compiler, but navgiation in viewer is better
+
+User Settings (current default)
+  name for BMP files (IPFnnnn.BMP)
+  starting id (30000)
+  default codepage (0 = active codepage)
+
+User Doc
+  IPF Generator Limitations
+    external labels can't be linked internally
+    cross-file links must be same type (INF/HLP)
+    empty panels will produce IPFC errors
+    11/15/98 (Mat): Para followed by Ruler(preformat) generates an extra :p
+      Para means "start para", but :lines causes an implicit :p
+      (may be an IpfParser error?)
+
+OS/2 bugs
+  WinCpTranslateString( hab, 1004, "~", 850, cText, pszText );
+    returns "substitution character" (cannot be translated)
+    should map the same (both use 126 for tilde)
+    APAR IC21059 may apply?
+    APAR JR11067 may apply (fixed in Warp 4 FixPak 7)
+
+IPFC quirks
+  IPFC -C option (codepage) doesn't always pick up correct APS file
+  -C only affects how symbols map to chars
+  symbols are effectively macros -- mapped to a char at compile time
+
+IPFC bugs
+  Codepage is ignored when facename=default
+  Monochrome bitmaps are inverted
+    VIEW does not agree with IB or ICONEDIT or WINHELP
+  "brown" is not accepted as a color
+  font size is too small (smaller then specified)
+    compare with same size in Font Palette
+  CR after :artwork runin will not generate space if no other text is on line
+  :artlink not recognized in following code (OK if space before :artwork is deleted!)
+    :userdoc.
+    :title.Art
+    :h1.Art 1
+     :artwork runin name='E:\VYPER\IPF1000.BMP'.
+    :artlink.:link reftype=hd refid='BITMAP_CODEC'.:eartlink.
+    :h1 id=BITMAP_CODEC.Bozo
+    :p.The Bozo panel.
+    :euserdoc.
+  tables can't handle:
+    proportional fonts
+    codepage that doesn't have same codepoints for line draw characters
+    bold, italic, etc
+  :lm. is not equivalent to :lm margin=1. although doc says it is
+    (same for :rm.)
+  trap if try to nameit a symbol which is already defined
+    (includes some which are defined but not documented)
+  :caution, :warning, :note, :nt permanently reset bold italic and underline
+  cgraphic only resets to a monospace font if the default font is active
+  hp1,2,3,5,7: reset codepage to default
+
+Codepage
+  "default" codepage (0) assumes same for compiling and viewing
+
+To Do
+  symbols
+    some symbols which are currently "simulated" could be displayed
+    using the :font tag with codepage attribute (e.g., cp 1004)
+  bitmaps
+    could reduce # of generates BMP files by keeping table of id/filename/size
+  Push/Pop sequences generate a lot of unnecessary :font tags
+  don't allow same-topic jumps (where detectable)
+  nested tables illegal
+    but if they do it, should we handle row/col correctly?
+  empty sections give warning
+    could put in a dummy :p. tag?
+  support additional :fonts??
+    (no way to know what's on target system)
+    if family isn't recognized, use provided facename
+      IPF will use default font if it can't find a matching facename
+  tables
+    could make special case to allow underline in tables
+  we send some unnecessary :color, :font tags
+    when resetting to default after leaving a section, etc
+  conversions
+    % should take current margins into account
+  use IFont metrics for conversions?
+  better DividerGin? (not until we need it for HTML)
+  workaround global/local problem?
+    link by res (need to have label already defined!)
+  mid-topic jumps
+    curent method breaks VIEW navigation
+    other metods include:
+      footnote as intermediate panel
+        keeps navigation and history intact
+        requires 2 pass to know if link is footnote/heading
+        can't link by res, can't link externally
+      small panel as intermediate
+        small panel remains in history
+        doesn't require two passes though
+    most methods require two passes to recognize mid-topic jumps
+

@@ -1,0 +1,141 @@
+/***************************************************************************
+ * File...... cdefine.ycc
+ * Author.... Mat
+ * Date...... 12/19/95
+ *
+ * Rule file for C #defines and #includes.  Taken from SSCPRE.YCC, the
+ * Sandstone C Preprocessor rule file.
+ *
+ * Copyright (C) 1995 MekTek
+ ***************************************************************************/
+
+%macro
+//
+// Trigraph sequences
+//
+{or}                    '(\||(\?\?!))';
+{pnd}                   '(#|(\?\?=))';
+{bks}                   '(\\|(\?\?/))';
+{hat}                   '(\^|(\?\?''))';
+{obr}                   '(\[|(\?\?\())';
+{cbr}                   '(\]|(\?\?\)))';
+{ocu}                   '(\{|(\?\?<))';
+{ccu}                   '(\}|(\?\?>))';
+{not}                   '(~|(\?\?\-))';
+
+{pp}                    '[\t ]*{pnd}[\t ]*';
+{exp}                   '(([eE][0-9]+)?)';
+{fltsuf}                '(([lL]|[fF])?)';
+{intsuf}                '(([lL]?[uU]?)|([uU]?[lL]?))';
+
+
+//------------------------------------------------------------------------
+// Main
+//------------------------------------------------------------------------
+%expression Main
+
+//
+// White space and unrecognized tokens
+//
+'[ \t]+'                 %ignore;
+'\n'                     Eol,        'eol';
+'[^ \t\n]+'              Token,      'Token';
+
+//
+// Integer constants
+//
+'0[0-7]*{intsuf}'            Oct,        'OCTALconstant';
+'[1-9][0-9]*{intsuf}'        Dec,        'INTEGERconstant';
+'0[xX][a-fA-F0-9]+{intsuf}'  Hex,        'HEXconstant';
+
+//
+// Comments and strings
+//
+'/\*'                       %ignore,    %push MLComment;
+'//'                        %ignore,    %push SLComment;
+'L?\"'                      %ignore,    %push StringLiteral;
+
+//
+// Preprocessor tokens
+//
+'{pp}include'           Include,    '#include', %push Include;
+'{pp}define'            Define,     '#define';
+
+
+//------------------------------------------------------------------------
+// Multiline comment
+//------------------------------------------------------------------------
+%expression MLComment
+'.'                         %ignore;
+'\n'                        %ignore;
+'\*/'                       %ignore,    %pop;
+
+//------------------------------------------------------------------------
+// Singleline comment
+//------------------------------------------------------------------------
+%expression SLComment
+'.'                         %ignore;
+'\n'                        Eol,        'eol', %pop;
+
+//------------------------------------------------------------------------
+// String literal
+//------------------------------------------------------------------------
+%expression StringLiteral
+'([^\n"]*({bks}\")?[^\n"]*)+'   %ignore;
+'\"'                            %ignore, %pop;
+
+//------------------------------------------------------------------------
+// Include Tokens
+//------------------------------------------------------------------------
+%expression Include
+'[\t ]+'                %ignore;
+'\"'                    BegQuote,   'begQuote', %goto FileName;
+'<'                     LT,         '<', %goto FileName;
+
+//------------------------------------------------------------------------
+// Filename lexer
+//------------------------------------------------------------------------
+%expression FileName
+'>'                     GT,         '>', %pop;
+'\"'                    EndQuote,   'endQuote', %pop;
+'[^<>"]+'               FileName,   'fileName';
+
+
+//------------------------------------------------------------------------
+// Grammar
+//------------------------------------------------------------------------
+%production start
+
+// last line may not have a terminating EOL
+Start           start        -> linesEol lineOpt;
+
+LineListNull    linesEol     -> ;
+LineList        linesEol     -> linesEol lineEol;
+
+LineEol         lineEol      -> lineOpt 'eol';
+
+LineNull        lineOpt      -> ;
+LinePre         lineOpt      -> linePre;
+LineToken       lineOpt      -> tokenList;
+
+Include         linePre      -> '#include' '<' 'fileName' '>';
+IncludeQuote    linePre      -> '#include' 'begQuote' 'fileName' 'endQuote';
+DefineNull      linePre      -> '#define' 'Token';
+DefineInt       linePre      -> '#define' 'Token' int;
+DefineNonInt    linePre      -> '#define' 'Token' 'Token';
+DefineOther     linePre      -> '#define' 'Token' tokenListTwo;
+
+// list of two or more tokens
+TokenListTwo    tokenListTwo -> token token;
+TokenListMore   tokenListTwo -> token token tokenList;
+
+TokenList       tokenList    -> tokenList token;
+Token           tokenList    -> token;
+
+TokenAny        token        -> 'Token';
+TokenInt        token        -> int;
+
+IntOct          int          -> 'OCTALconstant';
+IntDec          int          -> 'INTEGERconstant';
+IntHex          int          -> 'HEXconstant';
+

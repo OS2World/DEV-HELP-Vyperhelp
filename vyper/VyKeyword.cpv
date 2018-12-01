@@ -1,0 +1,104 @@
+// Custom code
+
+VyKeyword * VyKeyword::newKeyword()
+{
+  VyKeyword * keyword = new VyKeyword();
+  keyword->enableNotification();
+  keyword->initializePart();
+  return keyword;
+}
+
+
+void VyKeyword::construct()
+{
+  iListed = true;
+  iListedString = BooleanString( true );
+  iExternal = false;
+  iExternalString = BooleanString( false );
+}
+
+
+IString VyKeyword::debugString()
+{
+  IString result = iText;
+  if ( ! iListed )
+    result += " [hidden]";
+  if ( iExternal )
+    result += " [external]";
+  return result;
+}
+
+
+
+// Feature source code generation begins here...
+INotificationId VyKeyword::textId = "VyKeyword::text";
+INotificationId VyKeyword::listedId = "VyKeyword::listed";
+INotificationId VyKeyword::externalId = "VyKeyword::external";
+
+IString VyKeyword::text() const
+{
+  return iText;
+}
+
+VyKeyword& VyKeyword::setText(const IString& aText)
+{
+  if (!(iText == aText))
+  {
+    iText = aText;
+    notifyObservers(INotificationEvent(VyKeyword::textId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyKeyword::isListed() const
+{
+  return iListed;
+}
+
+VyKeyword& VyKeyword::enableListed(Boolean enable)
+{
+  if (!(iListed == enable))
+  {
+    iListed = enable;
+    notifyObservers(INotificationEvent(VyKeyword::listedId, *this));
+    iListedString = BooleanString( enable );
+    notifyObservers(INotificationEvent(VyKeyword::listedStringId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyKeyword::isExternal() const
+{
+  return iExternal;
+}
+
+VyKeyword& VyKeyword::enableExternal(Boolean enable)
+{
+  if (!(iExternal == enable))
+  {
+    iExternal = enable;
+    notifyObservers(INotificationEvent(VyKeyword::externalId, *this));
+    iExternalString = BooleanString( enable );
+    notifyObservers(INotificationEvent(VyKeyword::externalStringId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyKeyword::listedStringId = "VyKeyword::listedString";
+INotificationId VyKeyword::externalStringId = "VyKeyword::externalString";
+
+IString VyKeyword::listedString() const
+{
+  return iListedString;
+}
+
+IString VyKeyword::externalString() const
+{
+  return iExternalString;
+}
+
+// Feature source code generation ends here.

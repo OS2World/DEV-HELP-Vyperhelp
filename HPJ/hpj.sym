@@ -1,0 +1,58 @@
+Symbol          Alias           Type            Assoc     Precedence
+------          -----           ----            -----     ----------
+
+Section                         Terminal        Nonassoc  0         
+Unknown                         Terminal        Nonassoc  0         
+Config                          Terminal        Nonassoc  0         
+Options                         Terminal        Nonassoc  0         
+Files                           Terminal        Nonassoc  0         
+BuildTags                       Terminal        Nonassoc  0         
+Bitmaps                         Terminal        Nonassoc  0         
+Map                             Terminal        Nonassoc  0         
+Alias                           Terminal        Nonassoc  0         
+Windows                         Terminal        Nonassoc  0         
+Other                           Terminal        Nonassoc  0         
+BmRoot                          Terminal        Nonassoc  0         
+Contents                        Terminal        Nonassoc  0         
+Copyright                       Terminal        Nonassoc  0         
+MapFontSize                     Terminal        Nonassoc  0         
+Root                            Terminal        Nonassoc  0         
+Title                           Terminal        Nonassoc  0         
+Equal                           Terminal        Nonassoc  0         
+Item                            Terminal        Nonassoc  0         
+Include                         Terminal        Nonassoc  0         
+AngleString                     Terminal        Nonassoc  0         
+Name                            Terminal        Nonassoc  0         
+Define                          Terminal        Nonassoc  0         
+QuoteString                     Terminal        Nonassoc  0         
+Number                          Terminal        Nonassoc  0         
+OpenParen                       Terminal        Nonassoc  0         
+CloseParen                      Terminal        Nonassoc  0         
+Comma                           Terminal        Nonassoc  0         
+Parm                            Terminal        Nonassoc  0         
+QuoteText                       Terminal        Nonassoc  0         
+sections                        Nonterminal               0         
+start                           Nonterminal               0         
+section                         Nonterminal               0         
+options                         Nonterminal               0         
+files                           Nonterminal               0         
+tags                            Nonterminal               0         
+bitmaps                         Nonterminal               0         
+mappings                        Nonterminal               0         
+aliases                         Nonterminal               0         
+windows                         Nonterminal               0         
+option                          Nonterminal               0         
+file                            Nonterminal               0         
+mapping                         Nonterminal               0         
+alias                           Nonterminal               0         
+window                          Nonterminal               0         
+captionWith                     Nonterminal               0         
+caption                         Nonterminal               0         
+positionWith                    Nonterminal               0         
+position                        Nonterminal               0         
+stateWith                       Nonterminal               0         
+state                           Nonterminal               0         
+scrollWith                      Nonterminal               0         
+rgb                             Nonterminal               0         
+nonscrollWith                   Nonterminal               0         
+ontop                           Nonterminal               0         

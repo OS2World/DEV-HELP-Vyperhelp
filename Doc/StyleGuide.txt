@@ -1,0 +1,28 @@
+VyperHelp conventions
+
+class names: initial uppercase
+object names: initial lowercase
+preprocessor macros: all caps
+object private data: initial underscore and lowercase
+
+return values
+  use void when appropriate (OpenClass uses "return *this")
+
+module header comment
+class header comment
+function header comment
+
+public headers
+  #pragma library() to specify corresponding library
+
+inline
+  file.ipp (so you can grep *.?pp)
+  when to use
+    accessors or one-liners with no call
+    simple forwarders
+    no ctor or dtor
+  
+hide implemntation details by using pointers in private data
+  can then use "class Foo;" instead of "#include <Foo.hpp>"
+
+

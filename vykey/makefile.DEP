@@ -1,0 +1,9 @@
+
+all: \
+    .\vykey.exe
+
+.\vykey.obj: \
+    d:\proj\vykey\vykey.cpp \
+    {d:\proj\vykey;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\vykey;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\vykey;$(INCLUDE);}ExpirationDate.ipp

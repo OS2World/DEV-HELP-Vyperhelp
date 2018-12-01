@@ -1,0 +1,13 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual Boolean isChanged() const;
+  virtual VyKeywordProperties& enableChanged(Boolean enable = true);
+
+  static INotificationId changedId;
+
+private:
+  void construct();
+  Boolean iChanged;
+// Feature source code generation ends here.

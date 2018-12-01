@@ -1,0 +1,637 @@
+#if !defined( HPJSSHH)
+#  define HPJSSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListMain            0
+#  define ALexExpressionListOptions         1
+#  define ALexExpressionListList            2
+#  define ALexExpressionListMap             3
+#  define ALexExpressionListAlias           4
+#  define ALexExpressionListWindows         5
+#  define ALexExpressionListParm            6
+#  define ALexExpressionListQuote           7
+#  define ALexExpressionListAComment        8
+#  define ALexExpressionListCComment        9
+
+#  define ALexSection                       3
+#  define ALexUnknown                       4
+#  define ALexConfig                        5
+#  define ALexOptions                       6
+#  define ALexFiles                         7
+#  define ALexBuildTags                     8
+#  define ALexBitmaps                       9
+#  define ALexMap                           10
+#  define ALexAlias                         11
+#  define ALexWindows                       12
+#  define ALexOther                         15
+#  define ALexBmRoot                        16
+#  define ALexCnt                           17
+#  define ALexContents                      18
+#  define ALexCopyright                     19
+#  define ALexForceFont                     20
+#  define ALexHlp                           21
+#  define ALexIndexSeparators               22
+#  define ALexMapFontSize                   23
+#  define ALexReplace                       24
+#  define ALexRoot                          25
+#  define ALexTitle                         26
+#  define ALexEqual                         27
+#  define ALexItem                          30
+#  define ALexInclude                       31
+#  define ALexAngleString                   32
+#  define ALexMapName                       34
+#  define ALexDefine                        36
+#  define ALexQuoteString                   37
+#  define ALexAliasName                     40
+#  define ALexWindowEnd                     44
+#  define ALexWindowName                    45
+#  define ALexNumber                        46
+#  define ALexPrefixR                       47
+#  define ALexPrefixF                       48
+#  define ALexOpenParen                     49
+#  define ALexCloseParen                    50
+#  define ALexComma                         51
+#  define ALexParm                          53
+#  define ALexQuoteText                     56
+
+#  define AYaccStart                        1
+#  define AYaccSectionList                  2
+#  define AYaccSection                      3
+#  define AYaccSectionOptions               4
+#  define AYaccSectionFiles                 5
+#  define AYaccSectionBuildTag              6
+#  define AYaccSectionBitmap                7
+#  define AYaccSectionMap                   8
+#  define AYaccSectionAlias                 9
+#  define AYaccSectionWindows               10
+#  define AYaccSectionUnknown               11
+#  define AYaccSectionConfig                12
+#  define AYaccOptionList                   13
+#  define AYaccOptionNull                   14
+#  define AYaccBmRoot                       15
+#  define AYaccCnt                          16
+#  define AYaccContents                     17
+#  define AYaccCopyright                    18
+#  define AYaccForceFont                    19
+#  define AYaccHlp                          20
+#  define AYaccIndexSeparators              21
+#  define AYaccMapFontSize                  22
+#  define AYaccReplace                      23
+#  define AYaccRoot                         24
+#  define AYaccTitle                        25
+#  define AYaccOtherOption                  26
+#  define AYaccFileList                     27
+#  define AYaccFileNull                     28
+#  define AYaccFileItem                     29
+#  define AYaccFileInclude                  30
+#  define AYaccTagList                      31
+#  define AYaccTagNull                      32
+#  define AYaccBitmapList                   33
+#  define AYaccBitmapNull                   34
+#  define AYaccMapList                      35
+#  define AYaccMapNull                      36
+#  define AYaccMapSimple                    37
+#  define AYaccMapDefine                    38
+#  define AYaccMapInclude                   39
+#  define AYaccMapIncludeSys                40
+#  define AYaccMapIncludeOther              41
+#  define AYaccAliasList                    42
+#  define AYaccAliasNull                    43
+#  define AYaccAliasAssign                  44
+#  define AYaccWindowList                   45
+#  define AYaccWindowNull                   46
+#  define AYaccWindowEnd                    47
+#  define AYaccWindowDef                    48
+#  define AYaccWindowDefR                   49
+#  define AYaccWindowDefF                   50
+#  define AYaccCaptionAlone                 51
+#  define AYaccCaptionWith                  52
+#  define AYaccCaption                      53
+#  define AYaccCaptionNull                  54
+#  define AYaccPositionAlone                55
+#  define AYaccPositionWith                 56
+#  define AYaccPosition                     57
+#  define AYaccPositionNull                 58
+#  define AYaccStateAlone                   59
+#  define AYaccStateWith                    60
+#  define AYaccState                        61
+#  define AYaccStateNull                    62
+#  define AYaccScrollAlone                  63
+#  define AYaccScrollWith                   64
+#  define AYaccNonScrollAlone               65
+#  define AYaccNonScrollWith                66
+#  define AYaccOnTop                        67
+#  define AYaccOnTopFlags                   68
+#  define AYaccOnTopNull                    69
+#  define AYaccRGB                          70
+#  define AYaccRGBCombined                  71
+#  define AYaccRGBNull                      72
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "hpj.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexSection:
+            zpchToken = "Section";
+            break;
+
+         case ALexUnknown:
+            zpchToken = "Unknown";
+            break;
+
+         case ALexConfig:
+            zpchToken = "Config";
+            break;
+
+         case ALexOptions:
+            zpchToken = "Options";
+            break;
+
+         case ALexFiles:
+            zpchToken = "Files";
+            break;
+
+         case ALexBuildTags:
+            zpchToken = "BuildTags";
+            break;
+
+         case ALexBitmaps:
+            zpchToken = "Bitmaps";
+            break;
+
+         case ALexMap:
+            zpchToken = "Map";
+            break;
+
+         case ALexAlias:
+            zpchToken = "Alias";
+            break;
+
+         case ALexWindows:
+            zpchToken = "Windows";
+            break;
+
+         case ALexOther:
+            zpchToken = "Other";
+            break;
+
+         case ALexBmRoot:
+            zpchToken = "BmRoot";
+            break;
+
+         case ALexCnt:
+            zpchToken = "Cnt";
+            break;
+
+         case ALexContents:
+            zpchToken = "Contents";
+            break;
+
+         case ALexCopyright:
+            zpchToken = "Copyright";
+            break;
+
+         case ALexForceFont:
+            zpchToken = "ForceFont";
+            break;
+
+         case ALexHlp:
+            zpchToken = "Hlp";
+            break;
+
+         case ALexIndexSeparators:
+            zpchToken = "IndexSeparators";
+            break;
+
+         case ALexMapFontSize:
+            zpchToken = "MapFontSize";
+            break;
+
+         case ALexReplace:
+            zpchToken = "Replace";
+            break;
+
+         case ALexRoot:
+            zpchToken = "Root";
+            break;
+
+         case ALexTitle:
+            zpchToken = "Title";
+            break;
+
+         case ALexEqual:
+            zpchToken = "Equal";
+            break;
+
+         case ALexItem:
+            zpchToken = "Item";
+            break;
+
+         case ALexInclude:
+            zpchToken = "Include";
+            break;
+
+         case ALexAngleString:
+            zpchToken = "AngleString";
+            break;
+
+         case ALexMapName:
+            zpchToken = "MapName";
+            break;
+
+         case ALexDefine:
+            zpchToken = "Define";
+            break;
+
+         case ALexQuoteString:
+            zpchToken = "QuoteString";
+            break;
+
+         case ALexAliasName:
+            zpchToken = "AliasName";
+            break;
+
+         case ALexWindowEnd:
+            zpchToken = "WindowEnd";
+            break;
+
+         case ALexWindowName:
+            zpchToken = "WindowName";
+            break;
+
+         case ALexNumber:
+            zpchToken = "Number";
+            break;
+
+         case ALexPrefixR:
+            zpchToken = "PrefixR";
+            break;
+
+         case ALexPrefixF:
+            zpchToken = "PrefixF";
+            break;
+
+         case ALexOpenParen:
+            zpchToken = "OpenParen";
+            break;
+
+         case ALexCloseParen:
+            zpchToken = "CloseParen";
+            break;
+
+         case ALexComma:
+            zpchToken = "Comma";
+            break;
+
+         case ALexParm:
+            zpchToken = "Parm";
+            break;
+
+         case ALexQuoteText:
+            zpchToken = "QuoteText";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("hpj.llr"),
+      oLex( qpszFile, "hpj.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> sections 
+            break;
+
+         case AYaccSectionList:
+         // sections -> section % sections 
+            break;
+
+         case AYaccSection:
+         // sections -> section 
+            break;
+
+         case AYaccSectionOptions:
+         // section -> Section Options options 
+            break;
+
+         case AYaccSectionFiles:
+         // section -> Section Files files 
+            break;
+
+         case AYaccSectionBuildTag:
+         // section -> Section BuildTags tags 
+            break;
+
+         case AYaccSectionBitmap:
+         // section -> Section Bitmaps bitmaps 
+            break;
+
+         case AYaccSectionMap:
+         // section -> Section Map mappings 
+            break;
+
+         case AYaccSectionAlias:
+         // section -> Section Alias aliases 
+            break;
+
+         case AYaccSectionWindows:
+         // section -> Section Windows windows 
+            break;
+
+         case AYaccSectionUnknown:
+         // section -> Section Unknown 
+            break;
+
+         case AYaccSectionConfig:
+         // section -> Section Config 
+            break;
+
+         case AYaccOptionList:
+         // options -> option options 
+            break;
+
+         case AYaccOptionNull:
+         // options -> 
+            break;
+
+         case AYaccBmRoot:
+         // option -> BmRoot Equal Parm 
+            break;
+
+         case AYaccCnt:
+         // option -> Cnt Equal Parm 
+            break;
+
+         case AYaccContents:
+         // option -> Contents Equal Parm 
+            break;
+
+         case AYaccCopyright:
+         // option -> Copyright Equal Parm 
+            break;
+
+         case AYaccForceFont:
+         // option -> ForceFont Equal Parm 
+            break;
+
+         case AYaccHlp:
+         // option -> Hlp Equal Parm 
+            break;
+
+         case AYaccIndexSeparators:
+         // option -> IndexSeparators Equal Parm 
+            break;
+
+         case AYaccMapFontSize:
+         // option -> MapFontSize Equal Parm 
+            break;
+
+         case AYaccReplace:
+         // option -> Replace Equal Parm 
+            break;
+
+         case AYaccRoot:
+         // option -> Root Equal Parm 
+            break;
+
+         case AYaccTitle:
+         // option -> Title Equal Parm 
+            break;
+
+         case AYaccOtherOption:
+         // option -> Other Equal Parm 
+            break;
+
+         case AYaccFileList:
+         // files -> file files 
+            break;
+
+         case AYaccFileNull:
+         // files -> 
+            break;
+
+         case AYaccFileItem:
+         // file -> Item 
+            break;
+
+         case AYaccFileInclude:
+         // file -> Include AngleString 
+            break;
+
+         case AYaccTagList:
+         // tags -> Item tags 
+            break;
+
+         case AYaccTagNull:
+         // tags -> 
+            break;
+
+         case AYaccBitmapList:
+         // bitmaps -> Item bitmaps 
+            break;
+
+         case AYaccBitmapNull:
+         // bitmaps -> 
+            break;
+
+         case AYaccMapList:
+         // mappings -> mapping mappings 
+            break;
+
+         case AYaccMapNull:
+         // mappings -> 
+            break;
+
+         case AYaccMapSimple:
+         // mapping -> MapName MapName 
+            break;
+
+         case AYaccMapDefine:
+         // mapping -> Define MapName MapName 
+            break;
+
+         case AYaccMapInclude:
+         // mapping -> Include QuoteString 
+            break;
+
+         case AYaccMapIncludeSys:
+         // mapping -> Include AngleString 
+            break;
+
+         case AYaccMapIncludeOther:
+         // mapping -> Include MapName 
+            break;
+
+         case AYaccAliasList:
+         // aliases -> alias aliases 
+            break;
+
+         case AYaccAliasNull:
+         // aliases -> 
+            break;
+
+         case AYaccAliasAssign:
+         // alias -> AliasName Equal AliasName 
+            break;
+
+         case AYaccWindowList:
+         // windows -> window windows 
+            break;
+
+         case AYaccWindowNull:
+         // windows -> 
+            break;
+
+         case AYaccWindowEnd:
+         // window -> WindowEnd 
+            break;
+
+         case AYaccWindowDef:
+         // window -> WindowName Equal captionWith 
+            break;
+
+         case AYaccWindowDefR:
+         // window -> PrefixR Equal captionWith 
+            break;
+
+         case AYaccWindowDefF:
+         // window -> PrefixF Equal captionWith 
+            break;
+
+         case AYaccCaptionAlone:
+         // captionWith -> caption WindowEnd 
+            break;
+
+         case AYaccCaptionWith:
+         // captionWith -> caption Comma positionWith 
+            break;
+
+         case AYaccCaption:
+         // caption -> QuoteText 
+            break;
+
+         case AYaccCaptionNull:
+         // caption -> 
+            break;
+
+         case AYaccPositionAlone:
+         // positionWith -> position WindowEnd 
+            break;
+
+         case AYaccPositionWith:
+         // positionWith -> position Comma stateWith 
+            break;
+
+         case AYaccPosition:
+         // position -> OpenParen Number Comma Number Comma Number Comma Number CloseParen 
+            break;
+
+         case AYaccPositionNull:
+         // position -> 
+            break;
+
+         case AYaccStateAlone:
+         // stateWith -> state WindowEnd 
+            break;
+
+         case AYaccStateWith:
+         // stateWith -> state Comma scrollWith 
+            break;
+
+         case AYaccState:
+         // state -> Number 
+            break;
+
+         case AYaccStateNull:
+         // state -> 
+            break;
+
+         case AYaccScrollAlone:
+         // scrollWith -> rgb WindowEnd 
+            break;
+
+         case AYaccScrollWith:
+         // scrollWith -> rgb Comma nonscrollWith 
+            break;
+
+         case AYaccNonScrollAlone:
+         // nonscrollWith -> rgb WindowEnd 
+            break;
+
+         case AYaccNonScrollWith:
+         // nonscrollWith -> rgb Comma ontop 
+            break;
+
+         case AYaccOnTop:
+         // ontop -> Number WindowEnd 
+            break;
+
+         case AYaccOnTopFlags:
+         // ontop -> PrefixF WindowEnd 
+            break;
+
+         case AYaccOnTopNull:
+         // ontop -> WindowEnd 
+            break;
+
+         case AYaccRGB:
+         // rgb -> OpenParen Number Comma Number Comma Number CloseParen 
+            break;
+
+         case AYaccRGBCombined:
+         // rgb -> OpenParen PrefixR CloseParen 
+            break;
+
+         case AYaccRGBNull:
+         // rgb -> 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

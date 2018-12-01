@@ -1,0 +1,97 @@
+
+void VyArtProperties::construct()
+{
+  iArtItem = 0;
+}
+
+
+// Feature source code generation begins here...
+
+void VyArtProperties::addArt( const Filename & filename )
+{
+  // add to document collection
+  IPosition pos = iDocument->target()->addArt( filename );
+
+  // select the newly added element
+  ITRACE_ALL( IString("Select art ") + IString(pos) );
+  if ( pos )
+    iArtList->select( pos );
+}
+
+void VyArtProperties::deleteArt()
+{
+  IPosition position = iArtList->selectedCollectionPosition();
+  if ( position != ICollectionViewListBox< VyArt*, IVSequence< VyArt* > >::noSelection )
+  {
+    iArt->setTarget( 0 );
+    iDocument->target()->deleteArt( position );
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyArtProperties::insertArtId = "VyArtProperties::insertArt";
+
+void VyArtProperties::finish()
+{
+  if ( iArtList->numberOfSelections() && iArt->target() )
+  {
+    if ( iArtItem )
+    {
+      // update an existing art item
+      iArtItem->setId( iArt->target()->asString() );
+    }
+    else
+    {
+      // request insertion of a new art item
+      notifyObservers(INotificationEvent(insertArtId, *this));
+    }
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyArtProperties::artItemId = "VyArtProperties::artItem";
+
+ArtItem* VyArtProperties::artItem() const
+{
+  return iArtItem;
+}
+
+VyArtProperties& VyArtProperties::setArtItem(ArtItem* aArtItem)
+{
+  if (!(iArtItem == aArtItem))
+  {
+    iArtItem = aArtItem;
+    notifyObservers(INotificationEvent(VyArtProperties::artItemId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyArtProperties::setPreview()
+{
+  if ( iArtList->numberOfSelections() )
+  {
+    // get selected art
+    VyArt * art = iArtList->selectedElement();
+
+    // set bitmap handle for preview
+    iPreview->setBitmap( art->bitmapHandle() );
+  }
+  else
+  {
+    // clear the preview area
+    iPreview->setBitmap( IBitmapHandle(0) );
+  }
+}
+
+// Feature source code generation ends here.

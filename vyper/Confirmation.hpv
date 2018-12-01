@@ -1,0 +1,35 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString title() const;
+  virtual Confirmation& setTitle(const IString& aTitle);
+  virtual IString text() const;
+  virtual Confirmation& setText(const IString& aText);
+  virtual IWindow* owner() const;
+  virtual Confirmation& setOwner(IWindow* aOwner);
+  void show();
+
+  static INotificationId titleId;
+  static INotificationId textId;
+  static INotificationId ownerId;
+  static INotificationId confirmedId;
+
+private:
+  void construct();
+  IString iTitle;
+  IString iText;
+  IWindow* iOwner;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual Boolean isEnabled() const;
+  virtual Confirmation& setEnabled(Boolean enable = true);
+
+  static INotificationId enabledId;
+
+private:
+  Boolean iEnabled;
+// Feature source code generation ends here.

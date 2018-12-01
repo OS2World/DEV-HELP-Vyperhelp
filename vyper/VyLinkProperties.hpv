@@ -1,0 +1,31 @@
+
+
+// Feature source code generation begins here...
+public:
+
+  static INotificationId insertLinkId;
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  void finish();
+
+
+// Feature source code generation ends here.
+
+
+
+
+// Feature source code generation begins here...
+public:
+  virtual LinkItem* linkItem() const;
+  virtual VyLinkProperties& setLinkItem(LinkItem* aLinkItem);
+
+  static INotificationId linkItemId;
+
+private:
+  void construct();
+  LinkItem* iLinkItem;
+// Feature source code generation ends here.

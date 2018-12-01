@@ -1,0 +1,10 @@
+ -+.\HtmlIndex.obj &
+ -+.\HtmlLabel.obj &
+ -+.\HtmlCharStyle.obj &
+ -+.\HtmlContext.obj &
+ -+.\HtmlControl.obj &
+ -+.\HtmlGenerator.obj &
+ -+.\HtmlParaStyle.obj &
+ -+.\HtmlSend.obj &
+ -+.\HtmlSymbols.obj &
+ -+.\HtmlTag.obj;

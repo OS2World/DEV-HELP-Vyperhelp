@@ -1,0 +1,79 @@
+
+all: \
+    .\wingen.lib
+
+.\RtfGenerator.obj: \
+    d:\proj\wingen\RtfGenerator.cpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGeneratorContext.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.ipp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\wingen;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGenerator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Filename.hpp \
+    {d:\proj\wingen;$(INCLUDE);}HpjGenerator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Generator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGenerator.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\wingen;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\wingen;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Generator.ipp \
+    {d:\proj\wingen;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\wingen;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\wingen;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ArtDef.ipp
+
+.\HpjGenerator.obj: \
+    d:\proj\wingen\HpjGenerator.cpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.ipp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\wingen;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\wingen;$(INCLUDE);}HeaderGenerator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGenerator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Filename.hpp \
+    {d:\proj\wingen;$(INCLUDE);}HpjGenerator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Generator.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGenerator.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\wingen;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\wingen;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Generator.ipp \
+    {d:\proj\wingen;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\wingen;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\wingen;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\wingen;$(INCLUDE);}ArtDef.ipp
+
+.\RtfGeneratorContext.obj: \
+    d:\proj\wingen\RtfGeneratorContext.cpp \
+    {d:\proj\wingen;$(INCLUDE);}RtfGeneratorContext.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Gin.ipp \
+    {d:\proj\wingen;$(INCLUDE);}Distance.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\wingen;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\wingen;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\wingen;$(INCLUDE);}CodePage.ipp

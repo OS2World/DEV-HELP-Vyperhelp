@@ -1,0 +1,34 @@
+public:
+  static VySymbol * newSymbol();
+
+// Feature source code generation begins here...
+public:
+  virtual int code() const;
+  virtual VySymbol& setCode(int aCode);
+  virtual IString text() const;
+
+  static INotificationId codeId;
+  static INotificationId textId;
+
+private:
+  void construct();
+  void destruct();
+  int iCode;
+  IString iText;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual Symbol symbol() const;
+
+  static INotificationId symbolId;
+
+private:
+  Symbol * iSymbol;
+// Feature source code generation ends here.
+
+public:
+  // static compare function for IVSequence::sort
+  static long compare( VySymbol * const & sym1,  VySymbol * const & sym2 );
+

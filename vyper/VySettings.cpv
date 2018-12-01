@@ -1,0 +1,507 @@
+/***************************************************************************
+ * File...... VySettings.cpv
+ * Author.... Mat
+ * Date...... 5/6/99
+ *
+ * Custom code for VySettings
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+// Feature source code generation begins here...
+INotificationId VySettings::frameSizeId = "VySettings::frameSize";
+INotificationId VySettings::framePositionId = "VySettings::framePosition";
+INotificationId VySettings::frameSplitId = "VySettings::frameSplit";
+
+ISize VySettings::frameSize() const
+{
+  return iFrameSize;
+}
+
+VySettings& VySettings::setFrameSize(const ISize& aFrameSize)
+{
+  if (!(iFrameSize == aFrameSize))
+  {
+    iFrameSize = aFrameSize;
+    notifyObservers(INotificationEvent(VySettings::frameSizeId, *this));
+  } // endif
+  return *this;
+}
+
+IPoint VySettings::framePosition() const
+{
+  return iFramePosition;
+}
+
+VySettings& VySettings::setFramePosition(const IPoint& aFramePosition)
+{
+  if (!(iFramePosition == aFramePosition))
+  {
+    iFramePosition = aFramePosition;
+    notifyObservers(INotificationEvent(VySettings::framePositionId, *this));
+  } // endif
+  return *this;
+}
+
+unsigned long VySettings::frameSplit() const
+{
+  return iFrameSplit;
+}
+
+VySettings& VySettings::setFrameSplit(unsigned long aFrameSplit)
+{
+  if (!(iFrameSplit == aFrameSplit))
+  {
+    iFrameSplit = aFrameSplit;
+    notifyObservers(INotificationEvent(VySettings::frameSplitId, *this));
+  } // endif
+  return *this;
+}
+
+
+// local constants
+static const char profileFrameX[] = "X";
+static const char profileFrameY[] = "Y";
+static const char profileFrameWidth[] = "Width";
+static const char profileFrameHeight[] = "Height";
+static const char profileFrameSplit[] = "Split";
+
+
+void VySettings::saveFrameSize()
+{
+  iProfile->addOrReplaceElementWithKey( profileFrameWidth, iFrameSize.width() );
+  iProfile->addOrReplaceElementWithKey( profileFrameHeight, iFrameSize.height() );
+}
+
+void VySettings::saveFramePosition()
+{
+  iProfile->addOrReplaceElementWithKey( profileFrameX, iFramePosition.x() );
+  iProfile->addOrReplaceElementWithKey( profileFrameY, iFramePosition.y() );
+}
+
+void VySettings::saveFrameSplit()
+{
+  iProfile->addOrReplaceElementWithKey( profileFrameSplit, iFrameSplit );
+}
+
+
+void VySettings::construct()
+{
+  // set defaults
+  iFrameSize = ISize( 600, 400 );
+  iFramePosition = IPoint( 0, 40 );
+  iFrameSplit = 50;
+  iOpenMask = iSaveMask = "*.vyd";
+  iImportIpfMask = iExportIpfMask = "*.ipf";
+  iImportWinHelpMask = iExportWinHelpMask = "*.hpj";
+  iImportTextMask = iExportTextMask = "*.txt";
+  iExportHtmlSingleMask = "*.htm";
+  iExportHtmlFrameMask = "*.html";
+  iExportHtmlHelpMask = "*.hhp";
+  iExportRtfMask = "*.rtf";
+  iExportHeaderMask = "*.h";
+  iGraphicMask = "*.bmp;*.gif;*.pcx;*.tif;*.tga;*.iff;*.xbm;*.pse";
+
+  // frame position
+  if ( iProfile->containsKeyName( profileFrameX ) && iProfile->containsKeyName( profileFrameY ) )
+  {
+    IPoint point( iProfile->integerWithKey( profileFrameX ),
+                  iProfile->integerWithKey( profileFrameY ) );
+    if ( IWindow::desktopWindow()->rect().contains( point ) )
+      setFramePosition( point );
+  }
+
+  // frame size
+  if ( iProfile->containsKeyName( profileFrameWidth ) && iProfile->containsKeyName( profileFrameHeight ) )
+  {
+    ISize size( iProfile->integerWithKey( profileFrameWidth ),
+                iProfile->integerWithKey( profileFrameHeight ) );
+    if ( IWindow::desktopWindow()->rect().contains( IRectangle( size ) ) )
+      setFrameSize( size );
+  }
+
+  // frame split bar position
+  if ( iProfile->containsKeyName( profileFrameSplit ) )
+  {
+    unsigned long split = iProfile->integerWithKey( profileFrameSplit );
+    if ( split <= 100 )
+      setFrameSplit( split );
+  }
+
+  // file masks
+  if ( iProfile->containsKeyName( saveMaskId ) )
+  {
+    setSaveMask( iProfile->elementWithKey( saveMaskId ) );
+  }
+  if ( iProfile->containsKeyName( openMaskId ) )
+  {
+    setOpenMask( iProfile->elementWithKey( openMaskId ) );
+  }
+  if ( iProfile->containsKeyName( importIpfMaskId ) )
+  {
+    setImportIpfMask( iProfile->elementWithKey( importIpfMaskId ) );
+  }
+  if ( iProfile->containsKeyName( importWinHelpMaskId ) )
+  {
+    setImportWinHelpMask( iProfile->elementWithKey( importWinHelpMaskId ) );
+  }
+  if ( iProfile->containsKeyName( importTextMaskId ) )
+  {
+    setImportTextMask( iProfile->elementWithKey( importTextMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportIpfMaskId ) )
+  {
+    setExportIpfMask( iProfile->elementWithKey( exportIpfMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportHtmlSingleMaskId ) )
+  {
+    setExportHtmlSingleMask( iProfile->elementWithKey( exportHtmlSingleMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportHtmlFrameMaskId ) )
+  {
+    setExportHtmlFrameMask( iProfile->elementWithKey( exportHtmlFrameMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportHtmlHelpMaskId ) )
+  {
+    setExportHtmlHelpMask( iProfile->elementWithKey( exportHtmlHelpMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportWinHelpMaskId ) )
+  {
+    setExportWinHelpMask( iProfile->elementWithKey( exportWinHelpMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportRtfMaskId ) )
+  {
+    setExportRtfMask( iProfile->elementWithKey( exportRtfMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportTextMaskId ) )
+  {
+    setExportTextMask( iProfile->elementWithKey( exportTextMaskId ) );
+  }
+  if ( iProfile->containsKeyName( exportHeaderMaskId ) )
+  {
+    setExportHeaderMask( iProfile->elementWithKey( exportHeaderMaskId ) );
+  }
+  if ( iProfile->containsKeyName( graphicMaskId ) )
+  {
+    setGraphicMask( iProfile->elementWithKey( graphicMaskId ) );
+  }
+
+}
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySettings::saveMaskId = "VySettings::saveMask";
+
+IString VySettings::saveMask() const
+{
+  return iSaveMask;
+}
+
+VySettings& VySettings::setSaveMask(const IString& aSaveMask)
+{
+  if (!(iSaveMask == aSaveMask))
+  {
+    iSaveMask = aSaveMask;
+    notifyObservers(INotificationEvent(VySettings::saveMaskId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySettings::openMaskId = "VySettings::openMask";
+INotificationId VySettings::importIpfMaskId = "VySettings::importIpfMask";
+INotificationId VySettings::importWinHelpMaskId = "VySettings::importWinHelpMask";
+INotificationId VySettings::importTextMaskId = "VySettings::importTextMask";
+INotificationId VySettings::exportIpfMaskId = "VySettings::exportIpfMask";
+INotificationId VySettings::exportHtmlSingleMaskId = "VySettings::exportHtmlSingleMask";
+INotificationId VySettings::exportHtmlFrameMaskId = "VySettings::exportHtmlFrameMask";
+INotificationId VySettings::exportHtmlHelpMaskId = "VySettings::exportHtmlHelpMask";
+INotificationId VySettings::exportWinHelpMaskId = "VySettings::exportWinHelpMask";
+INotificationId VySettings::exportRtfMaskId = "VySettings::exportRtfMask";
+INotificationId VySettings::exportHeaderMaskId = "VySettings::exportHeaderMask";
+INotificationId VySettings::exportTextMaskId = "VySettings::exportTextMask";
+
+IString VySettings::openMask() const
+{
+  return iOpenMask;
+}
+
+VySettings& VySettings::setOpenMask(const IString& aOpenMask)
+{
+  if (!(iOpenMask == aOpenMask))
+  {
+    iOpenMask = aOpenMask;
+    notifyObservers(INotificationEvent(VySettings::openMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::importIpfMask() const
+{
+  return iImportIpfMask;
+}
+
+VySettings& VySettings::setImportIpfMask(const IString& aImportIpfMask)
+{
+  if (!(iImportIpfMask == aImportIpfMask))
+  {
+    iImportIpfMask = aImportIpfMask;
+    notifyObservers(INotificationEvent(VySettings::importIpfMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::importWinHelpMask() const
+{
+  return iImportWinHelpMask;
+}
+
+VySettings& VySettings::setImportWinHelpMask(const IString& aImportWinHelpMask)
+{
+  if (!(iImportWinHelpMask == aImportWinHelpMask))
+  {
+    iImportWinHelpMask = aImportWinHelpMask;
+    notifyObservers(INotificationEvent(VySettings::importWinHelpMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::importTextMask() const
+{
+  return iImportTextMask;
+}
+
+VySettings& VySettings::setImportTextMask(const IString& aImportTextMask)
+{
+  if (!(iImportTextMask == aImportTextMask))
+  {
+    iImportTextMask = aImportTextMask;
+    notifyObservers(INotificationEvent(VySettings::importTextMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportIpfMask() const
+{
+  return iExportIpfMask;
+}
+
+VySettings& VySettings::setExportIpfMask(const IString& aExportIpfMask)
+{
+  if (!(iExportIpfMask == aExportIpfMask))
+  {
+    iExportIpfMask = aExportIpfMask;
+    notifyObservers(INotificationEvent(VySettings::exportIpfMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportHtmlSingleMask() const
+{
+  return iExportHtmlSingleMask;
+}
+
+VySettings& VySettings::setExportHtmlSingleMask(const IString& aExportHtmlSingleMask)
+{
+  if (!(iExportHtmlSingleMask == aExportHtmlSingleMask))
+  {
+    iExportHtmlSingleMask = aExportHtmlSingleMask;
+    notifyObservers(INotificationEvent(VySettings::exportHtmlSingleMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportHtmlFrameMask() const
+{
+  return iExportHtmlFrameMask;
+}
+
+VySettings& VySettings::setExportHtmlFrameMask(const IString& aExportHtmlFrameMask)
+{
+  if (!(iExportHtmlFrameMask == aExportHtmlFrameMask))
+  {
+    iExportHtmlFrameMask = aExportHtmlFrameMask;
+    notifyObservers(INotificationEvent(VySettings::exportHtmlFrameMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportHtmlHelpMask() const
+{
+  return iExportHtmlHelpMask;
+}
+
+VySettings& VySettings::setExportHtmlHelpMask(const IString& aExportHtmlHelpMask)
+{
+  if (!(iExportHtmlHelpMask == aExportHtmlHelpMask))
+  {
+    iExportHtmlHelpMask = aExportHtmlHelpMask;
+    notifyObservers(INotificationEvent(VySettings::exportHtmlHelpMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportWinHelpMask() const
+{
+  return iExportWinHelpMask;
+}
+
+VySettings& VySettings::setExportWinHelpMask(const IString& aExportWinHelpMask)
+{
+  if (!(iExportWinHelpMask == aExportWinHelpMask))
+  {
+    iExportWinHelpMask = aExportWinHelpMask;
+    notifyObservers(INotificationEvent(VySettings::exportWinHelpMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportRtfMask() const
+{
+  return iExportRtfMask;
+}
+
+VySettings& VySettings::setExportRtfMask(const IString& aExportRtfMask)
+{
+  if (!(iExportRtfMask == aExportRtfMask))
+  {
+    iExportRtfMask = aExportRtfMask;
+    notifyObservers(INotificationEvent(VySettings::exportRtfMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportHeaderMask() const
+{
+  return iExportHeaderMask;
+}
+
+VySettings& VySettings::setExportHeaderMask(const IString& aExportHeaderMask)
+{
+  if (!(iExportHeaderMask == aExportHeaderMask))
+  {
+    iExportHeaderMask = aExportHeaderMask;
+    notifyObservers(INotificationEvent(VySettings::exportHeaderMaskId, *this));
+  } // endif
+  return *this;
+}
+
+IString VySettings::exportTextMask() const
+{
+  return iExportTextMask;
+}
+
+VySettings& VySettings::setExportTextMask(const IString& aExportTextMask)
+{
+  if (!(iExportTextMask == aExportTextMask))
+  {
+    iExportTextMask = aExportTextMask;
+    notifyObservers(INotificationEvent(VySettings::exportTextMaskId, *this));
+  } // endif
+  return *this;
+}
+
+void VySettings::saveSaveMask()
+{
+  iProfile->addOrReplaceElementWithKey( saveMaskId, iSaveMask );
+}
+
+void VySettings::saveOpenMask()
+{
+  iProfile->addOrReplaceElementWithKey( openMaskId, iOpenMask );
+}
+
+void VySettings::saveImportIpfMask()
+{
+  iProfile->addOrReplaceElementWithKey( importIpfMaskId, iImportIpfMask );
+}
+
+void VySettings::saveImportWinHelpMask()
+{
+  iProfile->addOrReplaceElementWithKey( importWinHelpMaskId,  iImportWinHelpMask );
+}
+
+void VySettings::saveImportTextMask()
+{
+  iProfile->addOrReplaceElementWithKey( importTextMaskId, iImportTextMask );
+}
+
+void VySettings::saveExportIpfMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportIpfMaskId, iExportIpfMask );
+}
+
+void VySettings::saveExportHtmlSingleMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportHtmlSingleMaskId, iExportHtmlSingleMask );
+}
+
+void VySettings::saveExportHtmlFrameMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportHtmlFrameMaskId, iExportHtmlFrameMask );
+}
+
+void VySettings::saveExportHtmlHelpMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportHtmlHelpMaskId, iExportHtmlHelpMask );
+}
+
+void VySettings::saveExportWinHelpMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportWinHelpMaskId, iExportWinHelpMask );
+}
+
+void VySettings::saveExportRtfMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportRtfMaskId, iExportRtfMask );
+}
+
+void VySettings::saveExportTextMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportTextMaskId, iExportTextMask );
+}
+
+void VySettings::saveExportHeaderMask()
+{
+  iProfile->addOrReplaceElementWithKey( exportHeaderMaskId, iExportHeaderMask );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VySettings::graphicMaskId = "VySettings::graphicMask";
+
+IString VySettings::graphicMask() const
+{
+  return iGraphicMask;
+}
+
+VySettings& VySettings::setGraphicMask(const IString& aGraphicMask)
+{
+  if (!(iGraphicMask == aGraphicMask))
+  {
+    iGraphicMask = aGraphicMask;
+    notifyObservers(INotificationEvent(VySettings::graphicMaskId, *this));
+  } // endif
+  return *this;
+}
+
+void VySettings::saveGraphicMask()
+{
+  iProfile->addOrReplaceElementWithKey( graphicMaskId, iGraphicMask );
+}
+
+// Feature source code generation ends here.

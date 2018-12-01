@@ -1,0 +1,109 @@
+#if !defined( HPJLISTSSHH)
+#  define HPJLISTSSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListMain         0
+#  define ALexExpressionListAComment     1
+
+#  define ALexEol                        2
+#  define ALexFilename                   3
+
+#  define AYaccStart                     1
+#  define AYaccLineList                  2
+#  define AYaccLineListNull              3
+#  define AYaccLineEol                   4
+#  define AYaccLineFile                  5
+#  define AYaccLineNull                  6
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "hpjlist.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexEol:
+            zpchToken = "Eol";
+            break;
+
+         case ALexFilename:
+            zpchToken = "Filename";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("hpjlist.llr"),
+      oLex( qpszFile, "hpjlist.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> linesEol lineOpt 
+            break;
+
+         case AYaccLineList:
+         // linesEol -> linesEol lineEol 
+            break;
+
+         case AYaccLineListNull:
+         // linesEol -> 
+            break;
+
+         case AYaccLineEol:
+         // lineEol -> lineOpt Eol 
+            break;
+
+         case AYaccLineFile:
+         // lineOpt -> Filename 
+            break;
+
+         case AYaccLineNull:
+         // lineOpt -> 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

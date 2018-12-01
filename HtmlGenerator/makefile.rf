@@ -1,0 +1,8 @@
+ -+.\HtmlSymbols.obj &
+ -+.\HtmlSend.obj &
+ -+.\HtmlTag.obj &
+ -+.\HtmlParaStyle.obj &
+ -+.\HtmlCharStyle.obj &
+ -+.\HtmlGenerator.obj &
+ -+.\HtmlContext.obj &
+ -+.\HtmlControl.obj;

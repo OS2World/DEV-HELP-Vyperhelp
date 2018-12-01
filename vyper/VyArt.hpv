@@ -1,0 +1,30 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual IBitmapHandle bitmapHandle() const;
+  virtual IString asString() const;
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  void setName(const IString& name);
+  virtual const IGBitmap * bitmap() const;
+  virtual VyArt& setBitmap(const IGBitmap & aBitmap);
+
+  static INotificationId nameId;
+  static INotificationId bitmapId;
+
+private:
+  IString iName;
+  IGBitmap * iBitmap;
+// Feature source code generation ends here.
+
+
+private:
+  void construct();
+
+

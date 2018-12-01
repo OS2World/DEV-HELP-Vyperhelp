@@ -1,0 +1,11 @@
+To Do
+
+regression test for BinaryFile
+  bits > 8
+  variable > 255
+
+commit/rollback for BinaryFile
+  allows recovery after exception
+  begin/endSet methods
+
+

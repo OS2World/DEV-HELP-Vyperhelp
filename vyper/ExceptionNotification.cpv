@@ -1,0 +1,60 @@
+
+void ExceptionNotification::construct()
+{
+  iOwner = 0;
+}
+
+
+// Feature source code generation begins here...
+INotificationId ExceptionNotification::titleId = "ExceptionNotification::title";
+INotificationId ExceptionNotification::ownerId = "ExceptionNotification::owner";
+
+IString ExceptionNotification::title() const
+{
+  return iTitle;
+}
+
+ExceptionNotification& ExceptionNotification::setTitle(const IString& aTitle)
+{
+  if (!(iTitle == aTitle))
+  {
+    iTitle = aTitle;
+    notifyObservers(INotificationEvent(ExceptionNotification::titleId, *this));
+  } // endif
+  return *this;
+}
+
+IWindow* ExceptionNotification::owner() const
+{
+  return iOwner;
+}
+
+ExceptionNotification& ExceptionNotification::setOwner(IWindow* aOwner)
+{
+  if (!(iOwner == aOwner))
+  {
+    iOwner = aOwner;
+    notifyObservers(INotificationEvent(ExceptionNotification::ownerId, *this));
+  } // endif
+  return *this;
+}
+
+void ExceptionNotification::show( const IException & exception )
+{
+  IMessageBox box( iOwner );
+  if ( iTitle.length() )
+    box.setTitle( iTitle );
+  IString text = IString("Error ");
+  if ( exception.errorId() )
+  {
+    text += IString(exception.errorId()) +
+            IString(" (") + IString(exception.errorCodeGroup()) +
+            IString(") ");
+  }
+  text += IString("detected.  ") + exception.text();
+  box.show( text, IMessageBox::okButton | IMessageBox::warningIcon | IMessageBox::moveable );
+}
+
+// Feature source code generation ends here.
+
+

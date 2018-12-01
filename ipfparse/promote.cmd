@@ -1,0 +1,13 @@
+copy IpfParser.hpp    %PROJINC%
+copy IpfParser.ipp    %PROJINC%
+copy SymbolLookup.hpp %PROJINC%
+copy SymbolLookup.ipp %PROJINC%
+copy Footnote.hpp     %PROJINC%
+copy Footnote.ipp     %PROJINC%
+copy StringPair.hpp   %PROJINC%
+copy StringPair.ipp   %PROJINC%
+copy PanelLink.hpp    %PROJINC%
+copy PanelLink.ipp    %PROJINC%
+copy ipfparse.lib %PROJOBJ%
+copy *.llr %PROJTAB%
+copy *.dfa %PROJTAB%

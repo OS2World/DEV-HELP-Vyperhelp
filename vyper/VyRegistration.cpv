@@ -1,0 +1,69 @@
+/***************************************************************************
+ * File...... VyRegistration.cpv
+ * Author.... Mat
+ * Date...... 5/6/99
+ *
+ * Custom functions for VyRegistration
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+
+// Feature source code generation begins here...
+
+/***************************************************************************
+ * Procedure.. VyRegistration::construct
+ * Author..... Mat
+ * Date....... 5/6/99
+ *
+ * Fill in the user name and key fields if the user has already registered.
+ ***************************************************************************/
+void VyRegistration::construct()
+{
+  // set expiration notice
+  iNotice->setText( Generator::registration().key().expires().notice() );
+
+  // get resgistered name
+  const IString & userName = Generator::registration().name();
+
+  // if no name is registered then the key was not entered by user, so don't show it
+  if ( userName.length() )
+  {
+    iUser->setText( userName );
+    iKey->setText( Generator::registration().key().key() );
+  }
+}
+
+/***************************************************************************
+ * Procedure.. VyRegistration::registerIt
+ * Author..... Mat
+ * Date....... 5/6/99
+ *
+ * Register using the entered user name and key value.
+ ***************************************************************************/
+void VyRegistration::registerIt(const IString& userName, const IString& keyName)
+{
+  Boolean ok = Generator::registration().setKey( userName, keyName );
+  if ( ok )
+  {
+    // successful registration!
+    IMessageBox box( this );
+    box.show(
+        "Thank you for registering VyperHelp!",
+        IMessageBox::okButton | IMessageBox::informationIcon | IMessageBox::moveable );
+
+    // close the registration dialog
+    close();
+  }
+  else
+  {
+    // registration failed
+    IMessageBox box( this );
+    box.show(
+        "The registration key is not valid for the user name.  Please re-check entries.",
+        IMessageBox::okButton | IMessageBox::errorIcon | IMessageBox::moveable );
+  }
+}
+
+// Feature source code generation ends here.

@@ -1,0 +1,117 @@
+
+all: \
+    .\vfile.lib
+
+.\OutputBinaryFile.obj: \
+    d:\proj\vfile\OutputBinaryFile.cpp \
+    {d:\proj\vfile;$(INCLUDE);}OutputBinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp
+
+.\LoadParser.obj: \
+    d:\proj\vfile\LoadParser.cpp \
+    {d:\proj\vfile;$(INCLUDE);}Filename.hpp \
+    {d:\proj\vfile;$(INCLUDE);}vyd.h \
+    {d:\proj\vfile;$(INCLUDE);}Generator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Generator.ipp \
+    {d:\proj\vfile;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\vfile;$(INCLUDE);}InputBinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}LoadGenerator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}LoadParser.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Parser.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Parser.ipp
+
+.\LoadGenerator.obj: \
+    d:\proj\vfile\LoadGenerator.cpp \
+    {d:\proj\vfile;$(INCLUDE);}Generator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Generator.ipp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\vfile;$(INCLUDE);}LoadGenerator.hpp
+
+.\InputBinaryFile.obj: \
+    d:\proj\vfile\InputBinaryFile.cpp \
+    {d:\proj\vfile;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\vfile;$(INCLUDE);}InputBinaryFile.hpp
+
+.\BinaryFile.obj: \
+    d:\proj\vfile\BinaryFile.cpp \
+    {d:\proj\vfile;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp
+
+.\SaveGenerator.obj: \
+    d:\proj\vfile\SaveGenerator.cpp \
+    {d:\proj\vfile;$(INCLUDE);}Filename.hpp \
+    {d:\proj\vfile;$(INCLUDE);}vyd.h \
+    {d:\proj\vfile;$(INCLUDE);}SaveGenerator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Generator.hpp \
+    {d:\proj\vfile;$(INCLUDE);}OutputBinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Generator.ipp \
+    {d:\proj\vfile;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vfile;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Registration.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.hpp \
+    {d:\proj\vfile;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\vfile;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\vfile;$(INCLUDE);}Gin.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\vfile;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Distance.ipp \
+    {d:\proj\vfile;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\vfile;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\vfile;$(INCLUDE);}ExpirationDate.ipp

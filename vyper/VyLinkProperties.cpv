@@ -1,0 +1,55 @@
+
+
+void VyLinkProperties::construct()
+{
+  iLinkItem = 0;
+}
+
+
+
+// Feature source code generation begins here...
+INotificationId VyLinkProperties::insertLinkId = "VyLinkProperties::insertLink";
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyLinkProperties::finish()
+{
+  if ( iLinkItem )
+  {
+    // update an existing link
+    iLinkItem->setGin( iLink->gin() );
+  }
+  else
+  {
+    // request insertion of a new link
+    notifyObservers(INotificationEvent(insertLinkId, *this));
+  }
+}
+
+// Feature source code generation ends here.
+
+
+
+
+// Feature source code generation begins here...
+INotificationId VyLinkProperties::linkItemId = "VyLinkProperties::linkItem";
+
+LinkItem* VyLinkProperties::linkItem() const
+{
+  return iLinkItem;
+}
+
+VyLinkProperties& VyLinkProperties::setLinkItem(LinkItem* aLinkItem)
+{
+  if (!(iLinkItem == aLinkItem))
+  {
+    iLinkItem = aLinkItem;
+    notifyObservers(INotificationEvent(VyLinkProperties::linkItemId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

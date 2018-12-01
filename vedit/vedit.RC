@@ -1,0 +1,24 @@
+
+#include "vedit.h"                             //Symbolic Definitions
+
+BITMAP BMP_PARAGRAPH ParagraphView.bmp
+BITMAP BMP_NEWLINE   NewLineView.bmp
+BITMAP BMP_LINEEND   LineEndView.bmp
+BITMAP BMP_END       EndView.bmp
+BITMAP BMP_PUSH      PushView.bmp
+BITMAP BMP_POP       PopView.bmp
+BITMAP BMP_FONT      FontView.bmp
+BITMAP BMP_BOLD      BoldView.bmp
+BITMAP BMP_ITALIC    ItalicView.bmp
+BITMAP BMP_UNDERLINE UnderlineView.bmp
+BITMAP BMP_LINK      LinkView.bmp
+
+//**************************************************************************
+// string resources - used by IStaticText & ITitle Classes                 *
+//  Symbolic Name (ID) <-> Text String                                     *
+//**************************************************************************
+STRINGTABLE
+  BEGIN
+    WND_MAIN       "Vyper Editor Tester"
+  END
+

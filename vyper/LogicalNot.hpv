@@ -1,0 +1,16 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual Boolean input() const;
+  virtual LogicalNot& setInput(Boolean enable = true);
+  virtual Boolean output() const;
+
+  static INotificationId inputId;
+  static INotificationId outputId;
+
+private:
+  void construct();
+  Boolean iInput;
+  Boolean iOutput;
+// Feature source code generation ends here.

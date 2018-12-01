@@ -1,0 +1,25 @@
+
+void VyLabelProperties::construct()
+{
+  iChanged = false;
+}
+
+// Feature source code generation begins here...
+INotificationId VyLabelProperties::changedId = "VyLabelProperties::changed";
+
+Boolean VyLabelProperties::isChanged() const
+{
+  return iChanged;
+}
+
+VyLabelProperties& VyLabelProperties::enableChanged(Boolean enable)
+{
+  if (!(iChanged == enable))
+  {
+    iChanged = enable;
+    notifyObservers(INotificationEvent(VyLabelProperties::changedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

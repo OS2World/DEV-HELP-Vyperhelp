@@ -1,0 +1,33 @@
+Notes for IpfParser
+
+:font with :cgraphic/:xmp
+  with any font other than default, these tags (and their end tags) do not change font
+  HOWEVER, with default font
+    cgraphic/xmp change to a monospaced font
+    ecgraphic/exmp change back to default (proportional) font
+  CURRENTLY, IpfParser does this:
+    at cgraphic/xmp, set font to monospaced
+    at ecgraphic/exmp, set font to default (no matter what it was before!)
+    otherwise we need to support a stack of fonts -- yuck!
+    (normally, font changes are not nested and independent of begin/end tags)
+
+margins
+  IPF ignores left margin tags inside lists
+  outside lists margins are not a nested style
+
+nameits in extra text
+  are not prpcessed for tags OR SYMBOLS
+
+symbols in extra text
+  Generator doesn't allow symbols for titles, etc so they are converted to chars
+
+:figcap
+  officially, any tags in this "extra" text are not allowed
+  unofficialy, IPFC allows them
+  our parser doesn't (it just passes the raw text)
+
+\n
+  normally these are converted to space,
+  except when there is no "content" on the line
+    AND the line is not empty
+

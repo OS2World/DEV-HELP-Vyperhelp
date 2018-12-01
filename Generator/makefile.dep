@@ -1,0 +1,309 @@
+
+all: \
+    .\gen.lib
+
+.\WindowDef.obj: \
+    d:\proj\Generator\WindowDef.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp
+
+.\UserKey.obj: \
+    d:\proj\Generator\UserKey.cpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp
+
+.\TraceGenerator.obj: \
+    d:\proj\Generator\TraceGenerator.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\Generator;$(INCLUDE);}TraceGenerator.hpp
+
+.\TextParser.obj: \
+    d:\proj\Generator\TextParser.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Parser.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Parser.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}TextParser.hpp
+
+.\TextGenerator.obj: \
+    d:\proj\Generator\TextGenerator.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\Generator;$(INCLUDE);}TextGenerator.hpp
+
+.\Symbol.obj: \
+    d:\proj\Generator\Symbol.cpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp
+
+.\Registration.obj: \
+    d:\proj\Generator\Registration.cpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp
+
+.\ParserIndicator.obj: \
+    d:\proj\Generator\ParserIndicator.cpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ParserIndicator.ipp
+
+.\ParserException.obj: \
+    d:\proj\Generator\ParserException.cpp \
+    {d:\proj\Generator;$(INCLUDE);}ParserException.hpp
+
+.\Parser.obj: \
+    d:\proj\Generator\Parser.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Parser.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Parser.ipp
+
+.\Identifier.obj: \
+    d:\proj\Generator\Identifier.cpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Identifier.hpp
+
+.\HeaderGenerator.obj: \
+    d:\proj\Generator\HeaderGenerator.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\Generator;$(INCLUDE);}HeaderGenerator.hpp
+
+.\Gin.obj: \
+    d:\proj\Generator\Gin.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ColumnList.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp
+
+.\Generator.obj: \
+    d:\proj\Generator\Generator.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowSet.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtSet.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Generator.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Registration.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Gin.ipp \
+    {d:\proj\Generator;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Symbol.ipp
+
+.\FontInfo.obj: \
+    d:\proj\Generator\FontInfo.cpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontDefinition.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontDefinition.ipp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontInfo.ipp
+
+.\FontDefinition.obj: \
+    d:\proj\Generator\FontDefinition.cpp \
+    {d:\proj\Generator;$(INCLUDE);}FontDefinition.hpp \
+    {d:\proj\Generator;$(INCLUDE);}FontDefinition.ipp
+
+.\Filename.obj: \
+    d:\proj\Generator\Filename.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Filename.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp
+
+.\ExpirationDate.obj: \
+    d:\proj\Generator\ExpirationDate.cpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ExpirationDate.ipp
+
+.\EnhancedYacc.obj: \
+    d:\proj\Generator\EnhancedYacc.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Filename.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}EnhancedYacc.hpp
+
+.\Distance.obj: \
+    d:\proj\Generator\Distance.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp
+
+.\CurrentDate.obj: \
+    d:\proj\Generator\CurrentDate.cpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CurrentDate.hpp
+
+.\ColumnList.obj: \
+    d:\proj\Generator\ColumnList.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ColumnList.hpp
+
+.\CodePage.obj: \
+    d:\proj\Generator\CodePage.cpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CodePage.ipp
+
+.\CDefineYacc.obj: \
+    d:\proj\Generator\CDefineYacc.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Filename.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Parser.hpp \
+    {d:\proj\Generator;$(INCLUDE);}CDefineYacc.hpp \
+    {d:\proj\Generator;$(INCLUDE);}cdefine.yhh \
+    {d:\proj\Generator;$(INCLUDE);}Parser.ipp \
+    {d:\proj\Generator;$(INCLUDE);}EnhancedYacc.hpp
+
+.\ArtSet.obj: \
+    d:\proj\Generator\ArtSet.cpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}ArtSet.hpp
+
+.\ArtDef.obj: \
+    d:\proj\Generator\ArtDef.cpp \
+    {d:\proj\Generator;$(INCLUDE);}Filename.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\Generator;$(INCLUDE);}ArtDef.ipp
+
+.\WindowSet.obj: \
+    d:\proj\Generator\WindowSet.cpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowSet.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.hpp \
+    {d:\proj\Generator;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\Generator;$(INCLUDE);}Distance.ipp

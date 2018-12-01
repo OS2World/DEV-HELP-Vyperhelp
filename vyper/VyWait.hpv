@@ -1,0 +1,15 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual VyIndicator* indicator() const;
+  virtual VyWait& setIndicator(VyIndicator* aIndicator);
+
+  static INotificationId indicatorId;
+
+private:
+  void construct();
+  void destruct();
+
+  VyIndicator* iIndicator;
+// Feature source code generation ends here.

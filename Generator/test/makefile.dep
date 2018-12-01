@@ -1,0 +1,368 @@
+
+all: \
+    .\GenTest.exe
+
+.\TestTables.obj: \
+    d:\proj\generator\test\TestTables.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestSymbols.obj: \
+    d:\proj\generator\test\TestSymbols.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestSections.obj: \
+    d:\proj\generator\test\TestSections.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestPara.obj: \
+    d:\proj\generator\test\TestPara.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestNesting.obj: \
+    d:\proj\generator\test\TestNesting.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestMargins.obj: \
+    d:\proj\generator\test\TestMargins.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestList.obj: \
+    d:\proj\generator\test\TestList.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestKeywords.obj: \
+    d:\proj\generator\test\TestKeywords.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestIPF.obj: \
+    d:\proj\generator\test\TestIPF.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestChar.obj: \
+    d:\proj\generator\test\TestChar.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\TestArt.obj: \
+    d:\proj\generator\test\TestArt.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp
+
+.\GenTest.obj: \
+    d:\proj\generator\test\GenTest.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}IPFGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}TraceGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}TextGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}SaveGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}HpjGenerator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}OutputBinaryFile.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Filename.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfGenerator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}RtfColor.ipp
+
+.\TestWindows.obj: \
+    d:\proj\generator\test\TestWindows.cpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Generator.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Registration.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}Gin.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\generator\test;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Distance.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\generator\test;$(INCLUDE);}ExpirationDate.ipp

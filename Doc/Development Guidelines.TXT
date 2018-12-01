@@ -1,0 +1,14 @@
+VYGEN components
+  only use "static const" for simple types: static const IString fails when more than one EXE active
+    also fails for static member data !!!!!
+
+
+WorkFrame Project Creation
+
+  Use Vyper project template
+  Turn off "Build Smarts"
+  Generate initial MAK, but maintain by hand
+  Use auto-generated DEP
+  Use CFLAGS for compiler flags, LFLAGS for linker flags
+
+

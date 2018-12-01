@@ -1,0 +1,20 @@
+
+#include "vydit.h"
+
+BITMAP BMP_PARAGRAPH ParagraphView.bmp
+BITMAP BMP_NEWLINE   NewLineView.bmp
+BITMAP BMP_LINEEND   LineEndView.bmp
+BITMAP BMP_END       EndView.bmp
+BITMAP BMP_PUSH      PushView.bmp
+BITMAP BMP_POP       PopView.bmp
+BITMAP BMP_FONT      FontView.bmp
+BITMAP BMP_BOLD      BoldView.bmp
+BITMAP BMP_ITALIC    ItalicView.bmp
+BITMAP BMP_UNDERLINE UnderlineView.bmp
+BITMAP BMP_LINK      LinkView.bmp
+
+ICON   WND_Vyper     vyper.ico
+BITMAP WND_Vyper+1   vyper.bmp
+
+RCINCLUDE fontdlg.dlg
+

@@ -1,0 +1,11 @@
+#define DID_OK_BUTTON               1
+#define DID_CANCEL_BUTTON           2
+#define DID_NAME                    301
+#define DID_STYLE                   302
+#define DID_SIZE                    305
+#define DID_SAMPLE                  306
+#define DID_DISPLAY_FILTER          303
+#define DID_PRINTER_FILTER          304
+#define DID_OUTLINE                 307
+#define DID_UNDERSCORE              308
+#define DID_STRIKEOUT               309

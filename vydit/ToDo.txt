@@ -1,0 +1,182 @@
+-----------------
+Bugs
+  dbl-click for selecting words doesn't always work
+    suspect conflicts with drag-select
+    try shift+dblclick too
+  FlowFormatter
+    if format returns a change, but doesn't fit, change won't get reported next format call
+  use DEBUG_ZONE in Page.cpp to check for excessive refreshing
+  after restore Kursor should be brought into View
+  shouldn't shift viewport to fit LineEndView or EndView
+    add View::isImportant() or something like that?
+
+Need a general way to enumerate across selection
+  used for delete and generate
+  also need to keep track of nesting (orphan count)
+
+OpenClass bugs
+  IFont metrics: workaround in FontInfo::newFont
+  OpenClass resets code page to 850: workaround in Symbol::setContextFont
+  no virtual key event for Shift+Enter (defect #21395/talcm)
+  IGRegion::boundingRect broken: workaround in Page::setRectToRegion
+  enableTabStop for IViewPort doesn't work: workaround in Editor::enableTabStop()
+
+Project
+  put ASSERT and TRACE in common project header
+
+Performance
+  setState should only need to reset font once!
+  eliminate all unecessary paint areas
+  handle our own paging/scrolling and bypass IViewPort
+    would eliminate memory graphic image
+  limit object data for common items/views
+    PlacedView should use a static container to hold PenStates
+    can we reduce allocations by WordView?
+      array of char lengths (unsigned) -- store global char lengths?
+        PenState could cache char lengths
+  ItemSequence can be ILinkedSequence, instead of IEqualitySequence
+    doesn't use searching capabilities
+  eliminate all linear searches through Items/Views
+
+FastContext
+  bg color currently hardcoded to WHITE
+
+Support for Push/Pop
+  need a way to graphically see pairings
+  need special handling of selections which cross push/pop boundaries
+
+Cleanup
+  View::position() and rect() actually use line's y-position (may not be same)
+
+Local code page support
+  need token call to setlocale() to setup default environment? (done)
+  need to store active code page with document
+
+Text v Symbols
+  SmartText uses isalnum() to determine what's part of a string
+    automatically supports locale!
+    doesn't support contractions, possessives or hyphenated names
+  soft hyphen shows as unknown symbol
+  ch = 0 not supported? (0 used as error return)
+
+Format/Draw
+  use a pen pattern for selection polygon to give distinctive look
+  pen state change could be checked by each View::format
+    saves FlowFormatter from doing it
+  possible to draw partial word?
+
+Model-View
+  cursors in aux view may become invalid when items are deleted
+
+need LeafView::isDeleteable?
+generalize Command interface, support undo,redo,state save
+VEdit can subclass presSpace to return a non-cached PS
+  this will be used in IPaintEvent
+Logical nesting is separate from Display nesting
+  Logical:  Section, Ordered List, Bold, Text
+  Display:  Flow, Line, Word, Char
+  do we need logical nesting?  (or is inline OK?)
+
+
+-----------------
+Movement rules
+  - Let VPort do the scrolling
+  - Keep cursor visible where possible
+  - Cursored line should be fully visible
+  - Cursored item/character(?) should be fully visible
+
+Concepts
+  kbd cursor anchor (for resize/reformat)
+  preferred x (separate from actual x)
+    _kursorPoint vs _current.view().position()
+  relative y position (for resize or style change)
+
+use IScrollHandler for notification
+(Scrolls include both page and single movements)
+After ScrollUp/Down
+  if cursor isn't visible
+    move y down/up by line to visible range
+    (remember lineheight may be > portalheight!)
+    store relative y
+  AdjustKursor
+After ScrollRight/Left
+  AdjustKursor
+
+Style Change
+  scroll to match relative y-pos (scroll to fit too)
+
+--- Defer ---
+
+Targets within text
+Tables
+Forms
+Layouts
+Borders
+Hidden text
+Comment text
+Horizontal rules
+
+Word movement
+  Ctrl+Right/Left
+Ctrl+/, Ctrl+\
+  select/deselect all ??
+
+
+---
+
+make StringItem for handling all text-based items
+  WordItem
+  SpaceItem
+  ...?
+
+dictionary/lookup support
+
+IPF Notes
+  Lists always reset margins unless
+    nested in another list, or
+    in a Lines alignment
+  Lines alignment always takes precedence, except with Figures
+  Table only allows Lines to be inserted
+    even then, Lines get clipped
+  Nestings that don't make visual sense may still make logical sense
+    e.g., List inside Caution
+  Which contexts reset margins?
+  Each context only allows selected others to be nested within
+    how to express programatically?  canNestXXX()?  SGML rules?
+
+
+-----
+Old ideas from TextEditor.TXT
+
+Draw scheme
+  How to represent different inlines
+    Context
+      horizontal line (annoying?)
+      list box with context stack
+      box contexts as list is scrolled
+      in pop-up menu only?
+  Read-only text (list prefixes, etc)
+Line drawing mode
+Clipboard format for Vyper text
+Search and replace
+  regular expression, etc!
+Drag-drop support
+  links
+  cut/paste
+Auto-recognize, auto-spell, etc
+Auto-save to temporary file
+  Undo support is related
+Key mapping
+Bookmarks
+  is this more of an app function, like to-do list?
+International
+  DBCS?
+  Code page
+  language: static text
+hook voice recognition/dictation
+hook ScreenReader/2
+support presentation parameters
+BIDI?
+
+
+

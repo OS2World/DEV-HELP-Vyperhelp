@@ -1,0 +1,27 @@
+ -+.\Identifier.obj &
+ -+.\CDefineYacc.obj &
+ -+.\Filename.obj &
+ -+.\UserKey.obj &
+ -+.\Registration.obj &
+ -+.\FontInfo.obj &
+ -+.\FontDefinition.obj &
+ -+.\EnhancedYacc.obj &
+ -+.\ParserIndicator.obj &
+ -+.\ParserException.obj &
+ -+.\TraceGenerator.obj &
+ -+.\HeaderGenerator.obj &
+ -+.\TextParser.obj &
+ -+.\WindowDef.obj &
+ -+.\ArtDef.obj &
+ -+.\WindowSet.obj &
+ -+.\ArtSet.obj &
+ -+.\CodePage.obj &
+ -+.\Distance.obj &
+ -+.\ColumnList.obj &
+ -+.\ExpirationDate.obj &
+ -+.\CurrentDate.obj &
+ -+.\Generator.obj &
+ -+.\Gin.obj &
+ -+.\Parser.obj &
+ -+.\Symbol.obj &
+ -+.\TextGenerator.obj;

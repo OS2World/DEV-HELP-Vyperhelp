@@ -1,0 +1,145 @@
+/***************************************************************************
+ * File...... VySection.hpv
+ * Author.... Mat
+ * Date...... 6/23/98
+ *
+ * User declarations for VySection part
+ *
+ * Copyright (C) 1998 MekTek
+ ***************************************************************************/
+
+
+//
+// Notifications
+//
+public:
+  static INotificationId titleId;
+  static INotificationId levelId;
+  static INotificationId listedId;
+  static INotificationId flowId;
+  static INotificationId filenameId;
+  static INotificationId offsetId;
+  static INotificationId modifiedId;
+  static INotificationId titleExtendedId;
+  static INotificationId objectId;
+  static INotificationId frameId;
+  static INotificationId editorId;
+  static INotificationId closedId;
+  static INotificationId untitledTextId;
+  static INotificationId docId;
+
+
+//
+// Attributes
+//
+public:
+  virtual IString title() const;
+  virtual VySection& setTitle(const IString& aTitle);
+  virtual int level() const;
+  virtual VySection& setLevel(int aLevel);
+  virtual Boolean isListed() const;
+  virtual VySection& enableListed(Boolean enable = true);
+  virtual FlowItem* flow() const;
+  virtual IString filename() const;
+  virtual VySection& setFilename(const IString& aFilename);
+  virtual unsigned long offset() const;
+  virtual VySection& setOffset(unsigned long aOffset);
+  virtual Boolean isModified() const;
+  virtual VySection& enableModified(Boolean enable = true);
+  virtual IString untitledText() const;
+  virtual IString titleExtended() const;
+  virtual VySection& setTitleExtended(const IString& aTitleExtended);
+  virtual IContainerObject* object() const;
+  virtual VySection& setObject(IContainerObject* aObject);
+  virtual IWindow* frame() const;
+  virtual VySection& setFrame(IWindow* aFrame);
+  virtual Editor* editor() const;
+  virtual Boolean isClosed() const;
+  virtual VyDoc* doc() const;
+  virtual VySection& setDoc(VyDoc* aDoc);
+
+private:
+  VySection& setEditor( Editor * aEditor );
+
+  IString iTitle;
+  int iLevel;
+  Boolean iListed;
+  FlowItem* iFlow;
+  IString iFilename;
+  unsigned long iOffset;
+  Boolean iModified;
+  IString iUntitledText;
+  IString iTitleExtended;
+  IContainerObject* iObject;
+  IWindow* iFrame;
+  Editor* iEditor;
+  Boolean iClosed;
+  VyDoc* iDoc;
+
+
+//
+// Actions
+//
+public:
+  virtual void open( IViewPort * viewport );
+  virtual void close();
+  virtual void save();
+  virtual void copy();
+  virtual void paste();
+  virtual void deleteKeyword( IPosition);
+  void addKeyword( VyKeyword * keyword, Boolean modify = true );
+  virtual void deleteLabel( IPosition);
+  void addLabel( VyLabel * label, Boolean modify = true );
+  void pasteToEditor();
+  void cutSelection();
+  void copySelection();
+  Boolean load( Boolean needArt = true );
+  void    unload();
+  void    removeLabelAtPosition( IPosition position );
+  void    removeKeywordAtPosition( IPosition position );
+
+
+//
+// Un-Declared Actions
+//
+public:
+  void       setFromGin( const SectionGin & gin );
+  SectionGin asGin() const;
+  void       generate( Generator & gen, Boolean fullSection = true, Boolean finish = true );
+  void       create( Boolean needInit = false );
+  void       enumerateLabels( IComboBox * labels );
+  virtual IString asString() const;
+  static VySection * newSection();
+
+  // file save & commit
+  void setSaveFilename( const IString & filename );
+  void setSaveOffset( unsigned long offset );
+  void commitSave();
+
+
+//
+// Private
+//
+private:
+  void    construct();
+  void    destruct();
+  void    setTemporaryFile();
+  Boolean hasClipboardData();
+  void    generateFromClipboard( Generator & gen, Boolean fullSection );
+  void    generateToClipboard( Boolean fullSection );
+  Boolean confirmFlow( FlowItem & flow );
+
+  IViewPort * _viewport;
+  Boolean     _empty;
+
+  // art support
+  Boolean     _artLoaded;
+
+  // file save & commit
+  IString       _saveFilename;
+  unsigned long _saveOffset;
+
+  // clipboard format
+  static const char * clipboardFormat;
+  static const IClipboard::FormatHandle clipboardFormatHandle;
+

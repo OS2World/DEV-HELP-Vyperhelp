@@ -1,0 +1,17 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual FontItem* item() const;
+  virtual VyFont& setItem(FontItem* aItem);
+  virtual IFont font() const;
+  virtual VyFont& setFont(const IFont& aFont);
+
+  static INotificationId itemId;
+  static INotificationId fontId;
+
+private:
+  void construct();
+  FontItem* iItem;
+  IFont iFont;
+// Feature source code generation ends here.

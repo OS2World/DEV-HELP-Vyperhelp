@@ -1,0 +1,72 @@
+
+all: \
+    .\vyx.exe
+
+.\ConsoleIndicator.obj: \
+    d:\proj\vyx\ConsoleIndicator.cpp \
+    {d:\proj\vyx;$(INCLUDE);}ConsoleIndicator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\vyx;$(INCLUDE);}MekTek.hpp
+
+.\Main.obj: \
+    d:\proj\vyx\Main.cpp \
+    {d:\proj\vyx;$(INCLUDE);}TextParser.hpp \
+    {d:\proj\vyx;$(INCLUDE);}LoadParser.hpp \
+    {d:\proj\vyx;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\vyx;$(INCLUDE);}IpfParser.hpp \
+    {d:\proj\vyx;$(INCLUDE);}TraceGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}TextGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}IPFGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}SaveGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}HeaderGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}RtfGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}HpjGenerator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ConsoleIndicator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Parser.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Gin.hpp \
+    {d:\proj\vyx;$(INCLUDE);}InputBinaryFile.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Filename.hpp \
+    {d:\proj\vyx;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\vyx;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\vyx;$(INCLUDE);}SymbolLookup.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Footnote.hpp \
+    {d:\proj\vyx;$(INCLUDE);}StringPair.hpp \
+    {d:\proj\vyx;$(INCLUDE);}PanelLink.hpp \
+    {d:\proj\vyx;$(INCLUDE);}IpfParser.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Generator.hpp \
+    {d:\proj\vyx;$(INCLUDE);}OutputBinaryFile.hpp \
+    {d:\proj\vyx;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\vyx;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\vyx;$(INCLUDE);}RtfGenerator.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Parser.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Distance.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\vyx;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Gin.ipp \
+    {d:\proj\vyx;$(INCLUDE);}BinaryFile.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\vyx;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\vyx;$(INCLUDE);}SymbolLookup.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Footnote.ipp \
+    {d:\proj\vyx;$(INCLUDE);}StringPair.ipp \
+    {d:\proj\vyx;$(INCLUDE);}PanelLink.ipp \
+    {d:\proj\vyx;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Registration.hpp \
+    {d:\proj\vyx;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Generator.ipp \
+    {d:\proj\vyx;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\vyx;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Distance.ipp \
+    {d:\proj\vyx;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\vyx;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\vyx;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\vyx;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\vyx;$(INCLUDE);}Registration.ipp \
+    {d:\proj\vyx;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\vyx;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\vyx;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\vyx;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\vyx;$(INCLUDE);}ExpirationDate.ipp

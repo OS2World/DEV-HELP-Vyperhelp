@@ -1,0 +1,26 @@
+
+void VySectionProperties::construct()
+{
+  iLoaded = false;
+}
+
+
+// Feature source code generation begins here...
+INotificationId VySectionProperties::loadedId = "VySectionProperties::loaded";
+
+Boolean VySectionProperties::isLoaded() const
+{
+  return iLoaded;
+}
+
+VySectionProperties& VySectionProperties::enableLoaded(Boolean enable)
+{
+  if (!(iLoaded == enable))
+  {
+    iLoaded = enable;
+    notifyObservers(INotificationEvent(VySectionProperties::loadedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

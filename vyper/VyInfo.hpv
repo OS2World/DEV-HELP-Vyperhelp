@@ -1,0 +1,9 @@
+
+// default version and copyright are blank
+#ifndef VVERSION
+  #define VVERSION ""
+#endif
+#ifndef VCOPYRIGHT
+  #define VCOPYRIGHT ""
+#endif
+

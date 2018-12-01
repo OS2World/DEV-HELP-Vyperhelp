@@ -1,0 +1,148 @@
+
+all: \
+    .\vedit.exe
+
+.\VFrame.obj: \
+    D:\proj\vedit\VFrame.cpp \
+    {D:\proj\vedit;$(INCLUDE);}vedit.h \
+    {D:\proj\vedit;$(INCLUDE);}VPort.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vedit;$(INCLUDE);}vydit.h \
+    {D:\proj\vedit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.ipp \
+    {D:\proj\vedit;$(INCLUDE);}VFrame.hpp
+
+.\Main.obj: \
+    D:\proj\vedit\Main.CPP \
+    {D:\proj\vedit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}vedit.h \
+    {D:\proj\vedit;$(INCLUDE);}VPort.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vedit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vedit;$(INCLUDE);}vydit.h \
+    {D:\proj\vedit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.ipp \
+    {D:\proj\vedit;$(INCLUDE);}VFrame.hpp
+
+.\VPort.obj: \
+    D:\proj\vedit\VPort.cpp \
+    {D:\proj\vedit;$(INCLUDE);}TraceGenerator.hpp \
+    {D:\proj\vedit;$(INCLUDE);}TextParser.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FontItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}BoldItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ItalicItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}UnderlineItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}LinkItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SpaceItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}NewLineItem.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FlowGenerator.hpp \
+    {D:\proj\vedit;$(INCLUDE);}vedit.h \
+    {D:\proj\vedit;$(INCLUDE);}VPort.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Parser.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vedit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vedit;$(INCLUDE);}FontItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}BoldItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}ItalicItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}UnderlineItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}LinkItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vedit;$(INCLUDE);}FlowGeneratorContext.hpp \
+    {D:\proj\vedit;$(INCLUDE);}vydit.h \
+    {D:\proj\vedit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vedit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vedit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Parser.ipp \
+    {D:\proj\vedit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vedit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vedit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vedit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vedit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vedit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vedit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vedit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}EditorCursor.ipp \
+    {D:\proj\vedit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vedit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vedit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vedit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.hpp \
+    {D:\proj\vedit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vedit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vedit;$(INCLUDE);}View.ipp
+
+.\vedit.res: \
+    D:\proj\vedit\vedit.RC

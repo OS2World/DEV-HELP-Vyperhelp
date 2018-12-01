@@ -1,0 +1,276 @@
+<!-- IPF.DTD Grammer - MekTek -->
+<!-- modified from BASICDOC Version 0.70  03-03-86 -->
+
+<!ENTITY % doctype  "userdoc" >
+                 <!-- To enter delimiters as data -->
+<!ENTITY lt     SDATA     "<"   --=less-than sign R:-->
+<!ENTITY gt     SDATA     ">"   --=greater-than sign R:-->
+<!ENTITY sol    SDATA     "/"   --=solidus-->
+
+                  <!-- SHORTREF entities and maps -->
+<!ENTITY eqtag  ENDTAG    "q"       -- Quote end-tag -->
+<!ENTITY qtag   STARTTAG  "q"       -- Quote start-tag  -->
+<!ENTITY ptag   STARTTAG  "p"       -- Paragraph start-tag -->
+<!ENTITY endtag ENDTAG    ""        -- Generic end-tag -->
+<!SHORTREF docmap   '"'           qtag    -- Quote start-tag  --
+                    "&#RS;&#RE;"  ptag    -- Blank line is a paragraph start -->
+<!SHORTREF qmap     '"'           eqtag   -- Quote end-tag  -->
+<!SHORTREF eolmap   '"'           qtag    -- Quote start-tag  --
+                    "&#RE;"       endtag  -- generic end-tag-->
+<!USEMAP #EMPTY (lines|xmp) >
+<!USEMAP docmap %doctype >
+<!USEMAP qmap q >
+<!USEMAP eolmap (ptoc|h1|h2|h3|h4|h5|h6) >
+
+<!ENTITY % hp       "hp1|hp2|hp3|hp4|hp5|hp6|hp7|hp8|hp9|q|phrase" -- Hilighted Phrases -->
+<!ENTITY % h        "h1|h2|h3|h4|h5|h6" -- Headings -->
+<!ENTITY % ulist    "ol|sl|ul" -- unit-item lists -->
+<!ENTITY % list     "%ulist;|dl|parml" -- lists -->
+<!ENTITY % inx      "i1|i2" -- index -->
+<!ENTITY % phtext   "#PCDATA | %hp;" -- phrase text -->
+<!ENTITY % bde      "fig|xmp|lines|artwork|note|table">
+<!ENTITY % cbde     "%phtext;|%list;|link">
+
+                        <!-- Basic Document -->
+<!--      ELEMENTS    MIN   CONTENT (EXCEPTIONS) -->
+<!ELEMENT %doctype    - -
+          (frontm?, body) +(fn)>
+<!--      ELEMENTS NAME     VALUE             DEFAULT -->
+<!ATTLIST %doctype sec      CDATA             "IBM Confidential"
+                        -- Document Profile --
+-- Line space --   lnspace  NUTOKEN           0p
+                   gutter   NUTOKEN           1p
+                   h0pos    NAME              left
+                   h1pos    NAME              left
+                   h2pos    NAME              left
+                   h3pos    NAME              left
+                   h4pos    NAME              left
+                   align    NAME              left
+                   indent   NUTOKEN           0p
+                   duplex   NAME              yes
+                   omargin  NUTOKEN           5p
+                   imargin  NUTOKEN           6p
+                   tmargin  NUTOKEN           4p
+                   bmargin  NUTOKEN           6p
+                   headsize NUTOKEN           4p
+                   footsize NUTOKEN           3p
+                   rhrfrule NAME              none
+                   ptrules  NUTOKEN           0p0.8
+                   mintext  NUTOKEN           6p
+                   layout   NMTOKEN           1
+                   bmlayout NMTOKEN           2
+                   hangchar CDATA             #IMPLIED
+                   idxchar  CDATA             #IMPLIED
+                   xlate    CDATA             #IMPLIED
+                   style    (pc|general)      general
+                   hyphen   (hyphen|nohyphen) nohyphen
+                   leader   (leader|noleader) noleader
+                   fbc      (fbc|nofbc)       nofbc
+                   secnum   CDATA             #IMPLIED
+                   headcont CDATA             #IMPLIED
+                   tochd    NUTOKENS          '0 1 2 3 4'
+                   ptochd   NMTOKENS          none>
+
+
+       <!-- FRONT MATTER, BODY, APPENDIXES, AND BACKMATTER  -->
+<!--      ELEMENTS    MIN   CONTENT (EXCEPTIONS) -->
+<!ELEMENT frontm      - O   ((titlep?, preface?, abstract?, toc?,
+                            figlist,figentry*)?, (tlist,tblentry*)?)>
+
+                          <!-- Title Page -->
+<!--      ELEMENTS    MIN   CONTENT (EXCEPTIONS) -->
+<!ELEMENT titlep      - O   (title & docnum? & date? & author?)>
+<!ATTLIST titlep   align    NAME                                      right>
+<!ELEMENT title       - O   (tline+)>
+<!ATTLIST title    stitle   CDATA                                     #IMPLIED>
+<!ELEMENT tline       O O   (#PCDATA)>
+<!ELEMENT docnum      - O   (#PCDATA)    -- Document Number -->
+<!ELEMENT author      - O   (#PCDATA)>
+<!ELEMENT preface     - O   (%h; | p | %list; | %bde;)*>
+<!ATTLIST (preface,abstract,toc,figlist,tlist)
+                   stitle   CDATA             #IMPLIED
+                   id       ID                #IMPLIED
+                   heading  CDATA             #IMPLIED>
+<!ELEMENT abstract    - O   (%h; | p | %list; | %bde;)*>
+<!ELEMENT toc         - O   (tocentry*) -- Table of Contents -->
+<!ELEMENT ptoc        - O   EMPTY        -- Part TOC -->
+<!ELEMENT tocentry    - O   (#PCDATA)    -- TOC Entry -->
+<!ATTLIST tocentry hdlevel  NUMBER            #REQUIRED
+                   pgnum    CDATA             #REQUIRED>
+<!ELEMENT figlist     - O   EMPTY        -- Figure List -->
+<!ELEMENT figentry    - O   (#PCDATA)    -- Figure list entry -->
+<!ATTLIST figentry fignum   NUMBER            #REQUIRED
+                   pgnum    CDATA             #REQUIRED>
+<!ELEMENT tlist       - O   EMPTY        -- List of tables -->
+<!ELEMENT tblentry    - O   (#PCDATA)    -- Table list entry -->
+<!ATTLIST tblentry tblnum   NUMBER            #REQUIRED
+                   pgnum    CDATA             #REQUIRED>
+<!ELEMENT body        O O   (%h; | p | %list; | %bde;)* +(%inx;)>
+<!--      ELEMENTS    MIN   CONTENT (EXCEPTIONS) -->
+
+                           <!-- Headings -->
+<!ELEMENT (h1,h2,h3,h4,h5,h6) - O   (%phtext;)+  -(%inx;)>
+<!ATTLIST (h1,h2,h3,h4,h5,h6,li,fn)
+                   id      ID                 #IMPLIED>
+<!ELEMENT p           O O               -- Paragraph --
+                            (%cbde; | xmp | lines)*>
+
+
+                     <!-- Highlighted Phrases -->
+<!ELEMENT (hp1,hp2,hp3,hp4,hp5,hp6,hp7,hp8,hp9)
+                      - -   (%cbde;|p|lines|note)*>
+
+ <!-- TAG, ATTR, CONTROL WORD, PARAMETER VARIABLE, EXAMPLE PHRASE -->
+<!--      ELEMENTS    MIN   CONTENT (EXCEPTIONS) -->
+
+<!ELEMENT q           - -   (%phtext;)+ -- Quoted phrase -->
+<!ELEMENT phrase      - -   (%phtext;)+ -(phrase)>
+
+                            <!-- Lists -->
+<!ELEMENT sl                 - O   (li,lp?)+   -- Simple list -->
+<!ATTLIST (sl,ul,ol)
+                  compact    (compact)        #IMPLIED>
+<!ELEMENT ul                 - O   (li,lp?)+   -- Unordered list -->
+<!ELEMENT ol                 - O   (li,lp?)+   -- Ordered list -->
+<!ELEMENT li                 - O               -- List item --
+                           (%cbde; |p| %bde;)+ -(fig|artwork)>
+<!ELEMENT lp                 - O               -- List part --
+                                   (%phtext; | link| p |xmp)*>
+<!ELEMENT dl                 - O               -- Definition list --
+                                   ( (dthd,ddhd)?, (dt,dd,lp?)+ )>
+<!ATTLIST dl      headhi     NUMBER           2
+                  termhi     NUMBER           2
+                  tsize      NUTOKEN          10
+                  break      (break)          #IMPLIED
+                  compact    (compact)        #IMPLIED>
+<!ELEMENT dd                 - O               -- Definition description --
+                                   (%cbde; | p | %bde;)+ -(fig)>
+<!ELEMENT dt                 - O   (#PCDATA|q)+ -- Definition term -->
+<!ELEMENT ddhd               - O   (#PCDATA)    -- Heading for DDs -->
+<!ELEMENT dthd               - O   (#PCDATA)    -- Heading for DTs -->
+
+<!ELEMENT note               - O   (%phtext; | p | link)+>
+
+            <!-- ARTWORK, LINES, EXAMPLES, AND FIGURES -->
+<!ELEMENT artwork            - O   EMPTY>
+<!ATTLIST artwork label      CDATA            #IMPLIED
+                  artwidth   NUTOKEN          #REQUIRED
+                  artdepth   NUTOKEN          #REQUIRED
+                  fileid     NMTOKEN          #IMPLIED>
+<!ELEMENT xmp                O O               -- Example --
+                                (%phtext; | link | figseg)+>
+<!ATTLIST xmp     keep       NUMBER           40
+                  width      NMTOKEN          column>
+<!ELEMENT lines              - O               -- Line group --
+                                   (%phtext; | link)+>
+<!ELEMENT fig                - O               -- Figure --
+                 ((%cbde;|%bde;|figseg)+,(figcap,figdesc?))  -(fig|table)>
+<!ATTLIST fig     id         ID                                #IMPLIED
+                  place      (TOP|BOTTOM|INLINE|FLOAT|FACING)  inline
+                  width      NMTOKEN                           column
+                  frame      CDATA                             rule
+                  rulewt     NMTOKEN                           #IMPLIED>
+
+<!ELEMENT figcap             - O   (%phtext;)+ -- Figure caption -->
+<!ELEMENT figdesc            - O   (%cbde;)    -- Figure description -->
+<!ELEMENT figseg             - O   EMPTY        -- Figure segment -->
+
+                    <!-- Tables -->
+<!ELEMENT table  - O          (thead?,tfoot?,(tcap,tdesc?)?,row*)>
+<!ATTLIST table    id         ID                    #IMPLIED
+                   tdef       IDREF                 #IMPLIED
+                   adjtext    CDATA                 #IMPLIED
+                   keep       (YES|NO)              #IMPLIED
+                   place      (COL|PAGE)            #IMPLIED
+                   offset     NUTOKEN               #IMPLIED
+                   rotate     (0 | 90 | 180 | 270)  #IMPLIED
+                   twidth     NMTOKEN               #IMPLIED
+                   hborder    NUTOKEN               #IMPLIED
+                   vborder    NUTOKEN               #IMPLIED
+                   arrange    CDATA                 #IMPLIED
+                   widths     CDATA                 #IMPLIED
+                   align      NAMES                 #IMPLIED
+                   flow       NAMES                 #IMPLIED
+                   hilight    NUMBERS               #IMPLIED
+                   hrules     NUTOKENS              #IMPLIED
+                   vrules     NUTOKENS              #IMPLIED
+                   lm         NUTOKENS              #IMPLIED
+                   rm         NUTOKENS              #IMPLIED
+                   tm         NUTOKENS              #IMPLIED
+                   bm         NUTOKENS              #IMPLIED>
+
+<!ELEMENT row                 - O   (c+)  -- Table row -->
+<!ATTLIST row      rdef       IDREF                 #IMPLIED
+                   arrange    CDATA                 #IMPLIED
+                   widths     CDATA                 #IMPLIED
+                   align      NAMES                 #IMPLIED
+                   flow       NAMES                 #IMPLIED
+                   hilight    NUMBERS               #IMPLIED
+                   hrules     NUTOKENS              #IMPLIED
+                   vrules     NUTOKENS              #IMPLIED
+                   lm         NUTOKENS              #IMPLIED
+                   rm         NUTOKENS              #IMPLIED
+                   tm         NUTOKENS              #IMPLIED
+                   bm         NUTOKENS              #IMPLIED>
+
+<!ELEMENT c                   - O         -- Table cell --
+                   (#PCDATA|p|%list|%bde;|link|%hp;)*  -(fig)>
+<!ATTLIST c        cdef       IDREF                 #IMPLIED
+                   num        NUMBER                #IMPLIED
+                   align      NAME                  #IMPLIED
+                   flow       NAME                  #IMPLIED
+                   hilight    NUMBER                #IMPLIED
+                   hrules     NUTOKEN               #IMPLIED
+                   vrules     NUTOKEN               #IMPLIED
+                   lm         NUTOKEN               #IMPLIED
+                   rm         NUTOKEN               #IMPLIED
+                   tm         NUTOKEN               #IMPLIED
+                   bm         NUTOKEN               #IMPLIED>
+<!ELEMENT thead             - O   (row*)  -- Table head -->
+<!ELEMENT tfoot             - O   (row*)  -- Table foot -->
+<!ELEMENT tcap              - O   (#PCDATA)   -- Table caption -->
+<!ELEMENT tdesc             - O   (%phtext;)* -- Table description -->
+<!ELEMENT td                - O   EMPTY>
+
+                <!-- FOOTNOTES AND TITLE CITATIONS -->
+<!ELEMENT fn                - O   (%cbde; | p)+ -(fn) -- Footnote -->
+
+
+                       <!-- Link References -->
+<!ELEMENT link              - O    EMPTY    -- Heading reference -->
+<!ATTLIST link
+                   reftype    (hd|fn|launch|inform) #REQUIRED
+                   res        NUMBER                #IMPLIED
+                   refid      IDREF                 #REQUIRED
+                   auto       ()                    #IMPLIED
+                   -- for launch links --
+                   database   CDATA                 #IMPLIED
+                   object     CDATA                 #IMPLIED
+                   data       CDATA                 #IMPLIED
+                   -- for hd links --
+                   viewport   ()                    #IMPLIED
+                   dependent  ()                    #IMPLIED
+                   split      ()                    #IMPLIED
+                   group      NUMBER                #IMPLIED
+                   vpx        CDATA                 #IMPLIED
+                   vpy        CDATA                 #IMPLIED
+                   vpcx       CDATA                 #IMPLIED
+                   vpcy       CDATA                 #IMPLIED
+                   titlebar   CDATA                 #IMPLIED
+                   scroll     (horizontal|vertical|both|none) both
+                   rules      (border|sizeborder|none)        sizeborder
+                   -- add x,y,cx,cy for artlinks! --
+
+
+                        <!-- Index Entries -->
+<!ELEMENT i1                 - O   (#PCDATA)  -- Index entry 1 -->
+<!ATTLIST i1      id         ID                     #IMPLIED
+                  global     ()                     #IMPLIED
+                  roots      NAMES                  #IMPLIED
+                  sortkey    CDATA                  #IMPLIED>
+<!ELEMENT i2                 - O   (#PCDATA)  -- Index entry 2 -->
+<!ATTLIST i2      global     ()                     #IMPLIED
+                  sortkey    CADATA                 #IMPLIED
+                  refid      IDREF                  #IMPLIED>
+
+

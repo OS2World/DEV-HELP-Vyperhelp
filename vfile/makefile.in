@@ -1,0 +1,6 @@
+ -+.\OutputBinaryFile.obj &
+ -+.\LoadParser.obj &
+ -+.\LoadGenerator.obj &
+ -+.\SaveGenerator.obj &
+ -+.\BinaryFile.obj &
+ -+.\InputBinaryFile.obj;

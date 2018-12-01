@@ -1,0 +1,262 @@
+************************************
+Generator for Hypertext/Help Viewers
+************************************
+
+Parser
+  add cancel() support so a long operation can be canceled
+    add a check to setCurrent() calls
+    simply throw an exception "Canceled by user"
+
+CodePage
+  add support for "Symbol" character set
+    is it a known code page?
+    add a special table with known mapping?
+  if translated char is 0xff, it is wrongly converted to substitution (WinCp)
+    y umlaut is 0xff in CP 1004
+  if translated char is 0x1a, it is wrongly converted to substitution (iconv)
+  use Unicode functions for translation?
+
+Symbol
+  should symbol support substitution string?
+
+Build issues
+  Use ordinals for export? (hide interface)
+  export collection class instances
+
+Generic filter for redundant Gins
+  monitor Gins as they are passed in
+  save them in a GinList until an "output" gin is encountered (section, text, art, etc)
+  remove redundant styles (font, color, bold, etc)
+  remove useless Push-...-Pop sections
+
+handleXxx should return true if handled
+  can then add handleUnknown to allow special handling for unknown Gins
+  e.g., VySectionGenerator passes on requests to FlowGenerator
+
+General To Do
+  limit IDs to 16-bit (IPF supports 16-bit, HPJ supports 32-bit)
+  popup/footnotes options:
+    SectionGin, level=0 flags a footnote
+      implies hidden, window=footnote
+    add FootnoteGin, which acts like SectionGin level=0
+    (both above put burden on WinHelp parser)
+    or need to add optional windowId to LinkGin?
+      this is more difficult
+      in IPF, panels and footnotes are distinct
+  how to set main window ID (main window size, etc)
+  rethink Ruler
+
+Test cases
+  "words" longer than max output line
+  try max output line = 1?
+
+generic distance units conversion?
+add option to force break at column N (255 for IPF)
+
+
+** QUESTIONS
+
+Need to support default settings?
+  allow writer to set a default GinList to be used when each section starts
+  may also need a GinList when a section is done
+
+** ASSUMPTIONS
+
+  No paper output specifications (page info, etc)
+  No authoring information
+  There is a single basic linear order (contents)
+
+** TARGET SPECIFIC
+
+Need a general way to maintain target-specific markup?  Styles is one
+way to do this, but is it enough?  For example:
+
+  IPF colors: only supports a specific subset
+  IPF Fonts: ditto
+  IPF tables
+    no nesting within
+    no font/attribute/margin changes
+    no artwork
+  HTML <strong> and other tags for logical context
+  WinHelp non-scrolling region
+
+** STYLE SUPPORT
+
+First release won't support "styles", but we need a way of maintaining style
+information, particularly predefined styles for a given target.  For example,
+IPF's :dl, :caution, :xmp... HTML's <strong>, <blockquote>, etc
+
+We may want to define Gins for each of these styles and have the default
+stream operation do the generic conversion.  For example, for StrongGin
+the default << operator would send a BoldGin, however HTML would recognize
+the StrongGin and override the default to output a <strong> tag.
+
+Character styles have name, markupBefore and markupAfter.  Paragraph
+styles have name, markupBefore, markupAfter, merkupBeforeRow, markupAfterRow.
+
+** GLOSSARY/TERM SUPPORT
+
+First release won't support Terms/Macros/Entities, but we probably want to
+add this to a later release, since IPF and HTML both support it.  The idea
+would be to associate a string with an identifier.  For example, "AKD" would
+be "Anne Kramer Designs".
+
+Glossary terms could also include viewer-generated stuff like current
+date, filename, document title, author, etc...
+
+** PREDEFINED STYLES/COLORS/FONTS...
+
+Colors
+  Default
+  Blue
+  Cyan
+  Green
+  Neutral
+  Red
+  Yellow
+  other new colors
+  Pink (hp9)
+Fonts
+  Courier
+  Tms Rmn
+  Helv
+  Default
+  Mono
+Character Styles
+  Hp1       ul off, bold off, italic on | italic off
+  Hp2       ul off, bold on, italic off | bold off
+  Hp3       ul off, bold on, italic on | bold off, italic off
+  Hp4       ul off, bold off, italic off, fg blue | fg default
+  Hp5       ul on, bold off, italic off, fg default | ul off
+  Hp6       ul on, bold off, italic on, fg default | ul off, italic off
+  Hp7       ul on, bold on, italic on, fg default | ul off, italic off, bold off
+  Hp8       ul off, bold off, italic off, fg red | fg default
+  Hp9       ul off, bold off, italic off, fg pink | fg default
+  Cite      push, italic on | pop
+  Code      push, font mono | pop
+  Em        push, italic on | pop
+  Kbd       push, font mono | pop
+  Samp      push, font samp | pop
+  Strong    push, bold on | pop
+  Var       push, italic on | pop
+  Tt        push, font mono | pop
+  Bold      push, bold on | pop
+  Italic    push, italic on | pop
+Paragraph Styles
+  (impled <br> or <p> before each style)
+  (includes before/after for style and before/after for each row)
+  Caution
+    bold on, text, bold off, br |
+    |
+  Cgraphic
+    push, font mono, wrap off | pop, br
+    |
+  Dl
+    push, ruler | pop
+
+  Fig
+    push, font default, wrap off | pop
+    |
+  Figcap
+    |
+    |
+  Lines
+    push, font default, align l/r/c, wrap off | pop
+    |
+  Note
+    bold on, text, "  ", bold off |
+    |
+  Nt
+    bold on, text, "  ", bold off, push, lmargin current | pop
+    |
+  Ol
+    push, lmargin +2c, ruler, outline +1 arabic append ". " | pop
+    [br], col |
+  Parml
+    push, lmargin +2c
+  Sl
+  Table
+  Ul
+  Warning
+  Xmp (are IPF and HTML the same?)
+  Pre
+  Listing
+  Address
+  Blockquote
+  Dir
+  Menu
+Windows
+  Footnote (Popup)
+  Popup, MainScroll, MainStatic, AuxScroll, AuxStatic...
+Panel IDs
+  keys help
+  contents
+  index
+Actions/Macros
+  jump to contents, etc
+  (WinHelp macros)
+  (IPF PM messages)
+Terms
+  Author
+  Current date
+  Filename
+
+
+** LABELS
+
+"Labels" can be used as a general concept of a marked position in the text
+which can be used for any of: link targets, cross-references, index entries,
+contents marker, bookmarks, etc...
+
+** ADD NEXT
+
+Styles?
+Hide with multiple keys (and, or, etc)
+index entries which are sorted by a key other than the index text
+Better Table/Tab support
+Buttons
+More graphics formats?
+  SHG -> BMP + artlinks
+Hyper-graphics
+Other renderings (multimedia, app launching)
+Actions other than linking
+  Macros?
+
+
+** ADD LATER
+
+Topic groups
+  to generate See Also lists
+Tours
+  =browse sequences
+  "Contents" is just another tour
+grouping (widow/orphan)
+shading
+headers/footers
+hyphenation
+"page" concepts (page break, margins, numbering, etc)
+vertical alignment (top, center, bottom)
+kerning
+line spacing
+first line (or other) indents
+column gutters
+super/subscript
+outline
+shadow
+strikeout
+double underline
+other underline variations
+all caps
+small caps
+mixed-language documents
+bidirectional
+footnotes/endnotes (except as a popup)
+line numbering
+OLE objects
+annotations
+info properties
+  noprint, nosearch, etc
+label frames (like group boxes)
+paragraph vertical alignment
+build vs run visibility keys
+

@@ -1,0 +1,41 @@
+// Custom code
+private:
+  void construct();
+
+public:
+  IString debugString();
+  static VyKeyword * newKeyword();
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString text() const;
+  virtual VyKeyword& setText(const IString& aText);
+  virtual Boolean isListed() const;
+  virtual VyKeyword& enableListed(Boolean enable = true);
+  virtual Boolean isExternal() const;
+  virtual VyKeyword& enableExternal(Boolean enable = true);
+
+  static INotificationId textId;
+  static INotificationId listedId;
+  static INotificationId externalId;
+
+private:
+  IString iText;
+  Boolean iListed;
+  Boolean iExternal;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString listedString() const;
+  virtual IString externalString() const;
+
+  static INotificationId listedStringId;
+  static INotificationId externalStringId;
+
+private:
+  IString iListedString;
+  IString iExternalString;
+// Feature source code generation ends here.

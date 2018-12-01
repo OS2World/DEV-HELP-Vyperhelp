@@ -1,0 +1,135 @@
+/***************************************************************************
+ * File...... VySettings.hpv
+ * Author.... Mat
+ * Date...... 5/6/99
+ *
+ * Custom declarations for VySettings
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+// Feature source code generation begins here...
+public:
+  virtual ISize frameSize() const;
+  virtual VySettings& setFrameSize(const ISize& aFrameSize);
+  virtual IPoint framePosition() const;
+  virtual VySettings& setFramePosition(const IPoint& aFramePosition);
+  virtual unsigned long frameSplit() const;
+  virtual VySettings& setFrameSplit(unsigned long aFrameSplit);
+  void saveFrameSize();
+  void saveFramePosition();
+  void saveFrameSplit();
+
+  static INotificationId frameSizeId;
+  static INotificationId framePositionId;
+  static INotificationId frameSplitId;
+
+private:
+  void construct();
+
+  ISize iFrameSize;
+  IPoint iFramePosition;
+  unsigned long iFrameSplit;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString saveMask() const;
+  virtual VySettings& setSaveMask(const IString& aSaveMask);
+
+  static INotificationId saveMaskId;
+
+private:
+  IString iSaveMask;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  void saveSaveMask();
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString openMask() const;
+  virtual VySettings& setOpenMask(const IString& aOpenMask);
+  virtual IString importIpfMask() const;
+  virtual VySettings& setImportIpfMask(const IString& aImportIpfMask);
+  virtual IString importWinHelpMask() const;
+  virtual VySettings& setImportWinHelpMask(const IString& aImportWinHelpMask);
+  virtual IString importTextMask() const;
+  virtual VySettings& setImportTextMask(const IString& aImportTextMask);
+  virtual IString exportIpfMask() const;
+  virtual VySettings& setExportIpfMask(const IString& aExportIpfMask);
+  virtual IString exportHtmlSingleMask() const;
+  virtual VySettings& setExportHtmlSingleMask(const IString& aExportHtmlSingleMask);
+  virtual IString exportHtmlFrameMask() const;
+  virtual VySettings& setExportHtmlFrameMask(const IString& aExportHtmlFrameMask);
+  virtual IString exportHtmlHelpMask() const;
+  virtual VySettings& setExportHtmlHelpMask(const IString& aExportHtmlHelpMask);
+  virtual IString exportWinHelpMask() const;
+  virtual VySettings& setExportWinHelpMask(const IString& aExportWinHelpMask);
+  virtual IString exportRtfMask() const;
+  virtual VySettings& setExportRtfMask(const IString& aExportRtfMask);
+  virtual IString exportHeaderMask() const;
+  virtual VySettings& setExportHeaderMask(const IString& aExportHeaderMask);
+  virtual IString exportTextMask() const;
+  virtual VySettings& setExportTextMask(const IString& aExportTextMask);
+  virtual void saveOpenMask();
+  virtual void saveImportIpfMask();
+  virtual void saveImportWinHelpMask();
+  virtual void saveImportTextMask();
+  virtual void saveExportIpfMask();
+  virtual void saveExportHtmlSingleMask();
+  virtual void saveExportHtmlFrameMask();
+  virtual void saveExportHtmlHelpMask();
+  virtual void saveExportWinHelpMask();
+  virtual void saveExportRtfMask();
+  virtual void saveExportTextMask();
+  virtual void saveExportHeaderMask();
+
+  static INotificationId openMaskId;
+  static INotificationId importIpfMaskId;
+  static INotificationId importWinHelpMaskId;
+  static INotificationId importTextMaskId;
+  static INotificationId exportIpfMaskId;
+  static INotificationId exportHtmlSingleMaskId;
+  static INotificationId exportHtmlFrameMaskId;
+  static INotificationId exportHtmlHelpMaskId;
+  static INotificationId exportWinHelpMaskId;
+  static INotificationId exportRtfMaskId;
+  static INotificationId exportHeaderMaskId;
+  static INotificationId exportTextMaskId;
+
+private:
+  IString iOpenMask;
+  IString iImportIpfMask;
+  IString iImportWinHelpMask;
+  IString iImportTextMask;
+  IString iExportIpfMask;
+  IString iExportHtmlSingleMask;
+  IString iExportHtmlFrameMask;
+  IString iExportHtmlHelpMask;
+  IString iExportWinHelpMask;
+  IString iExportRtfMask;
+  IString iExportHeaderMask;
+  IString iExportTextMask;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString graphicMask() const;
+  virtual VySettings& setGraphicMask(const IString& aGraphicMask);
+  virtual void saveGraphicMask();
+
+  static INotificationId graphicMaskId;
+
+private:
+  IString iGraphicMask;
+// Feature source code generation ends here.

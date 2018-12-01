@@ -1,0 +1,1822 @@
+
+all: \
+    .\vydit.LIB
+
+.\WordView.obj: \
+    D:\proj\vydit\WordView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursorSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp
+
+.\WordItem.obj: \
+    D:\proj\vydit\WordItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursorSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp
+
+.\ViewSequence.obj: \
+    D:\proj\vydit\ViewSequence.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp
+
+.\ViewCursor.obj: \
+    D:\proj\vydit\ViewCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp
+
+.\View.obj: \
+    D:\proj\vydit\View.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.ipp
+
+.\UnderlineView.obj: \
+    D:\proj\vydit\UnderlineView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineView.ipp
+
+.\UnderlineItem.obj: \
+    D:\proj\vydit\UnderlineItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineView.ipp
+
+.\SymbolView.obj: \
+    D:\proj\vydit\SymbolView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolView.ipp
+
+.\SymbolItem.obj: \
+    D:\proj\vydit\SymbolItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolView.ipp
+
+.\SubjectView.obj: \
+    D:\proj\vydit\SubjectView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp
+
+.\SpaceView.obj: \
+    D:\proj\vydit\SpaceView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceView.ipp
+
+.\SpaceItem.obj: \
+    D:\proj\vydit\SpaceItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceView.ipp
+
+.\SmartText.obj: \
+    D:\proj\vydit\SmartText.cpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceItem.hpp
+
+.\PushView.obj: \
+    D:\proj\vydit\PushView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}PushView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.ipp
+
+.\PushItem.obj: \
+    D:\proj\vydit\PushItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.ipp
+
+.\PopView.obj: \
+    D:\proj\vydit\PopView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp
+
+.\PopItem.obj: \
+    D:\proj\vydit\PopItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.ipp
+
+.\PlacedView.obj: \
+    D:\proj\vydit\PlacedView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp
+
+.\PenState.obj: \
+    D:\proj\vydit\PenState.cpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp
+
+.\PenPoint.obj: \
+    D:\proj\vydit\PenPoint.cpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp
+
+.\Pen.obj: \
+    D:\proj\vydit\Pen.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FastContext.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp
+
+.\ParagraphView.obj: \
+    D:\proj\vydit\ParagraphView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphView.ipp
+
+.\ParagraphItem.obj: \
+    D:\proj\vydit\ParagraphItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphView.ipp
+
+.\Page.obj: \
+    D:\proj\vydit\Page.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FastContext.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp
+
+.\OrderedViewCursor.obj: \
+    D:\proj\vydit\OrderedViewCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp
+
+.\OrderedItemCursor.obj: \
+    D:\proj\vydit\OrderedItemCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp
+
+.\NullViewCursor.obj: \
+    D:\proj\vydit\NullViewCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.ipp
+
+.\NullItemCursor.obj: \
+    D:\proj\vydit\NullItemCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullItemCursor.ipp
+
+.\NewLineView.obj: \
+    D:\proj\vydit\NewLineView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}NewLineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineView.ipp
+
+.\NewLineItem.obj: \
+    D:\proj\vydit\NewLineItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineView.ipp
+
+.\LinkView.obj: \
+    D:\proj\vydit\LinkView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkView.ipp
+
+.\LinkItem.obj: \
+    D:\proj\vydit\LinkItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkView.ipp
+
+.\LineView.obj: \
+    D:\proj\vydit\LineView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineSubviewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineSubviewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullViewCursor.ipp
+
+.\LineSubviewCursor.obj: \
+    D:\proj\vydit\LineSubviewCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineSubviewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineSubviewCursor.ipp
+
+.\LineEndView.obj: \
+    D:\proj\vydit\LineEndView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp
+
+.\Kursor.obj: \
+    D:\proj\vydit\Kursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Kursor.hpp
+
+.\ItemSequence.obj: \
+    D:\proj\vydit\ItemSequence.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp
+
+.\ItemCursor.obj: \
+    D:\proj\vydit\ItemCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp
+
+.\Item.obj: \
+    D:\proj\vydit\Item.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NullItemCursor.ipp
+
+.\ItalicView.obj: \
+    D:\proj\vydit\ItalicView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicView.ipp
+
+.\ItalicItem.obj: \
+    D:\proj\vydit\ItalicItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicView.ipp
+
+.\IconView.obj: \
+    D:\proj\vydit\IconView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp
+
+.\FormatPen.obj: \
+    D:\proj\vydit\FormatPen.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp
+
+.\FontView.obj: \
+    D:\proj\vydit\FontView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontView.ipp
+
+.\FontItem.obj: \
+    D:\proj\vydit\FontItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontView.ipp
+
+.\FlowView.obj: \
+    D:\proj\vydit\FlowView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowInsertData.hpp
+
+.\FlowItem.obj: \
+    D:\proj\vydit\FlowItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EndItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EndItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SpaceItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowInsertData.hpp
+
+.\FlowGenerator.obj: \
+    D:\proj\vydit\FlowGenerator.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowGenerator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowGeneratorContext.hpp
+
+.\FlowFormatter.obj: \
+    D:\proj\vydit\FlowFormatter.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowFormatter.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp
+
+.\FastContext.obj: \
+    D:\proj\vydit\FastContext.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FastContext.hpp
+
+.\EndView.obj: \
+    D:\proj\vydit\EndView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}EndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EndView.ipp
+
+.\EndItem.obj: \
+    D:\proj\vydit\EndItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}EndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EndItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EndItem.ipp
+
+.\EditorTrigger.obj: \
+    D:\proj\vydit\EditorTrigger.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EditorTrigger.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.ipp
+
+.\EditorCursor.obj: \
+    D:\proj\vydit\EditorCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.ipp
+
+.\Editor.obj: \
+    D:\proj\vydit\Editor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FlowFormatter.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ParagraphItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}NewLineItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EditorTrigger.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ViewSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}LineView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SymbolItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SmartText.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ItalicItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UnderlineItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LinkItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PushView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PopView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Kursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Editor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}LineEndView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}EditorCursor.ipp
+
+.\DrawPen.obj: \
+    D:\proj\vydit\DrawPen.cpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Page.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FastContext.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Page.ipp
+
+.\CharView.obj: \
+    D:\proj\vydit\CharView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursorSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp
+
+.\BoldView.obj: \
+    D:\proj\vydit\BoldView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}BoldView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}DrawPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FormatPen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Pen.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenPoint.ipp
+
+.\BoldItem.obj: \
+    D:\proj\vydit\BoldItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}BoldView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CurrentDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Generator.ipp \
+    {D:\proj\vydit;$(INCLUDE);}BoldItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}BoldView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Registration.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WindowDef.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.hpp \
+    {D:\proj\vydit;$(INCLUDE);}UserKey.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ExpirationDate.ipp
+
+.\ArtView.obj: \
+    D:\proj\vydit\ArtView.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h
+
+.\ArtItem.obj: \
+    D:\proj\vydit\ArtItem.cpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Gin.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}FlowItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}IconView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Distance.ipp \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.hpp \
+    {D:\proj\vydit;$(INCLUDE);}Symbol.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemSequence.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ItemCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}OrderedItemCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}vydit.h \
+    {D:\proj\vydit;$(INCLUDE);}CodePage.ipp \
+    {D:\proj\vydit;$(INCLUDE);}MekTek.hpp \
+    {D:\proj\vydit;$(INCLUDE);}ArtDef.ipp
+
+.\WordViewCursor.obj: \
+    D:\proj\vydit\WordViewCursor.cpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.hpp \
+    {D:\proj\vydit;$(INCLUDE);}CharView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursorSet.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}ViewCursor.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordViewCursor.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Types.hpp \
+    {D:\proj\vydit;$(INCLUDE);}View.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.hpp \
+    {D:\proj\vydit;$(INCLUDE);}WordItem.ipp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.hpp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PlacedView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}Item.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.hpp \
+    {D:\proj\vydit;$(INCLUDE);}PenState.ipp \
+    {D:\proj\vydit;$(INCLUDE);}SubjectView.ipp \
+    {D:\proj\vydit;$(INCLUDE);}FontInfo.ipp
+
+.\vydit.LIB: \
+    .\vydit.dll

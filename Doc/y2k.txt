@@ -1,0 +1,12 @@
+YEAR 2000 STATEMENT
+
+MekTek confirms that VyperHelp (the "Software"), when used in accordance with its associated documentation, has been tested to certify that it will accurately receive, process, and provide date data from, into, and between the twentieth and twenty-first centuries, including the years 1999 and 2000, and make leap year calculations, provided that all other products (whether hardware, software, or firmware) used in combination with the product properly exchange data with it.
+
+Generally, the Software is not date sensitive, and display of date information through the user interface depends on the date data provided by the underlying operating system. The Software uses date information only to enforce the 30 day trial period.
+
+MekTek has performed operational tests of the Software using a number of dates including, but not limited to, December 31, 1999; January 1, 2000; February 29, 2000; and March 1, 2000. According to our tests, the Software should not abnormally end or provide incorrect or invalid results due to date data, including dates that represent a different century, provided that the underlying operating system and other software properly exchange date data with it.
+
+MekTek has not tested the Software on all platforms or all versions of operating systems that it currently supports. Therefore, it is imperative that the user of the Software verify that the underlying operating system and platform support the transition to the year 2000.
+
+THIS DISCLOSURE OF YEAR 2000 READINESS IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND DOES NOT CONSTITUTE A WARRANTY. MEKTEK DISCLAIMS ALL LIABILITY IN CONNECTION WITH THIS DISCLOSURE. 
+

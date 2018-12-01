@@ -1,0 +1,523 @@
+**********************************************************************
+*  See the Software Installer Reference for information on creating a
+*  package file.
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  Service level
+*---------------------------------------------------------------------
+SERVICELEVEL
+   LEVEL = '011100'
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  Include 1 DISK entry for each diskette needed.
+*
+*  The following changes are required:
+*  - Change "<Product Name>" in the each NAME keyword to your product
+*    name.
+*  - Set each VOLUME keyword to a unique value.
+*---------------------------------------------------------------------
+DISK
+   NAME = 'VyperHelp - Diskette 1',
+   VOLUME = 'VYPER01'
+
+DISK
+   NAME = 'VyperHelp - Diskette 2',
+   VOLUME = 'VYPER02'
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  Default directories
+*---------------------------------------------------------------------
+PATH
+   FILE = 'C:/VYPER',
+   FILELABEL = 'Installation directory'
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  Exit to define your product folder's object ID.
+*
+*  The following changes are required:
+*  - Set variable FOLDERID to your folder's object ID; be sure to make
+*    the value sufficiently unique; do not use "PRODFLDR".
+*---------------------------------------------------------------------
+FILE
+   EXITWHEN = 'ALWAYS',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'SETVAR FOLDERID=VYPERHELP'
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  This component creates a folder on the desktop.  You must create
+*  the folder in a hidden component to ensure that deleting your
+*  product does not delete the folder before the objects within the
+*  folder are deleted.
+*---------------------------------------------------------------------
+COMPONENT
+   NAME = 'INSFIRST',
+   ID = 'INSFIRST',
+   DISPLAY = 'NO',
+   SIZE = '10000',
+   SHARED = 'NO',
+   DELETE = 'YES'
+
+*---------------------------------------------------------------------
+*  Include a FILE entry to install the catalog file.
+*
+*  The following changes are required:
+*  - Change the SOURCE and PWS keywords to the name of your catalog
+*    file.
+*---------------------------------------------------------------------
+*FILE
+*   VOLUME        = 'VYPER01',
+*   WHEN          = 'OUTOFDATE',
+*   REPLACEINUSE  = 'I U D R',
+*   UNPACK        = 'NO',
+*   SOURCE        = 'DRIVE: VYPER.ICF',
+*   PWS           = 'VYPER.ICF',
+*   SIZE          = '3000'
+
+*---------------------------------------------------------------------
+*  Set variable CATALOG to be the name of the catalog file;
+*  the variable is used in EPFISINC.PKG.
+*
+*  The following changes are required:
+*  - Change "CATALOG.ICF" in the EXIT keyword to the name of your
+*    catalog file.
+*---------------------------------------------------------------------
+*FILE
+*   EXITWHEN      = 'INSTALL || UPDATE || RESTORE',
+*   EXITIGNOREERR = 'NO',
+*   EXIT          = 'SETVAR CATALOG=VYPER.ICF'
+
+*---------------------------------------------------------------------
+*  Include a FILE entry to install the description file.
+*
+*  The following changes are required:
+*  - Change the SOURCE and PWS keywords to the name of your
+*    description file.
+*---------------------------------------------------------------------
+*FILE
+*   VOLUME        = 'VYPER01',
+*   WHEN          = 'OUTOFDATE',
+*   REPLACEINUSE  = 'I U D R',
+*   UNPACK        = 'NO',
+*   SOURCE        = 'DRIVE: VYPER.DSC',
+*   PWS           = 'VYPER.DSC',
+*   SIZE          = '1000'
+
+*---------------------------------------------------------------------
+*  Create your product's folder on the desktop.
+*
+*  The following changes are required:
+*  - Change "<Product Name>" in the EXIT keyword to your product name.
+*---------------------------------------------------------------------
+FILE
+   EXITWHEN = 'INSTALL || UPDATE',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'CREATEWPSOBJECT WPFolder "VyperHelp"                   <WP_DESKTOP> R                   "OBJECTID=<%FOLDERID%>;"'
+
+*---------------------------------------------------------------------
+*  The included package file will install and register the
+*  Installation Utility.  You do not need to make any changes to
+*  EPFISINC.PKG.
+*---------------------------------------------------------------------
+*INCLUDE
+*   NAME = 'DRIVE: EPFISINC.PKG'
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  Include 1 COMPONENT entry for each component.
+*
+*  The following changes are required:
+*  - Change "Component 1" in the NAME keyword to the name of the
+*    component.
+*  - Describe the component in the DESCRIPTION keyword.
+*
+*  The component must require at least the INSFIRST and DELLAST
+*  components.
+*---------------------------------------------------------------------
+COMPONENT
+   NAME = 'Editor and Converter',
+   ID = 'EDITOR',
+   REQUIRES = 'INSFIRST DELLAST',
+   DISPLAY = 'YES',
+   DESCRIPTION = 'VyperHelp Editor and Converter',
+   SIZE = '4270000',
+   SHARED = 'NO',
+   DELETE = 'YES'
+
+
+*
+* Home Page Object
+*
+
+* Installer always converts two slashes to a backslash!
+*   Workaround: split the URL into two environment variables (URL1 and URL2)
+
+FILE
+   EXITWHEN = 'ALWAYS',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'SETVAR URL1=http:/'
+
+FILE
+   EXITWHEN = 'ALWAYS',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'SETVAR URL2=/www.vyperhelp.com/'
+
+FILE
+   EXITWHEN = 'INSTALL || UPDATE || RESTORE',
+   EXITIGNOREERR = 'YES',
+   EXIT = 'CREATEWPSOBJECT WPUrl "VyperHelp Home Page"                   <%FOLDERID%> R                   "URL=%URL1%%URL2%;OBJECTID=<VYPERURL>;"'
+
+FILE
+   EXITWHEN = 'DELETE',
+   EXITIGNOREERR = 'YES',
+   EXIT = 'DELETEWPSOBJECT <VYPERURL>'
+
+*
+* Conversion Program and Object
+*
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vyx.ex_',
+   VOLUME = 'VYPER01',
+   PWS = 'vyx.exe',
+   SIZE = '18432'
+
+FILE
+   EXITWHEN = 'INSTALL || UPDATE || RESTORE',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'CREATEWPSOBJECT WPProgram "VyperHelp Converter"                   <%FOLDERID%> R                   "EXENAME=%EPFIFILEDIR%//VYX.EXE;STARTUPDIR=%EPFIFILEDIR%;OBJECTID=<VYXEXE>;PARAMETERS=[Input File] [Output File];PROGTYPE=WINDOWABLEVIO;NOAUTOCLOSE=YES;"'
+
+FILE
+   EXITWHEN = 'DELETE',
+   EXITIGNOREERR = 'YES',
+   EXIT = 'DELETEWPSOBJECT <VYXEXE>'
+
+*
+* VyperHelp Editor
+*
+
+*---------------------------------------------------------------------
+*  Include 1 FILE entry for each file in the component.
+*
+*  The following changes are required:
+*  - Change the SOURCE and PWS keywords to the name of the file to
+*    install.
+*---------------------------------------------------------------------
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vyper.ex_',
+   VOLUME = 'VYPER01',
+   PWS = 'VYPER.EXE',
+   SIZE = '591872'
+
+*---------------------------------------------------------------------
+*  Create a program object in the product folder.
+*
+*  The following changes are required:
+*  - Change "COMP1A" in the EXIT keyword to the name of the object.
+*  - Change "COMP1A.EXE" in the EXIT keyword after EXENAME to the
+*    name of the program to run.
+*  - Change "[]" in the EXIT keyword after PARAMETERS to any
+*    parameters required to run the object; if no parameters are
+*    required, delete "PARAMETERS=[];" from the EXIT keyword.
+*  - Change "COMP1A" in the EXIT keyword after OBJECTID to the
+*    program's object ID; be sure to make the value sufficiently
+*    unique; the value must be enclosed in "<>" characters; do not use
+*    "COMP1A" or the value of the FOLDERID variable.
+*---------------------------------------------------------------------
+FILE
+   EXITWHEN = 'INSTALL || UPDATE || RESTORE',
+   EXITIGNOREERR = 'NO',
+   EXIT = 'CREATEWPSOBJECT WPProgram "VyperHelp Editor"                   <%FOLDERID%> R                   "EXENAME=%EPFIFILEDIR%//VYPER.EXE;STARTUPDIR=%EPFIFILEDIR%;OBJECTID=<VYPEREXE>;ASSOCFILTER=*.VYD,,;"'
+
+*---------------------------------------------------------------------
+*  Delete the program object.
+*
+*  The following changes are required:
+*  - Change "COMP1A" in the EXIT keyword to the program's object ID;
+*    be sure to use the object ID that you gave the object when it was
+*    created in the previous FILE entry; the value must be enclosed in
+*    "<>" characters.
+*---------------------------------------------------------------------
+FILE
+   EXITWHEN = 'DELETE',
+   EXITIGNOREERR = 'YES',
+   EXIT = 'DELETEWPSOBJECT <VYPEREXE>'
+
+
+*
+* Other Files
+*
+
+*---------------------------------------------------------------------
+*  Another FILE entry.
+*
+*  The following changes are required:
+*  - Change the SOURCE and PWS keywords to the name of the file to
+*    install.
+*---------------------------------------------------------------------
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:cdefine.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'cdefine.llr',
+   SIZE = '1980'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:cnt.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'cnt.llr',
+   SIZE = '1980'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:hpj.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'hpj.llr',
+   SIZE = '7636'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:hpjlist.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'hpjlist.llr',
+   SIZE = '372'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:ipf.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'ipf.llr',
+   SIZE = '223452'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:rtf.ll_',
+   VOLUME = 'VYPER01',
+   PWS = 'rtf.llr',
+   SIZE = '123396'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:cdefine.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'cdefine.dfa',
+   SIZE = '7776'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:cnt.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'cnt.dfa',
+   SIZE = '5676'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:hpj.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'hpj.dfa',
+   SIZE = '26884'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:hpjlist.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'hpjlist.dfa',
+   SIZE = '848'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:ipf.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'ipf.dfa',
+   SIZE = '129696'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:rtf.df_',
+   VOLUME = 'VYPER01',
+   PWS = 'rtf.dfa',
+   SIZE = '47200'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vyper.hl_',
+   VOLUME = 'VYPER01',
+   PWS = 'vyper.hlp',
+   SIZE = '54045'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vyper.vy_',
+   VOLUME = 'VYPER01',
+   PWS = 'vyper.vyd',
+   SIZE = '101793'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   SOURCE = 'DRIVE:readme.txt',
+   VOLUME = 'VYPER01',
+   PWS = 'readme.txt',
+   SIZE = '3712'
+
+*
+* DISK 2 Files
+*
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vydit.dl_',
+   VOLUME = 'VYPER02',
+   PWS = 'vydit.dll',
+   SIZE = '149551'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vygen.dl_',
+   VOLUME = 'VYPER02',
+   PWS = 'vygen.dll',
+   SIZE = '452658'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:VYCOM30.DL_',
+   VOLUME = 'VYPER02',
+   PWS = 'VYCOM30.DLL',
+   SIZE = '379316'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vycoob3.DL_',
+   VOLUME = 'VYPER02',
+   PWS = 'vycoob3.DLL',
+   SIZE = '202455'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vycoou3.DL_',
+   VOLUME = 'VYPER02',
+   PWS = 'vycoou3.DLL',
+   SIZE = '1683891'
+
+FILE
+   WHEN = 'OUTOFDATE',
+   REPLACEINUSE = 'I U D R',
+   UNPACK = 'YES',
+   SOURCE = 'DRIVE:vycoov3.DL_',
+   VOLUME = 'VYPER02',
+   PWS = 'vycoov3.DLL',
+   SIZE = '46575'
+
+
+*
+* CONFIG.SYS ENTRIES
+*
+
+UPDATECONFIG
+   VAR = 'LIBPATH',
+   ADDSTR = '%EPFIFILEDIR%;',
+   ADDWHEN = 'INSTALL',
+   DELETEWHEN = 'DELETE'
+
+UPDATECONFIG
+   VAR = 'SET PATH',
+   ADDSTR = '%EPFIFILEDIR%;',
+   ADDWHEN = 'INSTALL',
+   DELETEWHEN = 'DELETE'
+
+ADDCONFIG
+   VAR = 'SET TABPATH',
+   ADDSTR = '%EPFIFILEDIR%',
+   ADDWHEN = 'INSTALL',
+   DELETEWHEN = 'DELETE',
+   UNIQUE = 'YES'
+
+
+
+**********************************************************************
+
+
+*---------------------------------------------------------------------
+*  This component deletes the product folder; it must be the last
+*  COMPONENT entry in the package file.
+*
+*  No changes are required to any entry in this component.
+*---------------------------------------------------------------------
+COMPONENT
+   NAME = 'DELLAST',
+   ID = 'DELLAST',
+   DISPLAY = 'NO',
+   SIZE = '10000',
+   SHARED = 'NO',
+   DELETE = 'YES'
+
+FILE
+   EXITWHEN = 'DELETE',
+   EXITIGNOREERR = 'YES',
+   EXIT = 'DELETEWPSOBJECT <%FOLDERID%>'
+

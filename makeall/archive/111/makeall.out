@@ -1,0 +1,1098 @@
+NOTE 11/25/00:
+	I noticed that HTMLGEN was not rebuilt as part of the final 1.11 build!
+	According to the directory contents, it was up to date but probably has debug info.
+	It passed all testing OK, so I will not rebuild 1.12 unless/until I see a need.
+
+****
+**** MAKEALL on 25 Nov 2000 at 11:33:09
+****
+options: sx
+versions: REXX=4.00, OS/2=2.40
+cflags: -Gm -Gd -G5 -Tdp -DNDEBUG -DINO_CHECKS -DVVERSION::"\"0.00\"" -DVCOPYRIGHT::"\"Copyright (c) 2000 MekTek. All Rights Reserved.\""
+lflags: /M
+mflags: 
+- skip make
+- backup source
+Zipping source...
+
+
+(0)[D:\proj\generator]zip gen.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: Distance.cpp (deflated 76%)
+updating: distance.hpp (deflated 67%)
+updating: Generator.cpp (deflated 74%)
+updating: Generator.hpp (232 bytes EA's) (deflated 71%)
+updating: Gin.cpp (deflated 85%)
+updating: Gin.hpp (deflated 82%)
+updating: TraceGenerator.cpp (deflated 79%)
+updating: TraceGenerator.hpp (208 bytes EA's) (deflated 75%)
+updating: WindowDef.cpp (deflated 65%)
+updating: windowdef.hpp (60 bytes EA's) (deflated 70%)
+updating: Generator.ipp (deflated 80%)
+updating: Parser.hpp (deflated 59%)
+updating: Symbol.cpp (deflated 81%)
+updating: Symbol.hpp (deflated 69%)
+updating: Symbol.ipp (deflated 55%)
+updating: TextGenerator.cpp (deflated 67%)
+updating: TextGenerator.hpp (208 bytes EA's) (deflated 60%)
+updating: TextParser.cpp (deflated 62%)
+updating: TextParser.hpp (deflated 56%)
+updating: ArtDef.cpp (deflated 68%)
+updating: ArtDef.hpp (24 bytes EA's) (deflated 68%)
+updating: ArtDef.ipp (deflated 59%)
+updating: CodePage.cpp (deflated 65%)
+updating: CodePage.hpp (deflated 58%)
+updating: windowdef.ipp (deflated 73%)
+updating: Generator.txt (232 bytes EA's) (deflated 57%)
+updating: GeneratorDesign.txt (deflated 51%)
+updating: makefile (888 bytes EA's) (deflated 57%)
+updating: promote.cmd (1544 bytes EA's) (deflated 79%)
+updating: EnhancedYacc.cpp (deflated 77%)
+updating: EnhancedYacc.hpp (deflated 64%)
+updating: ExpirationDate.cpp (deflated 58%)
+updating: ExpirationDate.hpp (deflated 57%)
+updating: expirationdate.ipp (deflated 61%)
+updating: Filename.cpp (deflated 78%)
+updating: Filename.hpp (deflated 67%)
+updating: Gin.ipp (deflated 86%)
+updating: mektek.hpp (deflated 58%)
+updating: Parser.cpp (deflated 53%)
+updating: ParserException.cpp (deflated 57%)
+updating: ParserException.hpp (deflated 56%)
+updating: CodePage.ipp (deflated 55%)
+updating: FontInfo.cpp (deflated 71%)
+updating: FontInfo.hpp (deflated 65%)
+updating: FontInfo.ipp (deflated 72%)
+updating: HeaderGenerator.cpp (deflated 58%)
+updating: HeaderGenerator.hpp (208 bytes EA's) (deflated 54%)
+updating: ArtSet.cpp (deflated 62%)
+updating: ArtSet.hpp (deflated 51%)
+updating: ColumnList.cpp (deflated 66%)
+updating: ColumnList.hpp (deflated 51%)
+updating: CurrentDate.cpp (deflated 67%)
+updating: CurrentDate.hpp (deflated 52%)
+updating: distance.ipp (deflated 65%)
+updating: FontDefinition.cpp (deflated 62%)
+updating: FontDefinition.hpp (deflated 62%)
+updating: FontDefinition.ipp (deflated 67%)
+updating: Parser.ipp (deflated 60%)
+updating: ParserIndicator.cpp (deflated 66%)
+updating: ParserIndicator.hpp (deflated 60%)
+updating: ParserIndicator.ipp (deflated 65%)
+updating: Registration.cpp (deflated 76%)
+updating: Registration.hpp (deflated 56%)
+updating: Registration.ipp (deflated 58%)
+updating: UserKey.cpp (deflated 73%)
+updating: UserKey.hpp (deflated 62%)
+updating: UserKey.ipp (deflated 62%)
+updating: WindowSet.cpp (deflated 62%)
+updating: WindowSet.hpp (deflated 53%)
+updating: makefile.dep (deflated 94%)
+  adding: CDefineYacc.cpp (deflated 68%)
+  adding: CDefineYacc.hpp (deflated 54%)
+  adding: Identifier.cpp (deflated 77%)
+  adding: Identifier.hpp (deflated 67%)
+  adding: cdefine.ycc (208 bytes EA's) (deflated 76%)
+
+(0)[D:\proj\generator]del \proj\makeall\archive\gen.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\gen.zip.
+
+(1)[D:\proj\generator]copy /v gen.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\generator]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vfile]zip vfile.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: BinaryFile.cpp (deflated 55%)
+updating: BinaryFile.hpp (deflated 54%)
+updating: LoadParser.cpp (deflated 78%)
+updating: LoadParser.hpp (deflated 66%)
+updating: SaveGenerator.cpp (deflated 77%)
+updating: SaveGenerator.hpp (240 bytes EA's) (deflated 74%)
+updating: vyd.h (deflated 56%)
+updating: InputBinaryFile.cpp (deflated 71%)
+updating: InputBinaryFile.hpp (deflated 61%)
+updating: LoadGenerator.hpp (deflated 52%)
+updating: OutputBinaryFile.cpp (deflated 70%)
+updating: OutputBinaryFile.hpp (deflated 62%)
+updating: vfile.txt (deflated 24%)
+updating: makefile (552 bytes EA's) (deflated 47%)
+updating: promote.cmd (deflated 61%)
+updating: LoadGenerator.cpp (deflated 60%)
+updating: makefile.dep (deflated 92%)
+
+(0)[D:\proj\vfile]del \proj\makeall\archive\vfile.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vfile.zip.
+
+(1)[D:\proj\vfile]copy /v vfile.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vfile]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\ipfgenerator]zip ipfgen.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: IPFGenerator.hpp (256 bytes EA's) (deflated 73%)
+updating: IPF_Art.cpp (deflated 63%)
+updating: IPF_CharStyle.cpp (224 bytes EA's) (deflated 66%)
+updating: IPF_Common.hpp (deflated 59%)
+updating: IPF_Context.cpp (deflated 76%)
+updating: IPF_Context.hpp (deflated 63%)
+updating: IPF_Control.cpp (deflated 66%)
+updating: IPF_Distance.cpp (deflated 77%)
+updating: IPF_Generator.cpp (deflated 70%)
+updating: IPF_Index.hpp (deflated 66%)
+updating: IPF_Keyword.cpp (224 bytes EA's) (deflated 71%)
+updating: IPF_LabelList.hpp (deflated 52%)
+updating: IPF_ParaStyle.cpp (deflated 71%)
+updating: IPF_Section.cpp (deflated 72%)
+updating: IPF_Send.cpp (deflated 72%)
+updating: IPF_Symbols.cpp (248 bytes EA's) (deflated 76%)
+updating: IPFGenerator.txt (deflated 51%)
+updating: makefile (1156 bytes EA's) (deflated 52%)
+updating: promote.cmd (deflated 10%)
+updating: IpfForwarder.cpp (deflated 58%)
+updating: IpfForwarder.hpp (deflated 54%)
+updating: IpfForwarder.ipp (deflated 59%)
+updating: IpfForwarderSequence.cpp (deflated 65%)
+updating: IpfForwarderSequence.hpp (deflated 56%)
+updating: makefile.dep (deflated 97%)
+
+(0)[D:\proj\ipfgenerator]del \proj\makeall\archive\ipfgen.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\ipfgen.zip.
+
+(1)[D:\proj\ipfgenerator]copy /v ipfgen.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\ipfgenerator]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\htmlgenerator]zip htmlgen.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: HtmlCharStyle.cpp (224 bytes EA's) (deflated 65%)
+updating: HtmlCommon.hpp (deflated 62%)
+updating: HtmlContext.cpp (deflated 75%)
+updating: HtmlContext.hpp (deflated 60%)
+updating: HtmlControl.cpp (deflated 76%)
+updating: HtmlGenerator.cpp (deflated 76%)
+updating: HtmlGenerator.hpp (256 bytes EA's) (deflated 72%)
+updating: HtmlParaStyle.cpp (deflated 68%)
+updating: HtmlSend.cpp (deflated 72%)
+updating: HtmlSymbols.cpp (248 bytes EA's) (deflated 80%)
+updating: HtmlTag.cpp (deflated 69%)
+updating: HtmlTag.hpp (deflated 58%)
+updating: HtmlTag.ipp (deflated 46%)
+updating: makefile.dep (deflated 96%)
+updating: todo.txt (deflated 45%)
+updating: makefile (1156 bytes EA's) (deflated 53%)
+updating: promote.cmd (deflated 11%)
+  adding: HtmlIndex.cpp (deflated 59%)
+  adding: HtmlIndex.hpp (deflated 58%)
+  adding: HtmlLabel.cpp (deflated 70%)
+  adding: HtmlLabel.hpp (deflated 56%)
+
+(0)[D:\proj\htmlgenerator]del \proj\makeall\archive\htmlgen.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\htmlgen.zip.
+
+(1)[D:\proj\htmlgenerator]copy /v htmlgen.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\htmlgenerator]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\hpj]zip winhelp.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: HpjListYacc.cpp (deflated 66%)
+updating: HpjListYacc.hpp (deflated 55%)
+updating: HpjYacc.cpp (deflated 73%)
+updating: HpjYacc.hpp (deflated 65%)
+updating: RtfYacc.cpp (212 bytes EA's) (deflated 79%)
+updating: RtfYacc.hpp (248 bytes EA's) (deflated 62%)
+updating: WinHelpParser.cpp (deflated 75%)
+updating: WinHelpParser.hpp (deflated 69%)
+updating: WinHelpParser.txt (deflated 52%)
+updating: makefile (764 bytes EA's) (deflated 51%)
+updating: hpj.ycc (deflated 79%)
+updating: hpjlist.ycc (172 bytes EA's) (deflated 69%)
+updating: rtf.ycc (244 bytes EA's) (deflated 81%)
+updating: promote.cmd (deflated 60%)
+updating: RtfContext.cpp (deflated 76%)
+updating: RtfContext.hpp (deflated 69%)
+updating: CntYacc.cpp (deflated 71%)
+updating: CntYacc.hpp (deflated 62%)
+updating: winhelpparser.ipp (deflated 70%)
+updating: cnt.ycc (172 bytes EA's) (deflated 73%)
+updating: RtfSection.cpp (deflated 74%)
+updating: RtfSection.hpp (deflated 61%)
+updating: RtfSection.ipp (deflated 64%)
+updating: RtfColor.cpp (200 bytes EA's) (deflated 66%)
+updating: RtfColor.hpp (200 bytes EA's) (deflated 58%)
+updating: RtfColor.ipp (deflated 59%)
+updating: RtfFont.cpp (212 bytes EA's) (deflated 73%)
+updating: RtfFont.hpp (212 bytes EA's) (deflated 61%)
+updating: RtfFont.ipp (deflated 65%)
+updating: makefile.DEP (deflated 94%)
+
+(0)[D:\proj\hpj]del \proj\makeall\archive\winhelp.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\winhelp.zip.
+
+(1)[D:\proj\hpj]copy /v winhelp.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\hpj]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\ipfparse]zip ipfparse.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: IpfParser.cpp (deflated 79%)
+updating: IpfParser.hpp (deflated 69%)
+updating: IpfYacc.cpp (deflated 82%)
+updating: IpfYacc.hpp (deflated 73%)
+updating: makefile (764 bytes EA's) (deflated 48%)
+updating: ipf.ycc (212 bytes EA's) (deflated 81%)
+updating: promote.cmd (deflated 65%)
+updating: ipfparser.ipp (deflated 67%)
+updating: SymbolLookup.cpp (deflated 84%)
+updating: SymbolLookup.hpp (deflated 62%)
+updating: symbollookup.ipp (deflated 65%)
+updating: IpfParser.txt (deflated 51%)
+updating: Footnote.cpp (deflated 64%)
+updating: Footnote.hpp (deflated 54%)
+updating: Footnote.ipp (deflated 56%)
+updating: PanelLink.cpp (deflated 53%)
+updating: PanelLink.hpp (deflated 56%)
+updating: PanelLink.ipp (deflated 62%)
+updating: StringPair.cpp (deflated 56%)
+updating: StringPair.hpp (deflated 59%)
+updating: StringPair.ipp (deflated 64%)
+updating: makefile.DEP (deflated 92%)
+
+(0)[D:\proj\ipfparse]del \proj\makeall\archive\ipfparse.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\ipfparse.zip.
+
+(1)[D:\proj\ipfparse]copy /v ipfparse.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\ipfparse]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\wingen]zip wingen.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: HpjGenerator.cpp (deflated 75%)
+updating: HpjGenerator.hpp (deflated 71%)
+updating: RtfGenerator.cpp (deflated 81%)
+updating: RtfGenerator.hpp (deflated 71%)
+updating: RtfGenerator.ipp (deflated 73%)
+updating: RtfGeneratorContext.cpp (deflated 72%)
+updating: RtfGeneratorContext.hpp (deflated 62%)
+updating: todo.txt (deflated 45%)
+updating: makefile (1156 bytes EA's) (deflated 43%)
+updating: promote.cmd (deflated 50%)
+updating: makefile.DEP (deflated 91%)
+
+(0)[D:\proj\wingen]del \proj\makeall\archive\wingen.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\wingen.zip.
+
+(1)[D:\proj\wingen]copy /v wingen.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\wingen]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vygen]zip vygen.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.?pp
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.dep
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.txt
+zip warning: name not matched: makefile
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: vygen.mak (280 bytes EA's) (deflated 59%)
+updating: promote.cmd (296 bytes EA's) (deflated 23%)
+updating: vygen.def (196 bytes EA's) (deflated 13%)
+
+(0)[D:\proj\vygen]del \proj\makeall\archive\vygen.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vygen.zip.
+
+(1)[D:\proj\vygen]copy /v vygen.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vygen]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vydit]zip vydit.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: makefile
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: CharView.cpp (deflated 64%)
+updating: CharView.hpp (deflated 59%)
+updating: EndItem.cpp (deflated 58%)
+updating: EndItem.hpp (deflated 54%)
+updating: EndView.cpp (deflated 56%)
+updating: EndView.hpp (deflated 58%)
+updating: FlowItem.cpp (deflated 71%)
+updating: FlowItem.hpp (deflated 62%)
+updating: FlowView.cpp (deflated 74%)
+updating: FlowView.hpp (deflated 64%)
+updating: Item.cpp (deflated 60%)
+updating: Item.hpp (deflated 60%)
+updating: ItemCursor.cpp (deflated 55%)
+updating: ItemCursor.hpp (deflated 57%)
+updating: ItemSequence.hpp (64 bytes EA's) (deflated 53%)
+updating: Kursor.cpp (deflated 68%)
+updating: Kursor.hpp (deflated 58%)
+updating: LineEndView.cpp (deflated 56%)
+updating: LineEndView.hpp (deflated 56%)
+updating: LineSubviewCursor.cpp (deflated 74%)
+updating: LineSubviewCursor.hpp (deflated 62%)
+updating: LineView.cpp (deflated 74%)
+updating: LineView.hpp (deflated 67%)
+updating: NullItemCursor.cpp (deflated 53%)
+updating: NullItemCursor.hpp (deflated 60%)
+updating: NullViewCursor.cpp (deflated 58%)
+updating: NullViewCursor.hpp (64 bytes EA's) (deflated 62%)
+updating: OrderedItemCursor.cpp (deflated 68%)
+updating: OrderedItemCursor.hpp (deflated 65%)
+updating: OrderedViewCursor.cpp (68 bytes EA's) (deflated 67%)
+updating: OrderedViewCursor.hpp (68 bytes EA's) (deflated 67%)
+updating: Pen.cpp (deflated 70%)
+updating: Pen.hpp (deflated 63%)
+updating: SpaceItem.cpp (deflated 59%)
+updating: SpaceItem.hpp (deflated 54%)
+updating: SpaceView.cpp (deflated 59%)
+updating: SpaceView.hpp (deflated 56%)
+updating: View.cpp (deflated 66%)
+updating: View.hpp (deflated 66%)
+updating: ViewCursor.cpp (deflated 54%)
+updating: ViewCursor.hpp (deflated 63%)
+updating: ViewSequence.hpp (64 bytes EA's) (deflated 54%)
+updating: WordItem.cpp (deflated 70%)
+updating: WordItem.hpp (deflated 65%)
+updating: WordView.cpp (24 bytes EA's) (deflated 72%)
+updating: WordView.hpp (deflated 65%)
+updating: WordViewCursor.cpp (deflated 69%)
+updating: WordViewCursor.hpp (64 bytes EA's) (deflated 64%)
+updating: DrawPen.cpp (deflated 70%)
+updating: DrawPen.hpp (deflated 60%)
+updating: FlowFormatter.cpp (deflated 74%)
+updating: FlowFormatter.hpp (deflated 64%)
+updating: FormatPen.cpp (deflated 72%)
+updating: FormatPen.hpp (deflated 61%)
+updating: IconView.cpp (deflated 56%)
+updating: IconView.hpp (deflated 53%)
+updating: ItemSequence.cpp (deflated 57%)
+updating: NewLineItem.cpp (deflated 61%)
+updating: NewLineItem.hpp (deflated 54%)
+updating: NewLineView.cpp (deflated 55%)
+updating: NewLineView.hpp (deflated 57%)
+updating: ViewSequence.cpp (deflated 62%)
+updating: SmartText.cpp (60 bytes EA's) (deflated 73%)
+updating: SmartText.hpp (60 bytes EA's) (deflated 62%)
+updating: PenState.hpp (deflated 63%)
+updating: PenState.cpp (deflated 56%)
+updating: FontItem.cpp (deflated 61%)
+updating: FontItem.hpp (deflated 56%)
+updating: FontView.cpp (deflated 62%)
+updating: FontView.hpp (deflated 57%)
+updating: PlacedView.cpp (deflated 64%)
+updating: PlacedView.hpp (deflated 63%)
+updating: SymbolItem.cpp (deflated 61%)
+updating: SymbolItem.hpp (deflated 56%)
+updating: SymbolView.cpp (deflated 64%)
+updating: SymbolView.hpp (deflated 59%)
+updating: ParagraphItem.cpp (deflated 62%)
+updating: ParagraphItem.hpp (deflated 55%)
+updating: ParagraphView.cpp (deflated 61%)
+updating: ParagraphView.hpp (deflated 57%)
+updating: PopItem.cpp (deflated 59%)
+updating: PopItem.hpp (deflated 55%)
+updating: PopView.cpp (deflated 63%)
+updating: PopView.hpp (deflated 59%)
+updating: PushItem.cpp (deflated 60%)
+updating: PushItem.hpp (deflated 54%)
+updating: PushView.cpp (deflated 58%)
+updating: PushView.hpp (deflated 58%)
+updating: Page.cpp (deflated 70%)
+updating: Page.hpp (deflated 66%)
+updating: PenPoint.cpp (deflated 61%)
+updating: PenPoint.hpp (deflated 56%)
+updating: Editor.cpp (212 bytes EA's) (deflated 77%)
+updating: Editor.hpp (212 bytes EA's) (deflated 70%)
+updating: BoldItem.cpp (deflated 60%)
+updating: BoldItem.hpp (deflated 56%)
+updating: BoldView.cpp (deflated 61%)
+updating: BoldView.hpp (deflated 56%)
+updating: ItalicItem.cpp (deflated 60%)
+updating: ItalicItem.hpp (deflated 56%)
+updating: ItalicView.cpp (deflated 62%)
+updating: ItalicView.hpp (deflated 57%)
+updating: SubjectView.cpp (deflated 61%)
+updating: SubjectView.hpp (deflated 57%)
+updating: UnderlineItem.cpp (deflated 62%)
+updating: UnderlineItem.hpp (deflated 57%)
+updating: UnderlineView.cpp (deflated 62%)
+updating: UnderlineView.hpp (deflated 57%)
+updating: BoldItem.ipp (deflated 56%)
+updating: BoldView.ipp (deflated 56%)
+updating: CharView.ipp (deflated 54%)
+updating: EndView.ipp (deflated 62%)
+updating: FastContext.cpp (deflated 70%)
+updating: FastContext.hpp (deflated 61%)
+updating: FlowView.ipp (deflated 72%)
+updating: FontItem.ipp (deflated 60%)
+updating: FontView.ipp (deflated 56%)
+updating: ItalicItem.ipp (deflated 56%)
+updating: ItalicView.ipp (deflated 56%)
+updating: Item.ipp (deflated 64%)
+updating: LineEndView.ipp (deflated 60%)
+updating: LineSubviewCursor.ipp (deflated 57%)
+updating: LineView.ipp (deflated 66%)
+updating: NewLineView.ipp (deflated 63%)
+updating: NullItemCursor.ipp (deflated 70%)
+updating: NullViewCursor.ipp (deflated 74%)
+updating: OrderedItemCursor.ipp (deflated 74%)
+updating: OrderedViewCursor.ipp (deflated 76%)
+updating: Page.ipp (deflated 64%)
+updating: ParagraphView.ipp (deflated 62%)
+updating: Pen.ipp (deflated 71%)
+updating: PenPoint.ipp (deflated 57%)
+updating: PenState.ipp (deflated 71%)
+updating: PlacedView.ipp (deflated 64%)
+updating: PopItem.ipp (deflated 58%)
+updating: PopView.ipp (deflated 59%)
+updating: PushView.ipp (deflated 59%)
+updating: SmartText.ipp (deflated 60%)
+updating: SpaceView.ipp (deflated 55%)
+updating: SubjectView.ipp (deflated 57%)
+updating: SymbolItem.ipp (deflated 57%)
+updating: SymbolView.ipp (deflated 55%)
+updating: UnderlineItem.ipp (deflated 57%)
+updating: UnderlineView.ipp (deflated 57%)
+updating: View.ipp (deflated 68%)
+updating: WordItem.ipp (deflated 59%)
+updating: WordView.ipp (deflated 59%)
+updating: WordViewCursor.ipp (deflated 66%)
+updating: WordViewCursorSet.hpp (deflated 54%)
+updating: EditorTrigger.cpp (deflated 58%)
+updating: EditorTrigger.hpp (deflated 53%)
+updating: FormatPen.ipp (deflated 61%)
+updating: EditorCursor.cpp (deflated 70%)
+updating: EditorCursor.hpp (deflated 66%)
+updating: EditorCursor.ipp (deflated 58%)
+updating: enditem.ipp (deflated 57%)
+updating: flowitem.ipp (deflated 58%)
+updating: Types.hpp (deflated 17%)
+updating: vydit.h (204 bytes EA's) (deflated 62%)
+updating: vydit.mak (3964 bytes EA's) (deflated 75%)
+updating: ToDo.txt (60 bytes EA's) (deflated 51%)
+updating: junk.cmd (60 bytes EA's) (deflated 23%)
+updating: promote.cmd (deflated 81%)
+updating: save.cmd (68 bytes EA's) (deflated 17%)
+updating: Editor.ipp (deflated 64%)
+updating: FlowGenerator.cpp (deflated 71%)
+updating: FlowGenerator.hpp (deflated 66%)
+updating: FlowGeneratorContext.hpp (deflated 55%)
+updating: LinkItem.cpp (deflated 60%)
+updating: LinkItem.hpp (deflated 58%)
+updating: linkitem.ipp (deflated 57%)
+updating: LinkView.cpp (deflated 62%)
+updating: LinkView.hpp (deflated 57%)
+updating: LinkView.ipp (deflated 56%)
+updating: PushItem.ipp (deflated 57%)
+updating: vydit.DEP (deflated 97%)
+updating: FlowInsertData.hpp (deflated 53%)
+updating: vydit.def (60 bytes EA's) (deflated 13%)
+updating: ArtItem.cpp (deflated 59%)
+updating: ArtItem.hpp (deflated 57%)
+updating: ArtItem.ipp (deflated 58%)
+updating: ArtView.cpp (deflated 62%)
+updating: ArtView.hpp (deflated 56%)
+
+(0)[D:\proj\vydit]del \proj\makeall\archive\vydit.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vydit.zip.
+
+(1)[D:\proj\vydit]copy /v vydit.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vydit]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\generator\test]zip gentest.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.cmd
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: GenTest.cpp (deflated 71%)
+updating: TestArt.cpp (deflated 67%)
+updating: TestChar.cpp (deflated 78%)
+updating: TestIPF.cpp (deflated 75%)
+updating: TestKeywords.cpp (deflated 69%)
+updating: TestList.cpp (deflated 61%)
+updating: TestMargins.cpp (deflated 72%)
+updating: TestNesting.cpp (60 bytes EA's) (deflated 83%)
+updating: TestPara.cpp (deflated 78%)
+updating: TestSections.cpp (deflated 74%)
+updating: TestSymbols.cpp (deflated 61%)
+updating: TestTables.cpp (deflated 74%)
+updating: TestWindows.cpp (deflated 77%)
+updating: mat.bmp (deflated 89%)
+updating: GenTest.txt (deflated 11%)
+updating: makefile (1208 bytes EA's) (deflated 62%)
+updating: makefile.dep (deflated 97%)
+
+(0)[D:\proj\generator\test]del \proj\makeall\archive\gentest.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\gentest.zip.
+
+(1)[D:\proj\generator\test]copy /v gentest.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\generator\test]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vedit]zip vedit.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.txt
+zip warning: name not matched: makefile
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.cmd
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: Main.CPP (deflated 52%)
+updating: VFrame.cpp (252 bytes EA's) (deflated 51%)
+updating: VFrame.hpp (244 bytes EA's) (deflated 53%)
+updating: VPort.cpp (deflated 76%)
+updating: VPort.hpp (deflated 61%)
+updating: BoldView.bmp (48 bytes EA's) (deflated 54%)
+updating: EndView.bmp (48 bytes EA's) (deflated 65%)
+updating: FontView.bmp (48 bytes EA's) (deflated 49%)
+updating: ItalicView.bmp (48 bytes EA's) (deflated 49%)
+updating: LineEndView.bmp (48 bytes EA's) (deflated 57%)
+updating: NewLineView.bmp (48 bytes EA's) (deflated 44%)
+updating: ParagraphView.bmp (48 bytes EA's) (deflated 61%)
+updating: PopView.bmp (48 bytes EA's) (deflated 40%)
+updating: PushView.bmp (48 bytes EA's) (deflated 39%)
+updating: UnderlineView.bmp (48 bytes EA's) (deflated 51%)
+updating: vedit.h (216 bytes EA's) (deflated 40%)
+updating: vedit.RC (204 bytes EA's) (deflated 62%)
+updating: vedit.mak (464 bytes EA's) (deflated 56%)
+updating: vedit.DEP (deflated 91%)
+updating: LinkView.bmp (48 bytes EA's) (deflated 54%)
+
+(0)[D:\proj\vedit]del \proj\makeall\archive\vedit.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vedit.zip.
+
+(1)[D:\proj\vedit]copy /v vedit.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vedit]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vykey]zip vykey.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.txt
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.cmd
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: vykey.cpp (deflated 70%)
+updating: makefile.DEP (deflated 56%)
+updating: makefile (228 bytes EA's) (deflated 47%)
+
+(0)[D:\proj\vykey]del \proj\makeall\archive\vykey.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vykey.zip.
+
+(1)[D:\proj\vykey]copy /v vykey.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vykey]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vyx]zip vyx.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: Main.cpp (deflated 72%)
+updating: vyx.txt (stored 0%)
+updating: makefile (228 bytes EA's) (deflated 47%)
+updating: t.cmd (68 bytes EA's) (stored 0%)
+updating: ConsoleIndicator.cpp (deflated 66%)
+updating: ConsoleIndicator.hpp (deflated 62%)
+updating: makefile.dep (deflated 86%)
+
+(0)[D:\proj\vyx]del \proj\makeall\archive\vyx.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vyx.zip.
+
+(1)[D:\proj\vyx]copy /v vyx.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vyx]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\vyper]zip vyper.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.cmd
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+zip warning: name not matched: *.do
+updating: BooleanString.cpp (deflated 57%)
+updating: BooleanString.hpp (deflated 52%)
+updating: CloseHandler.cpp (deflated 70%)
+updating: CloseHandler.hpp (deflated 74%)
+updating: Confirmation.cpp (deflated 78%)
+updating: Confirmation.hpp (deflated 79%)
+updating: ContainerHelpHandler.cpp (deflated 61%)
+updating: ContainerHelpHandler.hpp (deflated 54%)
+updating: ExceptionNotification.cpp (deflated 79%)
+updating: ExceptionNotification.hpp (deflated 79%)
+updating: LoadThread.cpp (deflated 64%)
+updating: LoadThread.hpp (deflated 57%)
+updating: LogicalNot.cpp (deflated 77%)
+updating: LogicalNot.hpp (deflated 79%)
+updating: SaveThread.cpp (deflated 64%)
+updating: SaveThread.hpp (deflated 58%)
+updating: SectionEditHandler.cpp (deflated 56%)
+updating: SectionEditHandler.hpp (deflated 55%)
+updating: vbmain.cpp (deflated 67%)
+updating: VyDoc.cpp (deflated 78%)
+updating: VyDoc.hpp (deflated 78%)
+updating: VyDocGenerator.cpp (deflated 79%)
+updating: VyDocGenerator.hpp (deflated 75%)
+updating: VyDocParser.cpp (deflated 62%)
+updating: VyDocParser.hpp (deflated 54%)
+updating: VyDocProperties.cpp (deflated 89%)
+updating: VyDocProperties.hpp (deflated 77%)
+updating: VyFont.cpp (deflated 77%)
+updating: VyFont.hpp (deflated 78%)
+updating: VyIndicator.cpp (deflated 68%)
+updating: VyIndicator.hpp (deflated 59%)
+updating: VyInfo.cpp (deflated 84%)
+updating: VyInfo.hpp (deflated 76%)
+updating: VyKeyword.cpp (deflated 77%)
+updating: VyKeyword.hpp (deflated 77%)
+updating: VyKeywordProperties.cpp (deflated 88%)
+updating: VyKeywordProperties.hpp (deflated 77%)
+updating: VyLabel.cpp (deflated 76%)
+updating: VyLabel.hpp (deflated 77%)
+updating: VyLabelProperties.cpp (deflated 89%)
+updating: VyLabelProperties.hpp (deflated 77%)
+updating: VyLink.cpp (deflated 77%)
+updating: VyLink.hpp (deflated 78%)
+updating: VyLinkProperties.cpp (deflated 90%)
+updating: VyLinkProperties.hpp (deflated 77%)
+updating: vyper.cpp (deflated 95%)
+updating: Vyper.hpp (deflated 86%)
+updating: VyRegistration.cpp (deflated 84%)
+updating: VyRegistration.hpp (deflated 77%)
+updating: VySection.cpp (deflated 79%)
+updating: VySection.hpp (deflated 78%)
+updating: VySectionGenerator.cpp (68 bytes EA's) (deflated 75%)
+updating: VySectionGenerator.hpp (deflated 69%)
+updating: VySectionGenerator.ipp (deflated 56%)
+updating: VySectionProperties.cpp (deflated 93%)
+updating: VySectionProperties.hpp (deflated 88%)
+updating: VySettings.cpp (deflated 93%)
+updating: VySettings.hpp (deflated 80%)
+updating: VySymbol.cpp (deflated 77%)
+updating: VySymbol.hpp (deflated 78%)
+updating: VySymbolSelector.cpp (deflated 85%)
+updating: VySymbolSelector.hpp (deflated 80%)
+updating: VyWait.cpp (deflated 79%)
+updating: VyWait.hpp (deflated 76%)
+updating: CloseHandler.h (deflated 69%)
+updating: Confirmation.h (deflated 70%)
+updating: ExceptionNotification.h (deflated 70%)
+updating: fontdlg.h (deflated 67%)
+updating: LogicalNot.h (deflated 70%)
+updating: VyDoc.h (deflated 70%)
+updating: VyDocProperties.h (deflated 81%)
+updating: VyFont.h (deflated 70%)
+updating: VyInfo.h (deflated 77%)
+updating: VyKeyword.h (deflated 68%)
+updating: VyKeywordProperties.h (deflated 77%)
+updating: VyLabel.h (deflated 68%)
+updating: VyLabelProperties.h (deflated 80%)
+updating: VyLink.h (deflated 70%)
+updating: VyLinkProperties.h (deflated 76%)
+updating: Vyper.h (deflated 88%)
+updating: VyRegistration.h (deflated 78%)
+updating: VySection.h (deflated 70%)
+updating: VySectionProperties.h (deflated 85%)
+updating: VySettings.h (deflated 70%)
+updating: VySymbol.h (deflated 70%)
+updating: VySymbolSelector.h (deflated 70%)
+updating: VyWait.h (deflated 73%)
+updating: vyper.rc (deflated 94%)
+updating: fontdlg.dlg (deflated 67%)
+updating: Vyper.mak (680 bytes EA's) (deflated 85%)
+updating: makefile.DEP (deflated 97%)
+updating: save.dep (deflated 97%)
+updating: BoldView.bmp (48 bytes EA's) (deflated 54%)
+updating: EndView.bmp (48 bytes EA's) (deflated 65%)
+updating: FontView.bmp (48 bytes EA's) (deflated 49%)
+updating: ItalicView.bmp (48 bytes EA's) (deflated 49%)
+updating: LineEndView.bmp (48 bytes EA's) (deflated 57%)
+updating: LinkView.bmp (48 bytes EA's) (deflated 54%)
+updating: NewLineView.bmp (48 bytes EA's) (deflated 44%)
+updating: ParagraphView.bmp (48 bytes EA's) (deflated 61%)
+updating: PopView.bmp (48 bytes EA's) (deflated 40%)
+updating: PushView.bmp (48 bytes EA's) (deflated 39%)
+updating: UnderlineView.bmp (48 bytes EA's) (deflated 51%)
+updating: vyper.bmp (deflated 98%)
+updating: vyper.vbb (deflated 69%)
+updating: CloseHandler.cpv (deflated 46%)
+updating: Confirmation.cpv (deflated 75%)
+updating: ExceptionNotification.cpv (deflated 68%)
+updating: LogicalNot.cpv (deflated 62%)
+updating: VyDoc.cpv (deflated 81%)
+updating: VyFont.cpv (deflated 63%)
+updating: VyKeyword.cpv (deflated 76%)
+updating: VyKeywordProperties.cpv (deflated 57%)
+updating: VyLabel.cpv (deflated 76%)
+updating: VyLabelProperties.cpv (deflated 56%)
+updating: VyLink.cpv (deflated 73%)
+updating: VyLinkProperties.cpv (deflated 69%)
+updating: Vyper.cpv (deflated 66%)
+updating: VyRegistration.cpv (deflated 69%)
+updating: VySection.cpv (deflated 77%)
+updating: VySectionProperties.cpv (deflated 56%)
+updating: VySettings.cpv (deflated 86%)
+updating: VySymbol.cpv (deflated 67%)
+updating: VyWait.cpv (deflated 55%)
+updating: CloseHandler.hpv (deflated 8%)
+updating: Confirmation.hpv (deflated 69%)
+updating: ExceptionNotification.hpv (deflated 55%)
+updating: LogicalNot.hpv (deflated 50%)
+updating: VyDoc.hpv (deflated 77%)
+updating: VyFont.hpv (deflated 53%)
+updating: VyInfo.hpv (deflated 31%)
+updating: VyKeyword.hpv (deflated 70%)
+updating: VyKeywordProperties.hpv (deflated 40%)
+updating: VyLabel.hpv (deflated 73%)
+updating: VyLabelProperties.hpv (deflated 40%)
+updating: VyLink.hpv (deflated 67%)
+updating: VyLinkProperties.hpv (deflated 66%)
+updating: Vyper.hpv (deflated 73%)
+updating: VyRegistration.hpv (deflated 57%)
+updating: VySection.hpv (deflated 73%)
+updating: VySectionProperties.hpv (deflated 40%)
+updating: VySettings.hpv (deflated 84%)
+updating: VySymbol.hpv (deflated 62%)
+updating: VyWait.hpv (deflated 49%)
+updating: Vyper.rcv (deflated 55%)
+updating: readme.txt (deflated 53%)
+updating: todo.txt (deflated 31%)
+updating: vyper.txt (deflated 66%)
+updating: makefile (1864 bytes EA's) (deflated 71%)
+updating: VyArt.cpp (deflated 77%)
+updating: VyArt.hpp (deflated 78%)
+updating: VyArtProperties.cpp (deflated 90%)
+updating: VyArtProperties.hpp (deflated 77%)
+updating: VyArt.h (deflated 70%)
+updating: VyArtProperties.h (deflated 77%)
+updating: VyArt.cpv (deflated 63%)
+updating: VyArtProperties.cpv (deflated 68%)
+updating: VyArt.hpv (deflated 62%)
+updating: VyArtProperties.hpv (deflated 70%)
+  adding: vybold.bmp (48 bytes EA's) (deflated 54%)
+  adding: vyend.bmp (220 bytes EA's) (deflated 65%)
+  adding: vyfont.bmp (48 bytes EA's) (deflated 49%)
+  adding: vyital.bmp (48 bytes EA's) (deflated 49%)
+  adding: vyline.bmp (224 bytes EA's) (deflated 57%)
+  adding: vylink.bmp (48 bytes EA's) (deflated 54%)
+  adding: vynew.bmp (224 bytes EA's) (deflated 44%)
+  adding: vypara.bmp (224 bytes EA's) (deflated 61%)
+  adding: vypop.bmp (48 bytes EA's) (deflated 40%)
+  adding: vypush.bmp (48 bytes EA's) (deflated 39%)
+  adding: vyunder.bmp (48 bytes EA's) (deflated 51%)
+
+(0)[D:\proj\vyper]del \proj\makeall\archive\vyper.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\vyper.zip.
+
+(1)[D:\proj\vyper]copy /v vyper.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\vyper]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\makeall]zip makeall.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.?pp
+zip warning: name not matched: *.h
+zip warning: name not matched: *.rc
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.mak
+zip warning: name not matched: *.dep
+zip warning: name not matched: *.bmp
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: *.txt
+zip warning: name not matched: makefile
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.def
+zip warning: name not matched: *.dsc
+zip warning: name not matched: *.pkg
+zip warning: name not matched: *.icf
+updating: makeall.cmd (11124 bytes EA's) (deflated 71%)
+updating: makeall.do (deflated 26%)
+
+(0)[D:\proj\makeall]del \proj\makeall\archive\makeall.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\makeall.zip.
+
+(1)[D:\proj\makeall]copy /v makeall.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\makeall]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+(0)[D:\proj\install]zip install.zip *.?pp *.h *.rc *.dlg *.mak *.dep *.bmp *.vbb *.vbe *.cpv *.hpv *.rcv *.txt makefile *.ycc *.cmd *.rtf *.def *.dsc *.pkg *.icf *.do 
+zip warning: name not matched: *.?pp
+zip warning: name not matched: *.dlg
+zip warning: name not matched: *.dep
+zip warning: name not matched: *.vbb
+zip warning: name not matched: *.vbe
+zip warning: name not matched: *.cpv
+zip warning: name not matched: *.hpv
+zip warning: name not matched: *.rcv
+zip warning: name not matched: makefile
+zip warning: name not matched: *.ycc
+zip warning: name not matched: *.rtf
+zip warning: name not matched: *.do
+updating: iirch.h (deflated 84%)
+updating: varsfp.h (deflated 68%)
+updating: iirc.rc (60 bytes EA's) (deflated 79%)
+updating: epfihook.mak (deflated 55%)
+updating: iircarw.bmp (732 bytes EA's) (deflated 91%)
+updating: iircexcl.bmp (732 bytes EA's) (deflated 67%)
+updating: iircinst.bmp (732 bytes EA's) (deflated 91%)
+updating: vyper.bmp (deflated 92%)
+updating: cidtempl.txt (deflated 72%)
+updating: LICENSE.TXT (420 bytes EA's) (deflated 51%)
+updating: bldinst.cmd (4500 bytes EA's) (deflated 70%)
+updating: bldrc.cmd (4596 bytes EA's) (deflated 72%)
+updating: pakdisk.cmd (60 bytes EA's) (deflated 46%)
+updating: pakzip.cmd (60 bytes EA's) (deflated 39%)
+updating: epfihook.def (deflated 68%)
+updating: VYPER.DSC (232 bytes EA's) (deflated 43%)
+updating: EPFISINC.PKG (deflated 79%)
+updating: VYPER.PKG (92 bytes EA's) (deflated 84%)
+updating: vyper2.pkg (deflated 82%)
+updating: vyperfix.pkg (60 bytes EA's) (deflated 82%)
+updating: VYPER.ICF (92 bytes EA's) (deflated 47%)
+
+(0)[D:\proj\install]del \proj\makeall\archive\install.zip /n 
+SYS0002: The system cannot find the file specified.
+Error occurred while processing: \proj\makeall\archive\install.zip.
+
+(1)[D:\proj\install]copy /v install.zip \proj\makeall\archive\ 
+        1 file(s) copied.
+
+(0)[D:\proj\install]date  0<nul 
+Current date is: Sat 11-25-2000
+Enter the new date: (mm-dd-yy) 
+MAKEALL completed successfully, elapsed minutes = 0.925166667
+

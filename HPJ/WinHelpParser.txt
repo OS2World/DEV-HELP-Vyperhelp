@@ -1,0 +1,164 @@
+WinHelpParser Notes
+-------------------
+
+Top Wish List for HPJ->IPF
+  better line spacing
+    extend SpacingGin
+    RTF use line/para to control?
+    IPF better at determining lines
+  support \tab style tables
+  SHG conversion
+  special conversions for some ANSI charactser
+    0x93 and 0x94: double quotes
+  special conversions for Symbol font
+    211=copyright, 212=TM, 210=Reg, 0xb7=bullet
+  Filter unecessary Gins
+    generic filter in Generator
+    special Push/Pop filter in HPJ
+  IPF left margin won't set backwards until a line wrap
+    hold :p and .br until after margin is determined?
+  BMP conversion loses palette (OpenClass)
+
+WinHelp implementation notes
+  if there is a space immediately following a footnote, it is ignored
+  also, spaces before a footnote are ignored if there are ONLY space back to the start of the para
+    for now, we just strip any spaces immediately before the footnote
+
+HPJ Parser Limitations (ns = not supported)
+  pre-defined bitmaps (bullet.bmp, etc)
+  [FONTS] ns
+  CHARSET option ns
+  bitmap tranparent backgrounds ns (e.g., {bmct xxx.bmp})
+  multiple bitmap resolutions: only first file is used
+  line spacing (space before and after) may get confused
+    we add \sa and \sb values
+  tabs ns
+    each tab is replaced with a space
+  tables ns
+  paragraps borders ns
+  first line indent ns
+  SHG, WMF and MRB ns
+  embedded art ns
+  popups (footnotes) ns
+  non-scrolling region ns
+    text appears, but scrolls
+  secondary windows ns
+  hypergraphics ns
+  build tags ns
+  CNT contents ns
+    RTF file determines section ordering
+  incomplete support for character sets
+    Windows "Symbol" font ns
+    /ansi, etc and /cpg are ok
+    /fcharset and /cchs and CHARSET= are not
+
+Links
+  see flushLink: if link level is screwed up, we may lose context
+
+Help Decompiler
+  sometimes misses spaces between words
+  emits incorrect fonttbl (missing semi-colons) -- HC accepts it anyway
+
+Build issues
+  Fix VP++ integration
+    currently generate DEP only, no MAK
+    MakeMake will not recognize VP++ action (YHH files are used by C++ compiler)
+
+Code pages
+  currently ignoring \fcharset in font definitions and \cchs in character data (and CHARSET in HPJ)
+  currently assuming \cpg values map properly to "IBM" values
+
+Windows
+  add support for window specifications in CNT
+  add support for window spec in LinkGin
+
+CNT
+  RtfSection should keep list of label identifiers, instead of only the first one encountered
+
+To Do
+  get rid of extra code generated in .yhh (filter for #defines)
+  check all \proj\samples\winhelp
+  WinHelp default panel size
+    60% wide, 100% high -- is it documented?
+
+[FONTS] support
+  generalize a MapFont class to handle [FONTS], FORCEFONT and MAPFONTSIZE
+    from name, from size min, from size max, from codepage
+    to name. to size, to codepage
+    any can be set to "ignore"
+  compare should be case-insensitive
+
+New features
+  Popups
+    requires 2 passes to distinguish popups from topics
+  Build tags
+  Tab support
+    detect tabs in two-column lists??
+    use left margin to simulate tabs
+    may require 2 passes
+  Graphic hotspots
+  Inline graphics (pict)
+
+RtfYacc
+  need special %expression for binary data
+  remove annotation characters (the character immed before {\annotate
+  support fields?
+  secondary windows
+    need to add optional window ID to LinkGin
+  non-scrolling region
+  inline bitmaps with \pict
+  for performance
+    avoid Yacc, just use SSLex
+    don't need to cache the whole section into a GinList
+  general way of adding monitor/statemachine
+    Links (_linkContents, etc)
+    Footnotes (_HoldList, _holdText, etc)
+    Tabs
+    ...
+
+extending RtfYacc for general RTF
+  add styles support?
+  make footnote/underline processing optional
+  topic separation by style instead of \page
+
+create RtfDestination class
+  methods
+    processControl
+    processSymbol
+    processText
+    endDestination
+    push, pop
+  subclasses
+    Footnote
+    ColorTable
+    FontTable
+    Document
+    etc...
+  isolates dest-specific processing
+
+
+add error correction to grammars
+  see VP++ page 4-40
+
+add optional try { ... } catch() {rethrow} blocks
+  allows better tracing of throws
+
+add DFA, LLR files to application as resources?
+  How to
+    use RESOURCE statement
+    use DosGetResource
+    write to temp file
+    DosFreeResource
+    construct SSLexTable, SSYaccTable from temp file
+  create subclass ResLexTable, etc?
+
+build tag parser
+what to do with the non-scrolling region?
+use outline to determine list mode
+contents
+  single panel -- what if it isn't found?
+  for WinHelp 4.0, use CNT file
+  browse sequences
+convert inline graphics to IGBitmap
+call user to convert unknown graphic formats?
+

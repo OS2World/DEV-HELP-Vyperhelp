@@ -1,0 +1,29 @@
+-------------------
+HtmlGenerator TO DO
+-------------------
+
+test.htm - use for testing
+
+need to know filename of link!
+   apply fixups after generator is done?
+   file#,offset,id
+special rules to enforce?
+   no nested <a>
+   no <img>, <big>, <small>, <font> in <pre>
+   no <hr> in <p>
+   no blocks inside <menu>
+   no blocks inside <dt>
+   no "--" inside comment
+generation options
+   single file vs multiple
+   JavaHelp support
+   HTML Help support
+mukltiple files
+  use _file.open()
+
+use <link> to specify toc, index, etc
+   also REL,REV attributes of <a>
+
+LATER?
+   add CSS support? (fonts, margins, spacing, etc)
+   HTML 4 additional entities (greek, etc)

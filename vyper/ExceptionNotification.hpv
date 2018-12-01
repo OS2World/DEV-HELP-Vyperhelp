@@ -1,0 +1,19 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString title() const;
+  virtual ExceptionNotification& setTitle(const IString& aTitle);
+  virtual IWindow* owner() const;
+  virtual ExceptionNotification& setOwner(IWindow* aOwner);
+  void show( const IException & exception );
+
+  static INotificationId titleId;
+  static INotificationId ownerId;
+
+private:
+  void construct();
+  IString iTitle;
+  IWindow* iOwner;
+// Feature source code generation ends here.
+

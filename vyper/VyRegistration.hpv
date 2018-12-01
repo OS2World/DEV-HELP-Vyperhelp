@@ -1,0 +1,19 @@
+/***************************************************************************
+ * File...... VyRegistration.hpv
+ * Author.... Mat
+ * Date...... 5/6/99
+ *
+ * Custom declarations for VyRegistration
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+
+// Feature source code generation begins here...
+public:
+  void construct();
+  void registerIt(const IString& userName, const IString& keyName);
+
+
+// Feature source code generation ends here.

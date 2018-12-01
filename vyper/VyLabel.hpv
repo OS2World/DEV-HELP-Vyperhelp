@@ -1,0 +1,55 @@
+
+// Custom code
+private:
+  void    construct();
+  IString hexString( unsigned int n );
+
+public:
+  IString debugString();
+  static VyLabel * newLabel();
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString name() const;
+  virtual VyLabel& setName(const IString& aName);
+  virtual Boolean isExternal() const;
+  virtual VyLabel& enableExternal(Boolean enable = true);
+  virtual int id() const;
+  virtual VyLabel& setId(int aId);
+
+  static INotificationId nameId;
+  static INotificationId externalId;
+  static INotificationId idId;
+
+private:
+  IString iName;
+  Boolean iExternal;
+  int iId;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString externalString() const;
+  virtual IString idString() const;
+
+  static INotificationId externalStringId;
+  static INotificationId idStringId;
+
+private:
+  IString iExternalString;
+  IString iIdString;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual IString idHexString() const;
+  virtual VyLabel& setIdHexString(const IString& aIdHexString);
+
+  static INotificationId idHexStringId;
+
+private:
+  IString iIdHexString;
+// Feature source code generation ends here.

@@ -1,0 +1,243 @@
+#if !defined( CDEFINESSHH)
+#  define CDEFINESSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListMain          0
+#  define ALexExpressionListMLComment     1
+#  define ALexExpressionListSLComment     2
+#  define ALexExpressionListStringLiteral 3
+#  define ALexExpressionListInclude       4
+#  define ALexExpressionListFileName      5
+
+#  define ALexEol                         2
+#  define ALexToken                       3
+#  define ALexOct                         4
+#  define ALexDec                         5
+#  define ALexHex                         6
+#  define ALexInclude                     10
+#  define ALexDefine                      11
+#  define ALexBegQuote                    19
+#  define ALexLT                          20
+#  define ALexGT                          21
+#  define ALexEndQuote                    22
+#  define ALexFileName                    23
+
+#  define AYaccStart                      1
+#  define AYaccLineListNull               2
+#  define AYaccLineList                   3
+#  define AYaccLineEol                    4
+#  define AYaccLineNull                   5
+#  define AYaccLinePre                    6
+#  define AYaccLineToken                  7
+#  define AYaccInclude                    8
+#  define AYaccIncludeQuote               9
+#  define AYaccDefineNull                 10
+#  define AYaccDefineInt                  11
+#  define AYaccDefineNonInt               12
+#  define AYaccDefineOther                13
+#  define AYaccTokenListTwo               14
+#  define AYaccTokenListMore              15
+#  define AYaccTokenList                  16
+#  define AYaccToken                      17
+#  define AYaccTokenAny                   18
+#  define AYaccTokenInt                   19
+#  define AYaccIntOct                     20
+#  define AYaccIntDec                     21
+#  define AYaccIntHex                     22
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "cdefine.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexEol:
+            zpchToken = "eol";
+            break;
+
+         case ALexToken:
+            zpchToken = "Token";
+            break;
+
+         case ALexOct:
+            zpchToken = "OCTALconstant";
+            break;
+
+         case ALexDec:
+            zpchToken = "INTEGERconstant";
+            break;
+
+         case ALexHex:
+            zpchToken = "HEXconstant";
+            break;
+
+         case ALexInclude:
+            zpchToken = "#include";
+            break;
+
+         case ALexDefine:
+            zpchToken = "#define";
+            break;
+
+         case ALexBegQuote:
+            zpchToken = "begQuote";
+            break;
+
+         case ALexLT:
+            zpchToken = "<";
+            break;
+
+         case ALexGT:
+            zpchToken = ">";
+            break;
+
+         case ALexEndQuote:
+            zpchToken = "endQuote";
+            break;
+
+         case ALexFileName:
+            zpchToken = "fileName";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("cdefine.llr"),
+      oLex( qpszFile, "cdefine.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> linesEol lineOpt 
+            break;
+
+         case AYaccLineListNull:
+         // linesEol -> 
+            break;
+
+         case AYaccLineList:
+         // linesEol -> linesEol lineEol 
+            break;
+
+         case AYaccLineEol:
+         // lineEol -> lineOpt eol 
+            break;
+
+         case AYaccLineNull:
+         // lineOpt -> 
+            break;
+
+         case AYaccLinePre:
+         // lineOpt -> linePre 
+            break;
+
+         case AYaccLineToken:
+         // lineOpt -> tokenList 
+            break;
+
+         case AYaccInclude:
+         // linePre -> #include < fileName > 
+            break;
+
+         case AYaccIncludeQuote:
+         // linePre -> #include begQuote fileName endQuote 
+            break;
+
+         case AYaccDefineNull:
+         // linePre -> #define Token 
+            break;
+
+         case AYaccDefineInt:
+         // linePre -> #define Token int 
+            break;
+
+         case AYaccDefineNonInt:
+         // linePre -> #define Token Token 
+            break;
+
+         case AYaccDefineOther:
+         // linePre -> #define Token tokenListTwo 
+            break;
+
+         case AYaccTokenListTwo:
+         // tokenListTwo -> token token 
+            break;
+
+         case AYaccTokenListMore:
+         // tokenListTwo -> token token tokenList 
+            break;
+
+         case AYaccTokenList:
+         // tokenList -> tokenList token 
+            break;
+
+         case AYaccToken:
+         // tokenList -> token 
+            break;
+
+         case AYaccTokenAny:
+         // token -> Token 
+            break;
+
+         case AYaccTokenInt:
+         // token -> int 
+            break;
+
+         case AYaccIntOct:
+         // int -> OCTALconstant 
+            break;
+
+         case AYaccIntDec:
+         // int -> INTEGERconstant 
+            break;
+
+         case AYaccIntHex:
+         // int -> HEXconstant 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

@@ -1,0 +1,25 @@
+
+void VyKeywordProperties::construct()
+{
+  iChanged = false;
+}
+
+// Feature source code generation begins here...
+INotificationId VyKeywordProperties::changedId = "VyKeywordProperties::changed";
+
+Boolean VyKeywordProperties::isChanged() const
+{
+  return iChanged;
+}
+
+VyKeywordProperties& VyKeywordProperties::enableChanged(Boolean enable)
+{
+  if (!(iChanged == enable))
+  {
+    iChanged = enable;
+    notifyObservers(INotificationEvent(VyKeywordProperties::changedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

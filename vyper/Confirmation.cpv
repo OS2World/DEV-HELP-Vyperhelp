@@ -1,0 +1,97 @@
+
+void Confirmation::construct()
+{
+  iOwner   = 0;
+  iEnabled = true;
+}
+
+
+// Feature source code generation begins here...
+INotificationId Confirmation::titleId = "Confirmation::title";
+INotificationId Confirmation::textId = "Confirmation::text";
+INotificationId Confirmation::ownerId = "Confirmation::owner";
+INotificationId Confirmation::confirmedId = "Confirmation::confirmed";
+
+IString Confirmation::title() const
+{
+  return iTitle;
+}
+
+Confirmation& Confirmation::setTitle(const IString& aTitle)
+{
+  if (!(iTitle == aTitle))
+  {
+    iTitle = aTitle;
+    notifyObservers(INotificationEvent(Confirmation::titleId, *this));
+  } // endif
+  return *this;
+}
+
+IString Confirmation::text() const
+{
+  return iText;
+}
+
+Confirmation& Confirmation::setText(const IString& aText)
+{
+  if (!(iText == aText))
+  {
+    iText = aText;
+    notifyObservers(INotificationEvent(Confirmation::textId, *this));
+  } // endif
+  return *this;
+}
+
+IWindow* Confirmation::owner() const
+{
+  return iOwner;
+}
+
+Confirmation& Confirmation::setOwner(IWindow* aOwner)
+{
+  if (!(iOwner == aOwner))
+  {
+    iOwner = aOwner;
+    notifyObservers(INotificationEvent(Confirmation::ownerId, *this));
+  } // endif
+  return *this;
+}
+
+void Confirmation::show()
+{
+  Boolean confirmed = true;
+  if ( iEnabled)
+  {
+    IMessageBox box( iOwner );
+    if ( iTitle.length() )
+      box.setTitle( iTitle );
+    IMessageBox::Response response =
+        box.show( iText, IMessageBox::okCancelButton | IMessageBox::queryIcon | IMessageBox::moveable );
+    confirmed = ( response == IMessageBox::ok );
+  }
+  if ( confirmed )
+    notifyObservers(INotificationEvent(Confirmation::confirmedId, *this));
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId Confirmation::enabledId = "Confirmation::enabled";
+
+Boolean Confirmation::isEnabled() const
+{
+  return iEnabled;
+}
+
+Confirmation& Confirmation::setEnabled(Boolean enable)
+{
+  if (!(iEnabled == enable))
+  {
+    iEnabled = enable;
+    notifyObservers(INotificationEvent(Confirmation::enabledId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

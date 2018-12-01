@@ -1,0 +1,48 @@
+
+void VyFont::construct()
+{
+  iItem = 0;
+}
+
+
+// Feature source code generation begins here...
+INotificationId VyFont::itemId = "VyFont::item";
+INotificationId VyFont::fontId = "VyFont::font";
+
+FontItem* VyFont::item() const
+{
+  return iItem;
+}
+
+VyFont& VyFont::setItem(FontItem* aItem)
+{
+  if (!(iItem == aItem))
+  {
+    iItem = aItem;
+    notifyObservers(INotificationEvent(VyFont::itemId, *this));
+    if ( iItem )
+      setFont( IFont( iItem->name(), iItem->pointSize() ) );
+  } // endif
+  return *this;
+}
+
+IFont VyFont::font() const
+{
+  return iFont;
+}
+
+VyFont& VyFont::setFont(const IFont& aFont)
+{
+  FontInfo current( iFont );
+  FontInfo change( aFont );
+  if ( current != change )
+  {
+    iFont = aFont;
+    notifyObservers(INotificationEvent(VyFont::fontId, *this));
+    if ( iItem )
+      iItem->setInfo( change );
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

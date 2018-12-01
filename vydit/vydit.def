@@ -1,0 +1,5 @@
+LIBRARY      vydit INITINSTANCE TERMINSTANCE
+DATA         MULTIPLE NONSHARED
+DESCRIPTION  'VyperHelp Editor: Copyright (c) 2000 MekTek'
+
+

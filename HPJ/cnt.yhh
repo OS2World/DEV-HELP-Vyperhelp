@@ -1,0 +1,228 @@
+#if !defined( CNTSSHH)
+#  define CNTSSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListStartLine    0
+#  define ALexExpressionListInclude      1
+#  define ALexExpressionListTitle        2
+#  define ALexExpressionListSection      3
+#  define ALexExpressionListContent      4
+#  define ALexExpressionListSkipLine     5
+
+#  define ALexUnknown                    3
+#  define ALexBase                       4
+#  define ALexInclude                    5
+#  define ALexIndex                      6
+#  define ALexLink                       7
+#  define ALexTab                        8
+#  define ALexTitle                      9
+#  define ALexSection                    10
+#  define ALexFilename                   13
+#  define ALexCaption                    16
+#  define ALexEqual                      19
+#  define ALexLiteral                    20
+#  define ALexText                       21
+#  define ALexContent                    24
+
+#  define AYaccStart                     1
+#  define AYaccLines                     2
+#  define AYaccLinesNull                 3
+#  define AYaccUnknown                   4
+#  define AYaccBase                      5
+#  define AYaccInclude                   6
+#  define AYaccIndex                     7
+#  define AYaccLink                      8
+#  define AYaccTab                       9
+#  define AYaccTitle                     10
+#  define AYaccSection                   11
+#  define AYaccTexts                     12
+#  define AYaccTextsOne                  13
+#  define AYaccTextLiteral               14
+#  define AYaccText                      15
+#  define AYaccContents                  16
+#  define AYaccContentsNull              17
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "cnt.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexUnknown:
+            zpchToken = "Unknown";
+            break;
+
+         case ALexBase:
+            zpchToken = "Base";
+            break;
+
+         case ALexInclude:
+            zpchToken = "Include";
+            break;
+
+         case ALexIndex:
+            zpchToken = "Index";
+            break;
+
+         case ALexLink:
+            zpchToken = "Link";
+            break;
+
+         case ALexTab:
+            zpchToken = "Tab";
+            break;
+
+         case ALexTitle:
+            zpchToken = "Title";
+            break;
+
+         case ALexSection:
+            zpchToken = "Section";
+            break;
+
+         case ALexFilename:
+            zpchToken = "Filename";
+            break;
+
+         case ALexCaption:
+            zpchToken = "Caption";
+            break;
+
+         case ALexEqual:
+            zpchToken = "Equal";
+            break;
+
+         case ALexLiteral:
+            zpchToken = "Literal";
+            break;
+
+         case ALexText:
+            zpchToken = "Text";
+            break;
+
+         case ALexContent:
+            zpchToken = "Content";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("cnt.llr"),
+      oLex( qpszFile, "cnt.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> lines 
+            break;
+
+         case AYaccLines:
+         // lines -> lines line 
+            break;
+
+         case AYaccLinesNull:
+         // lines -> 
+            break;
+
+         case AYaccUnknown:
+         // line -> Unknown 
+            break;
+
+         case AYaccBase:
+         // line -> Base 
+            break;
+
+         case AYaccInclude:
+         // line -> Include Filename 
+            break;
+
+         case AYaccIndex:
+         // line -> Index 
+            break;
+
+         case AYaccLink:
+         // line -> Link 
+            break;
+
+         case AYaccTab:
+         // line -> Tab 
+            break;
+
+         case AYaccTitle:
+         // line -> Title Caption 
+            break;
+
+         case AYaccSection:
+         // line -> Section texts contents 
+            break;
+
+         case AYaccTexts:
+         // texts -> texts text 
+            break;
+
+         case AYaccTextsOne:
+         // texts -> text 
+            break;
+
+         case AYaccTextLiteral:
+         // text -> Literal 
+            break;
+
+         case AYaccText:
+         // text -> Text 
+            break;
+
+         case AYaccContents:
+         // contents -> Equal Content 
+            break;
+
+         case AYaccContentsNull:
+         // contents -> 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

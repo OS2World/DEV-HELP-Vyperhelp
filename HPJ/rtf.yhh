@@ -1,0 +1,1283 @@
+#if !defined( RTFSSHH)
+#  define RTFSSHH
+#  include<sslex.hpp>
+#  include<ssyacc.hpp>
+
+#  define ALexExpressionListMain           0
+
+#  define ALexAsciiTab                     2
+#  define ALexText                         3
+#  define ALexOpen                         4
+#  define ALexClose                        5
+#  define ALexSymbol                       6
+#  define ALexHex                          7
+#  define ALexHexTab                       8
+#  define ALexOptionalHyphen               9
+#  define ALexNoBreakHyphen                10
+#  define ALexIndexSubentry                11
+#  define ALexNoBreakSpace                 12
+#  define ALexLineFeed                     13
+#  define ALexCarriageReturn               14
+#  define ALexDest                         15
+#  define ALexCtrl                         16
+#  define ALexBmc                          17
+#  define ALexBmct                         18
+#  define ALexBmcwd                        19
+#  define ALexBml                          20
+#  define ALexBmlt                         21
+#  define ALexBmlwd                        22
+#  define ALexBmr                          23
+#  define ALexBmrt                         24
+#  define ALexBmrwd                        25
+#  define ALexButton                       26
+#  define ALexEwc                          27
+#  define ALexEwl                          28
+#  define ALexEwr                          29
+#  define ALexMci                          30
+#  define ALexMciLeft                      31
+#  define ALexMciRight                     32
+#  define ALexMetaClose                    33
+#  define ALexAnsi                         34
+#  define ALexBin                          35
+#  define ALexBlue                         36
+#  define ALexBullet                       37
+#  define ALexB                            38
+#  define ALexCb                           39
+#  define ALexCellx                        40
+#  define ALexCell                         41
+#  define ALexCf                           42
+#  define ALexChftn                        43
+#  define ALexColortbl                     44
+#  define ALexComment                      45
+#  define ALexCpg                          46
+#  define ALexDeff                         47
+#  define ALexEmdash                       48
+#  define ALexEmspace                      49
+#  define ALexEndash                       50
+#  define ALexEnspace                      51
+#  define ALexFalt                         52
+#  define ALexFbidi                        53
+#  define ALexFcharset                     54
+#  define ALexFdecor                       55
+#  define ALexFi                           56
+#  define ALexField                        57
+#  define ALexFldpriv                      58
+#  define ALexFldrslt                      59
+#  define ALexFmodern                      60
+#  define ALexFnil                         61
+#  define ALexFonttbl                      62
+#  define ALexFooterf                      63
+#  define ALexFooterl                      64
+#  define ALexFooterr                      65
+#  define ALexFooter                       66
+#  define ALexFootnote                     67
+#  define ALexFprq                         68
+#  define ALexFroman                       69
+#  define ALexFscript                      70
+#  define ALexFswiss                       71
+#  define ALexFs                           72
+#  define ALexFtech                        73
+#  define ALexFtncn                        74
+#  define ALexFtnsepc                      75
+#  define ALexFtnsep                       76
+#  define ALexF                            77
+#  define ALexGreen                        78
+#  define ALexHeaderf                      79
+#  define ALexHeaderl                      80
+#  define ALexHeaderr                      81
+#  define ALexHeader                       82
+#  define ALexInfo                         83
+#  define ALexIntbl                        84
+#  define ALexI                            85
+#  define ALexLdblquote                    86
+#  define ALexLine                         87
+#  define ALexLi                           88
+#  define ALexLquote                       89
+#  define ALexMac                          90
+#  define ALexObject                       91
+#  define ALexPage                         92
+#  define ALexPard                         93
+#  define ALexPar                          94
+#  define ALexPca                          95
+#  define ALexPc                           96
+#  define ALexPict                         97
+#  define ALexPlain                        98
+#  define ALexQc                           99
+#  define ALexQl                           100
+#  define ALexQr                           101
+#  define ALexRdblquote                    102
+#  define ALexRed                          103
+#  define ALexRi                           104
+#  define ALexRow                          105
+#  define ALexRquote                       106
+#  define ALexRtf                          107
+#  define ALexRxe                          108
+#  define ALexSa                           109
+#  define ALexSb                           110
+#  define ALexSect                         111
+#  define ALexStrike                       112
+#  define ALexStylesheet                   113
+#  define ALexTab                          114
+#  define ALexTc                           115
+#  define ALexTxe                          116
+#  define ALexUldb                         117
+#  define ALexUl                           118
+#  define ALexV                            119
+#  define ALexWindows                      120
+#  define ALexXe                           121
+
+#  define AYaccStart                       1
+#  define AYaccElements                    2
+#  define AYaccElementsOne                 3
+#  define AYaccAsciiTab                    4
+#  define AYaccText                        5
+#  define AYaccOpen                        6
+#  define AYaccClose                       7
+#  define AYaccSymbol                      8
+#  define AYaccHex                         9
+#  define AYaccHexTab                      10
+#  define AYaccOptionalHyphen              11
+#  define AYaccNoBreakHyphen               12
+#  define AYaccIndexSubentry               13
+#  define AYaccNoBreakSpace                14
+#  define AYaccLineFeed                    15
+#  define AYaccCarriageReturn              16
+#  define AYaccDest                        17
+#  define AYaccCtrl                        18
+#  define AYaccBmc                         19
+#  define AYaccBmct                        20
+#  define AYaccBmcwd                       21
+#  define AYaccBml                         22
+#  define AYaccBmlt                        23
+#  define AYaccBmlwd                       24
+#  define AYaccBmr                         25
+#  define AYaccBmrt                        26
+#  define AYaccBmrwd                       27
+#  define AYaccButton                      28
+#  define AYaccEwc                         29
+#  define AYaccEwl                         30
+#  define AYaccEwr                         31
+#  define AYaccMci                         32
+#  define AYaccMciLeft                     33
+#  define AYaccMciRight                    34
+#  define AYaccMetaClose                   35
+#  define AYaccAnsi                        36
+#  define AYaccB                           37
+#  define AYaccBin                         38
+#  define AYaccBlue                        39
+#  define AYaccBullet                      40
+#  define AYaccCb                          41
+#  define AYaccCell                        42
+#  define AYaccCellx                       43
+#  define AYaccCf                          44
+#  define AYaccChftn                       45
+#  define AYaccColortbl                    46
+#  define AYaccComment                     47
+#  define AYaccCpg                         48
+#  define AYaccDeff                        49
+#  define AYaccEmdash                      50
+#  define AYaccEmspace                     51
+#  define AYaccEndash                      52
+#  define AYaccEnspace                     53
+#  define AYaccF                           54
+#  define AYaccFalt                        55
+#  define AYaccFbidi                       56
+#  define AYaccFcharset                    57
+#  define AYaccFdecor                      58
+#  define AYaccFi                          59
+#  define AYaccField                       60
+#  define AYaccFldpriv                     61
+#  define AYaccFldrslt                     62
+#  define AYaccFmodern                     63
+#  define AYaccFnil                        64
+#  define AYaccFonttbl                     65
+#  define AYaccFooter                      66
+#  define AYaccFooterf                     67
+#  define AYaccFooterl                     68
+#  define AYaccFooterr                     69
+#  define AYaccFootnote                    70
+#  define AYaccFprq                        71
+#  define AYaccFroman                      72
+#  define AYaccFs                          73
+#  define AYaccFscript                     74
+#  define AYaccFswiss                      75
+#  define AYaccFtech                       76
+#  define AYaccFtncn                       77
+#  define AYaccFtnsep                      78
+#  define AYaccFtnsepc                     79
+#  define AYaccGreen                       80
+#  define AYaccHeader                      81
+#  define AYaccHeaderf                     82
+#  define AYaccHeaderl                     83
+#  define AYaccHeaderr                     84
+#  define AYaccI                           85
+#  define AYaccInfo                        86
+#  define AYaccIntbl                       87
+#  define AYaccLdblquote                   88
+#  define AYaccLi                          89
+#  define AYaccLine                        90
+#  define AYaccLquote                      91
+#  define AYaccMac                         92
+#  define AYaccObject                      93
+#  define AYaccPage                        94
+#  define AYaccPar                         95
+#  define AYaccPard                        96
+#  define AYaccPc                          97
+#  define AYaccPca                         98
+#  define AYaccPict                        99
+#  define AYaccPlain                       100
+#  define AYaccQc                          101
+#  define AYaccQl                          102
+#  define AYaccQr                          103
+#  define AYaccRdblquote                   104
+#  define AYaccRed                         105
+#  define AYaccRi                          106
+#  define AYaccRow                         107
+#  define AYaccRquote                      108
+#  define AYaccRtf                         109
+#  define AYaccRxe                         110
+#  define AYaccSa                          111
+#  define AYaccSb                          112
+#  define AYaccSect                        113
+#  define AYaccStrike                      114
+#  define AYaccStylesheet                  115
+#  define AYaccTab                         116
+#  define AYaccTc                          117
+#  define AYaccTxe                         118
+#  define AYaccUl                          119
+#  define AYaccUldb                        120
+#  define AYaccV                           121
+#  define AYaccWindows                     122
+#  define AYaccXe                          123
+
+   class ALexClass : public SSLex
+      {
+      public:
+         SSConstr            ALexClass( const char*);
+         const char*         tokenToConstChar( SSUnsigned32);
+      };
+
+   ALexClass::ALexClass( const char* qpszFile) : 
+      SSLex( qpszFile, "rtf.dfa")
+      {
+      }
+
+   const char* ALexClass::tokenToConstChar( SSUnsigned32 qulToken)
+      {
+      const char* zpchToken;
+      switch ( qulToken)
+         {
+         case ALexAsciiTab:
+            zpchToken = "AsciiTab";
+            break;
+
+         case ALexText:
+            zpchToken = "Text";
+            break;
+
+         case ALexOpen:
+            zpchToken = "Open";
+            break;
+
+         case ALexClose:
+            zpchToken = "Close";
+            break;
+
+         case ALexSymbol:
+            zpchToken = "Symbol";
+            break;
+
+         case ALexHex:
+            zpchToken = "Hex";
+            break;
+
+         case ALexHexTab:
+            zpchToken = "HexTab";
+            break;
+
+         case ALexOptionalHyphen:
+            zpchToken = "OptionalHyphen";
+            break;
+
+         case ALexNoBreakHyphen:
+            zpchToken = "NoBreakHyphen";
+            break;
+
+         case ALexIndexSubentry:
+            zpchToken = "IndexSubentry";
+            break;
+
+         case ALexNoBreakSpace:
+            zpchToken = "NoBreakSpace";
+            break;
+
+         case ALexLineFeed:
+            zpchToken = "LineFeed";
+            break;
+
+         case ALexCarriageReturn:
+            zpchToken = "CarriageReturn";
+            break;
+
+         case ALexDest:
+            zpchToken = "Dest";
+            break;
+
+         case ALexCtrl:
+            zpchToken = "Ctrl";
+            break;
+
+         case ALexBmc:
+            zpchToken = "Bmc";
+            break;
+
+         case ALexBmct:
+            zpchToken = "Bmct";
+            break;
+
+         case ALexBmcwd:
+            zpchToken = "Bmcwd";
+            break;
+
+         case ALexBml:
+            zpchToken = "Bml";
+            break;
+
+         case ALexBmlt:
+            zpchToken = "Bmlt";
+            break;
+
+         case ALexBmlwd:
+            zpchToken = "Bmlwd";
+            break;
+
+         case ALexBmr:
+            zpchToken = "Bmr";
+            break;
+
+         case ALexBmrt:
+            zpchToken = "Bmrt";
+            break;
+
+         case ALexBmrwd:
+            zpchToken = "Bmrwd";
+            break;
+
+         case ALexButton:
+            zpchToken = "Button";
+            break;
+
+         case ALexEwc:
+            zpchToken = "Ewc";
+            break;
+
+         case ALexEwl:
+            zpchToken = "Ewl";
+            break;
+
+         case ALexEwr:
+            zpchToken = "Ewr";
+            break;
+
+         case ALexMci:
+            zpchToken = "Mci";
+            break;
+
+         case ALexMciLeft:
+            zpchToken = "MciLeft";
+            break;
+
+         case ALexMciRight:
+            zpchToken = "MciRight";
+            break;
+
+         case ALexMetaClose:
+            zpchToken = "MetaClose";
+            break;
+
+         case ALexAnsi:
+            zpchToken = "Ansi";
+            break;
+
+         case ALexBin:
+            zpchToken = "Bin";
+            break;
+
+         case ALexBlue:
+            zpchToken = "Blue";
+            break;
+
+         case ALexBullet:
+            zpchToken = "Bullet";
+            break;
+
+         case ALexB:
+            zpchToken = "B";
+            break;
+
+         case ALexCb:
+            zpchToken = "Cb";
+            break;
+
+         case ALexCellx:
+            zpchToken = "Cellx";
+            break;
+
+         case ALexCell:
+            zpchToken = "Cell";
+            break;
+
+         case ALexCf:
+            zpchToken = "Cf";
+            break;
+
+         case ALexChftn:
+            zpchToken = "Chftn";
+            break;
+
+         case ALexColortbl:
+            zpchToken = "Colortbl";
+            break;
+
+         case ALexComment:
+            zpchToken = "Comment";
+            break;
+
+         case ALexCpg:
+            zpchToken = "Cpg";
+            break;
+
+         case ALexDeff:
+            zpchToken = "Deff";
+            break;
+
+         case ALexEmdash:
+            zpchToken = "Emdash";
+            break;
+
+         case ALexEmspace:
+            zpchToken = "Emspace";
+            break;
+
+         case ALexEndash:
+            zpchToken = "Endash";
+            break;
+
+         case ALexEnspace:
+            zpchToken = "Enspace";
+            break;
+
+         case ALexFalt:
+            zpchToken = "Falt";
+            break;
+
+         case ALexFbidi:
+            zpchToken = "Fbidi";
+            break;
+
+         case ALexFcharset:
+            zpchToken = "Fcharset";
+            break;
+
+         case ALexFdecor:
+            zpchToken = "Fdecor";
+            break;
+
+         case ALexFi:
+            zpchToken = "Fi";
+            break;
+
+         case ALexField:
+            zpchToken = "Field";
+            break;
+
+         case ALexFldpriv:
+            zpchToken = "Fldpriv";
+            break;
+
+         case ALexFldrslt:
+            zpchToken = "Fldrslt";
+            break;
+
+         case ALexFmodern:
+            zpchToken = "Fmodern";
+            break;
+
+         case ALexFnil:
+            zpchToken = "Fnil";
+            break;
+
+         case ALexFonttbl:
+            zpchToken = "Fonttbl";
+            break;
+
+         case ALexFooterf:
+            zpchToken = "Footerf";
+            break;
+
+         case ALexFooterl:
+            zpchToken = "Footerl";
+            break;
+
+         case ALexFooterr:
+            zpchToken = "Footerr";
+            break;
+
+         case ALexFooter:
+            zpchToken = "Footer";
+            break;
+
+         case ALexFootnote:
+            zpchToken = "Footnote";
+            break;
+
+         case ALexFprq:
+            zpchToken = "Fprq";
+            break;
+
+         case ALexFroman:
+            zpchToken = "Froman";
+            break;
+
+         case ALexFscript:
+            zpchToken = "Fscript";
+            break;
+
+         case ALexFswiss:
+            zpchToken = "Fswiss";
+            break;
+
+         case ALexFs:
+            zpchToken = "Fs";
+            break;
+
+         case ALexFtech:
+            zpchToken = "Ftech";
+            break;
+
+         case ALexFtncn:
+            zpchToken = "Ftncn";
+            break;
+
+         case ALexFtnsepc:
+            zpchToken = "Ftnsepc";
+            break;
+
+         case ALexFtnsep:
+            zpchToken = "Ftnsep";
+            break;
+
+         case ALexF:
+            zpchToken = "F";
+            break;
+
+         case ALexGreen:
+            zpchToken = "Green";
+            break;
+
+         case ALexHeaderf:
+            zpchToken = "Headerf";
+            break;
+
+         case ALexHeaderl:
+            zpchToken = "Headerl";
+            break;
+
+         case ALexHeaderr:
+            zpchToken = "Headerr";
+            break;
+
+         case ALexHeader:
+            zpchToken = "Header";
+            break;
+
+         case ALexInfo:
+            zpchToken = "Info";
+            break;
+
+         case ALexIntbl:
+            zpchToken = "Intbl";
+            break;
+
+         case ALexI:
+            zpchToken = "I";
+            break;
+
+         case ALexLdblquote:
+            zpchToken = "Ldblquote";
+            break;
+
+         case ALexLine:
+            zpchToken = "Line";
+            break;
+
+         case ALexLi:
+            zpchToken = "Li";
+            break;
+
+         case ALexLquote:
+            zpchToken = "Lquote";
+            break;
+
+         case ALexMac:
+            zpchToken = "Mac";
+            break;
+
+         case ALexObject:
+            zpchToken = "Object";
+            break;
+
+         case ALexPage:
+            zpchToken = "Page";
+            break;
+
+         case ALexPard:
+            zpchToken = "Pard";
+            break;
+
+         case ALexPar:
+            zpchToken = "Par";
+            break;
+
+         case ALexPca:
+            zpchToken = "Pca";
+            break;
+
+         case ALexPc:
+            zpchToken = "Pc";
+            break;
+
+         case ALexPict:
+            zpchToken = "Pict";
+            break;
+
+         case ALexPlain:
+            zpchToken = "Plain";
+            break;
+
+         case ALexQc:
+            zpchToken = "Qc";
+            break;
+
+         case ALexQl:
+            zpchToken = "Ql";
+            break;
+
+         case ALexQr:
+            zpchToken = "Qr";
+            break;
+
+         case ALexRdblquote:
+            zpchToken = "Rdblquote";
+            break;
+
+         case ALexRed:
+            zpchToken = "Red";
+            break;
+
+         case ALexRi:
+            zpchToken = "Ri";
+            break;
+
+         case ALexRow:
+            zpchToken = "Row";
+            break;
+
+         case ALexRquote:
+            zpchToken = "Rquote";
+            break;
+
+         case ALexRtf:
+            zpchToken = "Rtf";
+            break;
+
+         case ALexRxe:
+            zpchToken = "Rxe";
+            break;
+
+         case ALexSa:
+            zpchToken = "Sa";
+            break;
+
+         case ALexSb:
+            zpchToken = "Sb";
+            break;
+
+         case ALexSect:
+            zpchToken = "Sect";
+            break;
+
+         case ALexStrike:
+            zpchToken = "Strike";
+            break;
+
+         case ALexStylesheet:
+            zpchToken = "Stylesheet";
+            break;
+
+         case ALexTab:
+            zpchToken = "Tab";
+            break;
+
+         case ALexTc:
+            zpchToken = "Tc";
+            break;
+
+         case ALexTxe:
+            zpchToken = "Txe";
+            break;
+
+         case ALexUldb:
+            zpchToken = "Uldb";
+            break;
+
+         case ALexUl:
+            zpchToken = "Ul";
+            break;
+
+         case ALexV:
+            zpchToken = "V";
+            break;
+
+         case ALexWindows:
+            zpchToken = "Windows";
+            break;
+
+         case ALexXe:
+            zpchToken = "Xe";
+            break;
+
+         case SSYaccErrorToken:
+            zpchToken = "%error";
+            break;
+
+         case SSYaccEofToken:
+            zpchToken = "eof";
+            break;
+
+         default:
+            zpchToken = SSLexTokenNotFound;
+         }
+      return zpchToken;
+      }
+
+   class AYaccClass : public SSYacc
+      {
+      public:
+         SSConstr            AYaccClass( const char*);
+         SSYaccStackElement* reduce( SSUnsigned32, SSUnsigned32);
+
+      protected:
+         SSLex               oLex;
+      };
+
+   AYaccClass::AYaccClass( const char* qpszFile) : 
+      SSYacc("rtf.llr"),
+      oLex( qpszFile, "rtf.dfa")
+      {
+      setLex( oLex);
+      }
+
+   SSYaccStackElement* AYaccClass::reduce( SSUnsigned32 qulProd,
+      SSUnsigned32 qulSize)
+      {
+      switch ( qulProd)
+         {
+         case AYaccStart:
+         // start -> elements 
+            break;
+
+         case AYaccElements:
+         // elements -> elements element 
+            break;
+
+         case AYaccElementsOne:
+         // elements -> element 
+            break;
+
+         case AYaccAsciiTab:
+         // element -> AsciiTab 
+            break;
+
+         case AYaccText:
+         // element -> Text 
+            break;
+
+         case AYaccOpen:
+         // element -> Open 
+            break;
+
+         case AYaccClose:
+         // element -> Close 
+            break;
+
+         case AYaccSymbol:
+         // element -> Symbol 
+            break;
+
+         case AYaccHex:
+         // element -> Hex 
+            break;
+
+         case AYaccHexTab:
+         // element -> HexTab 
+            break;
+
+         case AYaccOptionalHyphen:
+         // element -> OptionalHyphen 
+            break;
+
+         case AYaccNoBreakHyphen:
+         // element -> NoBreakHyphen 
+            break;
+
+         case AYaccIndexSubentry:
+         // element -> IndexSubentry 
+            break;
+
+         case AYaccNoBreakSpace:
+         // element -> NoBreakSpace 
+            break;
+
+         case AYaccLineFeed:
+         // element -> LineFeed 
+            break;
+
+         case AYaccCarriageReturn:
+         // element -> CarriageReturn 
+            break;
+
+         case AYaccDest:
+         // element -> Dest 
+            break;
+
+         case AYaccCtrl:
+         // element -> Ctrl 
+            break;
+
+         case AYaccBmc:
+         // element -> Bmc 
+            break;
+
+         case AYaccBmct:
+         // element -> Bmct 
+            break;
+
+         case AYaccBmcwd:
+         // element -> Bmcwd 
+            break;
+
+         case AYaccBml:
+         // element -> Bml 
+            break;
+
+         case AYaccBmlt:
+         // element -> Bmlt 
+            break;
+
+         case AYaccBmlwd:
+         // element -> Bmlwd 
+            break;
+
+         case AYaccBmr:
+         // element -> Bmr 
+            break;
+
+         case AYaccBmrt:
+         // element -> Bmrt 
+            break;
+
+         case AYaccBmrwd:
+         // element -> Bmrwd 
+            break;
+
+         case AYaccButton:
+         // element -> Button 
+            break;
+
+         case AYaccEwc:
+         // element -> Ewc 
+            break;
+
+         case AYaccEwl:
+         // element -> Ewl 
+            break;
+
+         case AYaccEwr:
+         // element -> Ewr 
+            break;
+
+         case AYaccMci:
+         // element -> Mci 
+            break;
+
+         case AYaccMciLeft:
+         // element -> MciLeft 
+            break;
+
+         case AYaccMciRight:
+         // element -> MciRight 
+            break;
+
+         case AYaccMetaClose:
+         // element -> MetaClose 
+            break;
+
+         case AYaccAnsi:
+         // element -> Ansi 
+            break;
+
+         case AYaccB:
+         // element -> B 
+            break;
+
+         case AYaccBin:
+         // element -> Bin 
+            break;
+
+         case AYaccBlue:
+         // element -> Blue 
+            break;
+
+         case AYaccBullet:
+         // element -> Bullet 
+            break;
+
+         case AYaccCb:
+         // element -> Cb 
+            break;
+
+         case AYaccCell:
+         // element -> Cell 
+            break;
+
+         case AYaccCellx:
+         // element -> Cellx 
+            break;
+
+         case AYaccCf:
+         // element -> Cf 
+            break;
+
+         case AYaccChftn:
+         // element -> Chftn 
+            break;
+
+         case AYaccColortbl:
+         // element -> Colortbl 
+            break;
+
+         case AYaccComment:
+         // element -> Comment 
+            break;
+
+         case AYaccCpg:
+         // element -> Cpg 
+            break;
+
+         case AYaccDeff:
+         // element -> Deff 
+            break;
+
+         case AYaccEmdash:
+         // element -> Emdash 
+            break;
+
+         case AYaccEmspace:
+         // element -> Emspace 
+            break;
+
+         case AYaccEndash:
+         // element -> Endash 
+            break;
+
+         case AYaccEnspace:
+         // element -> Enspace 
+            break;
+
+         case AYaccF:
+         // element -> F 
+            break;
+
+         case AYaccFalt:
+         // element -> Falt 
+            break;
+
+         case AYaccFbidi:
+         // element -> Fbidi 
+            break;
+
+         case AYaccFcharset:
+         // element -> Fcharset 
+            break;
+
+         case AYaccFdecor:
+         // element -> Fdecor 
+            break;
+
+         case AYaccFi:
+         // element -> Fi 
+            break;
+
+         case AYaccField:
+         // element -> Field 
+            break;
+
+         case AYaccFldpriv:
+         // element -> Fldpriv 
+            break;
+
+         case AYaccFldrslt:
+         // element -> Fldrslt 
+            break;
+
+         case AYaccFmodern:
+         // element -> Fmodern 
+            break;
+
+         case AYaccFnil:
+         // element -> Fnil 
+            break;
+
+         case AYaccFonttbl:
+         // element -> Fonttbl 
+            break;
+
+         case AYaccFooter:
+         // element -> Footer 
+            break;
+
+         case AYaccFooterf:
+         // element -> Footerf 
+            break;
+
+         case AYaccFooterl:
+         // element -> Footerl 
+            break;
+
+         case AYaccFooterr:
+         // element -> Footerr 
+            break;
+
+         case AYaccFootnote:
+         // element -> Footnote 
+            break;
+
+         case AYaccFprq:
+         // element -> Fprq 
+            break;
+
+         case AYaccFroman:
+         // element -> Froman 
+            break;
+
+         case AYaccFs:
+         // element -> Fs 
+            break;
+
+         case AYaccFscript:
+         // element -> Fscript 
+            break;
+
+         case AYaccFswiss:
+         // element -> Fswiss 
+            break;
+
+         case AYaccFtech:
+         // element -> Ftech 
+            break;
+
+         case AYaccFtncn:
+         // element -> Ftncn 
+            break;
+
+         case AYaccFtnsep:
+         // element -> Ftnsep 
+            break;
+
+         case AYaccFtnsepc:
+         // element -> Ftnsepc 
+            break;
+
+         case AYaccGreen:
+         // element -> Green 
+            break;
+
+         case AYaccHeader:
+         // element -> Header 
+            break;
+
+         case AYaccHeaderf:
+         // element -> Headerf 
+            break;
+
+         case AYaccHeaderl:
+         // element -> Headerl 
+            break;
+
+         case AYaccHeaderr:
+         // element -> Headerr 
+            break;
+
+         case AYaccI:
+         // element -> I 
+            break;
+
+         case AYaccInfo:
+         // element -> Info 
+            break;
+
+         case AYaccIntbl:
+         // element -> Intbl 
+            break;
+
+         case AYaccLdblquote:
+         // element -> Ldblquote 
+            break;
+
+         case AYaccLi:
+         // element -> Li 
+            break;
+
+         case AYaccLine:
+         // element -> Line 
+            break;
+
+         case AYaccLquote:
+         // element -> Lquote 
+            break;
+
+         case AYaccMac:
+         // element -> Mac 
+            break;
+
+         case AYaccObject:
+         // element -> Object 
+            break;
+
+         case AYaccPage:
+         // element -> Page 
+            break;
+
+         case AYaccPar:
+         // element -> Par 
+            break;
+
+         case AYaccPard:
+         // element -> Pard 
+            break;
+
+         case AYaccPc:
+         // element -> Pc 
+            break;
+
+         case AYaccPca:
+         // element -> Pca 
+            break;
+
+         case AYaccPict:
+         // element -> Pict 
+            break;
+
+         case AYaccPlain:
+         // element -> Plain 
+            break;
+
+         case AYaccQc:
+         // element -> Qc 
+            break;
+
+         case AYaccQl:
+         // element -> Ql 
+            break;
+
+         case AYaccQr:
+         // element -> Qr 
+            break;
+
+         case AYaccRdblquote:
+         // element -> Rdblquote 
+            break;
+
+         case AYaccRed:
+         // element -> Red 
+            break;
+
+         case AYaccRi:
+         // element -> Ri 
+            break;
+
+         case AYaccRow:
+         // element -> Row 
+            break;
+
+         case AYaccRquote:
+         // element -> Rquote 
+            break;
+
+         case AYaccRtf:
+         // element -> Rtf 
+            break;
+
+         case AYaccRxe:
+         // element -> Rxe 
+            break;
+
+         case AYaccSa:
+         // element -> Sa 
+            break;
+
+         case AYaccSb:
+         // element -> Sb 
+            break;
+
+         case AYaccSect:
+         // element -> Sect 
+            break;
+
+         case AYaccStrike:
+         // element -> Strike 
+            break;
+
+         case AYaccStylesheet:
+         // element -> Stylesheet 
+            break;
+
+         case AYaccTab:
+         // element -> Tab 
+            break;
+
+         case AYaccTc:
+         // element -> Tc 
+            break;
+
+         case AYaccTxe:
+         // element -> Txe 
+            break;
+
+         case AYaccUl:
+         // element -> Ul 
+            break;
+
+         case AYaccUldb:
+         // element -> Uldb 
+            break;
+
+         case AYaccV:
+         // element -> V 
+            break;
+
+         case AYaccWindows:
+         // element -> Windows 
+            break;
+
+         case AYaccXe:
+         // element -> Xe 
+            break;
+
+         }
+
+      return stackElement();
+      }
+
+#endif

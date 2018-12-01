@@ -1,0 +1,81 @@
+----- DoBase -----
+
+Key
+  01 = general to-do
+  A1 = lockup
+  A2 = trap or crash
+  A3 = data loss
+  A4 = internal corruption
+  B1 = must fix bug (obvious)
+  B2 = should fix bug (may not be obvious)
+  B3 = cosmetic bug
+  B4 = "permanent" limitation
+  F1 = must have feature
+  F2 = should have feature
+  F3 = suggestion
+
+  \ = deferred
+  x = fixed?
+
+A2  trap importing HAG.HPJ, release build only (can't reproduce)
+A2  alternate clicking and hitting space rapidly -> trap
+B1  IPF export fails 2nd time, can't reproduce, from sehh@altered.com
+B1  assertion: "! _startFormatView && ! _endFormatView" (aaron@consultant.com), can't reproduce
+B1  y-umlaut does not convert (0xff)
+B2  RTF parser misses links if formatting change withing /uldb or /v (aurorasw@direct.ca)
+B2  RTF parser can't handle formatting change during a meta tag
+B2  HPJ parser should ignore alignment in tables (since tables are ignored)
+B2  Section-Copy then paste to DeScribe loses newlines (E.EXE ok)
+B2  alt+/- don't expand sub-levels (same as +/-)
+B2  export text avoid leading spaces
+B2  link dialog populates too slowly, use thread?
+B2  symbols mess up line break scheme
+B3  FontInfo "vector" bit used inconsistently
+B3  HTML <pre> should not allow nested block styles
+B3  PgUp and PgDn don't move Kursor
+B3  [WINDOWS] windowname can contain "()", currently gives error
+B3  bold is screwey on some systems
+B3  dbl-click + drag doesn't show selection until done
+B3  dbl-click for selecting words flakey (conflict with drag-select?)
+B3  italic draw problems (clipped, bg not cleared)
+B3  look at memory use (3M startup, 2M load file)
+B3  refresh off during alt+up/down (maximized only)
+B3  refresh should be sure to clear background
+B4  aqua background (Matrox MGA-G100AGP 2.21.063 if >64k colors)
+B4  shift+enter doesn't work in EditorTester
+B4  UIL0261 when trying to save GIF with resolution > n? bits
+F1  allow cancel of load, save, import, export
+F2  add command to assign default label to section (IDH_SECTION_NAME)
+F2  better line spacing (extend SpacingGin, RTF use line para to control, IPF better determination)
+F2  bitmap SHG import
+F2  bitmap hypergraphics (IPF artlink, WinHelp SHG)
+F2  check for conflicting label names/values
+F2  drag selected text to a section for a link
+F2  drag to move sections
+F2  editor insert para too slow: too many shiftRect calls
+F2  insert bold/italic/etc should backspace one when no selection
+F2  list of recent files (add File-Recall menu)
+F2  need faster way to select symbol via keyboard
+F2  popup menus for section container and editor
+F2  recognize Windows Symbol fonts
+F2  recognize more Windows ANSI characters (special symbol conversion)
+F2  select all, Bold, takes too long (Editor::isUnbalanced)
+F2  support cross-platform external links (filename extension)
+F3  access split bar from keyboard
+F3  add tempfile debugging (monitor create & destroy via Filename)
+F3  auto-size tree view
+F3  code filtering by Generator (eliminate redundant Gins)
+F3  generic TagGin (platform specific)
+F3  generic non-edit Gin support in editor (ArtGin, etc)
+F3  global font setting (aaron@consultant.com)
+F3  optional exclusion of inlines (like I_NO_INLINES)
+F3  port to windows (aaron@consultant.com)
+F3  relative font sizes (leifel@online.no)
+F3  run IPFC after export (aaron@consultant.com)
+F3  special handling for dbl-click on LINK text
+F3  styles (leifel@online.no) (aaron@consultant.com)
+F3  support RTF \tab-based tables
+F3  support lists in the editor (aaron@consultant.com)
+F3  toolbar
+
+

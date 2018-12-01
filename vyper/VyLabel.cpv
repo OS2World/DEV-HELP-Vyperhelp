@@ -1,0 +1,134 @@
+// Custom code
+
+VyLabel * VyLabel::newLabel()
+{
+  VyLabel * label = new VyLabel();
+  label->enableNotification();
+  label->initializePart();
+  return label;
+}
+
+
+void VyLabel::construct()
+{
+  iId = 0;
+  iIdString = IString( 0 );
+  iIdHexString = hexString( 0 );
+  iExternal = false;
+  iExternalString = BooleanString( false );
+}
+
+
+IString VyLabel::hexString( unsigned int n )
+{
+  return IString( n ).d2x().rightJustify( 8, '0' );
+}
+
+
+IString VyLabel::debugString()
+{
+  IString result = iName;
+  if ( iId )
+    result += IString(" [") + IString(iId) + IString("]");
+  if ( iExternal )
+    result += " [external]";
+  return result;
+}
+
+
+// Feature source code generation begins here...
+INotificationId VyLabel::nameId = "VyLabel::name";
+INotificationId VyLabel::externalId = "VyLabel::external";
+INotificationId VyLabel::idId = "VyLabel::id";
+
+IString VyLabel::name() const
+{
+  return iName;
+}
+
+VyLabel& VyLabel::setName(const IString& aName)
+{
+  if (!(iName == aName))
+  {
+    iName = aName;
+    notifyObservers(INotificationEvent(VyLabel::nameId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyLabel::isExternal() const
+{
+  return iExternal;
+}
+
+VyLabel& VyLabel::enableExternal(Boolean enable)
+{
+  if (!(iExternal == enable))
+  {
+    iExternal = enable;
+    notifyObservers(INotificationEvent(VyLabel::externalId, *this));
+    iExternalString = BooleanString( enable );
+    notifyObservers(INotificationEvent(VyLabel::externalStringId, *this));
+  } // endif
+  return *this;
+}
+
+int VyLabel::id() const
+{
+  return iId;
+}
+
+VyLabel& VyLabel::setId(int aId)
+{
+  if (!(iId == aId))
+  {
+    iId = aId;
+    notifyObservers(INotificationEvent(VyLabel::idId, *this));
+    iIdString = IString( aId );
+    notifyObservers(INotificationEvent(VyLabel::idStringId, *this));
+    iIdHexString = hexString( aId );
+    notifyObservers(INotificationEvent(VyLabel::idHexStringId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyLabel::externalStringId = "VyLabel::externalString";
+INotificationId VyLabel::idStringId = "VyLabel::idString";
+
+IString VyLabel::externalString() const
+{
+  return iExternalString;
+}
+
+IString VyLabel::idString() const
+{
+  return iIdString;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyLabel::idHexStringId = "VyLabel::idHexString";
+
+IString VyLabel::idHexString() const
+{
+  return iIdHexString;
+}
+
+VyLabel& VyLabel::setIdHexString(const IString& aIdHexString)
+{
+  if (!(iIdHexString == aIdHexString))
+  {
+    iIdHexString = aIdHexString;
+    notifyObservers(INotificationEvent(VyLabel::idHexStringId, *this));
+    setId( (int)IString::x2d( aIdHexString ).asUnsigned() );
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

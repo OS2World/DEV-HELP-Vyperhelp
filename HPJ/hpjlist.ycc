@@ -1,0 +1,46 @@
+/***************************************************************************
+ * File...... hpjlist.ycc
+ * Author.... Mat
+ * Date...... 12/19/95
+ *
+ * Rule file for files #included in the [FILES] section of an HPJ file.
+ * As far as I can tell these files should consist only of a list of
+ * RTF files, with optional ; comments
+ *
+ * CONVENTION: Terminal symbols have initial caps, production rules don't
+ *
+ * Copyright (C) 1995 MekTek
+ ***************************************************************************/
+
+//------------------------------------------------------------------------
+// Main
+//------------------------------------------------------------------------
+%expression Main
+
+'[ \t]+'                        %ignore;
+'\n'                            Eol;
+'[^ \t\n]+'                     Filename;
+';'                             %ignore,        %push AComment;
+
+%expression AComment
+
+'.*'                            %ignore;
+'\n'                            Eol,            %pop;
+
+
+//------------------------------------------------------------------------
+// Grammar
+//------------------------------------------------------------------------
+%production start
+
+Start           start        -> linesEol lineOpt;
+
+LineList        linesEol     -> linesEol lineEol;
+LineListNull    linesEol     -> ;
+
+LineEol         lineEol      -> lineOpt Eol;
+
+LineFile        lineOpt      -> Filename;
+LineNull        lineOpt      -> ;
+
+

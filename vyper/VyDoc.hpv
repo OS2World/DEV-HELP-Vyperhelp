@@ -1,0 +1,177 @@
+/***************************************************************************
+ * File...... VyDoc.hpv
+ * Author.... Mat
+ *
+ * User declarations for VyDoc part
+ *
+ * Copyright (C) 2000 MekTek
+ ***************************************************************************/
+
+//
+// Notifications
+//
+public:
+  static INotificationId frameId;
+  static INotificationId titleId;
+  static INotificationId subjectId;
+  static INotificationId versionId;
+  static INotificationId copyrightId;
+  static INotificationId authorId;
+  static INotificationId keywordsId;
+  static INotificationId filenameId;
+  static INotificationId selectionId;
+  static INotificationId viewId;
+  static INotificationId selectedSectionId;
+  static INotificationId openedSectionId;
+  static INotificationId modifiedId;
+  static INotificationId openedId;
+  static INotificationId unnamedId;
+  static INotificationId windowTitleId;
+  static INotificationId emptyId;
+  static INotificationId waitId;
+
+//
+// Attributes
+//
+public:
+  virtual IWindow* frame() const;
+  virtual VyDoc& setFrame(IWindow* aFrame);
+  virtual IString title() const;
+  virtual VyDoc& setTitle(const IString& aTitle);
+  virtual IString subject() const;
+  virtual VyDoc& setSubject(const IString& aSubject);
+  virtual IString version() const;
+  virtual VyDoc& setVersion(const IString& aVersion);
+  virtual IString copyright() const;
+  virtual VyDoc& setCopyright(const IString& aCopyright);
+  virtual IString author() const;
+  virtual VyDoc& setAuthor(const IString& aAuthor);
+  virtual IString keywords() const;
+  virtual VyDoc& setKeywords(const IString& aKeywords);
+  virtual IString filename() const;
+  virtual VyDoc& setFilename(const IString& aFilename);
+  virtual IPosition selection() const;
+  virtual VyDoc& setSelection(IPosition aSelection);
+  virtual IContainerControl* view() const;
+  virtual VyDoc& setView(IContainerControl* aView);
+  virtual VySection* selectedSection() const;
+  virtual VySection* openedSection() const;
+  virtual Boolean isModified() const;
+  virtual Boolean isOpened() const;
+  virtual Boolean isUnnamed() const;
+  virtual IString windowTitle() const;
+  virtual Boolean isEmpty() const;
+  virtual VyDoc& setModified(Boolean enable = true);
+  virtual VyDoc& setOpened(Boolean enable = true);
+  virtual VyWait* wait() const;
+  virtual VyDoc& setWait(VyWait* aWait);
+
+private:
+  virtual VyDoc& setWindowTitle();
+  virtual VyDoc& checkEmpty();
+  VyDoc& setUnnamed(Boolean enable = true );
+
+  IWindow* iFrame;
+  IString iTitle;
+  IString iSubject;
+  IString iVersion;
+  IString iCopyright;
+  IString iAuthor;
+  IString iKeywords;
+  IString iFilename;
+  IPosition iSelection;
+  IContainerControl* iView;
+  VySection* iSelectedSection;
+  VySection* iOpenedSection;
+  Boolean iModified;
+  Boolean iOpened;
+  Boolean iUnnamed;
+  IString iWindowTitle;
+  Boolean iEmpty;
+  VyWait* iWait;
+
+//
+// Actions
+//
+public:
+  virtual void load( Parser * parser = 0, const IString * filename = 0 );
+  virtual void save();
+  virtual void saveAs( const IString & saveFilename );
+  virtual void importText( const IString & importFilename );
+  virtual void importWinHelp( const IString & importFilename );
+  virtual void addSection( VySection * section, IPosition position = IPosition(-1) );
+  virtual void removeSection();
+  void moveSectionUp();
+  void moveSectionDown();
+  void promoteSection();
+  void demoteSection();
+  virtual void openSection( IViewPort * viewport );
+  virtual void closeSection( VySection * section = 0 );
+  virtual void exportTrace(const IString & exportFilename );
+  virtual void exportIPF(const IString & exportFilename );
+  virtual void importIPF(const IString & importFilename );
+  virtual void exportHeader(const IString & exportFilename );
+  virtual void exportRtf(const IString & exportFilename );
+  virtual void exportWinHelp(const IString & exportFilename );
+  virtual void exportHtmlSingle(const IString & exportFilename);
+  virtual void exportHtmlFrames(const IString & exportFilename);
+  virtual void exportHtmlHelp(const IString & exportFilename);
+  void createSection( VySection * section );
+  virtual void exportText(const IString & exportFilename );
+  void enumerateLabels( IComboBox * labels );
+  virtual void checkSection(VySection* section);
+  virtual void close();
+  virtual void create();
+  virtual void loadStartup();
+
+  // not declared in VBB
+  IPosition addArt( const Filename & filename );
+  void      deleteArt( IPosition position );
+  void      addArtTo( FlowItem & flow ) const;
+  void      addArtTo( Generator & gen ) const;
+  void      reset( Boolean resetFilename = true );
+  void      refreshOff();
+  void      refreshOn();
+
+
+//
+// Private Code
+//
+private:
+  void      construct();
+  void      destruct();
+  void      generate( Generator * gen, const IString * filename );
+  void      removeSectionAtPosition( IPosition position, Boolean needDelete, Boolean needSelect = true );
+  IString   sectionName();
+  Boolean   confirmFilename( const Filename & filename );
+
+  // refresh caching
+  int       _refreshCount;
+
+  // tree management
+  IPosition          endOfSubTree( IPosition startPosition );
+  IContainerObject * lastChildOf( IContainerObject * object );
+  void      moveSubTree( IPosition start, IPosition end, IPosition after );
+  void      shiftSubTree( IPosition start, IPosition end, int levelChange );
+  void      removeSubTree( IPosition start, IPosition end, Boolean deleteSections );
+  Boolean   isBranchShown( VySection & section );
+  void      showBranch( VySection & section );
+
+  // progress indicator
+  VyIndicator _indicator;
+
+  // background thread
+  IThread _thread;
+
+
+
+// Feature source code generation begins here...
+public:
+  virtual VySettings* settings() const;
+  virtual VyDoc& setSettings(VySettings* aSettings);
+
+  static INotificationId settingsId;
+
+private:
+  VySettings* iSettings;
+// Feature source code generation ends here.

@@ -1,0 +1,37 @@
+:TARGET.SUFFIXES
+:TARGET.SUFFIXES
+:DEPENDENCY..cpp .obj 
+:TARGET.all
+:DEPENDENCY.
+.\vykey.exe
+:RULE..cpp.obj
+:ACTION.Compile::C++ Compiler
+:COMMAND.
+icc.exe /Tx /Ti /O /Gm /Gd /G5 /C %s
+:RULE.{d:\proj\vykey}.cpp.obj
+:ACTION.Compile::C++ Compiler
+:COMMAND.
+icc.exe /Tx /Ti /O /Gm /Gd /G5 /C %s
+:TARGET..\vykey.exe
+:DEPENDENCY.
+.\vykey.obj
+{$(LIB)}vygen.lib
+:ACTION.Link::Linker
+:COMMAND.
+icc.exe @<<
+/DIC_DEVELOP
+ 
+ /Tdp 
+ /Tx 
+ /Ti /Gm /Gd /G5 
+ /B" /de /exepack:2 /packd /optfunc /m"
+ /Fevykey.exe 
+ vygen.lib 
+ .\vykey.obj
+<<
+:TARGET..\vykey.obj
+:DEPENDENCY.
+d:\proj\vykey\vykey.cpp
+{d:\proj\vykey;$(INCLUDE);}UserKey.hpp
+{d:\proj\vykey;$(INCLUDE);}ExpirationDate.hpp
+{d:\proj\vykey;$(INCLUDE);}ExpirationDate.ipp

@@ -1,0 +1,271 @@
+
+all: \
+    .\winhelp.lib
+
+.\RtfYacc.obj: \
+    d:\proj\HPJ\RtfYacc.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfContext.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}rtf.yhh
+
+.\RtfSection.obj: \
+    d:\proj\HPJ\RtfSection.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}SaveGenerator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}LoadParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}OutputBinaryFile.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}InputBinaryFile.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}BinaryFile.hpp
+
+.\RtfFont.obj: \
+    d:\proj\HPJ\RtfFont.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp
+
+.\RtfContext.obj: \
+    d:\proj\HPJ\RtfContext.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfContext.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp
+
+.\RtfColor.obj: \
+    d:\proj\HPJ\RtfColor.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.ipp
+
+.\HpjYacc.obj: \
+    d:\proj\HPJ\HpjYacc.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}HpjYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}HpjListYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CDefineYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}hpj.yhh
+
+.\HpjListYacc.obj: \
+    d:\proj\HPJ\HpjListYacc.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}HpjListYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}hpjlist.yhh
+
+.\CntYacc.obj: \
+    d:\proj\HPJ\CntYacc.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CntYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}cnt.yhh
+
+.\WinHelpParser.obj: \
+    d:\proj\HPJ\WinHelpParser.cpp \
+    {d:\proj\HPJ;$(INCLUDE);}MekTek.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserException.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Identifier.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}HpjYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CntYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}CurrentDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Generator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ParserIndicator.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}EnhancedYacc.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Filename.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WinHelpParser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfContext.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfSection.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}CodePage.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Registration.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}WindowDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ArtDef.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}Gin.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Parser.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfFont.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}RtfColor.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.hpp \
+    {d:\proj\HPJ;$(INCLUDE);}UserKey.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Distance.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}Symbol.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}FontInfo.ipp \
+    {d:\proj\HPJ;$(INCLUDE);}ExpirationDate.ipp

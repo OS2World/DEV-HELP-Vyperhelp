@@ -1,0 +1,39 @@
+private:
+  void construct();
+
+// Feature source code generation begins here...
+public:
+  void addArt( const Filename & filename );
+  void deleteArt();
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  void finish();
+
+  static INotificationId insertArtId;
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual ArtItem* artItem() const;
+  virtual VyArtProperties& setArtItem(ArtItem* aArtItem);
+
+  static INotificationId artItemId;
+
+private:
+  ArtItem* iArtItem;
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual void setPreview();
+
+
+// Feature source code generation ends here.

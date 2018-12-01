@@ -1,0 +1,1505 @@
+
+// Custom begins here -------------------------------------------------------
+
+void VyDoc::construct()
+{
+  _refreshCount = 0;
+  iUnnamed = true;
+  iModified = false;
+  iOpened = false;
+  iEmpty = true;
+  iSelection = 0;
+  iSelectedSection = 0;
+  iOpenedSection = 0;
+  iView = 0;
+  iWait = 0;
+  reset();
+
+  // give worker thread lower priority
+//  _thread.setPriority(IApplication::idleTime, 31);
+}
+
+
+void VyDoc::destruct()
+{
+  reset();
+}
+
+
+void VyDoc::reset( Boolean resetFilename )
+{
+  // clear filename
+  if ( resetFilename )
+    setFilename( "" );
+
+  // clear doc info
+  setTitle( "" );
+  setSubject( "" );
+  setVersion( "" );
+  setCopyright( "" );
+  setAuthor( "" );
+  setKeywords( "" );
+
+  // close section if open
+  closeSection();
+
+  // clear current selection
+  setSelection( 0 );
+
+  // remove and delete all sections
+  IPosition n = iSections->numberOfElements();
+  if ( n )
+  {
+    refreshOff();
+    // set selection to first, then delete from the end of the list
+    //    (this minimizes the container control's reaction)
+    setSelection( 1 );
+    while ( n )
+      removeSectionAtPosition( n--, true, false );
+    refreshOn();
+  }
+  checkEmpty();
+
+  // remove all art definitions
+  iArts->removeAll();
+
+  setModified( false );
+
+  // memory garbage collection
+  _heapmin();
+}
+
+
+void VyDoc::refreshOff()
+{
+  if ( ! _refreshCount++ )
+  {
+    iView->refresh();
+    iView->setRefreshOff();
+  }
+}
+
+
+void VyDoc::refreshOn()
+{
+  if ( ! --_refreshCount )
+  {
+    iView->setRefreshOn();
+    iView->refresh();
+  }
+}
+
+
+
+// for debug output
+IString VyDoc::sectionName()
+{
+  IString result = IString("[") + IString(iSelection) + IString("]");
+  if ( iSelectedSection )
+    result = iSelectedSection->title() + IString(" ") + result;
+  return result;
+}
+
+
+void VyDoc::removeSectionAtPosition( IPosition position, Boolean needDelete, Boolean needSelect )
+{
+  IPosition lastPosition = iSections->numberOfElements();
+  if ( position < 1 || position > lastPosition )
+    return;
+
+  refreshOff();
+
+  try
+  {
+    // save current selection for restoration after delete
+    IPosition currentSelection = iSelection;
+    if ( currentSelection == lastPosition )
+      currentSelection--;
+
+    // always select something (make it section 1), otherwise the container view will auto-select
+    //   the last element during the deletion, causing a trap!
+    if ( needSelect )
+    {
+      if ( position == 1 && lastPosition > 1 )
+        setSelection( 2 );
+      else
+        setSelection( 1 );
+    }
+
+    VySection * section = iSections->elementAtPosition( position );
+    iSections->removeAtPosition( position );
+    if ( needDelete )
+    {
+      if ( section == iOpenedSection )
+        closeSection();
+      delete section;
+    }
+
+    // restore selection
+    if ( needSelect )
+      setSelection( currentSelection );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+// Custom ends here ---------------------------------------------------------
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::titleId = "VyDoc::title";
+INotificationId VyDoc::subjectId = "VyDoc::subject";
+INotificationId VyDoc::versionId = "VyDoc::version";
+INotificationId VyDoc::copyrightId = "VyDoc::copyright";
+INotificationId VyDoc::authorId = "VyDoc::author";
+INotificationId VyDoc::keywordsId = "VyDoc::keywords";
+INotificationId VyDoc::filenameId = "VyDoc::filename";
+
+IString VyDoc::title() const
+{
+  return iTitle;
+}
+
+VyDoc& VyDoc::setTitle(const IString& aTitle)
+{
+  if (!(iTitle == aTitle))
+  {
+    ITRACE_RUNTIME( IString("Set document title to ") + aTitle );
+    iTitle = aTitle;
+    notifyObservers(INotificationEvent(VyDoc::titleId, *this));
+    setModified();
+    setWindowTitle();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::subject() const
+{
+  return iSubject;
+}
+
+VyDoc& VyDoc::setSubject(const IString& aSubject)
+{
+  if (!(iSubject == aSubject))
+  {
+    ITRACE_RUNTIME( IString("Set document subject to ") + aSubject );
+    iSubject = aSubject;
+    notifyObservers(INotificationEvent(VyDoc::subjectId, *this));
+    setModified();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::version() const
+{
+  return iVersion;
+}
+
+VyDoc& VyDoc::setVersion(const IString& aVersion)
+{
+  if (!(iVersion == aVersion))
+  {
+    ITRACE_RUNTIME( IString("Set document version to ") + aVersion );
+    iVersion = aVersion;
+    notifyObservers(INotificationEvent(VyDoc::versionId, *this));
+    setModified();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::copyright() const
+{
+  return iCopyright;
+}
+
+VyDoc& VyDoc::setCopyright(const IString& aCopyright)
+{
+  if (!(iCopyright == aCopyright))
+  {
+    ITRACE_RUNTIME( IString("Set document copyright to ") + aCopyright );
+    iCopyright = aCopyright;
+    notifyObservers(INotificationEvent(VyDoc::copyrightId, *this));
+    setModified();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::author() const
+{
+  return iAuthor;
+}
+
+VyDoc& VyDoc::setAuthor(const IString& aAuthor)
+{
+  if (!(iAuthor == aAuthor))
+  {
+    ITRACE_RUNTIME( IString("Set document author to ") + aAuthor );
+    iAuthor = aAuthor;
+    notifyObservers(INotificationEvent(VyDoc::authorId, *this));
+    setModified();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::keywords() const
+{
+  return iKeywords;
+}
+
+VyDoc& VyDoc::setKeywords(const IString& aKeywords)
+{
+  if (!(iKeywords == aKeywords))
+  {
+    ITRACE_RUNTIME( IString("Set document keywords to ") + aKeywords );
+    iKeywords = aKeywords;
+    notifyObservers(INotificationEvent(VyDoc::keywordsId, *this));
+    setModified();
+  } // endif
+  return *this;
+}
+
+IString VyDoc::filename() const
+{
+  return iFilename;
+}
+
+VyDoc& VyDoc::setFilename(const IString& aFilename)
+{
+  // append extension
+  Filename name( aFilename );
+  if ( name.length() && ! name.extension().length() )
+    name += ".vyd";
+
+  // check for a change
+  if (!(iFilename == name))
+  {
+    iFilename = name;
+    notifyObservers(INotificationEvent(VyDoc::filenameId, *this));
+    setUnnamed( ! iOpened || ! iFilename.length() );
+    setWindowTitle();
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+
+// if no parser is given, loads the given VYD filename
+//   assumes filename to load was already set!
+void VyDoc::load( Parser * parser, const IString * filename )
+{
+  // link indicator and wait dialog
+  IASSERTSTATE( iWait );
+  _indicator.setWait( iWait );
+
+  // close section if open
+  // NOTE: this cannot be done from a different thread because the Editor must be deleted
+  //       from the same thread it was created under (took me a day to figure that out!)
+  closeSection();
+
+  // create a new thread and launch it
+  LoadThread * loader = new LoadThread( *this, _indicator, parser, filename? *filename: iFilename );
+  IReference<IThreadFn> tr( loader );
+  _thread.start( tr, true );
+
+  // update the open path if this was an open
+  if (! parser && ! filename && iSettings)
+  {
+    iSettings->setOpenMask( Filename(iFilename).dir() + "*.vyd" );
+  }
+}
+
+
+void VyDoc::importText( const IString & importFilename )
+{
+  ITRACE_RUNTIME( IString("Import text from ") + importFilename );
+  load( new TextParser( importFilename ), &importFilename );
+  iSettings->setImportTextMask( Filename(importFilename).dir() + "*.txt" );
+}
+
+
+void VyDoc::importWinHelp( const IString & importFilename )
+{
+  ITRACE_RUNTIME( IString("Import HPJ from ") + importFilename );
+  load( new WinHelpParser( importFilename ), &importFilename );
+  iSettings->setImportWinHelpMask( Filename(importFilename).dir() + "*.hpj" );
+}
+
+
+Boolean VyDoc::confirmFilename( const Filename & filename )
+{
+  if ( filename.isAccessible() )
+  {
+    // file already exists -- confirm operation
+    IMessageBox box( iFrame );
+    IMessageBox::Response response = box.show(
+        filename + IString(" already exists. Proceed and overwrite?"),
+        IMessageBox::okCancelButton | IMessageBox::queryIcon | IMessageBox::moveable );
+    return ( response == IMessageBox::ok );
+  }
+
+  return true;
+}
+
+
+void VyDoc::saveAs( const IString & saveFilename )
+{
+  if ( confirmFilename( saveFilename ) )
+  {
+    ITRACE_RUNTIME( IString("Save (as) document to ") + saveFilename );
+    generate( 0, &saveFilename );
+    iSettings->setSaveMask( Filename(saveFilename).dir() + "*.vyd" );
+  }
+}
+
+
+void VyDoc::save()
+{
+  ITRACE_RUNTIME( IString("Save document to ") + iFilename );
+  generate( 0, 0 );
+}
+
+
+// if gen == 0, the this is a Save operation
+void VyDoc::generate( Generator * gen, const IString * filename )
+{
+  // link indicator and wait dialog
+  IASSERTSTATE( iWait );
+  _indicator.setWait( iWait );
+
+  // create a new thread and launch it
+  SaveThread * saver = new SaveThread( *this, _indicator, gen, filename? *filename: iFilename );
+  IReference<IThreadFn> tr( saver );
+  _thread.start( tr, true );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::selectionId = "VyDoc::selection";
+
+IPosition VyDoc::selection() const
+{
+  return iSelection;
+}
+
+VyDoc& VyDoc::setSelection(IPosition aSelection)
+{
+  if (!(iSelection == aSelection))
+  {
+    iSelection = aSelection;
+    notifyObservers(INotificationEvent(VyDoc::selectionId, *this));
+    iSelectedSection = aSelection? iSections->elementAtPosition( aSelection ): 0;
+    notifyObservers(INotificationEvent(VyDoc::selectedSectionId, *this));
+    if ( iSelection )
+      ITRACE_RUNTIME( "No section selected" );
+    else
+      ITRACE_RUNTIME( IString("Select section ") + sectionName() );
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// returns TRUE if the branch with the given section is visible
+Boolean VyDoc::isBranchShown( VySection & section )
+{
+  IContainerObject * object = section.object();
+  while ( object )
+  {
+    object = iView->parentObject( object );
+    if ( object && iView->isCollapsed( object ) )
+      return false;
+  }
+  return true;
+}
+
+
+//  make sure section is shown by expanding all ancestors
+void VyDoc::showBranch( VySection & section )
+{
+  IContainerObject * object = section.object();
+  while ( object )
+  {
+    object = iView->parentObject( object );
+    if ( object )
+      iView->expand( object );
+  }
+}
+
+
+// Feature source code generation begins here...
+
+void VyDoc::addSection( VySection * section, IPosition position )
+{
+  refreshOff();
+
+  try
+  {
+    // if position = -1, insert after last element
+    if ( position == IPosition(-1) )
+      position = iSections->numberOfElements();
+
+    // add section to container
+    IPosition next = position + 1;
+    iSections->addAtPosition( next, section );
+    section->setDoc( this );
+
+    // find the newly added object
+    // NOTE: IVBContainerControl adds an object in response to the above addAtPosition
+    //       but it may not put it at the same position.  (It uses addObjectAfter
+    //       and doesn't have any special handling for tree views)
+    IContainerObject * newObject;
+    if ( position )
+    {
+      IContainerObject * startObject = iView->objectAt( position - 1 );
+      IContainerControl::ObjectCursor objectCursor( *iView, iView->parentObject( startObject ) );
+      objectCursor.setCurrent( startObject );
+      newObject = objectCursor.next();  // new object should have been added at same level!
+      IASSERTSTATE( newObject );
+    }
+    else
+    {
+      newObject = iView->objectAt( 0 );
+    }
+    section->setObject( newObject );
+    IContainerObject * afterObject = 0;
+    IContainerObject * parentObject = 0;
+
+    // locate sibling and/or parent
+    if ( position )
+    {
+      // loop through all objects looking for parent and sibling
+      IVSequence<VySection*>::Cursor cursor( *iSections );
+      iSections->setToPosition( position, cursor );
+      while ( cursor.isValid() )
+      {
+        int level = cursor.element()->level();
+
+        // parent is at a higher level
+        if ( ! parentObject && level < section->level() )
+        {
+          parentObject = iView->objectAt( iSections->position( cursor ) - 1 );
+          break;
+        }
+
+        // sibling is at same level
+        if ( ! afterObject && level == section->level() )
+        {
+          afterObject = iView->objectAt( iSections->position( cursor ) - 1 );
+          if ( level == 1)
+            break;
+        }
+
+        // keep looking
+        cursor.setToPrevious();
+      }
+    }
+
+    // move the object to proper place in hierarchy
+    iView->moveObjectTo( newObject, parentObject, 0, afterObject );
+
+    setModified();
+    checkEmpty();
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+IPosition VyDoc::endOfSubTree( IPosition startPosition )
+{
+  // search down from selected section for all sub-sections (with > level)
+  IPosition endPosition = startPosition;
+  IVSequence<VySection*>::Cursor cursor( *iSections );
+  iSections->setToPosition( startPosition, cursor );
+  int level = cursor.element()->level();
+  Boolean ok = true;
+  while ( cursor.isValid() )
+  {
+    ok = cursor.setToNext();
+    if ( ! ok || cursor.element()->level() <= level )
+      break;
+    endPosition++;
+  }
+  return endPosition;
+}
+
+
+IContainerObject * VyDoc::lastChildOf( IContainerObject * object )
+{
+  ICnrObjectSet children = iView->immediateDescendentsOf( object );
+  if ( children.isEmpty() )
+    return 0;
+  return children.lastElement();
+}
+
+
+void VyDoc::promoteSection()
+{
+  IASSERTSTATE( iSelection );
+  ITRACE_RUNTIME( IString("Promote section ") + sectionName() );
+
+  // can't promote first section
+  if ( iSelection == 1 )
+    return;
+
+  // can't promote any section at level 1
+  VySection * selected = iSelectedSection;
+  if ( selected->level() == 1 )
+    return;
+
+  refreshOff();
+
+  try
+  {
+    // re-insert the tree at the same position, higher level
+    // determine extent of tree
+    IPosition startPosition = iSelection;
+    IPosition endPosition = endOfSubTree( startPosition );
+    shiftSubTree( startPosition, endPosition, -1 );
+
+    // find current parent
+    IContainerObject * object = iView->objectAt( startPosition - 1 );
+    IContainerObject * parent = iView->parentObject( object );
+    IASSERTSTATE( parent );
+
+    // determine where new children should be placed (after current children)
+    IContainerObject * after = lastChildOf( object );
+
+    // adopt new children (any current siblings found after this object)
+    ICnrObjectSet children = iView->immediateDescendentsOf( parent );
+    ICnrObjectSet::Cursor childCursor( children );
+    Boolean found = false;
+    Boolean ok = childCursor.setToFirst();
+    while ( ok )
+    {
+      if ( ! found )
+        found = ( childCursor.element() == object );
+      ok = childCursor.setToNext();
+      if ( ok && found )
+      {
+        iView->moveObjectTo( childCursor.element(), object, 0, after );
+        after = childCursor.element();
+      }
+    }
+
+    // get grand-parent (new parent)
+    after = parent;
+    parent = iView->parentObject( parent );
+
+    // promote
+    iView->moveObjectTo( object, parent, 0, after );
+
+    // re-select object
+    showBranch( *selected );
+    iSelection = 0;
+    setSelection( startPosition );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+void VyDoc::demoteSection()
+{
+  IASSERTSTATE( iSelection );
+  ITRACE_RUNTIME( IString("Demote section ") + sectionName() );
+
+  // can't demote first section
+  if ( iSelection == 1 )
+    return;
+
+  // previous section must be at same level
+  VySection * selected = iSelectedSection;
+  if ( iSections->elementAtPosition( iSelection - 1 )->level() < selected->level() )
+    return;
+
+  refreshOff();
+
+  try
+  {
+    // re-insert the tree at the same position, higher level
+    // determine extent of tree
+    IPosition startPosition = iSelection;
+    IPosition endPosition = endOfSubTree( startPosition );
+    shiftSubTree( startPosition, endPosition, 1 );
+
+    // find previous sibling (new parent)
+    IContainerObject * object = iView->objectAt( startPosition - 1 );
+    IContainerControl::ObjectCursor cursor( *iView, iView->parentObject( object ) );
+    cursor.setCurrent( object );
+    IContainerObject * parent = cursor.previous();
+
+    // find last child of the new parent
+    IContainerObject * after = lastChildOf( parent );
+
+    // demote
+    iView->moveObjectTo( object, parent, 0, after );
+
+    // re-select object
+    showBranch( *selected );
+    iSelection = 0;
+    setSelection( startPosition );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+// changes levels for the entire subtree
+// does not actually move any objects
+void VyDoc::shiftSubTree( IPosition start, IPosition end, int levelChange )
+{
+  IASSERTPARM( levelChange == -1 || levelChange == 1 );
+  IASSERTSTATE( start <= end );
+  IVSequence<VySection*>::Cursor cursor( *iSections );
+  iSections->setToPosition( end, cursor );
+
+  // apply level change to all sections (in reverse order)
+  while ( start <= end )
+  {
+    IASSERTSTATE( cursor.isValid() );
+    VySection * section = cursor.element();
+    section->setLevel( section->level() + levelChange );
+    cursor.setToPrevious();
+    end--;
+  }
+
+  // set modified flag
+  setModified();
+}
+
+
+// moves the selected section (and its subsections) up by one step
+void VyDoc::moveSectionUp()
+{
+  IASSERTSTATE( iSelection );
+  ITRACE_RUNTIME( IString("Up section ") + sectionName() );
+
+  refreshOff();
+
+  try
+  {
+    // determine sub-tree to be moved
+    IPosition startPosition = iSelection;
+    IPosition endPosition = endOfSubTree( startPosition );
+
+    // find previous section at same or higher
+    IVSequence<VySection*>::Cursor cursor( *iSections );
+    iSections->setToPosition( startPosition, cursor );
+    Boolean ok = true;
+    while ( ok )
+    {
+      ok = cursor.setToPrevious();
+      if ( ok && ( cursor.element()->level() <= iSelectedSection->level() ) )
+        break;
+    }
+    if ( ok )
+    {
+      // back up by one to find insertion position
+      IPosition insertPosition;
+      ok = cursor.setToPrevious();
+      if ( ok )
+      {
+        // make sure section can be properly moved
+        if ( cursor.element()->level() < iSelectedSection->level() - 1 )
+          ok = false;
+        else
+          insertPosition = iSections->position( cursor );
+      }
+      else if ( iSelectedSection->level() == 1 )
+      {
+        ok = true;
+        insertPosition = 0;
+      }
+
+      // move the sub-tree by re-inserting each section in its new position
+      if ( ok )
+      {
+        moveSubTree( startPosition, endPosition, insertPosition );
+        iSelection = 0;
+        setSelection( insertPosition + 1 );
+      }
+    }
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+// moves the selected section (and its subsections) up or down by one step
+void VyDoc::moveSectionDown()
+{
+  IASSERTSTATE( iSelection );
+  ITRACE_RUNTIME( IString("Down section ") + sectionName() );
+
+  refreshOff();
+
+  try
+  {
+    // determine sub-tree to be moved
+    IPosition startPosition = iSelection;
+    IPosition endPosition = endOfSubTree( startPosition );
+
+    // find next section at same or higher level
+    IVSequence<VySection*>::Cursor cursor( *iSections );
+    iSections->setToPosition( endPosition, cursor );
+    Boolean ok = cursor.setToNext();
+    if ( ok )
+    {
+      while ( ok )
+      {
+        ok = cursor.setToNext();
+        if ( ok )
+        {
+          VySection * section = cursor.element();
+          if ( section->level() <= iSelectedSection->level() )
+            break;
+        }
+      }
+
+      // back up by one to find insertion position
+      if ( ok )
+        ok = cursor.setToPrevious();
+      else
+        ok = cursor.setToLast();
+
+      if ( ok )
+      {
+        // make sure section can be properly moved
+        VySection * section = cursor.element();
+        if ( section->level() >= iSelectedSection->level() - 1 )
+        {
+          // move the sub-tree by re-inserting each section in its new position
+          IPosition insertPosition = iSections->position( cursor );
+          moveSubTree( startPosition, endPosition, insertPosition );
+          iSelection = 0;
+          setSelection( insertPosition + startPosition - endPosition );
+        }
+      }
+    }
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+// move sub-tree by re-inserting each of the objects
+void VyDoc::moveSubTree( IPosition start, IPosition end, IPosition after )
+{
+  IASSERTSTATE( start <= end );
+  IASSERTSTATE( after < start || after >= end );
+  IVSequence<VySection*>::Cursor cursor( *iSections );
+  iSections->setToPosition( start, cursor );
+  int n = end - start + 1;
+  for ( int i = 0; i < n; i++ )
+  {
+    // get this section
+    IASSERTSTATE( cursor.isValid() );
+    VySection * section = cursor.element();
+
+    // add new object for this section, expand to show if necessary
+    Boolean isShown = isBranchShown( *section );
+    addSection( section, after++ );
+    if ( isShown )
+      showBranch( *section );
+
+    // move to next section
+    cursor.setToNext();
+    if ( after <= start )
+    {
+      start++;
+      end++;
+    }
+  }
+
+  // remove the objects being replaced
+  removeSubTree( start, end, false );
+}
+
+
+void VyDoc::createSection( VySection * section )
+{
+  ITRACE_RUNTIME( IString("Creating section ") + section->title() );
+
+  refreshOff();
+
+  try
+  {
+    // initialize new section (same level as current selection)
+    section->create( true );
+    if ( iSelectedSection )
+      section->setLevel( iSelectedSection->level() );
+
+    // add section to collection and container
+    IPosition position = iSelection? iSelection - 1: 0;
+    addSection( section, position );
+
+    // make sure new section is in view (note: objectAt wants 0-based index)
+    iView->scrollToObject( section->object() );
+
+    // select the new section (first force iSelection to 0 to ensure a change)
+    iSelection = 0;
+    setSelection( ++position );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+void VyDoc::removeSubTree( IPosition start, IPosition end, Boolean deleteSections )
+{
+  if ( start > end )
+    return;
+
+  refreshOff();
+
+  try
+  {
+    IVSequence<VySection*>::Cursor cursor( *iSections );
+    iSections->setToPosition( end, cursor );
+    while ( start <= end )
+    {
+      // get this section
+      IASSERTSTATE( cursor.isValid() );
+      VySection * section = cursor.element();
+
+      // remove/delete the section from the collection
+      cursor.setToPrevious();
+      removeSectionAtPosition( end--, deleteSections );
+    }
+    setModified();
+    checkEmpty();
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+
+void VyDoc::removeSection()
+{
+  if ( ! iSelection )
+    return;
+
+  ITRACE_RUNTIME( IString("Remove section ") + sectionName() );
+
+  refreshOff();
+
+  try
+  {
+    // determine extent of tree
+    IPosition start = iSelection;
+    IPosition end = endOfSubTree( start );
+
+    // determine the section to be selected after this one is removed
+    IPosition nextSelection = start;
+    if ( end >= iSections->numberOfElements() )
+      nextSelection--;
+
+    // delete entire subtree
+    removeSubTree( start, end, true );
+
+    // select the next section
+    setSelection( nextSelection );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+
+  refreshOn();
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::viewId = "VyDoc::view";
+
+IContainerControl* VyDoc::view() const
+{
+  return iView;
+}
+
+VyDoc& VyDoc::setView(IContainerControl* aView)
+{
+  if (!(iView == aView))
+  {
+    iView = aView;
+    notifyObservers(INotificationEvent(VyDoc::viewId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::openSection( IViewPort * viewport )
+{
+  if ( iSelection )
+  {
+    ITRACE_RUNTIME( IString("Open section ") + sectionName() );
+
+    // make sure no other section is open
+    closeSection();
+
+    // open the selected section
+    iOpenedSection = iSelectedSection;
+    iOpenedSection->open( viewport );
+    notifyObservers(INotificationEvent(VyDoc::openedSectionId, *this));
+
+    // add all art definitions to the editor
+    Editor * editor = iOpenedSection->editor();
+    if ( editor )
+    {
+      IVSequence< VyArt* >::Cursor cursor( *iArts );
+      forCursor( cursor )
+      {
+        const VyArt * art = cursor.element();
+        IASSERTSTATE( art );
+        ArtDef artdef( art->asString(), *art->bitmap() );
+        editor->defineArt( artdef );
+      }
+    }
+  }
+}
+
+
+void VyDoc::closeSection( VySection * section )
+{
+  // close in-use section if none specified
+  if ( ! section )
+    section = iOpenedSection;
+
+  // return if no section to close
+  if ( ! section )
+    return;
+
+  ITRACE_RUNTIME( IString("Close section ") + section->title() );
+
+  // close the section
+  section->close();
+
+  // clear in-use
+  if ( section == iOpenedSection )
+  {
+    iOpenedSection = 0;
+    notifyObservers(INotificationEvent(VyDoc::openedSectionId, *this));
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::exportTrace(const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export VYT to ") + exportFilename );
+  generate( new TraceGenerator( exportFilename ), &exportFilename );
+}
+
+
+void VyDoc::exportIPF(const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export IPF to ") + exportFilename );
+  Filename name( exportFilename );
+  generate( new IPFGenerator( name, 80, name.dir() ), &exportFilename );
+  iSettings->setExportIpfMask( Filename(exportFilename).dir() + "*.ipf" );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::exportText( const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export TXT to ") + exportFilename );
+  generate( new TextGenerator( exportFilename ), &exportFilename );
+  iSettings->setExportTextMask( Filename(exportFilename).dir() + "*.txt" );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::selectedSectionId = "VyDoc::selectedSection";
+INotificationId VyDoc::openedSectionId = "VyDoc::openedSection";
+
+VySection* VyDoc::selectedSection() const
+{
+  return iSelectedSection;
+}
+
+VySection* VyDoc::openedSection() const
+{
+  return iOpenedSection;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::enumerateLabels( IComboBox * labels )
+{
+  // enumerate labels from all sections
+  IVSequence<VySection*>::Cursor cursor( *iSections );
+  forCursor( cursor )
+    cursor.element()->enumerateLabels( labels );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::modifiedId = "VyDoc::modified";
+INotificationId VyDoc::openedId = "VyDoc::opened";
+
+Boolean VyDoc::isModified() const
+{
+  return iModified;
+}
+
+VyDoc& VyDoc::setModified(Boolean enable)
+{
+  if (!(iModified == enable))
+  {
+    ITRACE_ALL( IString("VyDoc::modified set to ") + IString(enable) );
+    iModified = enable;
+    notifyObservers(INotificationEvent(VyDoc::modifiedId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyDoc::isOpened() const
+{
+  return iOpened;
+}
+
+VyDoc& VyDoc::setOpened(Boolean enable)
+{
+  if (!(iOpened == enable))
+  {
+    iOpened = enable;
+    notifyObservers(INotificationEvent(VyDoc::openedId, *this));
+    setUnnamed( ! iOpened || ! iFilename.length() );
+    setWindowTitle();
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::checkSection(VySection* section)
+{
+  if ( section->isModified() )
+    setModified();
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::close()
+{
+  ITRACE_RUNTIME( "Close document" );
+  refreshOff();
+  try
+  {
+    reset();
+    setOpened( false );
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+  refreshOn();
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::create()
+{
+  ITRACE_RUNTIME( "New document" );
+  refreshOff();
+  try
+  {
+    reset();
+    setOpened();
+  }
+  catch ( IException & x )
+  {
+    refreshOn();
+    IRETHROW( x );
+  }
+  refreshOn();
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+void VyDoc::loadStartup()
+{
+  ICurrentApplication & app = IApplication::current();
+
+  if ( app.argc() > 1 )
+  {
+    ITRACE_RUNTIME( IString("Load initial document from ") + app.argv(1) );
+    setFilename( app.argv( 1 ) );
+    load();
+  }
+  else if ( iWait )
+  {
+    // close the wait dialog, not needed
+    iWait->close();
+  }
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::unnamedId = "VyDoc::unnamed";
+
+Boolean VyDoc::isUnnamed() const
+{
+  return iUnnamed;
+}
+
+VyDoc& VyDoc::setUnnamed(Boolean enable)
+{
+  if (!(iUnnamed == enable))
+  {
+    iUnnamed = enable;
+    notifyObservers(INotificationEvent(VyDoc::unnamedId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::windowTitleId = "VyDoc::windowTitle";
+INotificationId VyDoc::emptyId = "VyDoc::empty";
+
+IString VyDoc::windowTitle() const
+{
+  return iWindowTitle;
+}
+
+VyDoc& VyDoc::setWindowTitle()
+{
+  // construct current title (blank if not opened)
+  IString aWindowTitle;
+  if ( iOpened )
+    aWindowTitle = iTitle + IString(" [") + iFilename + IString("]");
+
+  // check for change
+  if (!(iWindowTitle == aWindowTitle))
+  {
+    iWindowTitle = aWindowTitle;
+    notifyObservers(INotificationEvent(VyDoc::windowTitleId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyDoc::isEmpty() const
+{
+  return iEmpty;
+}
+
+VyDoc& VyDoc::checkEmpty()
+{
+  Boolean enable = iSections->isEmpty();
+  if (!(iEmpty == enable))
+  {
+    iEmpty = enable;
+    notifyObservers(INotificationEvent(VyDoc::emptyId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::importIPF(const IString & importFilename )
+{
+  ITRACE_RUNTIME( IString("Import IPF from ") + importFilename );
+  load( new IpfParser( importFilename ), &importFilename );
+  iSettings->setImportIpfMask( Filename(importFilename).dir() + "*.ipf" );
+}
+
+void VyDoc::exportHeader(const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export H to ") + exportFilename );
+  generate( new HeaderGenerator( exportFilename ), &exportFilename );
+  iSettings->setExportHeaderMask( Filename(exportFilename).dir() + "*.h" );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+
+void VyDoc::exportRtf(const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export RTF to ") + exportFilename );
+  generate( new RtfGenerator( exportFilename ), &exportFilename );
+  iSettings->setExportRtfMask( Filename(exportFilename).dir() + "*.rtf" );
+}
+
+void VyDoc::exportWinHelp(const IString & exportFilename )
+{
+  ITRACE_RUNTIME( IString("Export HPJ to ") + exportFilename );
+  generate( new HpjGenerator( exportFilename ), &exportFilename );
+  iSettings->setExportWinHelpMask( Filename(exportFilename).dir() + "*.hpj" );
+}
+
+// Feature source code generation ends here.
+
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::waitId = "VyDoc::wait";
+
+VyWait* VyDoc::wait() const
+{
+  return iWait;
+}
+
+VyDoc& VyDoc::setWait(VyWait* aWait)
+{
+  if (!(iWait == aWait))
+  {
+    iWait = aWait;
+    notifyObservers(INotificationEvent(VyDoc::waitId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::frameId = "VyDoc::frame";
+
+IWindow* VyDoc::frame() const
+{
+  return iFrame;
+}
+
+VyDoc& VyDoc::setFrame(IWindow* aFrame)
+{
+  if (!(iFrame == aFrame))
+  {
+    iFrame = aFrame;
+    notifyObservers(INotificationEvent(VyDoc::frameId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.
+
+
+/***************************************************************************
+ * Procedure.. VyDoc::addArt
+ * Author..... Mat
+ * Date....... 11/16/99
+ *
+ * Add an art defintion to the document.  If the editor is currently open,
+ * then the art definition is also added to the Editor.  Return a non-zero
+ * position of the added element in the sequence.  If unable to add,
+ * return 0.
+ ***************************************************************************/
+IPosition VyDoc::addArt( const Filename & filename )
+{
+  // this constructor will throw an exception if the file is not a bitmap
+  IGBitmap bitmap( filename );
+
+  // create a new VyArt
+  VyArt * art = new VyArt;
+  IASSERTSTATE( art );
+  art->setName( filename.base() );
+  art->setBitmap( bitmap );
+
+  // add to collection
+  IVSequence< VyArt* >::Cursor cursor( *iArts );
+  if ( ! iArts->add( art, cursor ) )
+    return 0;
+  IPosition pos = iArts->position( cursor );
+
+  // add to editor
+  if ( iOpenedSection )
+  {
+    Editor * editor = iOpenedSection->editor();
+    if ( editor )
+    {
+      ArtDef artdef( filename.base(), bitmap );
+      editor->defineArt( artdef );
+    }
+  }
+
+  // save selected path
+  iSettings->setGraphicMask( filename.dir() + "*.bmp;*.gif;*.pcx;*.tif;*.tga;*.iff;*.xbm;*.pse" );
+
+  return pos;
+}
+
+
+void VyDoc::deleteArt( IPosition position )
+{
+  // remove from editor
+  if ( iOpenedSection )
+  {
+    Editor * editor = iOpenedSection->editor();
+    if ( editor )
+      editor->removeArt( iArts->elementAtPosition( position )->asString() );
+  }
+
+  // remove from collection
+  if ( position )
+    iArts->removeAtPosition( position );
+}
+
+
+void VyDoc::addArtTo( FlowItem & flow ) const
+{
+  IVSequence< VyArt* >::Cursor cursor( *iArts );
+  forCursor( cursor )
+  {
+    const VyArt * art = cursor.element();
+    ArtDef artdef( art->asString(), *art->bitmap() );
+    flow.addArt( artdef );
+  }
+}
+
+
+void VyDoc::addArtTo( Generator & gen ) const
+{
+  IVSequence< VyArt* >::Cursor cursor( *iArts );
+  forCursor( cursor )
+  {
+    const VyArt * art = cursor.element();
+    ArtDef artdef( art->asString(), *art->bitmap() );
+    gen.defineArt( artdef );
+  }
+}
+
+
+
+
+// Feature source code generation begins here...
+
+void VyDoc::exportHtmlSingle(const IString & exportFilename)
+{
+  ITRACE_RUNTIME( IString("Export HTM to ") + exportFilename );
+  Filename name( exportFilename );
+  generate( new HtmlGenerator( singleFile, name, name.dir() ), &exportFilename );
+  iSettings->setExportHtmlSingleMask( Filename(exportFilename).dir() + "*.htm" );
+}
+
+void VyDoc::exportHtmlFrames(const IString & exportFilename)
+{
+  ITRACE_RUNTIME( IString("Export HTML to ") + exportFilename );
+  Filename name( exportFilename );
+  generate( new HtmlGenerator( multiFile, name, name.dir() ), &exportFilename );
+  iSettings->setExportHtmlFrameMask( Filename(exportFilename).dir() + "*.html" );
+}
+
+void VyDoc::exportHtmlHelp(const IString & exportFilename)
+{
+  ITRACE_RUNTIME( IString("Export HHP to ") + exportFilename );
+  Filename name( exportFilename );
+  generate( new HtmlGenerator( htmlHelp, name, name.dir() ), &exportFilename );
+  iSettings->setExportHtmlHelpMask( Filename(exportFilename).dir() + "*.hhp" );
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyDoc::settingsId = "VyDoc::settings";
+
+VySettings* VyDoc::settings() const
+{
+  return iSettings;
+}
+
+VyDoc& VyDoc::setSettings(VySettings* aSettings)
+{
+  if (!(iSettings == aSettings))
+  {
+    iSettings = aSettings;
+    notifyObservers(INotificationEvent(VyDoc::settingsId, *this));
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

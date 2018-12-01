@@ -1,0 +1,9 @@
+ -+.\WinHelpParser.obj &
+ -+.\RtfColor.obj &
+ -+.\RtfFont.obj &
+ -+.\HpjListYacc.obj &
+ -+.\HpjYacc.obj &
+ -+.\CntYacc.obj &
+ -+.\RtfContext.obj &
+ -+.\RtfSection.obj &
+ -+.\RtfYacc.obj;

@@ -1,0 +1,99 @@
+
+void VyLink::construct()
+{
+  iExternal = false;
+  iLink = 0;
+}
+
+
+// Feature source code generation begins here...
+INotificationId VyLink::targetId = "VyLink::target";
+INotificationId VyLink::externalId = "VyLink::external";
+INotificationId VyLink::fileId = "VyLink::file";
+
+IString VyLink::target() const
+{
+  return iTarget;
+}
+
+VyLink& VyLink::setTarget(const IString& aTarget)
+{
+  if (!(iTarget == aTarget))
+  {
+    iTarget = aTarget;
+    notifyObservers(INotificationEvent(VyLink::targetId, *this));
+  } // endif
+  return *this;
+}
+
+Boolean VyLink::isExternal() const
+{
+  return iExternal;
+}
+
+VyLink& VyLink::enableExternal(Boolean enable)
+{
+  if (!(iExternal == enable))
+  {
+    iExternal = enable;
+    notifyObservers(INotificationEvent(VyLink::externalId, *this));
+  } // endif
+  return *this;
+}
+
+IString VyLink::file() const
+{
+  return iFile;
+}
+
+VyLink& VyLink::setFile(const IString& aFile)
+{
+  if (!(iFile == aFile))
+  {
+    iFile = aFile;
+    notifyObservers(INotificationEvent(VyLink::fileId, *this));
+  } // endif
+  return *this;
+}
+
+LinkGin VyLink::gin() const
+{
+  if ( iTarget.length() )
+  {
+    LinkGin gin( iTarget );
+    if ( iExternal )
+      gin.setFile( iFile );
+    return gin;
+  }
+
+  return LinkGin();
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyLink::linkId = "VyLink::link";
+
+LinkItem* VyLink::link() const
+{
+  return iLink;
+}
+
+VyLink& VyLink::setLink(LinkItem* aLink)
+{
+  if (!(iLink == aLink))
+  {
+    iLink = aLink;
+    notifyObservers(INotificationEvent(VyLink::linkId, *this));
+    if ( iLink )
+    {
+      setTarget( iLink->gin().target() );
+      enableExternal( iLink->gin().isExternal() );
+      setFile( iLink->gin().file() );
+    }
+  } // endif
+  return *this;
+}
+
+// Feature source code generation ends here.

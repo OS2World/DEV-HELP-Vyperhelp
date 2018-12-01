@@ -1,0 +1,19 @@
+notes about Generator design decisions
+
+IPF table quirks:
+  reset colors to default
+  look screwy if mono font isn't used or if bold/italic are applied
+  don't allow tags between the :table and the first :row and :c
+  allow color changes within the table
+  allow link/hide text within a cell (can't cross cell boundaries!)
+
+IPFGenerator's response:
+  before entering a table, :hp attributes are reset and :font face is reset to mono
+  _active->colors are reset to default after entering and leaving a table
+  while in table, switchContext shouldn't send :hp, :font, :lm or :rm
+  no formatting tags are sent between the :table and the first :row:c
+  when leaving table mode, switchContext should force reset of above tags
+  while in table, The forllowing are all translated to :p. :li, :lp, .br
+  while in table, RulerGins which imply nesting within a table are ignored
+  while in table, artwork is ignored
+

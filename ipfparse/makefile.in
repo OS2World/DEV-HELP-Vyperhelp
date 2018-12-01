@@ -1,0 +1,6 @@
+ -+.\SymbolLookup.obj &
+ -+.\StringPair.obj &
+ -+.\PanelLink.obj &
+ -+.\Footnote.obj &
+ -+.\IpfParser.obj &
+ -+.\IpfYacc.obj;

@@ -1,0 +1,47 @@
+Internationalization Issues
+
+
+Goals
+  don't need to support DBCS or Unicode NOW, but need to have hooks
+
+Levels of support
+  1. Single language
+  2. Multi-language
+  3. Translation
+
+What is needed for Level 1 + Portability??
+  Wrap all string manipulation functions
+  Don't assume characters are 8-bit (for Unicode or DBCS)
+
+UICL
+  handles DBCS
+  use separate resources for NLS
+  UICL User Guide p 21 has checklist for DBCS-enabling
+
+CodePage
+  use CODEPAGE= plus DEVINFO= in CONFIG.SYS
+  character mapping
+  Redbook v5, p93 has info
+  DosMapCase, DosQueryCp, DosSetProcessCp
+  WinCp...
+
+DBCS
+  encoding for 16-bit characters
+  first character may be standard character or a DBCS "prefix"
+  DosQueryDBCSEnv
+  WinUpper, WinYpperChar, WinNextChar, WinPrevChar, WinCompareStrings
+
+Unicode
+  16-bit character standard
+  will be used in Workplace OS
+
+Country Info
+  set by COUNTRY=code in CONFIG.SYS (code same as telephone codes)
+  determines:
+    default code page
+    date/time/currency formatting
+    collation sequence
+    DBCS vector (determines DBCS prefix characters?)
+  DosQueryCtryInfo, DosQueryCollate
+    
+

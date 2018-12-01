@@ -1,0 +1,61 @@
+/***************************************************************************
+ * File...... VyArt.cpv
+ * Author.... Mat
+ * Date...... 10/12/99
+ *
+ * User code for VyArt class, which is equivalent to an ArtDef (ID plus
+ * bitmap)
+ *
+ * Copyright (C) 1999 MekTek
+ ***************************************************************************/
+
+
+void VyArt::construct()
+{
+  iBitmap = 0;
+}
+
+
+// Feature source code generation begins here...
+
+IBitmapHandle VyArt::bitmapHandle() const
+{
+  return iBitmap? iBitmap->handle(): IBitmapHandle(0);
+}
+
+IString VyArt::asString() const
+{
+  return iName;
+}
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+INotificationId VyArt::nameId = "VyArt::name";
+INotificationId VyArt::bitmapId = "VyArt::bitmap";
+
+void VyArt::setName(const IString& name)
+{
+  if (!(iName == name))
+  {
+    iName = name;
+    notifyObservers(INotificationEvent(VyArt::nameId, *this));
+  } // endif
+}
+
+const IGBitmap * VyArt::bitmap() const
+{
+  return iBitmap;
+}
+
+VyArt& VyArt::setBitmap(const IGBitmap & aBitmap)
+{
+  // NOTE: no comparison operator, so assume the bitmap has changed
+  delete iBitmap;
+  iBitmap = ArtDef::copyBitmap( aBitmap );
+  notifyObservers(INotificationEvent(VyArt::bitmapId, *this));
+  return *this;
+}
+
+// Feature source code generation ends here.

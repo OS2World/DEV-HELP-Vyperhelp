@@ -1,0 +1,38 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "fontdlg.h"
+
+DLGTEMPLATE 123 LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Select Font", 123, 53, 32, 178, 99, WS_VISIBLE, FCF_SYSMENU | 
+            FCF_TITLEBAR
+    BEGIN
+        LTEXT           "~Name", 124, 9, 88, 114, 8, DT_MNEMONIC | NOT 
+                        WS_GROUP
+        CONTROL         "", DID_NAME, 9, 22, 117, 63, WC_COMBOBOX, 
+                        CBS_DROPDOWNLIST | WS_TABSTOP | WS_VISIBLE
+        LTEXT           "~Size", 125, 131, 88, 41, 8, DT_MNEMONIC | NOT 
+                        WS_GROUP
+        CONTROL         "", DID_SIZE, 131, 22, 41, 63, WC_COMBOBOX, 
+                        CBS_DROPDOWN | WS_TABSTOP | WS_VISIBLE
+        CTEXT           "Sample", DID_SAMPLE, 22, 29, 134, 36, DT_VCENTER | 
+                        NOT WS_GROUP
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00010101L
+                        PRESPARAMS PP_BACKGROUNDCOLOR, 0x00000000L
+        DEFPUSHBUTTON   "OK", DID_OK_BUTTON, 7, 6, 40, 14
+        PUSHBUTTON      "Cancel", DID_CANCEL_BUTTON, 51, 6, 40, 14
+        AUTOCHECKBOX    "", DID_DISPLAY_FILTER, 135, 18, 32, 4, NOT 
+                        WS_TABSTOP | NOT WS_VISIBLE
+        AUTOCHECKBOX    "", DID_OUTLINE, 115, 6, 32, 4, NOT WS_TABSTOP | NOT 
+                        WS_VISIBLE
+        AUTOCHECKBOX    "", DID_PRINTER_FILTER, 120, 10, 32, 4, NOT 
+                        WS_TABSTOP | NOT WS_VISIBLE
+        AUTOCHECKBOX    "", DID_STRIKEOUT, 116, 13, 32, 4, NOT WS_TABSTOP | 
+                        NOT WS_VISIBLE
+        AUTOCHECKBOX    "", DID_UNDERSCORE, 117, 16, 32, 4, NOT WS_TABSTOP | 
+                        NOT WS_VISIBLE
+        CONTROL         "", DID_STYLE, 136, 8, 28, 6, WC_COMBOBOX, 
+                        CBS_DROPDOWNLIST
+    END
+END

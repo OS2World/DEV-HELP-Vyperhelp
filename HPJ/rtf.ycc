@@ -1,0 +1,318 @@
+/***************************************************************************
+ * File...... rtf.ycc
+ * Author.... Mat
+ * Date...... 3/26/96
+ *
+ * Grammar for RTF files with WinHelp extensions.
+ *
+ * - Terminal symbols (lexical tokens) have initial caps
+ * - Non-terminal symbols begin with lower case
+ *
+ * Copyright (C) 1996 MekTek
+ ***************************************************************************/
+
+
+/***************************************************************************
+ * MACROS
+ ***************************************************************************/
+
+%macro
+
+{dp}                          '((\-?[0-9]+ ?)|( ?))';  // delimiter/parameter
+{hex}                         '[a-fA-F0-9]';
+{quote}                       '\d39';
+
+
+/***************************************************************************
+ * EXPRESSIONS
+ ***************************************************************************/
+
+%expression Main
+
+//
+// Basic Text Elements
+//
+
+'\n'                          %ignore;
+'\t'                          AsciiTab;
+'[^\\{}\n\t]+'                Text;
+'\{'                          Open;
+'\}'                          Close;
+
+//
+// Symbols
+//
+
+'\\[^a-z]'                    Symbol;
+'\\{quote}{hex}{hex}'         Hex;
+'\\{quote}09'                 HexTab;
+'\\\-'                        OptionalHyphen;
+'\\_'                         NoBreakHyphen;
+'\\:'                         IndexSubentry;
+'\\~'                         NoBreakSpace;
+'\\\n'                        LineFeed;
+'\\\r'                        CarriageReturn;
+
+//
+// Unknown Control Words
+//
+
+'\\\*'                        Dest;
+'\\[a-z]+{dp}'                Ctrl;
+
+//
+// WinHelp Extensions (case-insensitive)
+//
+
+'\\\{[Bb][Mm][Cc] '                       Bmc;
+'\\\{[Bb][Mm][Cc][Tt] '                   Bmct;
+'\\\{[Bb][Mm][cC][wW][dD] '               Bmcwd;
+'\\\{[bB][mM][lL] '                       Bml;
+'\\\{[bB][mM][lL][tT] '                   Bmlt;
+'\\\{[bB][mM][lL][wW][dD] '               Bmlwd;
+'\\\{[bB][mM][rR] '                       Bmr;
+'\\\{[bB][mM][rR][tT] '                   Bmrt;
+'\\\{[bB][mM][rR][wW][dD] '               Bmrwd;
+'\\\{[bB][uU][tT][tT][oO][nN] '           Button;
+'\\\{[eE][wW][cC] '                       Ewc;
+'\\\{[eE][wW][lL] '                       Ewl;
+'\\\{[eE][wW][rR] '                       Ewr;
+'\\\{[mM][cC][iI] '                       Mci;
+'\\\{[mM][cC][iI]_[lL][eE][fF][tT] '      MciLeft;
+'\\\{[mM][cC][iI]_[rR][iI][gG][hH][tT] '  MciRight;
+'\\\}'                                    MetaClose;
+
+//
+// Control Words
+//
+
+'\\ansi{dp}'                  Ansi;
+'\\bin{dp}'                   Bin;
+'\\blue{dp}'                  Blue;
+'\\bullet{dp}'                Bullet;
+'\\b{dp}'                     B;
+'\\cb{dp}'                    Cb;
+'\\cellx{dp}'                 Cellx;
+'\\cell{dp}'                  Cell;
+'\\cf{dp}'                    Cf;
+'\\chftn{dp}'                 Chftn;
+'\\colortbl{dp}'              Colortbl;
+'\\comment{dp}'               Comment;
+'\\cpg{dp}'                   Cpg;
+'\\deff{dp}'                  Deff;
+'\\emdash{dp}'                Emdash;
+'\\emspace{dp}'               Emspace;
+'\\endash{dp}'                Endash;
+'\\enspace{dp}'               Enspace;
+'\\falt{dp}'                  Falt;
+'\\fbidi{dp}'                 Fbidi;
+'\\fcharset{dp}'              Fcharset;
+'\\fdecor{dp}'                Fdecor;
+'\\fi{dp}'                    Fi;
+'\\field{dp}'                 Field;
+'\\fldpriv{dp}'               Fldpriv;
+'\\fldrslt{dp}'               Fldrslt;
+'\\fmodern{dp}'               Fmodern;
+'\\fnil{dp}'                  Fnil;
+'\\fonttbl{dp}'               Fonttbl;
+'\\footerf{dp}'               Footerf;
+'\\footerl{dp}'               Footerl;
+'\\footerr{dp}'               Footerr;
+'\\footer{dp}'                Footer;
+'\\footnote{dp}'              Footnote;
+'\\fprq{dp}'                  Fprq;
+'\\froman{dp}'                Froman;
+'\\fscript{dp}'               Fscript;
+'\\fswiss{dp}'                Fswiss;
+'\\fs{dp}'                    Fs;
+'\\ftech{dp}'                 Ftech;
+'\\ftncn{dp}'                 Ftncn;
+'\\ftnsepc{dp}'               Ftnsepc;
+'\\ftnsep{dp}'                Ftnsep;
+'\\f{dp}'                     F;
+'\\green{dp}'                 Green;
+'\\headerf{dp}'               Headerf;
+'\\headerl{dp}'               Headerl;
+'\\headerr{dp}'               Headerr;
+'\\header{dp}'                Header;
+'\\info{dp}'                  Info;
+'\\intbl{dp}'                 Intbl;
+'\\i{dp}'                     I;
+'\\ldblquote{dp}'             Ldblquote;
+'\\line{dp}'                  Line;
+'\\li{dp}'                    Li;
+'\\lquote{dp}'                Lquote;
+'\\mac{dp}'                   Mac;
+'\\object{dp}'                Object;
+'\\page{dp}'                  Page;
+'\\pard{dp}'                  Pard;
+'\\par{dp}'                   Par;
+'\\pca{dp}'                   Pca;
+'\\pc{dp}'                    Pc;
+'\\pict{dp}'                  Pict;
+'\\plain{dp}'                 Plain;
+'\\qc{dp}'                    Qc;
+'\\ql{dp}'                    Ql;
+'\\qr{dp}'                    Qr;
+'\\rdblquote{dp}'             Rdblquote;
+'\\red{dp}'                   Red;
+'\\ri{dp}'                    Ri;
+'\\row{dp}'                   Row;
+'\\rquote{dp}'                Rquote;
+'\\rtf{dp}'                   Rtf;
+'\\rxe{dp}'                   Rxe;
+'\\sa{dp}'                    Sa;
+'\\sb{dp}'                    Sb;
+'\\sect{dp}'                  Sect;
+'\\strike{dp}'                Strike;
+'\\stylesheet{dp}'            Stylesheet;
+'\\tab{dp}'                   Tab;
+'\\tc{dp}'                    Tc;
+'\\txe{dp}'                   Txe;
+'\\uldb{dp}'                  Uldb;
+'\\ul{dp}'                    Ul;
+'\\v{dp}'                     V;
+'\\windows{dp}'               Windows;
+'\\xe{dp}'                    Xe;
+
+
+
+/***************************************************************************
+ * GRAMMAR
+ *
+ * This grammar allows any random sequence of control words, symbols
+ * text and groups.  The code is responsible for maintaining the context.
+ ***************************************************************************/
+
+%production start
+
+Start                         start       -> elements;
+
+Elements                      elements    -> elements element;
+ElementsOne                   elements    -> element;
+
+AsciiTab                      element     -> AsciiTab;
+Text                          element     -> Text;
+Open                          element     -> Open;
+Close                         element     -> Close;
+
+Symbol                        element     -> Symbol;
+Hex                           element     -> Hex;
+HexTab                        element     -> HexTab;
+OptionalHyphen                element     -> OptionalHyphen;
+NoBreakHyphen                 element     -> NoBreakHyphen;
+IndexSubentry                 element     -> IndexSubentry;
+NoBreakSpace                  element     -> NoBreakSpace;
+LineFeed                      element     -> LineFeed;
+CarriageReturn                element     -> CarriageReturn;
+
+Dest                          element     -> Dest;
+Ctrl                          element     -> Ctrl;
+
+Bmc                           element     -> Bmc;
+Bmct                          element     -> Bmct;
+Bmcwd                         element     -> Bmcwd;
+Bml                           element     -> Bml;
+Bmlt                          element     -> Bmlt;
+Bmlwd                         element     -> Bmlwd;
+Bmr                           element     -> Bmr;
+Bmrt                          element     -> Bmrt;
+Bmrwd                         element     -> Bmrwd;
+Button                        element     -> Button;
+Ewc                           element     -> Ewc;
+Ewl                           element     -> Ewl;
+Ewr                           element     -> Ewr;
+Mci                           element     -> Mci;
+MciLeft                       element     -> MciLeft;
+MciRight                      element     -> MciRight;
+MetaClose                     element     -> MetaClose;
+
+Ansi                          element     -> Ansi;
+B                             element     -> B;
+Bin                           element     -> Bin;
+Blue                          element     -> Blue;
+Bullet                        element     -> Bullet;
+Cb                            element     -> Cb;
+Cell                          element     -> Cell;
+Cellx                         element     -> Cellx;
+Cf                            element     -> Cf;
+Chftn                         element     -> Chftn;
+Colortbl                      element     -> Colortbl;
+Comment                       element     -> Comment;
+Cpg                           element     -> Cpg;
+Deff                          element     -> Deff;
+Emdash                        element     -> Emdash;
+Emspace                       element     -> Emspace;
+Endash                        element     -> Endash;
+Enspace                       element     -> Enspace;
+F                             element     -> F;
+Falt                          element     -> Falt;
+Fbidi                         element     -> Fbidi;
+Fcharset                      element     -> Fcharset;
+Fdecor                        element     -> Fdecor;
+Fi                            element     -> Fi;
+Field                         element     -> Field;
+Fldpriv                       element     -> Fldpriv;
+Fldrslt                       element     -> Fldrslt;
+Fmodern                       element     -> Fmodern;
+Fnil                          element     -> Fnil;
+Fonttbl                       element     -> Fonttbl;
+Footer                        element     -> Footer;
+Footerf                       element     -> Footerf;
+Footerl                       element     -> Footerl;
+Footerr                       element     -> Footerr;
+Footnote                      element     -> Footnote;
+Fprq                          element     -> Fprq;
+Froman                        element     -> Froman;
+Fs                            element     -> Fs;
+Fscript                       element     -> Fscript;
+Fswiss                        element     -> Fswiss;
+Ftech                         element     -> Ftech;
+Ftncn                         element     -> Ftncn;
+Ftnsep                        element     -> Ftnsep;
+Ftnsepc                       element     -> Ftnsepc;
+Green                         element     -> Green;
+Header                        element     -> Header;
+Headerf                       element     -> Headerf;
+Headerl                       element     -> Headerl;
+Headerr                       element     -> Headerr;
+I                             element     -> I;
+Info                          element     -> Info;
+Intbl                         element     -> Intbl;
+Ldblquote                     element     -> Ldblquote;
+Li                            element     -> Li;
+Line                          element     -> Line;
+Lquote                        element     -> Lquote;
+Mac                           element     -> Mac;
+Object                        element     -> Object;
+Page                          element     -> Page;
+Par                           element     -> Par;
+Pard                          element     -> Pard;
+Pc                            element     -> Pc;
+Pca                           element     -> Pca;
+Pict                          element     -> Pict;
+Plain                         element     -> Plain;
+Qc                            element     -> Qc;
+Ql                            element     -> Ql;
+Qr                            element     -> Qr;
+Rdblquote                     element     -> Rdblquote;
+Red                           element     -> Red;
+Ri                            element     -> Ri;
+Row                           element     -> Row;
+Rquote                        element     -> Rquote;
+Rtf                           element     -> Rtf;
+Rxe                           element     -> Rxe;
+Sa                            element     -> Sa;
+Sb                            element     -> Sb;
+Sect                          element     -> Sect;
+Strike                        element     -> Strike;
+Stylesheet                    element     -> Stylesheet;
+Tab                           element     -> Tab;
+Tc                            element     -> Tc;
+Txe                           element     -> Txe;
+Ul                            element     -> Ul;
+Uldb                          element     -> Uldb;
+V                             element     -> V;
+Windows                       element     -> Windows;
+Xe                            element     -> Xe;
+

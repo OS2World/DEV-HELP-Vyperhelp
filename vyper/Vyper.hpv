@@ -1,0 +1,58 @@
+
+
+private:
+  void construct();
+  void destruct();
+
+
+
+// Feature source code generation begins here...
+public:
+  void requestClose();
+
+  static INotificationId closeRequestedId;
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual void loadSymbols();
+
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  virtual unsigned long split() const;
+  virtual Vyper& setSplit(unsigned long aSplit);
+
+  static INotificationId splitId;
+
+private:
+  unsigned long iSplit;
+
+// Feature source code generation ends here.
+
+
+// Feature source code generation begins here...
+public:
+  void updateSplit();
+
+
+// Feature source code generation ends here.
+
+private:
+  ISize _canvasSize;
+
+
+
+// Feature source code generation begins here...
+public:
+  void simplifyFontDialog( IFontDialog * );
+
+
+// Feature source code generation ends here.
+
+

@@ -1,0 +1,29 @@
+{\rtf0\ansi \deff0 {\fonttbl {\f0\froman Times;}{\f1\fmodern MS LineDraw;}{\f2\fdecor Symbol;}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue127;\red0\green127\blue0;\red0\green127\blue127;\red127\green0\blue0;\red127\green0\blue127;\red127\green127\blue0;\red127\green127\blue127;\red63\green63\blue63;\red0\green0\blue255;\red0\green255\blue0;\red0\green255\blue255;\red255\green0\blue0;\red255\green0\blue255;\red255\green255\blue0;\red255\green255\blue255;}\linex0 \sbknone 
+\margl1440 \margr1440 \plain {\info }\margb1440 \margt1440 \margb1440 \fs24 \f0 \lang1033 {\stylesheet {\snext0 Normal;}{\s2 \sl280 \sbasedon0 \snext2 Document;}}\fs24 \f0 \linex0 \linemod0 \sbknone \pard \s2 \sl280 OBJCOMs\par 
+\par 
+IPF Message Chain\par 
+\par 
+IPF send outgoing messages to only one destination.  It's the responsibility of all windows to cooperate with each other and create a "chain" of windows which get a chance to respond to the HM_ messages.\par 
+\par 
+If no objcom has been registered wityh a given help instance, the messages will go to the appli\-cation (for HLP) or the coverpage (for INF).  As soon as an objcom is registered with HM_SET_OBJCOM_WINDOW, the app/coverpage no longer get messages.\par 
+\par 
+Whenever an objcom is registered, it should save the handle of the previously active objcom.  Then whenever it gets an HM message that it is not interested in, it should pass it on to the pre\-viously active objcom.\par 
+\par 
+When a window wishes to be removed from the chain, it should do one of two things.  If it is currently the active objcom (use HM_QUERY to check), then it should set the previously active objcom to be the new active objcom.  Otherwise, it should send an "update chain" message to the currently active objcom.\par 
+\par 
+If a window gets an "update chain" message at any time, it should check to see if the window being removed is the one it knows as "previously active".  If so, the window should use the information in the message to replace its stored handle for "previously active".\par 
+\par 
+If this is all done, objcom windows can be "stacked" and "pulled" in any order.\par 
+\par 
+\par 
+Global Objcoms\par 
+\par 
+A global objcom can be installed with the :docprof tag.  The hWndACVP return is ignored.  You can also subclass the coverpage to see the HM messages, but this is not safe because the cover\-page is not considered part of the chain.  If any other objcom registers itself,  the coverpage will stop getting messages (even if the new objcom is well-behaved).\line \par 
+\line Where to Send Messages\par 
+\par 
+It appears that HM messages can be sent to either the Help Instance, Coverpage client or any Page client.\line \line \line ACVP\par 
+\par 
+The ACVP concept is used for visual control, although ACVP windows may also be used for objcom purposes (or both acvp and objcom).\par 
+\par 
+ACVP windows are initially sized to fit the space specified in the IPF tag, but they are not resized if the user resizes the frame window.  The acvp window should probably sense the need for resize!  You can have many acvp windows in a window, and you can always have multiple obj\-coms in the message chain.}

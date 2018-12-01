@@ -1,0 +1,4 @@
+LIBRARY      vygen INITINSTANCE TERMINSTANCE
+DESCRIPTION  'VyperHelp Generator: Copyright (c) 2000 MekTek'
+DATA         MULTIPLE NONSHARED
+

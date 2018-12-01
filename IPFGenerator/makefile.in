@@ -1,0 +1,13 @@
+ -+.\IpfForwarder.obj &
+ -+.\IpfForwarderSequence.obj &
+ -+.\IPF_Symbols.obj &
+ -+.\IPF_Send.obj &
+ -+.\IPF_Art.obj &
+ -+.\IPF_CharStyle.obj &
+ -+.\IPF_Context.obj &
+ -+.\IPF_Control.obj &
+ -+.\IPF_Distance.obj &
+ -+.\IPF_Generator.obj &
+ -+.\IPF_Keyword.obj &
+ -+.\IPF_ParaStyle.obj &
+ -+.\IPF_Section.obj;

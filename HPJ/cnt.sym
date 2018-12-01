@@ -1,0 +1,23 @@
+Symbol          Alias           Type            Assoc     Precedence
+------          -----           ----            -----     ----------
+
+Unknown                         Terminal        Nonassoc  0         
+Base                            Terminal        Nonassoc  0         
+Include                         Terminal        Nonassoc  0         
+Index                           Terminal        Nonassoc  0         
+Link                            Terminal        Nonassoc  0         
+Tab                             Terminal        Nonassoc  0         
+Title                           Terminal        Nonassoc  0         
+Section                         Terminal        Nonassoc  0         
+Filename                        Terminal        Nonassoc  0         
+Caption                         Terminal        Nonassoc  0         
+Equal                           Terminal        Nonassoc  0         
+Literal                         Terminal        Nonassoc  0         
+Text                            Terminal        Nonassoc  0         
+lines                           Nonterminal               0         
+start                           Nonterminal               0         
+line                            Nonterminal               0         
+texts                           Nonterminal               0         
+contents                        Nonterminal               0         
+text                            Nonterminal               0         
+LiteralEqual                    Nonterminal               0         
